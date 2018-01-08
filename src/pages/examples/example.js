@@ -1,5 +1,5 @@
 import './example.scss';
-import App from '@/App';
+import ExampleMain from '@/exmaple-main';
 import router from './router';
 
 Vue.config.productionTip = false;
@@ -7,7 +7,11 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
   el: '#main-example',
+  mixins: [ExampleMain],
   router,
-  template: '<App/>',
-  components: { App }
+  data() {
+    return {
+      activeIndex: '1'
+    };
+  }
 });

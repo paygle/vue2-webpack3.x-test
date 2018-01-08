@@ -1,4 +1,4 @@
-import './example01.scss';
+import './example02.scss';
 import ExampleMain from '@/exmaple-main';
 import router from './router';
 
@@ -11,7 +11,7 @@ new Vue({
   router,
   data() {
     return {
-      activeIndex: '1-2'
+      activeIndex: '1-3'
     };
   }
 });
