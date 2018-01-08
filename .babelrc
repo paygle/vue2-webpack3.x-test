@@ -1,16 +1,25 @@
 {
   "presets": [
     ["env", {
-      "modules": false
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      },
+      "modules": false,
+      "loose": true
     }],
     "stage-2"
   ],
-  "plugins": ["transform-runtime", ["component",
-    {
-      "libraryName": "element-ui",
-      "styleLibraryName": "theme-chalk"
-    }
-  ]],
+  "plugins": [
+    "transform-runtime",
+    "transform-vue-jsx",
+    "transform-remove-strict-mode",
+    ["component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
+  ],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],

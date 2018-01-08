@@ -9,6 +9,7 @@ const scripts = process.env.NODE_ENV === 'production' ?
 [
   'static/css/element.css',
   'static/css/ztree/default/zTreeStyle.css',
+  'static/js/vue/polyfill.min.js',
   'static/js/jq/jquery.min.js',
   'static/js/jq/jquery.ztree.all.min.js',
   'static/js/jq/jquery.ztree.exhide.min.js',
@@ -23,6 +24,7 @@ const scripts = process.env.NODE_ENV === 'production' ?
 ]:[
   'static/css/element.css',
   'static/css/ztree/default/zTreeStyle.css',
+  'static/js/vue/polyfill.js',
   'static/js/jq/jquery.js',
   'static/js/jq/jquery.ztree.all.js',
   'static/js/jq/jquery.ztree.exhide.js',
