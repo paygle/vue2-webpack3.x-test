@@ -1,11 +1,19 @@
-require('babel-register')
-var config = require('../../config')
+require('babel-register');
+var config = require('../../config');
+var HtmlReporter = require('nightwatch-html-reporter');
+/* Same options as when using the built in nightwatch reporter option */
+var reporter = new HtmlReporter({
+  openBrowser: true,
+  reportsDirectory: __dirname + '/reports'
+});
 
 // http://nightwatchjs.org/gettingstarted#settings-file
 module.exports = {
   src_folders: ['test/e2e/specs'],
   output_folder: 'test/e2e/reports',
   custom_assertions_path: ['test/e2e/custom-assertions'],
+
+  reporter: reporter.fn,
 
   selenium: {
     start_process: true,

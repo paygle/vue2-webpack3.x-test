@@ -8,14 +8,13 @@ module.exports = {
     const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 50000)
+      .waitForElementVisible('#app', 1000)
       .assert.elementPresent('.hello')
       .assert.containsText('h1', 'Welcome to Your Vue.js App')
       .assert.elementCount('img', 1)
-      .url(devServer + '/example.html')
+      .url(devServer + '/example01.html')
       .assert.elementPresent('.hello')
       .assert.containsText('h1', 'Welcome to Your Vue.js App')
-      .assert.elementCount('img', 1)
       .end();
   }
 };

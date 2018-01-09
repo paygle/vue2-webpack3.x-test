@@ -7,18 +7,16 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'IconsBox',
-      component: IconsBox,
-      beforeRouteEnter(to, from, next) {
-
-        debugger;
-        console.log(to, from, next);
-
-      }
+      component: IconsBox
     },
     {
       path: '/h',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: HelloWorld,
+      beforeRouteEnter(to, from, next) {
+
+        console.log('example router:', to, from, next);
+      }
     }
   ]
 });
