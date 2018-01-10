@@ -2,6 +2,10 @@ import HelloWorld from '@/HelloWorld';
 import IconsBox from './src/icons-box';
 
 Vue.use(VueRouter);
+// 导航标题定义
+const docTitles = {
+  '/h': 'Hello World - ex'
+};
 const router = new VueRouter({
   routes: [
     {
@@ -13,9 +17,9 @@ const router = new VueRouter({
       path: '/h',
       name: 'HelloWorld',
       component: HelloWorld,
-      beforeRouteEnter(to, from, next) {
-
-        console.log('example router:', to, from, next);
+      beforeEnter: (to, from, next)=>{
+        document.title = docTitles[to.path] || '';
+        next();
       }
     }
   ]
