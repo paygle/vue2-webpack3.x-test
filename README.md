@@ -31,6 +31,9 @@ npm run unit
 # 运行浏览器端到端测试，在test/unit/specs目录下编写测试代码
 npm run e2e
 
+# 运行浏览器端到端测试，生成 html 版本报告
+npm run e2e:report
+
 # 运行所有测试
 npm test
 ```

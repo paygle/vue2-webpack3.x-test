@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 // 1. start the dev server using production config
 process.env.NODE_ENV = 'development';
 
@@ -8,6 +10,17 @@ const webpackConfig = require('../../build/webpack.prod.conf');
 const devConfigPromise = require('../../build/webpack.dev.conf');
 
 let server;
+let report = path.resolve(__dirname, './reports');
+let ctx = fs.readdirSync(report);
+
+if (ctx.length) {
+  ctx.forEach((f)=>{
+    let st = fs.statSync(report + '/' + f);
+    if (st.isFile) {
+      fs.unlinkSync(report + '/' + f);
+    }
+  });
+}
 
 devConfigPromise.then(devConfig => {
   const devServerOptions = devConfig.devServer;
