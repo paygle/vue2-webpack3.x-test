@@ -1,4 +1,4 @@
-import HelloWorld from '@/HelloWorld';
+import HelloWorld from '@compo/HelloWorld';
 import IconsBox from './src/icons-box';
 
 Vue.use(VueRouter);

@@ -1,5 +1,5 @@
 import './example02.scss';
-import ExampleMain from '@/exmaple-main';
+import ExampleMain from '@compo/exmaple-main';
 import router from './router';
 
 Vue.config.productionTip = false;

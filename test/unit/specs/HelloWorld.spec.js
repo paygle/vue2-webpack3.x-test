@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Button, Select, Option } from 'element-ui';
-import HelloWorld from '@/HelloWorld';
+import HelloWorld from '@compo/HelloWorld';
 
 Vue.use(Button);
 Vue.use(Select);

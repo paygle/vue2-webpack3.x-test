@@ -56,10 +56,10 @@ var baseConfig = {
   resolve: {
     extensions: ['.vue', '.js', '.json', '.ts', '.tsx'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src/components'),
       'src': resolve('src'),
-      'pages': resolve('src/pages')
+      'vue$': 'vue/dist/vue.esm.js',
+      '@compo': resolve('src/components'),
+      '@pages': resolve('src/pages')
     }
   },
   module: {
