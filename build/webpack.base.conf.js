@@ -19,7 +19,7 @@ const scripts = process.env.NODE_ENV === 'production' ?
   'static/js/vue/element.js',
   'static/js/echarts/echarts.min.js',
   'static/js/echarts/echarts-amap.min.js',
-  'static/js/xlsx/xlsx.min.js',
+  'static/js/xlsx/xlsx.full.min.js',
   'static/js/pako/pako.min.js'
 ]:[
   'static/css/element.css',
@@ -34,7 +34,7 @@ const scripts = process.env.NODE_ENV === 'production' ?
   'static/js/vue/element.js',
   'static/js/echarts/echarts.js',
   'static/js/echarts/echarts-amap.min.js',
-  'static/js/xlsx/xlsx.js',
+  'static/js/xlsx/xlsx.full.min.js',
   'static/js/pako/pako.js'
 ];
 
