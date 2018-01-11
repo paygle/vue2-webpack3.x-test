@@ -60,7 +60,9 @@ exports.cssLoaders = function (options) {
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
+    styl: generateLoaders('stylus'),
+    ts: 'ts-loader',
+    tsx: 'babel-loader!ts-loader'
   }
 }
 

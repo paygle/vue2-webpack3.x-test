@@ -54,7 +54,7 @@ var baseConfig = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.vue', '.js', '.json', '.ts', '.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src/components'),
@@ -78,6 +78,16 @@ var baseConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: { appendTsSuffixTo: [/TS\.vue$/] }
+      },
+      {
+        test: /\.tsx$/,
+        loader: 'babel-loader!ts-loader',
+        options: { appendTsxSuffixTo: [/TSX\.vue$/] }
       },
       {
         test: /\.js$/,
