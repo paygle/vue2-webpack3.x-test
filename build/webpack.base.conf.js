@@ -86,7 +86,7 @@ var baseConfig = {
       },
       {
         test: /\.tsx$/,
-        loader: 'babel-loader!ts-loader',
+        loaders: 'babel-loader!ts-loader',
         options: { appendTsxSuffixTo: [/TSX\.vue$/] }
       },
       {

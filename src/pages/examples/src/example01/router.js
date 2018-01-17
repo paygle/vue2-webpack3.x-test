@@ -1,4 +1,6 @@
-import HelloWorld from '@compo/HelloWorld';
+// 单独打包动态加载组件，引入组件的方式，如下
+// webpackChunkName 设置打包文件的名称，名称相同的会打包到同一个文件里面去
+const HelloWorld = () => import(/* webpackChunkName: "example-pack-1" */ '@compo/HelloWorld');
 
 Vue.use(VueRouter);
 
