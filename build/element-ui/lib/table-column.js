@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 197);
+/******/ 	return __webpack_require__(__webpack_require__.s = 255);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -73,15 +73,15 @@ module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 197:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(198);
+module.exports = __webpack_require__(256);
 
 
 /***/ }),
 
-/***/ 198:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,7 +89,7 @@ module.exports = __webpack_require__(198);
 
 exports.__esModule = true;
 
-var _tableColumn = __webpack_require__(199);
+var _tableColumn = __webpack_require__(257);
 
 var _tableColumn2 = _interopRequireDefault(_tableColumn);
 
@@ -104,7 +104,7 @@ exports.default = _tableColumn2.default;
 
 /***/ }),
 
-/***/ 199:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116,7 +116,7 @@ var _checkbox = __webpack_require__(16);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
-var _tag = __webpack_require__(24);
+var _tag = __webpack_require__(26);
 
 var _tag2 = _interopRequireDefault(_tag);
 
@@ -476,7 +476,7 @@ exports.default = {
 
       return _self.showOverflowTooltip || _self.showTooltipWhenOverflow ? h(
         'div',
-        { 'class': 'cell el-tooltip', style: 'width:' + (data.column.realWidth || data.column.width) + 'px' },
+        { 'class': 'cell el-tooltip', style: { width: (data.column.realWidth || data.column.width) - 1 + 'px' } },
         [renderCell(h, data)]
       ) : h(
         'div',
@@ -578,7 +578,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 24:
+/***/ 26:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/tag");

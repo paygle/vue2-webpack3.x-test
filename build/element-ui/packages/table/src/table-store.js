@@ -90,6 +90,9 @@ const TableStore = function(table, initialState = {}) {
     leafColumns: [],
     fixedLeafColumns: [],
     rightFixedLeafColumns: [],
+    leafColumnsLength: 0,
+    fixedLeafColumnsLength: 0,
+    rightFixedLeafColumnsLength: 0,
     isComplex: false,
     _data: null,
     filteredData: null,
@@ -126,7 +129,7 @@ TableStore.prototype.mutations = {
       const column = getColumnById(this.states, columnId);
       if (column && column.filterMethod) {
         data = data.filter((row) => {
-          return values.some(value => column.filterMethod.call(null, value, row));
+          return values.some(value => column.filterMethod.call(null, value, row, column));
         });
       }
     });
@@ -216,7 +219,7 @@ TableStore.prototype.mutations = {
       const column = getColumnById(this.states, columnId);
       if (column && column.filterMethod) {
         data = data.filter((row) => {
-          return values.some(value => column.filterMethod.call(null, value, row));
+          return values.some(value => column.filterMethod.call(null, value, row, column));
         });
       }
     });
@@ -249,7 +252,7 @@ TableStore.prototype.mutations = {
       states.reserveSelection = column.reserveSelection;
     }
 
-    this.updateColumns();  // hack for dynamics insert column
+    this.updateColumns(); // hack for dynamics insert column
     this.scheduleLayout();
   },
 
@@ -259,7 +262,7 @@ TableStore.prototype.mutations = {
       _columns.splice(_columns.indexOf(column), 1);
     }
 
-    this.updateColumns();  // hack for dynamics remove column
+    this.updateColumns(); // hack for dynamics remove column
     this.scheduleLayout();
   },
 

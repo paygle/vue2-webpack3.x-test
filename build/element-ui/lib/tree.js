@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 285);
+/******/ 	return __webpack_require__(__webpack_require__.s = 325);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,7 +183,7 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/locale");
@@ -197,22 +197,22 @@ module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 21:
+/***/ 22:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/transitions/collapse-transition");
 
 /***/ }),
 
-/***/ 285:
+/***/ 325:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(286);
+module.exports = __webpack_require__(326);
 
 
 /***/ }),
 
-/***/ 286:
+/***/ 326:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -220,7 +220,7 @@ module.exports = __webpack_require__(286);
 
 exports.__esModule = true;
 
-var _tree = __webpack_require__(287);
+var _tree = __webpack_require__(327);
 
 var _tree2 = _interopRequireDefault(_tree);
 
@@ -235,21 +235,23 @@ exports.default = _tree2.default;
 
 /***/ }),
 
-/***/ 287:
+/***/ 327:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_bdd5d816_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__ = __webpack_require__(294);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_041b13ea_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__ = __webpack_require__(332);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -258,7 +260,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_bdd5d816_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_041b13ea_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -270,307 +272,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 288:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _treeStore = __webpack_require__(289);
-
-var _treeStore2 = _interopRequireDefault(_treeStore);
-
-var _treeNode = __webpack_require__(291);
-
-var _treeNode2 = _interopRequireDefault(_treeNode);
-
-var _locale = __webpack_require__(14);
-
-var _emitter = __webpack_require__(1);
-
-var _emitter2 = _interopRequireDefault(_emitter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-  name: 'ElTree',
-
-  mixins: [_emitter2.default],
-
-  components: {
-    ElTreeNode: _treeNode2.default
-  },
-
-  data: function data() {
-    return {
-      store: null,
-      root: null,
-      currentNode: null,
-      treeItems: null,
-      checkboxItems: []
-    };
-  },
-
-
-  props: {
-    data: {
-      type: Array
-    },
-    emptyText: {
-      type: String,
-      default: function _default() {
-        return (0, _locale.t)('el.tree.emptyText');
-      }
-    },
-    renderAfterExpand: {
-      type: Boolean,
-      default: true
-    },
-    nodeKey: String,
-    checkStrictly: Boolean,
-    defaultExpandAll: Boolean,
-    expandOnClickNode: {
-      type: Boolean,
-      default: true
-    },
-    checkDescendants: {
-      type: Boolean,
-      default: false
-    },
-    autoExpandParent: {
-      type: Boolean,
-      default: true
-    },
-    defaultCheckedKeys: Array,
-    defaultExpandedKeys: Array,
-    renderContent: Function,
-    showCheckbox: {
-      type: Boolean,
-      default: false
-    },
-    props: {
-      default: function _default() {
-        return {
-          children: 'children',
-          label: 'label',
-          icon: 'icon',
-          disabled: 'disabled'
-        };
-      }
-    },
-    lazy: {
-      type: Boolean,
-      default: false
-    },
-    highlightCurrent: Boolean,
-    load: Function,
-    filterNodeMethod: Function,
-    accordion: Boolean,
-    indent: {
-      type: Number,
-      default: 18
-    }
-  },
-
-  computed: {
-    children: {
-      set: function set(value) {
-        this.data = value;
-      },
-      get: function get() {
-        return this.data;
-      }
-    },
-    treeItemArray: function treeItemArray() {
-      return Array.prototype.slice.call(this.treeItems);
-    }
-  },
-
-  watch: {
-    defaultCheckedKeys: function defaultCheckedKeys(newVal) {
-      this.store.defaultCheckedKeys = newVal;
-      this.store.setDefaultCheckedKey(newVal);
-    },
-    defaultExpandedKeys: function defaultExpandedKeys(newVal) {
-      this.store.defaultExpandedKeys = newVal;
-      this.store.setDefaultExpandedKeys(newVal);
-    },
-    data: function data(newVal) {
-      this.store.setData(newVal);
-    },
-    checkboxItems: function checkboxItems(val) {
-      Array.prototype.forEach.call(val, function (checkbox) {
-        checkbox.setAttribute('tabindex', -1);
-      });
-    }
-  },
-
-  methods: {
-    filter: function filter(value) {
-      if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
-      this.store.filter(value);
-    },
-    getNodeKey: function getNodeKey(node, index) {
-      var nodeKey = this.nodeKey;
-      if (nodeKey && node) {
-        return node.data[nodeKey];
-      }
-      return index;
-    },
-    getNodePath: function getNodePath(data) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getNodePath');
-      var node = this.store.getNode(data);
-      if (!node) return [];
-      var path = [node.data];
-      var parent = node.parent;
-      while (parent && parent !== this.root) {
-        path.push(parent.data);
-        parent = parent.parent;
-      }
-      return path.reverse();
-    },
-    getCheckedNodes: function getCheckedNodes(leafOnly) {
-      return this.store.getCheckedNodes(leafOnly);
-    },
-    getCheckedKeys: function getCheckedKeys(leafOnly) {
-      return this.store.getCheckedKeys(leafOnly);
-    },
-    getCurrentNode: function getCurrentNode() {
-      var currentNode = this.store.getCurrentNode();
-      return currentNode ? currentNode.data : null;
-    },
-    getCurrentKey: function getCurrentKey() {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getCurrentKey');
-      var currentNode = this.getCurrentNode();
-      return currentNode ? currentNode[this.nodeKey] : null;
-    },
-    setCheckedNodes: function setCheckedNodes(nodes, leafOnly) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedNodes');
-      this.store.setCheckedNodes(nodes, leafOnly);
-    },
-    setCheckedKeys: function setCheckedKeys(keys, leafOnly) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedKeys');
-      this.store.setCheckedKeys(keys, leafOnly);
-    },
-    setChecked: function setChecked(data, checked, deep) {
-      this.store.setChecked(data, checked, deep);
-    },
-    setCurrentNode: function setCurrentNode(node) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentNode');
-      this.store.setUserCurrentNode(node);
-    },
-    setCurrentKey: function setCurrentKey(key) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentKey');
-      this.store.setCurrentNodeKey(key);
-    },
-    handleNodeExpand: function handleNodeExpand(nodeData, node, instance) {
-      this.broadcast('ElTreeNode', 'tree-node-expand', node);
-      this.$emit('node-expand', nodeData, node, instance);
-    },
-    updateKeyChildren: function updateKeyChildren(key, data) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
-      this.store.updateChildren(key, data);
-    },
-    initTabindex: function initTabindex() {
-      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
-      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
-      var checkedItem = this.$el.querySelectorAll('.is-checked[role=treeitem]');
-      if (checkedItem.length) {
-        checkedItem[0].setAttribute('tabindex', 0);
-        return;
-      }
-      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0);
-    },
-    handelKeydown: function handelKeydown(ev) {
-      var currentItem = ev.target;
-      if (currentItem.className.indexOf('el-tree-node') === -1) return;
-      ev.preventDefault();
-      var keyCode = ev.keyCode;
-      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
-      var currentIndex = this.treeItemArray.indexOf(currentItem);
-      var nextIndex = void 0;
-      if ([38, 40].indexOf(keyCode) > -1) {
-        // up、down
-        if (keyCode === 38) {
-          // up
-          nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0;
-        } else {
-          nextIndex = currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
-        }
-        this.treeItemArray[nextIndex].focus(); // 选中
-      }
-      var hasInput = currentItem.querySelector('[type="checkbox"]');
-      if ([37, 39].indexOf(keyCode) > -1) {
-        // left、right 展开
-        currentItem.click(); // 选中
-      }
-      if ([13, 32].indexOf(keyCode) > -1) {
-        // space enter选中checkbox
-        if (hasInput) {
-          hasInput.click();
-        }
-      }
-    }
-  },
-
-  created: function created() {
-    this.isTree = true;
-
-    this.store = new _treeStore2.default({
-      key: this.nodeKey,
-      data: this.data,
-      lazy: this.lazy,
-      props: this.props,
-      load: this.load,
-      currentNodeKey: this.currentNodeKey,
-      checkStrictly: this.checkStrictly,
-      checkDescendants: this.checkDescendants,
-      defaultCheckedKeys: this.defaultCheckedKeys,
-      defaultExpandedKeys: this.defaultExpandedKeys,
-      autoExpandParent: this.autoExpandParent,
-      defaultExpandAll: this.defaultExpandAll,
-      filterNodeMethod: this.filterNodeMethod
-    });
-
-    this.root = this.store.root;
-  },
-  mounted: function mounted() {
-    this.initTabindex();
-    this.$el.addEventListener('keydown', this.handelKeydown);
-  },
-  updated: function updated() {
-    this.treeItems = this.$el.querySelectorAll('[role=treeitem]');
-    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
-  }
-};
-
-/***/ }),
-
-/***/ 289:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -580,11 +282,11 @@ exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _node = __webpack_require__(290);
+var _node = __webpack_require__(329);
 
 var _node2 = _interopRequireDefault(_node);
 
-var _util = __webpack_require__(48);
+var _util = __webpack_require__(94);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -934,7 +636,7 @@ exports.default = TreeStore;
 
 /***/ }),
 
-/***/ 290:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -951,7 +653,7 @@ var _merge = __webpack_require__(9);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _util = __webpack_require__(48);
+var _util = __webpack_require__(94);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1416,21 +1118,23 @@ exports.default = Node;
 
 /***/ }),
 
-/***/ 291:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_751ff8ec_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__ = __webpack_require__(293);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f49321e6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__ = __webpack_require__(331);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -1439,7 +1143,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_751ff8ec_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f49321e6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -1451,7 +1155,42 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 292:
+/***/ 331:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.node.visible),expression:"node.visible"}],staticClass:"el-tree-node",class:{
+    'is-expanded': _vm.expanded,
+    'is-current': _vm.tree.store.currentNode === _vm.node,
+    'is-hidden': !_vm.node.visible,
+    'is-focusable': !_vm.node.disabled,
+    'is-checked': !_vm.node.disabled && _vm.node.checked
+  },attrs:{"role":"treeitem","tabindex":"-1","aria-expanded":_vm.expanded,"aria-disabled":_vm.node.disabled,"aria-checked":_vm.node.checked},on:{"click":function($event){$event.stopPropagation();_vm.handleClick($event)}}},[_c('div',{staticClass:"el-tree-node__content",style:({ 'padding-left': (_vm.node.level - 1) * _vm.tree.indent + 'px' })},[_c('span',{staticClass:"el-tree-node__expand-icon el-icon-caret-right",class:{ 'is-leaf': _vm.node.isLeaf, expanded: !_vm.node.isLeaf && _vm.expanded },on:{"click":function($event){$event.stopPropagation();_vm.handleExpandIconClick($event)}}}),(_vm.showCheckbox)?_c('el-checkbox',{attrs:{"indeterminate":_vm.node.indeterminate,"disabled":!!_vm.node.disabled},on:{"change":_vm.handleCheckChange},nativeOn:{"click":function($event){$event.stopPropagation();}},model:{value:(_vm.node.checked),callback:function ($$v) {_vm.$set(_vm.node, "checked", $$v)},expression:"node.checked"}}):_vm._e(),(_vm.node.loading)?_c('span',{staticClass:"el-tree-node__loading-icon el-icon-loading"}):_vm._e(),_c('node-content',{attrs:{"node":_vm.node}})],1),_c('el-collapse-transition',[(!_vm.renderAfterExpand || _vm.childNodeRendered)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.expanded),expression:"expanded"}],staticClass:"el-tree-node__children",attrs:{"role":"group","aria-expanded":_vm.expanded}},_vm._l((_vm.node.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"render-content":_vm.renderContent,"render-after-expand":_vm.renderAfterExpand,"node":child},on:{"node-expand":_vm.handleChildNodeExpand}})})):_vm._e()])],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 332:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-tree",class:{ 'el-tree--highlight-current': _vm.highlightCurrent },attrs:{"role":"tree"}},[_vm._l((_vm.root.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"node":child,"props":_vm.props,"render-after-expand":_vm.renderAfterExpand,"render-content":_vm.renderContent},on:{"node-expand":_vm.handleNodeExpand}})}),(!_vm.root.childNodes || _vm.root.childNodes.length === 0)?_c('div',{staticClass:"el-tree__empty-block"},[_c('span',{staticClass:"el-tree__empty-text"},[_vm._v(_vm._s(_vm.emptyText))])]):_vm._e()],2)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/merge");
+
+/***/ }),
+
+/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1459,7 +1198,333 @@ var Component = normalizeComponent(
 
 exports.__esModule = true;
 
-var _collapseTransition = __webpack_require__(21);
+var _treeStore = __webpack_require__(328);
+
+var _treeStore2 = _interopRequireDefault(_treeStore);
+
+var _treeNode = __webpack_require__(330);
+
+var _treeNode2 = _interopRequireDefault(_treeNode);
+
+var _locale = __webpack_require__(13);
+
+var _emitter = __webpack_require__(1);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'ElTree',
+
+  mixins: [_emitter2.default],
+
+  components: {
+    ElTreeNode: _treeNode2.default
+  },
+
+  data: function data() {
+    return {
+      store: null,
+      root: null,
+      currentNode: null,
+      treeItems: null,
+      checkboxItems: []
+    };
+  },
+
+
+  props: {
+    data: {
+      type: Array
+    },
+    emptyText: {
+      type: String,
+      default: function _default() {
+        return (0, _locale.t)('el.tree.emptyText');
+      }
+    },
+    renderAfterExpand: {
+      type: Boolean,
+      default: true
+    },
+    nodeKey: String,
+    checkStrictly: Boolean,
+    defaultExpandAll: Boolean,
+    expandOnClickNode: {
+      type: Boolean,
+      default: true
+    },
+    checkDescendants: {
+      type: Boolean,
+      default: false
+    },
+    autoExpandParent: {
+      type: Boolean,
+      default: true
+    },
+    defaultCheckedKeys: Array,
+    defaultExpandedKeys: Array,
+    renderContent: Function,
+    showCheckbox: {
+      type: Boolean,
+      default: false
+    },
+    props: {
+      default: function _default() {
+        return {
+          children: 'children',
+          label: 'label',
+          icon: 'icon',
+          disabled: 'disabled'
+        };
+      }
+    },
+    lazy: {
+      type: Boolean,
+      default: false
+    },
+    highlightCurrent: Boolean,
+    load: Function,
+    filterNodeMethod: Function,
+    accordion: Boolean,
+    indent: {
+      type: Number,
+      default: 18
+    }
+  },
+
+  computed: {
+    children: {
+      set: function set(value) {
+        this.data = value;
+      },
+      get: function get() {
+        return this.data;
+      }
+    },
+    treeItemArray: function treeItemArray() {
+      return Array.prototype.slice.call(this.treeItems);
+    }
+  },
+
+  watch: {
+    defaultCheckedKeys: function defaultCheckedKeys(newVal) {
+      this.store.defaultCheckedKeys = newVal;
+      this.store.setDefaultCheckedKey(newVal);
+    },
+    defaultExpandedKeys: function defaultExpandedKeys(newVal) {
+      this.store.defaultExpandedKeys = newVal;
+      this.store.setDefaultExpandedKeys(newVal);
+    },
+    data: function data(newVal) {
+      this.store.setData(newVal);
+    },
+    checkboxItems: function checkboxItems(val) {
+      Array.prototype.forEach.call(val, function (checkbox) {
+        checkbox.setAttribute('tabindex', -1);
+      });
+    }
+  },
+
+  methods: {
+    filter: function filter(value) {
+      if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
+      this.store.filter(value);
+    },
+    getNodeKey: function getNodeKey(node, index) {
+      var nodeKey = this.nodeKey;
+      if (nodeKey && node) {
+        return node.data[nodeKey];
+      }
+      return index;
+    },
+    getNodePath: function getNodePath(data) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getNodePath');
+      var node = this.store.getNode(data);
+      if (!node) return [];
+      var path = [node.data];
+      var parent = node.parent;
+      while (parent && parent !== this.root) {
+        path.push(parent.data);
+        parent = parent.parent;
+      }
+      return path.reverse();
+    },
+    getCheckedNodes: function getCheckedNodes(leafOnly) {
+      return this.store.getCheckedNodes(leafOnly);
+    },
+    getCheckedKeys: function getCheckedKeys(leafOnly) {
+      return this.store.getCheckedKeys(leafOnly);
+    },
+    getCurrentNode: function getCurrentNode() {
+      var currentNode = this.store.getCurrentNode();
+      return currentNode ? currentNode.data : null;
+    },
+    getCurrentKey: function getCurrentKey() {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getCurrentKey');
+      var currentNode = this.getCurrentNode();
+      return currentNode ? currentNode[this.nodeKey] : null;
+    },
+    setCheckedNodes: function setCheckedNodes(nodes, leafOnly) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedNodes');
+      this.store.setCheckedNodes(nodes, leafOnly);
+    },
+    setCheckedKeys: function setCheckedKeys(keys, leafOnly) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedKeys');
+      this.store.setCheckedKeys(keys, leafOnly);
+    },
+    setChecked: function setChecked(data, checked, deep) {
+      this.store.setChecked(data, checked, deep);
+    },
+    setCurrentNode: function setCurrentNode(node) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentNode');
+      this.store.setUserCurrentNode(node);
+    },
+    setCurrentKey: function setCurrentKey(key) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentKey');
+      this.store.setCurrentNodeKey(key);
+    },
+    handleNodeExpand: function handleNodeExpand(nodeData, node, instance) {
+      this.broadcast('ElTreeNode', 'tree-node-expand', node);
+      this.$emit('node-expand', nodeData, node, instance);
+    },
+    updateKeyChildren: function updateKeyChildren(key, data) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
+      this.store.updateChildren(key, data);
+    },
+    initTabindex: function initTabindex() {
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+      var checkedItem = this.$el.querySelectorAll('.is-checked[role=treeitem]');
+      if (checkedItem.length) {
+        checkedItem[0].setAttribute('tabindex', 0);
+        return;
+      }
+      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0);
+    },
+    handelKeydown: function handelKeydown(ev) {
+      var currentItem = ev.target;
+      if (currentItem.className.indexOf('el-tree-node') === -1) return;
+      ev.preventDefault();
+      var keyCode = ev.keyCode;
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      var currentIndex = this.treeItemArray.indexOf(currentItem);
+      var nextIndex = void 0;
+      if ([38, 40].indexOf(keyCode) > -1) {
+        // up、down
+        if (keyCode === 38) {
+          // up
+          nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0;
+        } else {
+          nextIndex = currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
+        }
+        this.treeItemArray[nextIndex].focus(); // 选中
+      }
+      var hasInput = currentItem.querySelector('[type="checkbox"]');
+      if ([37, 39].indexOf(keyCode) > -1) {
+        // left、right 展开
+        currentItem.click(); // 选中
+      }
+      if ([13, 32].indexOf(keyCode) > -1) {
+        // space enter选中checkbox
+        if (hasInput) {
+          hasInput.click();
+        }
+      }
+    }
+  },
+
+  created: function created() {
+    this.isTree = true;
+
+    this.store = new _treeStore2.default({
+      key: this.nodeKey,
+      data: this.data,
+      lazy: this.lazy,
+      props: this.props,
+      load: this.load,
+      currentNodeKey: this.currentNodeKey,
+      checkStrictly: this.checkStrictly,
+      checkDescendants: this.checkDescendants,
+      defaultCheckedKeys: this.defaultCheckedKeys,
+      defaultExpandedKeys: this.defaultExpandedKeys,
+      autoExpandParent: this.autoExpandParent,
+      defaultExpandAll: this.defaultExpandAll,
+      filterNodeMethod: this.filterNodeMethod
+    });
+
+    this.root = this.store.root;
+  },
+  mounted: function mounted() {
+    this.initTabindex();
+    this.$el.addEventListener('keydown', this.handelKeydown);
+  },
+  updated: function updated() {
+    this.treeItems = this.$el.querySelectorAll('[role=treeitem]');
+    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+  }
+};
+
+/***/ }),
+
+/***/ 94:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+var NODE_KEY = exports.NODE_KEY = '$treeNodeId';
+
+var markNodeData = exports.markNodeData = function markNodeData(node, data) {
+  if (data[NODE_KEY]) return;
+  Object.defineProperty(data, NODE_KEY, {
+    value: node.id,
+    enumerable: false,
+    configurable: false,
+    writable: false
+  });
+};
+
+var getNodeKey = exports.getNodeKey = function getNodeKey(key, data) {
+  if (!key) return data[NODE_KEY];
+  return data[key];
+};
+
+/***/ }),
+
+/***/ 95:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _collapseTransition = __webpack_require__(22);
 
 var _collapseTransition2 = _interopRequireDefault(_collapseTransition);
 
@@ -1691,67 +1756,6 @@ exports.default = {
 //
 //
 //
-
-/***/ }),
-
-/***/ 293:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.node.visible),expression:"node.visible"}],staticClass:"el-tree-node",class:{
-    'is-expanded': _vm.expanded,
-    'is-current': _vm.tree.store.currentNode === _vm.node,
-    'is-hidden': !_vm.node.visible,
-    'is-focusable': !_vm.node.disabled,
-    'is-checked': !_vm.node.disabled && _vm.node.checked
-  },attrs:{"role":"treeitem","tabindex":"-1","aria-expanded":_vm.expanded,"aria-disabled":_vm.node.disabled,"aria-checked":_vm.node.checked},on:{"click":function($event){$event.stopPropagation();_vm.handleClick($event)}}},[_c('div',{staticClass:"el-tree-node__content",style:({ 'padding-left': (_vm.node.level - 1) * _vm.tree.indent + 'px' })},[_c('span',{staticClass:"el-tree-node__expand-icon el-icon-caret-right",class:{ 'is-leaf': _vm.node.isLeaf, expanded: !_vm.node.isLeaf && _vm.expanded },on:{"click":function($event){$event.stopPropagation();_vm.handleExpandIconClick($event)}}}),(_vm.showCheckbox)?_c('el-checkbox',{attrs:{"indeterminate":_vm.node.indeterminate,"disabled":!!_vm.node.disabled},on:{"change":_vm.handleCheckChange},nativeOn:{"click":function($event){$event.stopPropagation();}},model:{value:(_vm.node.checked),callback:function ($$v) {_vm.$set(_vm.node, "checked", $$v)},expression:"node.checked"}}):_vm._e(),(_vm.node.loading)?_c('span',{staticClass:"el-tree-node__loading-icon el-icon-loading"}):_vm._e(),_c('node-content',{attrs:{"node":_vm.node}})],1),_c('el-collapse-transition',[(!_vm.renderAfterExpand || _vm.childNodeRendered)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.expanded),expression:"expanded"}],staticClass:"el-tree-node__children",attrs:{"role":"group","aria-expanded":_vm.expanded}},_vm._l((_vm.node.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"render-content":_vm.renderContent,"render-after-expand":_vm.renderAfterExpand,"node":child},on:{"node-expand":_vm.handleChildNodeExpand}})})):_vm._e()])],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 294:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-tree",class:{ 'el-tree--highlight-current': _vm.highlightCurrent },attrs:{"role":"tree"}},[_vm._l((_vm.root.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"node":child,"props":_vm.props,"render-after-expand":_vm.renderAfterExpand,"render-content":_vm.renderContent},on:{"node-expand":_vm.handleNodeExpand}})}),(!_vm.root.childNodes || _vm.root.childNodes.length === 0)?_c('div',{staticClass:"el-tree__empty-block"},[_c('span',{staticClass:"el-tree__empty-text"},[_vm._v(_vm._s(_vm.emptyText))])]):_vm._e()],2)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 48:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var NODE_KEY = exports.NODE_KEY = '$treeNodeId';
-
-var markNodeData = exports.markNodeData = function markNodeData(node, data) {
-  if (data[NODE_KEY]) return;
-  Object.defineProperty(data, NODE_KEY, {
-    value: node.id,
-    enumerable: false,
-    configurable: false,
-    writable: false
-  });
-};
-
-var getNodeKey = exports.getNodeKey = function getNodeKey(key, data) {
-  if (!key) return data[NODE_KEY];
-  return data[key];
-};
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/merge");
 
 /***/ })
 

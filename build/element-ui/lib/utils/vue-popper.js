@@ -118,7 +118,15 @@ exports.default = {
       this.popperElm.addEventListener('click', stop);
     },
     updatePopper: function updatePopper() {
-      this.popperJS ? this.popperJS.update() : this.createPopper();
+      var popperJS = this.popperJS;
+      if (popperJS) {
+        popperJS.update();
+        if (popperJS._popper) {
+          popperJS._popper.style.zIndex = _popup.PopupManager.nextZIndex();
+        }
+      } else {
+        this.createPopper();
+      }
     },
     doDestroy: function doDestroy() {
       /* istanbul ignore if */

@@ -23,7 +23,7 @@
     <i slot="suffix"
       class="el-input__icon"
       @click="handleClickIcon"
-      :class="{ 'el-icon-circle-close': showClose }"
+      :class="[showClose ? '' + clearIcon : '']"
       v-if="haveTrigger">
     </i>
   </el-input>
@@ -69,7 +69,7 @@
     <i
       @click="handleClickIcon"
       v-if="haveTrigger"
-      :class="{ 'el-icon-circle-close': showClose }"
+      :class="[showClose ? '' + clearIcon : '']"
       class="el-input__icon el-range__close-icon">
     </i>
   </div>
@@ -173,8 +173,8 @@ const TYPE_VALUE_RESOLVER_MAP = {
       let date = formatDate(trueDate, format);
 
       date = /WW/.test(date)
-            ? date.replace(/WW/, week < 10 ? '0' + week : week)
-            : date.replace(/W/, week);
+        ? date.replace(/WW/, week < 10 ? '0' + week : week)
+        : date.replace(/W/, week);
       return date;
     },
     parser(text) {
@@ -309,6 +309,11 @@ export default {
     placeholder: String,
     startPlaceholder: String,
     endPlaceholder: String,
+    prefixIcon: String,
+    clearIcon: {
+      type: String,
+      default: 'el-icon-circle-close'
+    },
     name: {
       default: '',
       validator
@@ -333,6 +338,7 @@ export default {
     },
     value: {},
     defaultValue: {},
+    defaultTime: {},
     rangeSeparator: {
       default: '-'
     },
@@ -349,7 +355,7 @@ export default {
       pickerVisible: false,
       showClose: false,
       userInput: null,
-      valueOnOpen: null,  // value when picker opens, used to determine whether to emit change
+      valueOnOpen: null, // value when picker opens, used to determine whether to emit change
       unwatchPickerOptions: null
     };
   },
@@ -424,7 +430,7 @@ export default {
     },
 
     triggerClass() {
-      return this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date';
+      return this.prefixIcon || (this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date');
     },
 
     selectionMode() {
@@ -701,6 +707,7 @@ export default {
     mountPicker() {
       this.picker = new Vue(this.panel).$mount();
       this.picker.defaultValue = this.defaultValue;
+      this.picker.defaultTime = this.defaultTime;
       this.picker.popperClass = this.popperClass;
       this.popperElm = this.picker.$el;
       this.picker.width = this.reference.getBoundingClientRect().width;

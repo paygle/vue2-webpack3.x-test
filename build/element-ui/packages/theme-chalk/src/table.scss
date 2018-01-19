@@ -1,6 +1,7 @@
 @import "mixins/mixins";
 @import "checkbox";
 @import "tag";
+@import "tooltip";
 @import "common/var";
 
 @include b(table) {
@@ -276,12 +277,6 @@
       }
     }
 
-    .has-gutter {
-      th:nth-last-of-type(2), td:nth-last-of-type(2) {
-        border-right: none;
-      }
-    }
-
     th.gutter:last-of-type {
       border-bottom: $--table-border;
       border-bottom-width: 1px;
@@ -430,7 +425,6 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 34px;
     width: 24px;
     vertical-align: middle;
@@ -444,6 +438,7 @@
     height: 0;
     border: solid 5px transparent;
     position: absolute;
+    left: 7px;
 
     &.ascending {
       border-bottom-color: $--color-text-placeholder;

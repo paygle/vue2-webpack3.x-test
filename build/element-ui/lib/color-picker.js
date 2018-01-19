@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 420);
+/******/ 	return __webpack_require__(__webpack_require__.s = 433);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,29 +183,7 @@ module.exports = require("element-ui/lib/utils/clickoutside");
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/button");
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/mixins/locale");
-
-/***/ }),
-
-/***/ 420:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(421);
-
-
-/***/ }),
-
-/***/ 421:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -213,69 +191,11 @@ module.exports = __webpack_require__(421);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(422);
-
-var _main2 = _interopRequireDefault(_main);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* istanbul ignore next */
-_main2.default.install = function (Vue) {
-  Vue.component(_main2.default.name, _main2.default);
-};
-
-exports.default = _main2.default;
-
-/***/ }),
-
-/***/ 422:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(423);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ddeee594_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(437);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ddeee594_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 423:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _color = __webpack_require__(424);
+var _color = __webpack_require__(436);
 
 var _color2 = _interopRequireDefault(_color);
 
-var _pickerDropdown = __webpack_require__(425);
+var _pickerDropdown = __webpack_require__(437);
 
 var _pickerDropdown2 = _interopRequireDefault(_pickerDropdown);
 
@@ -437,7 +357,668 @@ exports.default = {
 
 /***/ }),
 
-/***/ 424:
+/***/ 126:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _svPanel = __webpack_require__(438);
+
+var _svPanel2 = _interopRequireDefault(_svPanel);
+
+var _hueSlider = __webpack_require__(440);
+
+var _hueSlider2 = _interopRequireDefault(_hueSlider);
+
+var _alphaSlider = __webpack_require__(442);
+
+var _alphaSlider2 = _interopRequireDefault(_alphaSlider);
+
+var _vuePopper = __webpack_require__(8);
+
+var _vuePopper2 = _interopRequireDefault(_vuePopper);
+
+var _locale = __webpack_require__(4);
+
+var _locale2 = _interopRequireDefault(_locale);
+
+var _input = __webpack_require__(6);
+
+var _input2 = _interopRequireDefault(_input);
+
+var _button = __webpack_require__(15);
+
+var _button2 = _interopRequireDefault(_button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'el-color-picker-dropdown',
+
+  mixins: [_vuePopper2.default, _locale2.default],
+
+  components: {
+    SvPanel: _svPanel2.default,
+    HueSlider: _hueSlider2.default,
+    AlphaSlider: _alphaSlider2.default,
+    ElInput: _input2.default,
+    ElButton: _button2.default
+  },
+
+  props: {
+    color: {
+      required: true
+    },
+    showAlpha: Boolean
+  },
+
+  data: function data() {
+    return {
+      customInput: ''
+    };
+  },
+
+
+  computed: {
+    currentColor: function currentColor() {
+      var parent = this.$parent;
+      return !parent.value && !parent.showPanelColor ? '' : parent.color.value;
+    }
+  },
+
+  methods: {
+    confirmValue: function confirmValue() {
+      this.$emit('pick');
+    },
+    handleConfirm: function handleConfirm() {
+      var valid = this.showAlpha ? this.validRGBA(this.customInput) : this.validRGBHex(this.customInput);
+      if (valid) {
+        this.color.fromString(this.customInput);
+      } else {
+        this.customInput = this.currentColor;
+      }
+    },
+    validRGBHex: function validRGBHex(color) {
+      return (/^#[A-Fa-f0-9]{6}$/.test(color)
+      );
+    },
+    validRGBA: function validRGBA(color) {
+      var matches = color.match(/^rgba\((\d+), ?(\d+), ?(\d+), ?([.0-9]+)\)$/);
+      if (!matches) return false;
+      var list = matches.map(function (v) {
+        return parseInt(v, 10);
+      }).slice(1);
+      if (list.some(function (v) {
+        return isNaN(v);
+      })) return false;
+      var r = list[0],
+          g = list[1],
+          b = list[2],
+          a = list[3];
+
+      if ([r, g, b].some(function (v) {
+        return v < 0 || v > 255;
+      }) || a < 0 || a > 1) return false;
+      return true;
+    }
+  },
+
+  mounted: function mounted() {
+    this.$parent.popperElm = this.popperElm = this.$el;
+    this.referenceElm = this.$parent.$el;
+  },
+
+
+  watch: {
+    showPopper: function showPopper(val) {
+      var _this = this;
+
+      if (val === true) {
+        this.$nextTick(function () {
+          var _$refs = _this.$refs,
+              sl = _$refs.sl,
+              hue = _$refs.hue,
+              alpha = _$refs.alpha;
+
+          sl && sl.update();
+          hue && hue.update();
+          alpha && alpha.update();
+        });
+      }
+    },
+    currentColor: function currentColor(val) {
+      this.customInput = val;
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 127:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _draggable = __webpack_require__(45);
+
+var _draggable2 = _interopRequireDefault(_draggable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'el-sl-panel',
+
+  props: {
+    color: {
+      required: true
+    }
+  },
+
+  computed: {
+    colorValue: function colorValue() {
+      var hue = this.color.get('hue');
+      var value = this.color.get('value');
+      return { hue: hue, value: value };
+    }
+  },
+
+  watch: {
+    colorValue: function colorValue() {
+      this.update();
+    }
+  },
+
+  methods: {
+    update: function update() {
+      var saturation = this.color.get('saturation');
+      var value = this.color.get('value');
+
+      var el = this.$el;
+
+      var _el$getBoundingClient = el.getBoundingClientRect(),
+          width = _el$getBoundingClient.width,
+          height = _el$getBoundingClient.height;
+
+      if (!height) height = width * 3 / 4;
+
+      this.cursorLeft = saturation * width / 100;
+      this.cursorTop = (100 - value) * height / 100;
+
+      this.background = 'hsl(' + this.color.get('hue') + ', 100%, 50%)';
+    },
+    handleDrag: function handleDrag(event) {
+      var el = this.$el;
+      var rect = el.getBoundingClientRect();
+
+      var left = event.clientX - rect.left;
+      var top = event.clientY - rect.top;
+      left = Math.max(0, left);
+      left = Math.min(left, rect.width);
+
+      top = Math.max(0, top);
+      top = Math.min(top, rect.height);
+
+      this.cursorLeft = left;
+      this.cursorTop = top;
+      this.color.set({
+        saturation: left / rect.width * 100,
+        value: 100 - top / rect.height * 100
+      });
+    }
+  },
+
+  mounted: function mounted() {
+    var _this = this;
+
+    (0, _draggable2.default)(this.$el, {
+      drag: function drag(event) {
+        _this.handleDrag(event);
+      },
+      end: function end(event) {
+        _this.handleDrag(event);
+      }
+    });
+
+    this.update();
+  },
+  data: function data() {
+    return {
+      cursorTop: 0,
+      cursorLeft: 0,
+      background: 'hsl(0, 100%, 50%)'
+    };
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 128:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _draggable = __webpack_require__(45);
+
+var _draggable2 = _interopRequireDefault(_draggable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'el-color-hue-slider',
+
+  props: {
+    color: {
+      required: true
+    },
+
+    vertical: Boolean
+  },
+
+  data: function data() {
+    return {
+      thumbLeft: 0,
+      thumbTop: 0
+    };
+  },
+
+
+  computed: {
+    hueValue: function hueValue() {
+      var hue = this.color.get('hue');
+      return hue;
+    }
+  },
+
+  watch: {
+    hueValue: function hueValue() {
+      this.update();
+    }
+  },
+
+  methods: {
+    handleClick: function handleClick(event) {
+      var thumb = this.$refs.thumb;
+      var target = event.target;
+
+      if (target !== thumb) {
+        this.handleDrag(event);
+      }
+    },
+    handleDrag: function handleDrag(event) {
+      var rect = this.$el.getBoundingClientRect();
+      var thumb = this.$refs.thumb;
+
+      var hue = void 0;
+
+      if (!this.vertical) {
+        var left = event.clientX - rect.left;
+        left = Math.min(left, rect.width - thumb.offsetWidth / 2);
+        left = Math.max(thumb.offsetWidth / 2, left);
+
+        hue = Math.round((left - thumb.offsetWidth / 2) / (rect.width - thumb.offsetWidth) * 360);
+      } else {
+        var top = event.clientY - rect.top;
+        top = Math.min(top, rect.height - thumb.offsetHeight / 2);
+        top = Math.max(thumb.offsetHeight / 2, top);
+
+        hue = Math.round((top - thumb.offsetHeight / 2) / (rect.height - thumb.offsetHeight) * 360);
+      }
+
+      this.color.set('hue', hue);
+    },
+    getThumbLeft: function getThumbLeft() {
+      if (this.vertical) return 0;
+      var el = this.$el;
+      var hue = this.color.get('hue');
+
+      if (!el) return 0;
+      var thumb = this.$refs.thumb;
+      return Math.round(hue * (el.offsetWidth - thumb.offsetWidth / 2) / 360);
+    },
+    getThumbTop: function getThumbTop() {
+      if (!this.vertical) return 0;
+      var el = this.$el;
+      var hue = this.color.get('hue');
+
+      if (!el) return 0;
+      var thumb = this.$refs.thumb;
+      return Math.round(hue * (el.offsetHeight - thumb.offsetHeight / 2) / 360);
+    },
+    update: function update() {
+      this.thumbLeft = this.getThumbLeft();
+      this.thumbTop = this.getThumbTop();
+    }
+  },
+
+  mounted: function mounted() {
+    var _this = this;
+
+    var _$refs = this.$refs,
+        bar = _$refs.bar,
+        thumb = _$refs.thumb;
+
+
+    var dragConfig = {
+      drag: function drag(event) {
+        _this.handleDrag(event);
+      },
+      end: function end(event) {
+        _this.handleDrag(event);
+      }
+    };
+
+    (0, _draggable2.default)(bar, dragConfig);
+    (0, _draggable2.default)(thumb, dragConfig);
+    this.update();
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 129:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _draggable = __webpack_require__(45);
+
+var _draggable2 = _interopRequireDefault(_draggable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'el-color-alpha-slider',
+
+  props: {
+    color: {
+      required: true
+    },
+    vertical: Boolean
+  },
+
+  watch: {
+    'color._alpha': function color_alpha() {
+      this.update();
+    },
+    'color.value': function colorValue() {
+      this.update();
+    }
+  },
+
+  methods: {
+    handleClick: function handleClick(event) {
+      var thumb = this.$refs.thumb;
+      var target = event.target;
+
+      if (target !== thumb) {
+        this.handleDrag(event);
+      }
+    },
+    handleDrag: function handleDrag(event) {
+      var rect = this.$el.getBoundingClientRect();
+      var thumb = this.$refs.thumb;
+
+
+      if (!this.vertical) {
+        var left = event.clientX - rect.left;
+        left = Math.max(thumb.offsetWidth / 2, left);
+        left = Math.min(left, rect.width - thumb.offsetWidth / 2);
+
+        this.color.set('alpha', Math.round((left - thumb.offsetWidth / 2) / (rect.width - thumb.offsetWidth) * 100));
+      } else {
+        var top = event.clientY - rect.top;
+        top = Math.max(thumb.offsetHeight / 2, top);
+        top = Math.min(top, rect.height - thumb.offsetHeight / 2);
+
+        this.color.set('alpha', Math.round((top - thumb.offsetHeight / 2) / (rect.height - thumb.offsetHeight) * 100));
+      }
+    },
+    getThumbLeft: function getThumbLeft() {
+      if (this.vertical) return 0;
+      var el = this.$el;
+      var alpha = this.color._alpha;
+
+      if (!el) return 0;
+      var thumb = this.$refs.thumb;
+      return Math.round(alpha * (el.offsetWidth - thumb.offsetWidth / 2) / 100);
+    },
+    getThumbTop: function getThumbTop() {
+      if (!this.vertical) return 0;
+      var el = this.$el;
+      var alpha = this.color._alpha;
+
+      if (!el) return 0;
+      var thumb = this.$refs.thumb;
+      return Math.round(alpha * (el.offsetHeight - thumb.offsetHeight / 2) / 100);
+    },
+    getBackground: function getBackground() {
+      if (this.color && this.color.value) {
+        var _color$toRgb = this.color.toRgb(),
+            r = _color$toRgb.r,
+            g = _color$toRgb.g,
+            b = _color$toRgb.b;
+
+        return 'linear-gradient(to right, rgba(' + r + ', ' + g + ', ' + b + ', 0) 0%, rgba(' + r + ', ' + g + ', ' + b + ', 1) 100%)';
+      }
+      return null;
+    },
+    update: function update() {
+      this.thumbLeft = this.getThumbLeft();
+      this.thumbTop = this.getThumbTop();
+      this.background = this.getBackground();
+    }
+  },
+
+  data: function data() {
+    return {
+      thumbLeft: 0,
+      thumbTop: 0,
+      background: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var _$refs = this.$refs,
+        bar = _$refs.bar,
+        thumb = _$refs.thumb;
+
+
+    var dragConfig = {
+      drag: function drag(event) {
+        _this.handleDrag(event);
+      },
+      end: function end(event) {
+        _this.handleDrag(event);
+      }
+    };
+
+    (0, _draggable2.default)(bar, dragConfig);
+    (0, _draggable2.default)(thumb, dragConfig);
+    this.update();
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 15:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/button");
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/mixins/locale");
+
+/***/ }),
+
+/***/ 433:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(434);
+
+
+/***/ }),
+
+/***/ 434:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _main = __webpack_require__(435);
+
+var _main2 = _interopRequireDefault(_main);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* istanbul ignore next */
+_main2.default.install = function (Vue) {
+  Vue.component(_main2.default.name, _main2.default);
+};
+
+exports.default = _main2.default;
+
+/***/ }),
+
+/***/ 435:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_29d129ee_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(445);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_29d129ee_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -795,21 +1376,23 @@ exports.default = Color;
 
 /***/ }),
 
-/***/ 425:
+/***/ 437:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue__ = __webpack_require__(426);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5ba5ff98_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_dropdown_vue__ = __webpack_require__(436);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6d7994ba_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_dropdown_vue__ = __webpack_require__(444);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -818,7 +1401,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_dropdown_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5ba5ff98_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_dropdown_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6d7994ba_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_dropdown_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -830,198 +1413,23 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 426:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _svPanel = __webpack_require__(427);
-
-var _svPanel2 = _interopRequireDefault(_svPanel);
-
-var _hueSlider = __webpack_require__(430);
-
-var _hueSlider2 = _interopRequireDefault(_hueSlider);
-
-var _alphaSlider = __webpack_require__(433);
-
-var _alphaSlider2 = _interopRequireDefault(_alphaSlider);
-
-var _vuePopper = __webpack_require__(8);
-
-var _vuePopper2 = _interopRequireDefault(_vuePopper);
-
-var _locale = __webpack_require__(4);
-
-var _locale2 = _interopRequireDefault(_locale);
-
-var _input = __webpack_require__(6);
-
-var _input2 = _interopRequireDefault(_input);
-
-var _button = __webpack_require__(15);
-
-var _button2 = _interopRequireDefault(_button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  name: 'el-color-picker-dropdown',
-
-  mixins: [_vuePopper2.default, _locale2.default],
-
-  components: {
-    SvPanel: _svPanel2.default,
-    HueSlider: _hueSlider2.default,
-    AlphaSlider: _alphaSlider2.default,
-    ElInput: _input2.default,
-    ElButton: _button2.default
-  },
-
-  props: {
-    color: {
-      required: true
-    },
-    showAlpha: Boolean
-  },
-
-  data: function data() {
-    return {
-      customInput: ''
-    };
-  },
-
-
-  computed: {
-    currentColor: function currentColor() {
-      var parent = this.$parent;
-      return !parent.value && !parent.showPanelColor ? '' : parent.color.value;
-    }
-  },
-
-  methods: {
-    confirmValue: function confirmValue() {
-      this.$emit('pick');
-    },
-    handleConfirm: function handleConfirm() {
-      var valid = this.showAlpha ? this.validRGBA(this.customInput) : this.validRGBHex(this.customInput);
-      if (valid) {
-        this.color.fromString(this.customInput);
-      } else {
-        this.customInput = this.currentColor;
-      }
-    },
-    validRGBHex: function validRGBHex(color) {
-      return (/^#[A-Fa-f0-9]{6}$/.test(color)
-      );
-    },
-    validRGBA: function validRGBA(color) {
-      var matches = color.match(/^rgba\((\d+), ?(\d+), ?(\d+), ?([.0-9]+)\)$/);
-      if (!matches) return false;
-      var list = matches.map(function (v) {
-        return parseInt(v, 10);
-      }).slice(1);
-      if (list.some(function (v) {
-        return isNaN(v);
-      })) return false;
-      var r = list[0],
-          g = list[1],
-          b = list[2],
-          a = list[3];
-
-      if ([r, g, b].some(function (v) {
-        return v < 0 || v > 255;
-      }) || a < 0 || a > 1) return false;
-      return true;
-    }
-  },
-
-  mounted: function mounted() {
-    this.$parent.popperElm = this.popperElm = this.$el;
-    this.referenceElm = this.$parent.$el;
-  },
-
-
-  watch: {
-    showPopper: function showPopper(val) {
-      var _this = this;
-
-      if (val === true) {
-        this.$nextTick(function () {
-          var _$refs = _this.$refs,
-              sl = _$refs.sl,
-              hue = _$refs.hue,
-              alpha = _$refs.alpha;
-
-          sl && sl.update();
-          hue && hue.update();
-          alpha && alpha.update();
-        });
-      }
-    },
-    currentColor: function currentColor(val) {
-      this.customInput = val;
-    }
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-
-/***/ 427:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3efd9e06_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_sv_panel_vue__ = __webpack_require__(429);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_724f8e0e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_sv_panel_vue__ = __webpack_require__(439);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -1030,7 +1438,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_sv_panel_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3efd9e06_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_sv_panel_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_724f8e0e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_sv_panel_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -1042,124 +1450,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 428:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _draggable = __webpack_require__(45);
-
-var _draggable2 = _interopRequireDefault(_draggable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  name: 'el-sl-panel',
-
-  props: {
-    color: {
-      required: true
-    }
-  },
-
-  computed: {
-    colorValue: function colorValue() {
-      var hue = this.color.get('hue');
-      var value = this.color.get('value');
-      return { hue: hue, value: value };
-    }
-  },
-
-  watch: {
-    colorValue: function colorValue() {
-      this.update();
-    }
-  },
-
-  methods: {
-    update: function update() {
-      var saturation = this.color.get('saturation');
-      var value = this.color.get('value');
-
-      var el = this.$el;
-
-      var _el$getBoundingClient = el.getBoundingClientRect(),
-          width = _el$getBoundingClient.width,
-          height = _el$getBoundingClient.height;
-
-      if (!height) height = width * 3 / 4;
-
-      this.cursorLeft = saturation * width / 100;
-      this.cursorTop = (100 - value) * height / 100;
-
-      this.background = 'hsl(' + this.color.get('hue') + ', 100%, 50%)';
-    },
-    handleDrag: function handleDrag(event) {
-      var el = this.$el;
-      var rect = el.getBoundingClientRect();
-
-      var left = event.clientX - rect.left;
-      var top = event.clientY - rect.top;
-      left = Math.max(0, left);
-      left = Math.min(left, rect.width);
-
-      top = Math.max(0, top);
-      top = Math.min(top, rect.height);
-
-      this.cursorLeft = left;
-      this.cursorTop = top;
-      this.color.set({
-        saturation: left / rect.width * 100,
-        value: 100 - top / rect.height * 100
-      });
-    }
-  },
-
-  mounted: function mounted() {
-    var _this = this;
-
-    (0, _draggable2.default)(this.$el, {
-      drag: function drag(event) {
-        _this.handleDrag(event);
-      },
-      end: function end(event) {
-        _this.handleDrag(event);
-      }
-    });
-
-    this.update();
-  },
-  data: function data() {
-    return {
-      cursorTop: 0,
-      cursorLeft: 0,
-      background: 'hsl(0, 100%, 50%)'
-    };
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-
-/***/ 429:
+/***/ 439:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1175,21 +1466,23 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 430:
+/***/ 440:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3709e77c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_hue_slider_vue__ = __webpack_require__(432);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_72f56f42_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_hue_slider_vue__ = __webpack_require__(441);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -1198,7 +1491,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_hue_slider_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3709e77c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_hue_slider_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_72f56f42_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_hue_slider_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -1210,145 +1503,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 431:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _draggable = __webpack_require__(45);
-
-var _draggable2 = _interopRequireDefault(_draggable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  name: 'el-color-hue-slider',
-
-  props: {
-    color: {
-      required: true
-    },
-
-    vertical: Boolean
-  },
-
-  data: function data() {
-    return {
-      thumbLeft: 0,
-      thumbTop: 0
-    };
-  },
-
-
-  computed: {
-    hueValue: function hueValue() {
-      var hue = this.color.get('hue');
-      return hue;
-    }
-  },
-
-  watch: {
-    hueValue: function hueValue() {
-      this.update();
-    }
-  },
-
-  methods: {
-    handleClick: function handleClick(event) {
-      var thumb = this.$refs.thumb;
-      var target = event.target;
-
-      if (target !== thumb) {
-        this.handleDrag(event);
-      }
-    },
-    handleDrag: function handleDrag(event) {
-      var rect = this.$el.getBoundingClientRect();
-      var thumb = this.$refs.thumb;
-
-      var hue = void 0;
-
-      if (!this.vertical) {
-        var left = event.clientX - rect.left;
-        left = Math.min(left, rect.width - thumb.offsetWidth / 2);
-        left = Math.max(thumb.offsetWidth / 2, left);
-
-        hue = Math.round((left - thumb.offsetWidth / 2) / (rect.width - thumb.offsetWidth) * 360);
-      } else {
-        var top = event.clientY - rect.top;
-        top = Math.min(top, rect.height - thumb.offsetHeight / 2);
-        top = Math.max(thumb.offsetHeight / 2, top);
-
-        hue = Math.round((top - thumb.offsetHeight / 2) / (rect.height - thumb.offsetHeight) * 360);
-      }
-
-      this.color.set('hue', hue);
-    },
-    getThumbLeft: function getThumbLeft() {
-      if (this.vertical) return 0;
-      var el = this.$el;
-      var hue = this.color.get('hue');
-
-      if (!el) return 0;
-      var thumb = this.$refs.thumb;
-      return Math.round(hue * (el.offsetWidth - thumb.offsetWidth / 2) / 360);
-    },
-    getThumbTop: function getThumbTop() {
-      if (!this.vertical) return 0;
-      var el = this.$el;
-      var hue = this.color.get('hue');
-
-      if (!el) return 0;
-      var thumb = this.$refs.thumb;
-      return Math.round(hue * (el.offsetHeight - thumb.offsetHeight / 2) / 360);
-    },
-    update: function update() {
-      this.thumbLeft = this.getThumbLeft();
-      this.thumbTop = this.getThumbTop();
-    }
-  },
-
-  mounted: function mounted() {
-    var _this = this;
-
-    var _$refs = this.$refs,
-        bar = _$refs.bar,
-        thumb = _$refs.thumb;
-
-
-    var dragConfig = {
-      drag: function drag(event) {
-        _this.handleDrag(event);
-      },
-      end: function end(event) {
-        _this.handleDrag(event);
-      }
-    };
-
-    (0, _draggable2.default)(bar, dragConfig);
-    (0, _draggable2.default)(thumb, dragConfig);
-    this.update();
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-
-/***/ 432:
+/***/ 441:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1362,21 +1517,23 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 433:
+/***/ 442:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_219b4f1c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_alpha_slider_vue__ = __webpack_require__(435);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1609831e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_alpha_slider_vue__ = __webpack_require__(443);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -1385,7 +1542,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alpha_slider_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_219b4f1c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_alpha_slider_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1609831e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_alpha_slider_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -1397,154 +1554,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 434:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _draggable = __webpack_require__(45);
-
-var _draggable2 = _interopRequireDefault(_draggable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  name: 'el-color-alpha-slider',
-
-  props: {
-    color: {
-      required: true
-    },
-    vertical: Boolean
-  },
-
-  watch: {
-    'color._alpha': function color_alpha() {
-      this.update();
-    },
-    'color.value': function colorValue() {
-      this.update();
-    }
-  },
-
-  methods: {
-    handleClick: function handleClick(event) {
-      var thumb = this.$refs.thumb;
-      var target = event.target;
-
-      if (target !== thumb) {
-        this.handleDrag(event);
-      }
-    },
-    handleDrag: function handleDrag(event) {
-      var rect = this.$el.getBoundingClientRect();
-      var thumb = this.$refs.thumb;
-
-
-      if (!this.vertical) {
-        var left = event.clientX - rect.left;
-        left = Math.max(thumb.offsetWidth / 2, left);
-        left = Math.min(left, rect.width - thumb.offsetWidth / 2);
-
-        this.color.set('alpha', Math.round((left - thumb.offsetWidth / 2) / (rect.width - thumb.offsetWidth) * 100));
-      } else {
-        var top = event.clientY - rect.top;
-        top = Math.max(thumb.offsetHeight / 2, top);
-        top = Math.min(top, rect.height - thumb.offsetHeight / 2);
-
-        this.color.set('alpha', Math.round((top - thumb.offsetHeight / 2) / (rect.height - thumb.offsetHeight) * 100));
-      }
-    },
-    getThumbLeft: function getThumbLeft() {
-      if (this.vertical) return 0;
-      var el = this.$el;
-      var alpha = this.color._alpha;
-
-      if (!el) return 0;
-      var thumb = this.$refs.thumb;
-      return Math.round(alpha * (el.offsetWidth - thumb.offsetWidth / 2) / 100);
-    },
-    getThumbTop: function getThumbTop() {
-      if (!this.vertical) return 0;
-      var el = this.$el;
-      var alpha = this.color._alpha;
-
-      if (!el) return 0;
-      var thumb = this.$refs.thumb;
-      return Math.round(alpha * (el.offsetHeight - thumb.offsetHeight / 2) / 100);
-    },
-    getBackground: function getBackground() {
-      if (this.color && this.color.value) {
-        var _color$toRgb = this.color.toRgb(),
-            r = _color$toRgb.r,
-            g = _color$toRgb.g,
-            b = _color$toRgb.b;
-
-        return 'linear-gradient(to right, rgba(' + r + ', ' + g + ', ' + b + ', 0) 0%, rgba(' + r + ', ' + g + ', ' + b + ', 1) 100%)';
-      }
-      return null;
-    },
-    update: function update() {
-      this.thumbLeft = this.getThumbLeft();
-      this.thumbTop = this.getThumbTop();
-      this.background = this.getBackground();
-    }
-  },
-
-  data: function data() {
-    return {
-      thumbLeft: 0,
-      thumbTop: 0,
-      background: null
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    var _$refs = this.$refs,
-        bar = _$refs.bar,
-        thumb = _$refs.thumb;
-
-
-    var dragConfig = {
-      drag: function drag(event) {
-        _this.handleDrag(event);
-      },
-      end: function end(event) {
-        _this.handleDrag(event);
-      }
-    };
-
-    (0, _draggable2.default)(bar, dragConfig);
-    (0, _draggable2.default)(thumb, dragConfig);
-    this.update();
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-
-/***/ 435:
+/***/ 443:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1560,7 +1570,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 436:
+/***/ 444:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1571,7 +1581,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 437:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

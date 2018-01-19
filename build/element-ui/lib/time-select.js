@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 217);
+/******/ 	return __webpack_require__(__webpack_require__.s = 270);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -199,11 +199,11 @@ module.exports = require("element-ui/lib/utils/clickoutside");
 exports.__esModule = true;
 exports.nextYear = exports.prevYear = exports.nextMonth = exports.prevMonth = exports.timeWithinRange = exports.limitTimeRange = exports.clearMilliseconds = exports.clearTime = exports.modifyTime = exports.modifyDate = exports.range = exports.getRangeHours = exports.getWeekNumber = exports.getStartDateOfMonth = exports.nextDate = exports.prevDate = exports.getFirstDayOfMonth = exports.getDayCountOfYear = exports.getDayCountOfMonth = exports.parseDate = exports.formatDate = exports.isDateObject = exports.isDate = exports.toDate = undefined;
 
-var _date = __webpack_require__(28);
+var _date = __webpack_require__(29);
 
 var _date2 = _interopRequireDefault(_date);
 
-var _locale = __webpack_require__(14);
+var _locale = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -453,14 +453,14 @@ var nextYear = exports.nextYear = function nextYear(date) {
 
 /***/ }),
 
-/***/ 13:
+/***/ 12:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/mixins/focus");
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/locale");
@@ -474,365 +474,7 @@ module.exports = require("element-ui/lib/scrollbar");
 
 /***/ }),
 
-/***/ 217:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(218);
-
-
-/***/ }),
-
-/***/ 218:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _timeSelect = __webpack_require__(219);
-
-var _timeSelect2 = _interopRequireDefault(_timeSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* istanbul ignore next */
-_timeSelect2.default.install = function (Vue) {
-  Vue.component(_timeSelect2.default.name, _timeSelect2.default);
-};
-
-exports.default = _timeSelect2.default;
-
-/***/ }),
-
-/***/ 219:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _picker = __webpack_require__(26);
-
-var _picker2 = _interopRequireDefault(_picker);
-
-var _timeSelect = __webpack_require__(220);
-
-var _timeSelect2 = _interopRequireDefault(_timeSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  mixins: [_picker2.default],
-
-  name: 'ElTimeSelect',
-
-  beforeCreate: function beforeCreate() {
-    this.type = 'time-select';
-    this.panel = _timeSelect2.default;
-  }
-};
-
-/***/ }),
-
-/***/ 220:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2dfad182_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_time_select_vue__ = __webpack_require__(222);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2dfad182_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_time_select_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 221:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _scrollbar = __webpack_require__(18);
-
-var _scrollbar2 = _interopRequireDefault(_scrollbar);
-
-var _scrollIntoView = __webpack_require__(25);
-
-var _scrollIntoView2 = _interopRequireDefault(_scrollIntoView);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var parseTime = function parseTime(time) {
-  var values = (time || '').split(':');
-  if (values.length >= 2) {
-    var hours = parseInt(values[0], 10);
-    var minutes = parseInt(values[1], 10);
-
-    return {
-      hours: hours,
-      minutes: minutes
-    };
-  }
-  /* istanbul ignore next */
-  return null;
-};
-
-var compareTime = function compareTime(time1, time2) {
-  var value1 = parseTime(time1);
-  var value2 = parseTime(time2);
-
-  var minutes1 = value1.minutes + value1.hours * 60;
-  var minutes2 = value2.minutes + value2.hours * 60;
-
-  if (minutes1 === minutes2) {
-    return 0;
-  }
-
-  return minutes1 > minutes2 ? 1 : -1;
-};
-
-var formatTime = function formatTime(time) {
-  return (time.hours < 10 ? '0' + time.hours : time.hours) + ':' + (time.minutes < 10 ? '0' + time.minutes : time.minutes);
-};
-
-var nextTime = function nextTime(time, step) {
-  var timeValue = parseTime(time);
-  var stepValue = parseTime(step);
-
-  var next = {
-    hours: timeValue.hours,
-    minutes: timeValue.minutes
-  };
-
-  next.minutes += stepValue.minutes;
-  next.hours += stepValue.hours;
-
-  next.hours += Math.floor(next.minutes / 60);
-  next.minutes = next.minutes % 60;
-
-  return formatTime(next);
-};
-
-exports.default = {
-  components: { ElScrollbar: _scrollbar2.default },
-
-  watch: {
-    value: function value(val) {
-      var _this = this;
-
-      if (!val) return;
-      this.$nextTick(function () {
-        return _this.scrollToOption();
-      });
-    }
-  },
-
-  methods: {
-    handleClick: function handleClick(item) {
-      if (!item.disabled) {
-        this.$emit('pick', item.value);
-      }
-    },
-    handleClear: function handleClear() {
-      this.$emit('pick', null);
-    },
-    scrollToOption: function scrollToOption() {
-      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.selected';
-
-      var menu = this.$refs.popper.querySelector('.el-picker-panel__content');
-      (0, _scrollIntoView2.default)(menu, menu.querySelector(selector));
-    },
-    handleMenuEnter: function handleMenuEnter() {
-      var _this2 = this;
-
-      var selected = this.items.map(function (item) {
-        return item.value;
-      }).indexOf(this.value) !== -1;
-      var hasDefault = this.items.map(function (item) {
-        return item.value;
-      }).indexOf(this.defaultValue) !== -1;
-      var option = selected && '.selected' || hasDefault && '.default' || '.time-select-item:not(.disabled)';
-      this.$nextTick(function () {
-        return _this2.scrollToOption(option);
-      });
-    },
-    scrollDown: function scrollDown(step) {
-      var items = this.items;
-      var length = items.length;
-      var total = items.length;
-      var index = items.map(function (item) {
-        return item.value;
-      }).indexOf(this.value);
-      while (total--) {
-        index = (index + step + length) % length;
-        if (!items[index].disabled) {
-          this.$emit('pick', items[index].value, true);
-          return;
-        }
-      }
-    },
-    isValidValue: function isValidValue(date) {
-      return this.items.filter(function (item) {
-        return !item.disabled;
-      }).map(function (item) {
-        return item.value;
-      }).indexOf(date) !== -1;
-    },
-    handleKeydown: function handleKeydown(event) {
-      var keyCode = event.keyCode;
-      if (keyCode === 38 || keyCode === 40) {
-        var mapping = { 40: 1, 38: -1 };
-        var offset = mapping[keyCode.toString()];
-        this.scrollDown(offset);
-        event.stopPropagation();
-        return;
-      }
-    }
-  },
-
-  data: function data() {
-    return {
-      popperClass: '',
-      start: '09:00',
-      end: '18:00',
-      step: '00:30',
-      value: '',
-      defaultValue: '',
-      visible: false,
-      minTime: '',
-      maxTime: '',
-      width: 0
-    };
-  },
-
-
-  computed: {
-    items: function items() {
-      var start = this.start;
-      var end = this.end;
-      var step = this.step;
-
-      var result = [];
-
-      if (start && end && step) {
-        var current = start;
-        while (compareTime(current, end) <= 0) {
-          result.push({
-            value: current,
-            disabled: compareTime(current, this.minTime || '-1:-1') <= 0 || compareTime(current, this.maxTime || '100:100') >= 0
-          });
-          current = nextTime(current, step);
-        }
-      }
-
-      return result;
-    }
-  }
-};
-
-/***/ }),
-
-/***/ 222:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"el-zoom-in-top"},on:{"before-enter":_vm.handleMenuEnter,"after-leave":function($event){_vm.$emit('dodestroy')}}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],ref:"popper",staticClass:"el-picker-panel time-select el-popper",class:_vm.popperClass,style:({ width: _vm.width + 'px' })},[_c('el-scrollbar',{attrs:{"noresize":"","wrap-class":"el-picker-panel__content"}},_vm._l((_vm.items),function(item){return _c('div',{staticClass:"time-select-item",class:{ selected: _vm.value === item.value, disabled: item.disabled, default: item.value === _vm.defaultValue },attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.handleClick(item)}}},[_vm._v(_vm._s(item.value))])}))],1)])}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 25:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/scroll-into-view");
-
-/***/ }),
-
-/***/ 26:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b32bdda0_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_vue__ = __webpack_require__(29);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b32bdda0_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 27:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -858,7 +500,7 @@ var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _focus = __webpack_require__(13);
+var _focus = __webpack_require__(12);
 
 var _focus2 = _interopRequireDefault(_focus);
 
@@ -1152,6 +794,11 @@ exports.default = {
     placeholder: String,
     startPlaceholder: String,
     endPlaceholder: String,
+    prefixIcon: String,
+    clearIcon: {
+      type: String,
+      default: 'el-icon-circle-close'
+    },
     name: {
       default: '',
       validator: validator
@@ -1176,6 +823,7 @@ exports.default = {
     },
     value: {},
     defaultValue: {},
+    defaultTime: {},
     rangeSeparator: {
       default: '-'
     },
@@ -1265,7 +913,7 @@ exports.default = {
       return true;
     },
     triggerClass: function triggerClass() {
-      return this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date';
+      return this.prefixIcon || (this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date');
     },
     selectionMode: function selectionMode() {
       if (this.type === 'week') {
@@ -1528,6 +1176,7 @@ exports.default = {
 
       this.picker = new _vue2.default(this.panel).$mount();
       this.picker.defaultValue = this.defaultValue;
+      this.picker.defaultTime = this.defaultTime;
       this.picker.popperClass = this.popperClass;
       this.popperElm = this.picker.$el;
       this.picker.width = this.reference.getBoundingClientRect().width;
@@ -1632,23 +1281,177 @@ exports.default = {
 
 /***/ }),
 
+/***/ 27:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/scroll-into-view");
+
+/***/ }),
+
+/***/ 270:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(271);
+
+
+/***/ }),
+
+/***/ 271:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _timeSelect = __webpack_require__(272);
+
+var _timeSelect2 = _interopRequireDefault(_timeSelect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* istanbul ignore next */
+_timeSelect2.default.install = function (Vue) {
+  Vue.component(_timeSelect2.default.name, _timeSelect2.default);
+};
+
+exports.default = _timeSelect2.default;
+
+/***/ }),
+
+/***/ 272:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _picker = __webpack_require__(28);
+
+var _picker2 = _interopRequireDefault(_picker);
+
+var _timeSelect = __webpack_require__(273);
+
+var _timeSelect2 = _interopRequireDefault(_timeSelect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  mixins: [_picker2.default],
+
+  name: 'ElTimeSelect',
+
+  beforeCreate: function beforeCreate() {
+    this.type = 'time-select';
+    this.panel = _timeSelect2.default;
+  }
+};
+
+/***/ }),
+
+/***/ 273:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6c1778a6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_time_select_vue__ = __webpack_require__(274);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_time_select_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6c1778a6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_time_select_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 274:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"el-zoom-in-top"},on:{"before-enter":_vm.handleMenuEnter,"after-leave":function($event){_vm.$emit('dodestroy')}}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],ref:"popper",staticClass:"el-picker-panel time-select el-popper",class:_vm.popperClass,style:({ width: _vm.width + 'px' })},[_c('el-scrollbar',{attrs:{"noresize":"","wrap-class":"el-picker-panel__content"}},_vm._l((_vm.items),function(item){return _c('div',{staticClass:"time-select-item",class:{ selected: _vm.value === item.value, disabled: item.disabled, default: item.value === _vm.defaultValue },attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.handleClick(item)}}},[_vm._v(_vm._s(item.value))])}))],1)])}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ 28:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_01f0f32b_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_vue__ = __webpack_require__(30);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_picker_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_01f0f32b_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_picker_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 29:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/date");
 
 /***/ }),
 
-/***/ 29:
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.ranged)?_c('el-input',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],ref:"reference",staticClass:"el-date-editor",class:'el-date-editor--' + _vm.type,attrs:{"readonly":!_vm.editable || _vm.readonly,"disabled":_vm.disabled,"size":_vm.pickerSize,"id":_vm.id,"name":_vm.name,"placeholder":_vm.placeholder,"value":_vm.displayValue,"validateEvent":false,"prefix-icon":_vm.triggerClass},on:{"focus":_vm.handleFocus,"input":function (value) { return _vm.userInput = value; }},nativeOn:{"keydown":function($event){_vm.handleKeydown($event)},"mouseenter":function($event){_vm.handleMouseEnter($event)},"mouseleave":function($event){_vm.showClose = false},"change":function($event){_vm.handleChange($event)}}},[(_vm.haveTrigger)?_c('i',{staticClass:"el-input__icon",class:{ 'el-icon-circle-close': _vm.showClose },attrs:{"slot":"suffix"},on:{"click":_vm.handleClickIcon},slot:"suffix"}):_vm._e()]):_c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],ref:"reference",staticClass:"el-date-editor el-range-editor el-input__inner",class:[
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.ranged)?_c('el-input',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],ref:"reference",staticClass:"el-date-editor",class:'el-date-editor--' + _vm.type,attrs:{"readonly":!_vm.editable || _vm.readonly,"disabled":_vm.disabled,"size":_vm.pickerSize,"id":_vm.id,"name":_vm.name,"placeholder":_vm.placeholder,"value":_vm.displayValue,"validateEvent":false,"prefix-icon":_vm.triggerClass},on:{"focus":_vm.handleFocus,"input":function (value) { return _vm.userInput = value; }},nativeOn:{"keydown":function($event){_vm.handleKeydown($event)},"mouseenter":function($event){_vm.handleMouseEnter($event)},"mouseleave":function($event){_vm.showClose = false},"change":function($event){_vm.handleChange($event)}}},[(_vm.haveTrigger)?_c('i',{staticClass:"el-input__icon",class:[_vm.showClose ? '' + _vm.clearIcon : ''],attrs:{"slot":"suffix"},on:{"click":_vm.handleClickIcon},slot:"suffix"}):_vm._e()]):_c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],ref:"reference",staticClass:"el-date-editor el-range-editor el-input__inner",class:[
     'el-date-editor--' + _vm.type,
     _vm.pickerSize ? ("el-range-editor--" + _vm.pickerSize) : '',
     _vm.disabled ? 'is-disabled' : '',
     _vm.pickerVisible ? 'is-active' : ''
-  ],on:{"click":_vm.handleRangeClick,"mouseenter":_vm.handleMouseEnter,"mouseleave":function($event){_vm.showClose = false},"keydown":_vm.handleKeydown}},[_c('i',{class:['el-input__icon', 'el-range__icon', _vm.triggerClass]}),_c('input',{staticClass:"el-range-input",attrs:{"placeholder":_vm.startPlaceholder,"disabled":_vm.disabled,"id":_vm.id && _vm.id[0],"readonly":!_vm.editable || _vm.readonly,"name":_vm.name && _vm.name[0]},domProps:{"value":_vm.displayValue && _vm.displayValue[0]},on:{"input":_vm.handleStartInput,"change":_vm.handleStartChange,"focus":_vm.handleFocus}}),_c('span',{staticClass:"el-range-separator"},[_vm._v(_vm._s(_vm.rangeSeparator))]),_c('input',{staticClass:"el-range-input",attrs:{"placeholder":_vm.endPlaceholder,"disabled":_vm.disabled,"id":_vm.id && _vm.id[1],"readonly":!_vm.editable || _vm.readonly,"name":_vm.name && _vm.name[1]},domProps:{"value":_vm.displayValue && _vm.displayValue[1]},on:{"input":_vm.handleEndInput,"change":_vm.handleEndChange,"focus":_vm.handleFocus}}),(_vm.haveTrigger)?_c('i',{staticClass:"el-input__icon el-range__close-icon",class:{ 'el-icon-circle-close': _vm.showClose },on:{"click":_vm.handleClickIcon}}):_vm._e()])}
+  ],on:{"click":_vm.handleRangeClick,"mouseenter":_vm.handleMouseEnter,"mouseleave":function($event){_vm.showClose = false},"keydown":_vm.handleKeydown}},[_c('i',{class:['el-input__icon', 'el-range__icon', _vm.triggerClass]}),_c('input',{staticClass:"el-range-input",attrs:{"placeholder":_vm.startPlaceholder,"disabled":_vm.disabled,"id":_vm.id && _vm.id[0],"readonly":!_vm.editable || _vm.readonly,"name":_vm.name && _vm.name[0]},domProps:{"value":_vm.displayValue && _vm.displayValue[0]},on:{"input":_vm.handleStartInput,"change":_vm.handleStartChange,"focus":_vm.handleFocus}}),_c('span',{staticClass:"el-range-separator"},[_vm._v(_vm._s(_vm.rangeSeparator))]),_c('input',{staticClass:"el-range-input",attrs:{"placeholder":_vm.endPlaceholder,"disabled":_vm.disabled,"id":_vm.id && _vm.id[1],"readonly":!_vm.editable || _vm.readonly,"name":_vm.name && _vm.name[1]},domProps:{"value":_vm.displayValue && _vm.displayValue[1]},on:{"input":_vm.handleEndInput,"change":_vm.handleEndChange,"focus":_vm.handleFocus}}),(_vm.haveTrigger)?_c('i',{staticClass:"el-input__icon el-range__close-icon",class:[_vm.showClose ? '' + _vm.clearIcon : ''],on:{"click":_vm.handleClickIcon}}):_vm._e()])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -1673,6 +1476,214 @@ module.exports = require("element-ui/lib/input");
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/vue-popper");
+
+/***/ }),
+
+/***/ 80:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _scrollbar = __webpack_require__(18);
+
+var _scrollbar2 = _interopRequireDefault(_scrollbar);
+
+var _scrollIntoView = __webpack_require__(27);
+
+var _scrollIntoView2 = _interopRequireDefault(_scrollIntoView);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var parseTime = function parseTime(time) {
+  var values = (time || '').split(':');
+  if (values.length >= 2) {
+    var hours = parseInt(values[0], 10);
+    var minutes = parseInt(values[1], 10);
+
+    return {
+      hours: hours,
+      minutes: minutes
+    };
+  }
+  /* istanbul ignore next */
+  return null;
+};
+
+var compareTime = function compareTime(time1, time2) {
+  var value1 = parseTime(time1);
+  var value2 = parseTime(time2);
+
+  var minutes1 = value1.minutes + value1.hours * 60;
+  var minutes2 = value2.minutes + value2.hours * 60;
+
+  if (minutes1 === minutes2) {
+    return 0;
+  }
+
+  return minutes1 > minutes2 ? 1 : -1;
+};
+
+var formatTime = function formatTime(time) {
+  return (time.hours < 10 ? '0' + time.hours : time.hours) + ':' + (time.minutes < 10 ? '0' + time.minutes : time.minutes);
+};
+
+var nextTime = function nextTime(time, step) {
+  var timeValue = parseTime(time);
+  var stepValue = parseTime(step);
+
+  var next = {
+    hours: timeValue.hours,
+    minutes: timeValue.minutes
+  };
+
+  next.minutes += stepValue.minutes;
+  next.hours += stepValue.hours;
+
+  next.hours += Math.floor(next.minutes / 60);
+  next.minutes = next.minutes % 60;
+
+  return formatTime(next);
+};
+
+exports.default = {
+  components: { ElScrollbar: _scrollbar2.default },
+
+  watch: {
+    value: function value(val) {
+      var _this = this;
+
+      if (!val) return;
+      this.$nextTick(function () {
+        return _this.scrollToOption();
+      });
+    }
+  },
+
+  methods: {
+    handleClick: function handleClick(item) {
+      if (!item.disabled) {
+        this.$emit('pick', item.value);
+      }
+    },
+    handleClear: function handleClear() {
+      this.$emit('pick', null);
+    },
+    scrollToOption: function scrollToOption() {
+      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.selected';
+
+      var menu = this.$refs.popper.querySelector('.el-picker-panel__content');
+      (0, _scrollIntoView2.default)(menu, menu.querySelector(selector));
+    },
+    handleMenuEnter: function handleMenuEnter() {
+      var _this2 = this;
+
+      var selected = this.items.map(function (item) {
+        return item.value;
+      }).indexOf(this.value) !== -1;
+      var hasDefault = this.items.map(function (item) {
+        return item.value;
+      }).indexOf(this.defaultValue) !== -1;
+      var option = selected && '.selected' || hasDefault && '.default' || '.time-select-item:not(.disabled)';
+      this.$nextTick(function () {
+        return _this2.scrollToOption(option);
+      });
+    },
+    scrollDown: function scrollDown(step) {
+      var items = this.items;
+      var length = items.length;
+      var total = items.length;
+      var index = items.map(function (item) {
+        return item.value;
+      }).indexOf(this.value);
+      while (total--) {
+        index = (index + step + length) % length;
+        if (!items[index].disabled) {
+          this.$emit('pick', items[index].value, true);
+          return;
+        }
+      }
+    },
+    isValidValue: function isValidValue(date) {
+      return this.items.filter(function (item) {
+        return !item.disabled;
+      }).map(function (item) {
+        return item.value;
+      }).indexOf(date) !== -1;
+    },
+    handleKeydown: function handleKeydown(event) {
+      var keyCode = event.keyCode;
+      if (keyCode === 38 || keyCode === 40) {
+        var mapping = { 40: 1, 38: -1 };
+        var offset = mapping[keyCode.toString()];
+        this.scrollDown(offset);
+        event.stopPropagation();
+        return;
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      popperClass: '',
+      start: '09:00',
+      end: '18:00',
+      step: '00:30',
+      value: '',
+      defaultValue: '',
+      visible: false,
+      minTime: '',
+      maxTime: '',
+      width: 0
+    };
+  },
+
+
+  computed: {
+    items: function items() {
+      var start = this.start;
+      var end = this.end;
+      var step = this.step;
+
+      var result = [];
+
+      if (start && end && step) {
+        var current = start;
+        while (compareTime(current, end) <= 0) {
+          result.push({
+            value: current,
+            disabled: compareTime(current, this.minTime || '-1:-1') <= 0 || compareTime(current, this.maxTime || '100:100') >= 0
+          });
+          current = nextTime(current, step);
+        }
+      }
+
+      return result;
+    }
+  }
+};
 
 /***/ }),
 

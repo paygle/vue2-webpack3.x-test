@@ -9,3 +9,6 @@
 *.sh
 node_modules
 lib
+*.scss
+*.tff
+*.woff

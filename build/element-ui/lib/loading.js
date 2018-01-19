@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 315);
+/******/ 	return __webpack_require__(__webpack_require__.s = 349);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,180 +176,44 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/dom");
-
-/***/ }),
-
-/***/ 315:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(316);
-
-
-/***/ }),
-
-/***/ 316:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 100:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0bec538e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(352);
+var normalizeComponent = __webpack_require__(0)
+/* script */
 
 
-exports.__esModule = true;
+/* template */
 
-var _directive = __webpack_require__(317);
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0bec538e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 
-var _directive2 = _interopRequireDefault(_directive);
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-var _index = __webpack_require__(320);
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  install: function install(Vue) {
-    Vue.use(_directive2.default);
-    Vue.prototype.$loading = _index2.default;
-  },
-
-  directive: _directive2.default,
-  service: _index2.default
-};
 
 /***/ }),
 
-/***/ 317:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(5);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _loading = __webpack_require__(49);
-
-var _loading2 = _interopRequireDefault(_loading);
-
-var _dom = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Mask = _vue2.default.extend(_loading2.default);
-
-exports.install = function (Vue) {
-  if (Vue.prototype.$isServer) return;
-  var toggleLoading = function toggleLoading(el, binding) {
-    if (binding.value) {
-      Vue.nextTick(function () {
-        if (binding.modifiers.fullscreen) {
-          el.originalPosition = (0, _dom.getStyle)(document.body, 'position');
-          el.originalOverflow = (0, _dom.getStyle)(document.body, 'overflow');
-
-          (0, _dom.addClass)(el.mask, 'is-fullscreen');
-          insertDom(document.body, el, binding);
-        } else {
-          (0, _dom.removeClass)(el.mask, 'is-fullscreen');
-
-          if (binding.modifiers.body) {
-            el.originalPosition = (0, _dom.getStyle)(document.body, 'position');
-
-            ['top', 'left'].forEach(function (property) {
-              var scroll = property === 'top' ? 'scrollTop' : 'scrollLeft';
-              el.maskStyle[property] = el.getBoundingClientRect()[property] + document.body[scroll] + document.documentElement[scroll] + 'px';
-            });
-            ['height', 'width'].forEach(function (property) {
-              el.maskStyle[property] = el.getBoundingClientRect()[property] + 'px';
-            });
-
-            insertDom(document.body, el, binding);
-          } else {
-            el.originalPosition = (0, _dom.getStyle)(el, 'position');
-            insertDom(el, el, binding);
-          }
-        }
-      });
-    } else {
-      if (el.domVisible) {
-        el.instance.$on('after-leave', function (_) {
-          el.domVisible = false;
-          var target = binding.modifiers.fullscreen || binding.modifiers.body ? document.body : el;
-          (0, _dom.removeClass)(target, 'el-loading-parent--relative');
-          (0, _dom.removeClass)(target, 'el-loading-parent--hidden');
-        });
-        el.instance.visible = false;
-      }
-    }
-  };
-  var insertDom = function insertDom(parent, el, binding) {
-    if (!el.domVisible && (0, _dom.getStyle)(el, 'display') !== 'none' && (0, _dom.getStyle)(el, 'visibility') !== 'hidden') {
-      Object.keys(el.maskStyle).forEach(function (property) {
-        el.mask.style[property] = el.maskStyle[property];
-      });
-
-      if (el.originalPosition !== 'absolute' && el.originalPosition !== 'fixed') {
-        (0, _dom.addClass)(parent, 'el-loading-parent--relative');
-      }
-      if (binding.modifiers.fullscreen && binding.modifiers.lock) {
-        (0, _dom.addClass)(parent, 'el-loading-parent--hidden');
-      }
-      el.domVisible = true;
-
-      parent.appendChild(el.mask);
-      Vue.nextTick(function () {
-        el.instance.visible = true;
-      });
-      el.domInserted = true;
-    }
-  };
-
-  Vue.directive('loading', {
-    bind: function bind(el, binding, vnode) {
-      var textExr = el.getAttribute('element-loading-text');
-      var spinnerExr = el.getAttribute('element-loading-spinner');
-      var backgroundExr = el.getAttribute('element-loading-background');
-      var customClassExr = el.getAttribute('element-loading-custom-class');
-      var vm = vnode.context;
-      var mask = new Mask({
-        el: document.createElement('div'),
-        data: {
-          text: vm && vm[textExr] || textExr,
-          spinner: vm && vm[spinnerExr] || spinnerExr,
-          background: vm && vm[backgroundExr] || backgroundExr,
-          customClass: vm && vm[customClassExr] || customClassExr,
-          fullscreen: !!binding.modifiers.fullscreen
-        }
-      });
-      el.instance = mask;
-      el.mask = mask.$el;
-      el.maskStyle = {};
-
-      toggleLoading(el, binding);
-    },
-
-    update: function update(el, binding) {
-      el.instance.setText(el.getAttribute('element-loading-text'));
-      if (binding.oldValue !== binding.value) {
-        toggleLoading(el, binding);
-      }
-    },
-
-    unbind: function unbind(el, binding) {
-      if (el.domInserted) {
-        el.mask && el.mask.parentNode && el.mask.parentNode.removeChild(el.mask);
-        toggleLoading(el, { value: false, modifiers: binding.modifiers });
-      }
-    }
-  });
-};
-
-/***/ }),
-
-/***/ 318:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -400,7 +264,195 @@ exports.default = {
 
 /***/ }),
 
-/***/ 319:
+/***/ 102:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/after-leave");
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/dom");
+
+/***/ }),
+
+/***/ 349:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(350);
+
+
+/***/ }),
+
+/***/ 350:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _directive = __webpack_require__(351);
+
+var _directive2 = _interopRequireDefault(_directive);
+
+var _index = __webpack_require__(353);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  install: function install(Vue) {
+    Vue.use(_directive2.default);
+    Vue.prototype.$loading = _index2.default;
+  },
+
+  directive: _directive2.default,
+  service: _index2.default
+};
+
+/***/ }),
+
+/***/ 351:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(5);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _loading = __webpack_require__(100);
+
+var _loading2 = _interopRequireDefault(_loading);
+
+var _dom = __webpack_require__(2);
+
+var _afterLeave = __webpack_require__(102);
+
+var _afterLeave2 = _interopRequireDefault(_afterLeave);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Mask = _vue2.default.extend(_loading2.default);
+
+exports.install = function (Vue) {
+  if (Vue.prototype.$isServer) return;
+  var toggleLoading = function toggleLoading(el, binding) {
+    if (binding.value) {
+      Vue.nextTick(function () {
+        if (binding.modifiers.fullscreen) {
+          el.originalPosition = (0, _dom.getStyle)(document.body, 'position');
+          el.originalOverflow = (0, _dom.getStyle)(document.body, 'overflow');
+
+          (0, _dom.addClass)(el.mask, 'is-fullscreen');
+          insertDom(document.body, el, binding);
+        } else {
+          (0, _dom.removeClass)(el.mask, 'is-fullscreen');
+
+          if (binding.modifiers.body) {
+            el.originalPosition = (0, _dom.getStyle)(document.body, 'position');
+
+            ['top', 'left'].forEach(function (property) {
+              var scroll = property === 'top' ? 'scrollTop' : 'scrollLeft';
+              el.maskStyle[property] = el.getBoundingClientRect()[property] + document.body[scroll] + document.documentElement[scroll] + 'px';
+            });
+            ['height', 'width'].forEach(function (property) {
+              el.maskStyle[property] = el.getBoundingClientRect()[property] + 'px';
+            });
+
+            insertDom(document.body, el, binding);
+          } else {
+            el.originalPosition = (0, _dom.getStyle)(el, 'position');
+            insertDom(el, el, binding);
+          }
+        }
+      });
+    } else {
+      (0, _afterLeave2.default)(el.instance, function (_) {
+        el.domVisible = false;
+        var target = binding.modifiers.fullscreen || binding.modifiers.body ? document.body : el;
+        (0, _dom.removeClass)(target, 'el-loading-parent--relative');
+        (0, _dom.removeClass)(target, 'el-loading-parent--hidden');
+        el.instance.hiding = false;
+      }, 300, true);
+      el.instance.visible = false;
+      el.instance.hiding = true;
+    }
+  };
+  var insertDom = function insertDom(parent, el, binding) {
+    if (!el.domVisible && (0, _dom.getStyle)(el, 'display') !== 'none' && (0, _dom.getStyle)(el, 'visibility') !== 'hidden') {
+      Object.keys(el.maskStyle).forEach(function (property) {
+        el.mask.style[property] = el.maskStyle[property];
+      });
+
+      if (el.originalPosition !== 'absolute' && el.originalPosition !== 'fixed') {
+        (0, _dom.addClass)(parent, 'el-loading-parent--relative');
+      }
+      if (binding.modifiers.fullscreen && binding.modifiers.lock) {
+        (0, _dom.addClass)(parent, 'el-loading-parent--hidden');
+      }
+      el.domVisible = true;
+
+      parent.appendChild(el.mask);
+      Vue.nextTick(function () {
+        if (el.instance.hiding) {
+          el.instance.$emit('after-leave');
+        } else {
+          el.instance.visible = true;
+        };
+      });
+      el.domInserted = true;
+    }
+  };
+
+  Vue.directive('loading', {
+    bind: function bind(el, binding, vnode) {
+      var textExr = el.getAttribute('element-loading-text');
+      var spinnerExr = el.getAttribute('element-loading-spinner');
+      var backgroundExr = el.getAttribute('element-loading-background');
+      var customClassExr = el.getAttribute('element-loading-custom-class');
+      var vm = vnode.context;
+      var mask = new Mask({
+        el: document.createElement('div'),
+        data: {
+          text: vm && vm[textExr] || textExr,
+          spinner: vm && vm[spinnerExr] || spinnerExr,
+          background: vm && vm[backgroundExr] || backgroundExr,
+          customClass: vm && vm[customClassExr] || customClassExr,
+          fullscreen: !!binding.modifiers.fullscreen
+        }
+      });
+      el.instance = mask;
+      el.mask = mask.$el;
+      el.maskStyle = {};
+
+      toggleLoading(el, binding);
+    },
+
+    update: function update(el, binding) {
+      el.instance.setText(el.getAttribute('element-loading-text'));
+      if (binding.oldValue !== binding.value) {
+        toggleLoading(el, binding);
+      }
+    },
+
+    unbind: function unbind(el, binding) {
+      if (el.domInserted) {
+        el.mask && el.mask.parentNode && el.mask.parentNode.removeChild(el.mask);
+        toggleLoading(el, { value: false, modifiers: binding.modifiers });
+      }
+    }
+  });
+};
+
+/***/ }),
+
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -411,7 +463,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 320:
+/***/ 353:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -423,11 +475,15 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _loading = __webpack_require__(49);
+var _loading = __webpack_require__(100);
 
 var _loading2 = _interopRequireDefault(_loading);
 
 var _dom = __webpack_require__(2);
+
+var _afterLeave = __webpack_require__(102);
+
+var _afterLeave2 = _interopRequireDefault(_afterLeave);
 
 var _merge = __webpack_require__(9);
 
@@ -456,7 +512,7 @@ LoadingConstructor.prototype.close = function () {
   if (this.fullscreen) {
     fullscreenLoading = undefined;
   }
-  this.$on('after-leave', function (_) {
+  (0, _afterLeave2.default)(this, function (_) {
     var target = _this.fullscreen || _this.body ? document.body : _this.target;
     (0, _dom.removeClass)(target, 'el-loading-parent--relative');
     (0, _dom.removeClass)(target, 'el-loading-parent--hidden');
@@ -464,7 +520,7 @@ LoadingConstructor.prototype.close = function () {
       _this.$el.parentNode.removeChild(_this.$el);
     }
     _this.$destroy();
-  });
+  }, 300);
   this.visible = false;
 };
 
@@ -532,41 +588,6 @@ var Loading = function Loading() {
 };
 
 exports.default = Loading;
-
-/***/ }),
-
-/***/ 49:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__ = __webpack_require__(318);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0d8d1339_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(319);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0d8d1339_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
 
 /***/ }),
 

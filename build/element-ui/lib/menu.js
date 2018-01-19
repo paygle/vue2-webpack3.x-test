@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 88);
+/******/ 	return __webpack_require__(__webpack_require__.s = 166);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,161 +183,15 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/dom");
-
-/***/ }),
-
-/***/ 46:
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-exports.__esModule = true;
-var aria = aria || {};
-
-aria.Utils = aria.Utils || {};
-
-/**
- * @desc Set focus on descendant nodes until the first focusable element is
- *       found.
- * @param element
- *          DOM node for which to find the first focusable descendant.
- * @returns
- *  true if a focusable element is found and focus is set.
- */
-aria.Utils.focusFirstDescendant = function (element) {
-  for (var i = 0; i < element.childNodes.length; i++) {
-    var child = element.childNodes[i];
-    if (aria.Utils.attemptFocus(child) || aria.Utils.focusFirstDescendant(child)) {
-      return true;
-    }
-  }
-  return false;
-};
-
-/**
- * @desc Find the last descendant node that is focusable.
- * @param element
- *          DOM node for which to find the last focusable descendant.
- * @returns
- *  true if a focusable element is found and focus is set.
- */
-
-aria.Utils.focusLastDescendant = function (element) {
-  for (var i = element.childNodes.length - 1; i >= 0; i--) {
-    var child = element.childNodes[i];
-    if (aria.Utils.attemptFocus(child) || aria.Utils.focusLastDescendant(child)) {
-      return true;
-    }
-  }
-  return false;
-};
-
-/**
- * @desc Set Attempt to set focus on the current node.
- * @param element
- *          The node to attempt to focus on.
- * @returns
- *  true if element is focused.
- */
-aria.Utils.attemptFocus = function (element) {
-  if (!aria.Utils.isFocusable(element)) {
-    return false;
-  }
-  aria.Utils.IgnoreUtilFocusChanges = true;
-  try {
-    element.focus();
-  } catch (e) {}
-  aria.Utils.IgnoreUtilFocusChanges = false;
-  return document.activeElement === element;
-};
-
-aria.Utils.isFocusable = function (element) {
-  if (element.tabIndex > 0 || element.tabIndex === 0 && element.getAttribute('tabIndex') !== null) {
-    return true;
-  }
-
-  if (element.disabled) {
-    return false;
-  }
-
-  switch (element.nodeName) {
-    case 'A':
-      return !!element.href && element.rel !== 'ignore';
-    case 'INPUT':
-      return element.type !== 'hidden' && element.type !== 'file';
-    case 'BUTTON':
-    case 'SELECT':
-    case 'TEXTAREA':
-      return true;
-    default:
-      return false;
-  }
-};
-
-/**
- * 触发一个事件
- * mouseenter, mouseleave, mouseover, keyup, change, click 等
- * @param  {Element} elm
- * @param  {String} name
- * @param  {*} opts
- */
-aria.Utils.triggerEvent = function (elm, name) {
-  var eventName = void 0;
-
-  if (/^mouse|click/.test(name)) {
-    eventName = 'MouseEvents';
-  } else if (/^key/.test(name)) {
-    eventName = 'KeyboardEvent';
-  } else {
-    eventName = 'HTMLEvents';
-  }
-  var evt = document.createEvent(eventName);
-
-  for (var _len = arguments.length, opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    opts[_key - 2] = arguments[_key];
-  }
-
-  evt.initEvent.apply(evt, [name].concat(opts));
-  elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent('on' + name, evt);
-
-  return elm;
-};
-
-aria.Utils.keys = {
-  tab: 9,
-  enter: 13,
-  space: 32,
-  left: 37,
-  up: 38,
-  right: 39,
-  down: 40
-};
-
-exports.default = aria.Utils;
-
-/***/ }),
-
-/***/ 7:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/mixins/migrating");
-
-/***/ }),
-
-/***/ 88:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(89);
+module.exports = __webpack_require__(167);
 
 
 /***/ }),
 
-/***/ 89:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -345,7 +199,7 @@ module.exports = __webpack_require__(89);
 
 exports.__esModule = true;
 
-var _menu = __webpack_require__(90);
+var _menu = __webpack_require__(168);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -360,21 +214,23 @@ exports.default = _menu2.default;
 
 /***/ }),
 
-/***/ 90:
+/***/ 168:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_700225d6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__ = __webpack_require__(95);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a3dd1d6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__ = __webpack_require__(172);
 var normalizeComponent = __webpack_require__(0)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -383,7 +239,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_700225d6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a3dd1d6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -395,7 +251,204 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 91:
+/***/ 169:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _ariaMenuitem = __webpack_require__(170);
+
+var _ariaMenuitem2 = _interopRequireDefault(_ariaMenuitem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Menu = function Menu(domNode) {
+  this.domNode = domNode;
+  this.init();
+};
+
+Menu.prototype.init = function () {
+  var menuChildren = this.domNode.childNodes;
+  [].filter.call(menuChildren, function (child) {
+    return child.nodeType === 1;
+  }).forEach(function (child) {
+    new _ariaMenuitem2.default(child); // eslint-disable-line
+  });
+};
+exports.default = Menu;
+
+/***/ }),
+
+/***/ 170:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _ariaUtils = __webpack_require__(54);
+
+var _ariaUtils2 = _interopRequireDefault(_ariaUtils);
+
+var _ariaSubmenu = __webpack_require__(171);
+
+var _ariaSubmenu2 = _interopRequireDefault(_ariaSubmenu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MenuItem = function MenuItem(domNode) {
+  this.domNode = domNode;
+  this.submenu = null;
+  this.init();
+};
+
+MenuItem.prototype.init = function () {
+  this.domNode.setAttribute('tabindex', '0');
+  var menuChild = this.domNode.querySelector('.el-menu');
+  if (menuChild) {
+    this.submenu = new _ariaSubmenu2.default(this, menuChild);
+  }
+  this.addListeners();
+};
+
+MenuItem.prototype.addListeners = function () {
+  var _this = this;
+
+  var keys = _ariaUtils2.default.keys;
+  this.domNode.addEventListener('keydown', function (event) {
+    var prevDef = false;
+    switch (event.keyCode) {
+      case keys.down:
+        _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseenter');
+        _this.submenu.gotoSubIndex(0);
+        prevDef = true;
+        break;
+      case keys.up:
+        _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseenter');
+        _this.submenu.gotoSubIndex(_this.submenu.subMenuItems.length - 1);
+        prevDef = true;
+        break;
+      case keys.tab:
+        _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseleave');
+        break;
+      case keys.enter:
+      case keys.space:
+        prevDef = true;
+        event.currentTarget.click();
+        break;
+    }
+    if (prevDef) {
+      event.preventDefault();
+    }
+  });
+};
+
+exports.default = MenuItem;
+
+/***/ }),
+
+/***/ 171:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _ariaUtils = __webpack_require__(54);
+
+var _ariaUtils2 = _interopRequireDefault(_ariaUtils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SubMenu = function SubMenu(parent, domNode) {
+  this.domNode = domNode;
+  this.parent = parent;
+  this.subMenuItems = [];
+  this.subIndex = 0;
+  this.init();
+};
+
+SubMenu.prototype.init = function () {
+  this.subMenuItems = this.domNode.querySelectorAll('li');
+  this.addListeners();
+};
+
+SubMenu.prototype.gotoSubIndex = function (idx) {
+  if (idx === this.subMenuItems.length) {
+    idx = 0;
+  } else if (idx < 0) {
+    idx = this.subMenuItems.length - 1;
+  }
+  this.subMenuItems[idx].focus();
+  this.subIndex = idx;
+};
+
+SubMenu.prototype.addListeners = function () {
+  var _this = this;
+
+  var keys = _ariaUtils2.default.keys;
+  var parentNode = this.parent.domNode;
+  Array.prototype.forEach.call(this.subMenuItems, function (el) {
+    el.addEventListener('keydown', function (event) {
+      var prevDef = false;
+      switch (event.keyCode) {
+        case keys.down:
+          _this.gotoSubIndex(_this.subIndex + 1);
+          prevDef = true;
+          break;
+        case keys.up:
+          _this.gotoSubIndex(_this.subIndex - 1);
+          prevDef = true;
+          break;
+        case keys.tab:
+          _ariaUtils2.default.triggerEvent(parentNode, 'mouseleave');
+          break;
+        case keys.enter:
+        case keys.space:
+          prevDef = true;
+          event.currentTarget.click();
+          break;
+      }
+      if (prevDef) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      return false;
+    });
+  });
+};
+
+exports.default = SubMenu;
+
+/***/ }),
+
+/***/ 172:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-menu-collapse-transition',[_c('ul',{key:+_vm.collapse,staticClass:"el-menu",class:{
+      'el-menu--horizontal': _vm.mode === 'horizontal',
+      'el-menu--collapse': _vm.collapse
+    },style:({ backgroundColor: _vm.backgroundColor || '' }),attrs:{"role":"menubar"}},[_vm._t("default")],2)])}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/dom");
+
+/***/ }),
+
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -411,7 +464,7 @@ var _migrating = __webpack_require__(7);
 
 var _migrating2 = _interopRequireDefault(_migrating);
 
-var _ariaMenubar = __webpack_require__(92);
+var _ariaMenubar = __webpack_require__(169);
 
 var _ariaMenubar2 = _interopRequireDefault(_ariaMenubar);
 
@@ -543,15 +596,8 @@ exports.default = {
     }
   },
   watch: {
-    defaultActive: function defaultActive(value) {
-      var item = this.items[value];
-      if (item) {
-        this.activeIndex = item.index;
-        this.initOpenedMenu();
-      } else {
-        this.activeIndex = '';
-      }
-    },
+    defaultActive: 'updateActiveIndex',
+
     defaultOpeneds: function defaultOpeneds(value) {
       if (!this.collapse) {
         this.openedMenus = value;
@@ -562,6 +608,15 @@ exports.default = {
     }
   },
   methods: {
+    updateActiveIndex: function updateActiveIndex() {
+      var item = this.items[this.defaultActive];
+      if (item) {
+        this.activeIndex = item.index;
+        this.initOpenedMenu();
+      } else {
+        this.activeIndex = null;
+      }
+    },
     getMigratingConfig: function getMigratingConfig() {
       return {
         props: {
@@ -717,198 +772,148 @@ exports.default = {
     if (this.mode === 'horizontal') {
       new _ariaMenubar2.default(this.$el); // eslint-disable-line
     }
+    this.$watch('items', this.updateActiveIndex);
   }
 };
 
 /***/ }),
 
-/***/ 92:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 exports.__esModule = true;
+var aria = aria || {};
 
-var _ariaMenuitem = __webpack_require__(93);
+aria.Utils = aria.Utils || {};
 
-var _ariaMenuitem2 = _interopRequireDefault(_ariaMenuitem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Menu = function Menu(domNode) {
-  this.domNode = domNode;
-  this.init();
-};
-
-Menu.prototype.init = function () {
-  var menuChildren = this.domNode.childNodes;
-  [].filter.call(menuChildren, function (child) {
-    return child.nodeType === 1;
-  }).forEach(function (child) {
-    new _ariaMenuitem2.default(child); // eslint-disable-line
-  });
-};
-exports.default = Menu;
-
-/***/ }),
-
-/***/ 93:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _ariaUtils = __webpack_require__(46);
-
-var _ariaUtils2 = _interopRequireDefault(_ariaUtils);
-
-var _ariaSubmenu = __webpack_require__(94);
-
-var _ariaSubmenu2 = _interopRequireDefault(_ariaSubmenu);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var MenuItem = function MenuItem(domNode) {
-  this.domNode = domNode;
-  this.submenu = null;
-  this.init();
-};
-
-MenuItem.prototype.init = function () {
-  this.domNode.setAttribute('tabindex', '0');
-  var menuChild = this.domNode.querySelector('.el-menu');
-  if (menuChild) {
-    this.submenu = new _ariaSubmenu2.default(this, menuChild);
-  }
-  this.addListeners();
-};
-
-MenuItem.prototype.addListeners = function () {
-  var _this = this;
-
-  var keys = _ariaUtils2.default.keys;
-  this.domNode.addEventListener('keydown', function (event) {
-    var prevDef = false;
-    switch (event.keyCode) {
-      case keys.down:
-        _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseenter');
-        _this.submenu.gotoSubIndex(0);
-        prevDef = true;
-        break;
-      case keys.up:
-        _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseenter');
-        _this.submenu.gotoSubIndex(_this.submenu.subMenuItems.length - 1);
-        prevDef = true;
-        break;
-      case keys.tab:
-        _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseleave');
-        break;
-      case keys.enter:
-      case keys.space:
-        prevDef = true;
-        event.currentTarget.click();
-        break;
+/**
+ * @desc Set focus on descendant nodes until the first focusable element is
+ *       found.
+ * @param element
+ *          DOM node for which to find the first focusable descendant.
+ * @returns
+ *  true if a focusable element is found and focus is set.
+ */
+aria.Utils.focusFirstDescendant = function (element) {
+  for (var i = 0; i < element.childNodes.length; i++) {
+    var child = element.childNodes[i];
+    if (aria.Utils.attemptFocus(child) || aria.Utils.focusFirstDescendant(child)) {
+      return true;
     }
-    if (prevDef) {
-      event.preventDefault();
-    }
-  });
-};
-
-exports.default = MenuItem;
-
-/***/ }),
-
-/***/ 94:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _ariaUtils = __webpack_require__(46);
-
-var _ariaUtils2 = _interopRequireDefault(_ariaUtils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SubMenu = function SubMenu(parent, domNode) {
-  this.domNode = domNode;
-  this.parent = parent;
-  this.subMenuItems = [];
-  this.subIndex = 0;
-  this.init();
-};
-
-SubMenu.prototype.init = function () {
-  this.subMenuItems = this.domNode.querySelectorAll('li');
-  this.addListeners();
-};
-
-SubMenu.prototype.gotoSubIndex = function (idx) {
-  if (idx === this.subMenuItems.length) {
-    idx = 0;
-  } else if (idx < 0) {
-    idx = this.subMenuItems.length - 1;
   }
-  this.subMenuItems[idx].focus();
-  this.subIndex = idx;
+  return false;
 };
 
-SubMenu.prototype.addListeners = function () {
-  var _this = this;
+/**
+ * @desc Find the last descendant node that is focusable.
+ * @param element
+ *          DOM node for which to find the last focusable descendant.
+ * @returns
+ *  true if a focusable element is found and focus is set.
+ */
 
-  var keys = _ariaUtils2.default.keys;
-  var parentNode = this.parent.domNode;
-  Array.prototype.forEach.call(this.subMenuItems, function (el) {
-    el.addEventListener('keydown', function (event) {
-      var prevDef = false;
-      switch (event.keyCode) {
-        case keys.down:
-          _this.gotoSubIndex(_this.subIndex + 1);
-          prevDef = true;
-          break;
-        case keys.up:
-          _this.gotoSubIndex(_this.subIndex - 1);
-          prevDef = true;
-          break;
-        case keys.tab:
-          _ariaUtils2.default.triggerEvent(parentNode, 'mouseleave');
-          break;
-        case keys.enter:
-        case keys.space:
-          prevDef = true;
-          event.currentTarget.click();
-          break;
-      }
-      if (prevDef) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
+aria.Utils.focusLastDescendant = function (element) {
+  for (var i = element.childNodes.length - 1; i >= 0; i--) {
+    var child = element.childNodes[i];
+    if (aria.Utils.attemptFocus(child) || aria.Utils.focusLastDescendant(child)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+/**
+ * @desc Set Attempt to set focus on the current node.
+ * @param element
+ *          The node to attempt to focus on.
+ * @returns
+ *  true if element is focused.
+ */
+aria.Utils.attemptFocus = function (element) {
+  if (!aria.Utils.isFocusable(element)) {
+    return false;
+  }
+  aria.Utils.IgnoreUtilFocusChanges = true;
+  try {
+    element.focus();
+  } catch (e) {}
+  aria.Utils.IgnoreUtilFocusChanges = false;
+  return document.activeElement === element;
+};
+
+aria.Utils.isFocusable = function (element) {
+  if (element.tabIndex > 0 || element.tabIndex === 0 && element.getAttribute('tabIndex') !== null) {
+    return true;
+  }
+
+  if (element.disabled) {
+    return false;
+  }
+
+  switch (element.nodeName) {
+    case 'A':
+      return !!element.href && element.rel !== 'ignore';
+    case 'INPUT':
+      return element.type !== 'hidden' && element.type !== 'file';
+    case 'BUTTON':
+    case 'SELECT':
+    case 'TEXTAREA':
+      return true;
+    default:
       return false;
-    });
-  });
+  }
 };
 
-exports.default = SubMenu;
+/**
+ * 触发一个事件
+ * mouseenter, mouseleave, mouseover, keyup, change, click 等
+ * @param  {Element} elm
+ * @param  {String} name
+ * @param  {*} opts
+ */
+aria.Utils.triggerEvent = function (elm, name) {
+  var eventName = void 0;
+
+  if (/^mouse|click/.test(name)) {
+    eventName = 'MouseEvents';
+  } else if (/^key/.test(name)) {
+    eventName = 'KeyboardEvent';
+  } else {
+    eventName = 'HTMLEvents';
+  }
+  var evt = document.createEvent(eventName);
+
+  for (var _len = arguments.length, opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    opts[_key - 2] = arguments[_key];
+  }
+
+  evt.initEvent.apply(evt, [name].concat(opts));
+  elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent('on' + name, evt);
+
+  return elm;
+};
+
+aria.Utils.keys = {
+  tab: 9,
+  enter: 13,
+  space: 32,
+  left: 37,
+  up: 38,
+  right: 39,
+  down: 40
+};
+
+exports.default = aria.Utils;
 
 /***/ }),
 
-/***/ 95:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 7:
+/***/ (function(module, exports) {
 
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-menu-collapse-transition',[_c('ul',{key:+_vm.collapse,staticClass:"el-menu",class:{
-      'el-menu--horizontal': _vm.mode === 'horizontal',
-      'el-menu--collapse': _vm.collapse
-    },style:({ backgroundColor: _vm.backgroundColor || '' }),attrs:{"role":"menubar"}},[_vm._t("default")],2)])}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
+module.exports = require("element-ui/lib/mixins/migrating");
 
 /***/ })
 

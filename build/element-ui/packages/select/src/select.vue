@@ -564,7 +564,7 @@
       },
 
       resetInputHeight() {
-        if (this.collapseTags) return;
+        if (this.collapseTags && !this.filterable) return;
         this.$nextTick(() => {
           if (!this.$refs.reference) return;
           let inputChildNodes = this.$refs.reference.$el.childNodes;
@@ -666,7 +666,7 @@
           value.splice(index, 1);
           this.$emit('input', value);
           this.emitChange(value);
-          this.$emit('remove-tag', tag);
+          this.$emit('remove-tag', tag.value);
         }
         event.stopPropagation();
       },
