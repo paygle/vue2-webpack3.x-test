@@ -2,8 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from '@compo/App';
-import HelloWorld from '@compo/HelloWorld';
+import MainApp from '@compo/index/main-app';
+import HelloWorld from '@compo/examples/HelloWorld';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
@@ -24,6 +24,6 @@ console.log('Test Main !!!!!!');
 new Vue({
   el: '#test-coverage',
   router,
-  template: '<App/>',
-  components: { App }
+  template: '<main-app/>',
+  components: { MainApp }
 });

@@ -2,7 +2,7 @@
 // webpackChunkName 设置打包文件的名称，名称相同的会打包到同一个文件里面去
 const HelloWorld = () => import(
   /* webpackChunkName: "example-pack-1" */
-  '@compo/HelloWorld'
+  '@compo/examples/HelloWorld'
 );
 const FormExam = () => import(
   /* webpackChunkName: "example-pack-2" */

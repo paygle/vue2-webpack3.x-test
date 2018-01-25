@@ -1,4 +1,4 @@
-import HelloWorld from '@compo/HelloWorld';
+import HelloWorld from '@compo/examples/HelloWorld';
 
 Vue.use(VueRouter);
 
