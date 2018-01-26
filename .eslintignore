@@ -6,6 +6,7 @@
 /src/utils/popper.js
 /src/utils/vue-popper.js
 /src/utils/date.js
+/static/
 *.sh
 node_modules
 lib
