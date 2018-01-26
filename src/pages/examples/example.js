@@ -14,7 +14,7 @@ new Vue({
   store,
   data() {
     return {
-      activeIndex: '1'
+      activeIndex: '2-1'
     };
   }
 });
