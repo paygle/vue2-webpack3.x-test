@@ -75,6 +75,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         arrowElement: '[x-arrow]',
 
+        arrowOffset: 0,
+
         // list of functions used to modify the offsets before they are applied to the popper
         modifiers: ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle'],
 
@@ -866,6 +868,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      */
     Popper.prototype.modifiers.arrow = function (data) {
         var arrow = this._options.arrowElement;
+        var arrowOffset = this._options.arrowOffset;
 
         // if the arrowElement is a string, suppose it's a CSS selector
         if (typeof arrow === 'string') {
@@ -916,7 +919,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         // compute center of the popper
-        var center = reference[side] + reference[len] / 2 - arrowSize / 2;
+        var center = reference[side] + (arrowOffset || reference[len] / 2 - arrowSize / 2);
 
         var sideValue = center - popper[side];
 

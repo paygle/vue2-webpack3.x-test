@@ -61,27 +61,27 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 255);
+/******/ 	return __webpack_require__(__webpack_require__.s = 254);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 15:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 255:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(256);
+module.exports = __webpack_require__(255);
 
 
 /***/ }),
 
-/***/ 256:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,7 +89,7 @@ module.exports = __webpack_require__(256);
 
 exports.__esModule = true;
 
-var _tableColumn = __webpack_require__(257);
+var _tableColumn = __webpack_require__(256);
 
 var _tableColumn2 = _interopRequireDefault(_tableColumn);
 
@@ -104,7 +104,7 @@ exports.default = _tableColumn2.default;
 
 /***/ }),
 
-/***/ 257:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,7 +112,7 @@ exports.default = _tableColumn2.default;
 
 exports.__esModule = true;
 
-var _checkbox = __webpack_require__(16);
+var _checkbox = __webpack_require__(15);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
@@ -487,7 +487,8 @@ exports.default = {
   },
   destroyed: function destroyed() {
     if (!this.$parent) return;
-    this.owner.store.commit('removeColumn', this.columnConfig);
+    var parent = this.$parent;
+    this.owner.store.commit('removeColumn', this.columnConfig, this.isSubColumn ? parent.columnConfig : null);
   },
 
 

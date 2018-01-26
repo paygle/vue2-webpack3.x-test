@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 243);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,28 +183,28 @@ module.exports = require("element-ui/lib/utils/clickoutside");
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports) {
 
 module.exports = require("throttle-debounce/debounce");
 
 /***/ }),
 
-/***/ 16:
+/***/ 15:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 17:
+/***/ 16:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/popup");
 
 /***/ }),
 
-/***/ 19:
+/***/ 18:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/resize-event");
@@ -225,15 +225,15 @@ module.exports = require("element-ui/lib/tooltip");
 
 /***/ }),
 
-/***/ 243:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(244);
+module.exports = __webpack_require__(243);
 
 
 /***/ }),
 
-/***/ 244:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -241,7 +241,7 @@ module.exports = __webpack_require__(244);
 
 exports.__esModule = true;
 
-var _table = __webpack_require__(245);
+var _table = __webpack_require__(244);
 
 var _table2 = _interopRequireDefault(_table);
 
@@ -256,7 +256,7 @@ exports.default = _table2.default;
 
 /***/ }),
 
-/***/ 245:
+/***/ 244:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -264,7 +264,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_eb3e7018_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_table_vue__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_eb3e7018_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_table_vue__ = __webpack_require__(253);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -293,7 +293,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 246:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -305,7 +305,7 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _debounce = __webpack_require__(14);
+var _debounce = __webpack_require__(13);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
@@ -591,10 +591,14 @@ TableStore.prototype.mutations = {
     this.updateColumns(); // hack for dynamics insert column
     this.scheduleLayout();
   },
-  removeColumn: function removeColumn(states, column) {
-    var _columns = states._columns;
-    if (_columns) {
-      _columns.splice(_columns.indexOf(column), 1);
+  removeColumn: function removeColumn(states, column, parent) {
+    var array = states._columns;
+    if (parent) {
+      array = parent.children;
+      if (!array) array = parent.children = [];
+    }
+    if (array) {
+      array.splice(array.indexOf(column), 1);
     }
 
     this.updateColumns(); // hack for dynamics remove column
@@ -912,7 +916,7 @@ exports.default = TableStore;
 
 /***/ }),
 
-/***/ 247:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1137,7 +1141,7 @@ exports.default = TableLayout;
 
 /***/ }),
 
-/***/ 248:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1151,7 +1155,7 @@ var _util = __webpack_require__(39);
 
 var _dom = __webpack_require__(2);
 
-var _checkbox = __webpack_require__(16);
+var _checkbox = __webpack_require__(15);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
@@ -1159,7 +1163,7 @@ var _tooltip = __webpack_require__(23);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
-var _debounce = __webpack_require__(14);
+var _debounce = __webpack_require__(13);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
@@ -1588,7 +1592,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 249:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1598,7 +1602,7 @@ exports.__esModule = true;
 
 var _dom = __webpack_require__(2);
 
-var _checkbox = __webpack_require__(16);
+var _checkbox = __webpack_require__(15);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
@@ -1610,7 +1614,7 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _filterPanel = __webpack_require__(250);
+var _filterPanel = __webpack_require__(249);
 
 var _filterPanel2 = _interopRequireDefault(_filterPanel);
 
@@ -2191,7 +2195,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 250:
+/***/ 249:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2199,7 +2203,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1a897132_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_filter_panel_vue__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1a897132_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_filter_panel_vue__ = __webpack_require__(251);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -2228,7 +2232,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 251:
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2271,7 +2275,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 252:
+/***/ 251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2282,7 +2286,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 253:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2451,7 +2455,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 254:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2670,7 +2674,7 @@ module.exports = require("vue");
 /***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/mixins/migrating");
+module.exports = require("element-ui/lib/utils/vue-popper");
 
 /***/ }),
 
@@ -2682,7 +2686,7 @@ module.exports = require("element-ui/lib/mixins/migrating");
 
 exports.__esModule = true;
 
-var _checkbox = __webpack_require__(16);
+var _checkbox = __webpack_require__(15);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
@@ -2690,37 +2694,37 @@ var _throttle = __webpack_require__(38);
 
 var _throttle2 = _interopRequireDefault(_throttle);
 
-var _debounce = __webpack_require__(14);
+var _debounce = __webpack_require__(13);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
-var _resizeEvent = __webpack_require__(19);
+var _resizeEvent = __webpack_require__(18);
 
 var _locale = __webpack_require__(4);
 
 var _locale2 = _interopRequireDefault(_locale);
 
-var _migrating = __webpack_require__(7);
+var _migrating = __webpack_require__(8);
 
 var _migrating2 = _interopRequireDefault(_migrating);
 
-var _tableStore = __webpack_require__(246);
+var _tableStore = __webpack_require__(245);
 
 var _tableStore2 = _interopRequireDefault(_tableStore);
 
-var _tableLayout = __webpack_require__(247);
+var _tableLayout = __webpack_require__(246);
 
 var _tableLayout2 = _interopRequireDefault(_tableLayout);
 
-var _tableBody = __webpack_require__(248);
+var _tableBody = __webpack_require__(247);
 
 var _tableBody2 = _interopRequireDefault(_tableBody);
 
-var _tableHeader = __webpack_require__(249);
+var _tableHeader = __webpack_require__(248);
 
 var _tableHeader2 = _interopRequireDefault(_tableHeader);
 
-var _tableFooter = __webpack_require__(253);
+var _tableFooter = __webpack_require__(252);
 
 var _tableFooter2 = _interopRequireDefault(_tableFooter);
 
@@ -3262,11 +3266,11 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _vuePopper = __webpack_require__(8);
+var _vuePopper = __webpack_require__(7);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
-var _popup = __webpack_require__(17);
+var _popup = __webpack_require__(16);
 
 var _locale = __webpack_require__(4);
 
@@ -3276,11 +3280,11 @@ var _clickoutside = __webpack_require__(10);
 
 var _clickoutside2 = _interopRequireDefault(_clickoutside);
 
-var _dropdown = __webpack_require__(251);
+var _dropdown = __webpack_require__(250);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
-var _checkbox = __webpack_require__(16);
+var _checkbox = __webpack_require__(15);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
@@ -3498,7 +3502,7 @@ exports.default = {
 /***/ 8:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/vue-popper");
+module.exports = require("element-ui/lib/mixins/migrating");
 
 /***/ }),
 

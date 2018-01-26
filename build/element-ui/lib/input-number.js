@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 190);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,22 +176,15 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 12:
-/***/ (function(module, exports) {
+/***/ 189:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("element-ui/lib/mixins/focus");
+module.exports = __webpack_require__(190);
+
 
 /***/ }),
 
 /***/ 190:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(191);
-
-
-/***/ }),
-
-/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +192,7 @@ module.exports = __webpack_require__(191);
 
 exports.__esModule = true;
 
-var _inputNumber = __webpack_require__(192);
+var _inputNumber = __webpack_require__(191);
 
 var _inputNumber2 = _interopRequireDefault(_inputNumber);
 
@@ -214,7 +207,7 @@ exports.default = _inputNumber2.default;
 
 /***/ }),
 
-/***/ 192:
+/***/ 191:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -222,7 +215,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_number_vue__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_number_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_number_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_number_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_number_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4863c13e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_number_vue__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_61327df6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_number_vue__ = __webpack_require__(192);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -239,7 +232,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_number_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4863c13e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_number_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_61327df6_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_number_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -251,7 +244,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 193:
+/***/ 192:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -271,6 +264,13 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/dom");
+
+/***/ }),
+
+/***/ 20:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/mixins/focus");
 
 /***/ }),
 
@@ -323,7 +323,7 @@ var _input = __webpack_require__(6);
 
 var _input2 = _interopRequireDefault(_input);
 
-var _focus = __webpack_require__(12);
+var _focus = __webpack_require__(20);
 
 var _focus2 = _interopRequireDefault(_focus);
 
@@ -360,9 +360,7 @@ exports.default = {
       type: Number,
       default: -Infinity
     },
-    value: {
-      default: 0
-    },
+    value: {},
     disabled: Boolean,
     size: String,
     controls: {
@@ -386,8 +384,8 @@ exports.default = {
     value: {
       immediate: true,
       handler: function handler(value) {
-        var newVal = Number(value);
-        if (isNaN(newVal)) return;
+        var newVal = value === undefined ? value : Number(value);
+        if (newVal !== undefined && isNaN(newVal)) return;
         if (newVal >= this.max) newVal = this.max;
         if (newVal <= this.min) newVal = this.min;
         this.currentValue = newVal;
@@ -425,6 +423,7 @@ exports.default = {
       return parseFloat(parseFloat(Number(num).toFixed(precision)));
     },
     getPrecision: function getPrecision(value) {
+      if (value === undefined) return 0;
       var valueString = value.toString();
       var dotPosition = valueString.indexOf('.');
       var precision = 0;
@@ -434,14 +433,14 @@ exports.default = {
       return precision;
     },
     _increase: function _increase(val, step) {
-      if (typeof val !== 'number') return this.currentValue;
+      if (typeof val !== 'number' && val !== undefined) return this.currentValue;
 
       var precisionFactor = Math.pow(10, this.precision);
-
+      // Solve the accuracy problem of JS decimal calculation by converting the value to integer.
       return this.toPrecision((precisionFactor * val + precisionFactor * step) / precisionFactor);
     },
     _decrease: function _decrease(val, step) {
-      if (typeof val !== 'number') return this.currentValue;
+      if (typeof val !== 'number' && val !== undefined) return this.currentValue;
 
       var precisionFactor = Math.pow(10, this.precision);
 
@@ -451,14 +450,12 @@ exports.default = {
       if (this.disabled || this.maxDisabled) return;
       var value = this.value || 0;
       var newVal = this._increase(value, this.step);
-      if (newVal > this.max) return;
       this.setCurrentValue(newVal);
     },
     decrease: function decrease() {
       if (this.disabled || this.minDisabled) return;
       var value = this.value || 0;
       var newVal = this._decrease(value, this.step);
-      if (newVal < this.min) return;
       this.setCurrentValue(newVal);
     },
     handleBlur: function handleBlur(event) {
@@ -481,8 +478,8 @@ exports.default = {
       this.currentValue = newVal;
     },
     handleInputChange: function handleInputChange(value) {
-      var newVal = Number(value);
-      if (!isNaN(newVal)) {
+      var newVal = value === '' ? undefined : Number(value);
+      if (!isNaN(newVal) || value === '') {
         this.setCurrentValue(newVal);
       }
     }

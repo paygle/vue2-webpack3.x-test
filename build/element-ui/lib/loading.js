@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 349);
+/******/ 	return __webpack_require__(__webpack_require__.s = 348);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -184,7 +184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0bec538e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0bec538e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(351);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -278,15 +278,15 @@ module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
-/***/ 349:
+/***/ 348:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(350);
+module.exports = __webpack_require__(349);
 
 
 /***/ }),
 
-/***/ 350:
+/***/ 349:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -294,11 +294,11 @@ module.exports = __webpack_require__(350);
 
 exports.__esModule = true;
 
-var _directive = __webpack_require__(351);
+var _directive = __webpack_require__(350);
 
 var _directive2 = _interopRequireDefault(_directive);
 
-var _index = __webpack_require__(353);
+var _index = __webpack_require__(352);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -316,11 +316,13 @@ exports.default = {
 
 /***/ }),
 
-/***/ 351:
+/***/ 350:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+exports.__esModule = true;
 
 var _vue = __webpack_require__(5);
 
@@ -340,7 +342,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Mask = _vue2.default.extend(_loading2.default);
 
-exports.install = function (Vue) {
+var loadingDirective = {};
+loadingDirective.install = function (Vue) {
   if (Vue.prototype.$isServer) return;
   var toggleLoading = function toggleLoading(el, binding) {
     if (binding.value) {
@@ -450,9 +453,11 @@ exports.install = function (Vue) {
   });
 };
 
+exports.default = loadingDirective;
+
 /***/ }),
 
-/***/ 352:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -463,7 +468,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 353:
+/***/ 352:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

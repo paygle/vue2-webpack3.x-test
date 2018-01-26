@@ -4,6 +4,11 @@
 
 ## 不需要引入可直接使用的（第三库）全局变量
 $或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
+
+* Vue 2.x 文档参考 https://cn.vuejs.org/
+
+* Elemnt UI 2.x 文档参考 http://element.eleme.io
+
 ## 构建与安装
 
 ``` bash

@@ -422,6 +422,30 @@
           <span class="icon-name">el-icon-zoom-out</span>
         </span>
       </li>
+      <li>
+        <span>
+          <i class="el-icon-cloud-api"></i>
+          <span class="icon-name">el-icon-cloud-api</span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <i class="el-icon-cwmck"></i>
+          <span class="icon-name">el-icon-cwmck</span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <i class="el-icon-cir-qtxg"></i>
+          <span class="icon-name">el-icon-cir-qtxg</span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <i class="el-icon-mod-sldm"></i>
+          <span class="icon-name">el-icon-mod-sldm</span>
+        </span>
+      </li>
     </ul>
   </section>
 </template>

@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 427);
+/******/ 	return __webpack_require__(__webpack_require__.s = 426);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -190,6 +190,13 @@ module.exports = require("element-ui/lib/utils/clickoutside");
 
 /***/ }),
 
+/***/ 12:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/locale");
+
+/***/ }),
+
 /***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -202,7 +209,7 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _menu = __webpack_require__(430);
+var _menu = __webpack_require__(429);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -210,7 +217,7 @@ var _input = __webpack_require__(6);
 
 var _input2 = _interopRequireDefault(_input);
 
-var _vuePopper = __webpack_require__(8);
+var _vuePopper = __webpack_require__(7);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
@@ -226,9 +233,9 @@ var _locale = __webpack_require__(4);
 
 var _locale2 = _interopRequireDefault(_locale);
 
-var _locale3 = __webpack_require__(13);
+var _locale3 = __webpack_require__(12);
 
-var _debounce = __webpack_require__(14);
+var _debounce = __webpack_require__(13);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
@@ -304,6 +311,7 @@ var popperMixin = {
       default: 'bottom-start'
     },
     appendToBody: _vuePopper2.default.props.appendToBody,
+    arrowOffset: _vuePopper2.default.props.arrowOffset,
     offset: _vuePopper2.default.props.offset,
     boundariesPadding: _vuePopper2.default.props.boundariesPadding,
     popperOptions: _vuePopper2.default.props.popperOptions
@@ -697,7 +705,7 @@ var _babelHelperVueJsxMergeProps = __webpack_require__(44);
 
 var _babelHelperVueJsxMergeProps2 = _interopRequireDefault(_babelHelperVueJsxMergeProps);
 
-var _shared = __webpack_require__(431);
+var _shared = __webpack_require__(430);
 
 var _scrollIntoView = __webpack_require__(27);
 
@@ -1120,13 +1128,6 @@ exports.default = {
 /***/ 13:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/locale");
-
-/***/ }),
-
-/***/ 14:
-/***/ (function(module, exports) {
-
 module.exports = require("throttle-debounce/debounce");
 
 /***/ }),
@@ -1152,15 +1153,15 @@ module.exports = require("element-ui/lib/mixins/locale");
 
 /***/ }),
 
-/***/ 427:
+/***/ 426:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(428);
+module.exports = __webpack_require__(427);
 
 
 /***/ }),
 
-/***/ 428:
+/***/ 427:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1168,7 +1169,7 @@ module.exports = __webpack_require__(428);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(429);
+var _main = __webpack_require__(428);
 
 var _main2 = _interopRequireDefault(_main);
 
@@ -1183,7 +1184,7 @@ exports.default = _main2.default;
 
 /***/ }),
 
-/***/ 429:
+/***/ 428:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1191,7 +1192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0a2c50f4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8470e02c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(431);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -1208,7 +1209,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0a2c50f4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8470e02c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -1220,7 +1221,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 430:
+/***/ 429:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1256,14 +1257,14 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 431:
+/***/ 430:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/shared");
 
 /***/ }),
 
-/***/ 432:
+/***/ 431:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1301,7 +1302,7 @@ module.exports = require("element-ui/lib/input");
 
 /***/ }),
 
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/vue-popper");

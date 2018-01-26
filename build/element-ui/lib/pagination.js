@@ -459,7 +459,7 @@ exports.default = {
             {
               attrs: {
                 value: this.$parent.internalPageSize,
-                popperClass: (this.$parent.popperClass || '') + ' is-arrow-fixed'
+                popperClass: this.$parent.popperClass || ''
               },
               on: {
                 'input': this.handleChange

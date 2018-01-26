@@ -14,9 +14,9 @@
     @keydown.native="handleKeydown"
     :value="displayValue"
     @input="value => userInput = value"
+    @change="handleChange"
     @mouseenter.native="handleMouseEnter"
     @mouseleave.native="showClose = false"
-    @change.native="handleChange"
     :validateEvent="false"
     :prefix-icon="triggerClass"
     ref="reference">
@@ -81,7 +81,6 @@ import Clickoutside from 'element-ui/src/utils/clickoutside';
 import { formatDate, parseDate, isDateObject, getWeekNumber } from './util';
 import Popper from 'element-ui/src/utils/vue-popper';
 import Emitter from 'element-ui/src/mixins/emitter';
-import Focus from 'element-ui/src/mixins/focus';
 import ElInput from 'element-ui/packages/input';
 import merge from 'element-ui/src/utils/merge';
 
@@ -89,7 +88,8 @@ const NewPopper = {
   props: {
     appendToBody: Popper.props.appendToBody,
     offset: Popper.props.offset,
-    boundariesPadding: Popper.props.boundariesPadding
+    boundariesPadding: Popper.props.boundariesPadding,
+    arrowOffset: Popper.props.arrowOffset
   },
   methods: Popper.methods,
   data() {
@@ -293,7 +293,7 @@ const validator = function(val) {
 };
 
 export default {
-  mixins: [Emitter, NewPopper, Focus('reference')],
+  mixins: [Emitter, NewPopper],
 
   inject: {
     elFormItem: {
@@ -492,6 +492,14 @@ export default {
   },
 
   methods: {
+    focus() {
+      if (!this.ranged) {
+        this.$refs.reference.focus();
+      } else {
+        this.handleFocus();
+      }
+    },
+
     blur() {
       this.refInput.forEach(input => input.blur());
     },
@@ -543,6 +551,11 @@ export default {
             this.userInput = null;
           }
         }
+      }
+      if (this.userInput === '') {
+        this.emitInput(null);
+        this.emitChange(null);
+        this.userInput = null;
       }
     },
 
@@ -647,9 +660,8 @@ export default {
       }
 
       // Enter
-      if (keyCode === 13 && this.displayValue) {
-        const value = this.parseString(this.displayValue);
-        if (this.isValidValue(value)) {
+      if (keyCode === 13) {
+        if (this.userInput === '' || this.isValidValue(this.parseString(this.displayValue))) {
           this.handleChange();
           this.pickerVisible = this.picker.visible = false;
           this.blur();
