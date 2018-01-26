@@ -9,6 +9,10 @@ $或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
 
 * Elemnt UI 2.x 文档参考 http://element.eleme.io
 
+* Echarts 图表文档 http://echarts.baidu.com/api.html
+
+* Ztree 树jquery插件文档 http://www.treejs.cn/
+
 ## 构建与安装
 
 ``` bash
