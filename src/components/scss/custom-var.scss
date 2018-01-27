@@ -1,0 +1,9 @@
+/* 样式变量定义文件 所有自定义颜色值都必须在本文件中定义并获取 不得在其他文件中定义*/
+/* 警告：不要与框架文件中的变量冲突 */
+
+$background-color--gray: #f5f6f8;
+$background-color--footer: #222325;
+$background-color--title: rgba(0,7,57, 0.4);
+
+$color--menu-opened: #f6fafd;
+$color--title: #b2e0fa;
