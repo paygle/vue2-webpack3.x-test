@@ -56,7 +56,7 @@ function setVendors(files, scripts) {
       }
       vendors.push(
         new HtmlWebpackIncludeAssetsPlugin({
-          files:files[f],
+          files: files[f],
           assets: sc,
           append: false
         }));
