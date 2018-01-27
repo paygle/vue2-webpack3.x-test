@@ -13,6 +13,9 @@ $或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
 
 * Ztree 树jquery插件文档 http://www.treejs.cn/
 
+## 入口文件第三方库配置文件，配置你需要的第三库
+  build/config/vendor.js
+
 ## 构建与安装
 
 ``` bash

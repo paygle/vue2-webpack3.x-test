@@ -20,6 +20,5 @@ new Vue({
   components: { MainApp },
   mounted() {
     console.log('jQ:', $);
-    console.log('ZTree:', $.fn.zTree.init($('#tree')));
   }
 });

@@ -3,40 +3,8 @@ const utils = require('./utils')
 const config = require('../config')
 const webpack = require('webpack')
 const WebpackMd5Hash = require('webpack-md5-hash')
-const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
-const scripts = process.env.NODE_ENV === 'production' ?
-[
-  'static/css/element.css',
-  'static/css/ztree/default/zTreeStyle.css',
-  'static/js/vue/polyfill.min.js',
-  'static/js/jq/jquery.min.js',
-  'static/js/jq/jquery.ztree.all.min.js',
-  'static/js/jq/jquery.ztree.exhide.min.js',
-  'static/js/vue/vue.min.js',
-  'static/js/vue/vuex.min.js',
-  'static/js/vue/vue-router.min.js',
-  'static/js/vue/element.js',
-  'static/js/echarts/echarts.min.js',
-  'static/js/echarts/echarts-amap.min.js',
-  'static/js/xlsx/xlsx.full.min.js',
-  'static/js/pako/pako.min.js'
-]:[
-  'static/css/element.css',
-  'static/css/ztree/default/zTreeStyle.css',
-  'static/js/vue/polyfill.js',
-  'static/js/jq/jquery.js',
-  'static/js/jq/jquery.ztree.all.js',
-  'static/js/jq/jquery.ztree.exhide.js',
-  'static/js/vue/vue.js',
-  'static/js/vue/vuex.js',
-  'static/js/vue/vue-router.js',
-  'static/js/vue/element.js',
-  'static/js/echarts/echarts.js',
-  'static/js/echarts/echarts-amap.min.js',
-  'static/js/xlsx/xlsx.full.min.js',
-  'static/js/pako/pako.js'
-];
+const vendors = require('../config/vendors')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -145,9 +113,8 @@ if  (process.env.NODE_ENV !== 'testing') {
     'echarts': 'echarts',
     'XLSX': 'xlsx',
     'pako': 'pako'
-  }),
-  // 追加第三方库文件
-  new HtmlWebpackIncludeAssetsPlugin({ assets: scripts, append: false }));
+  }));
+  baseConfig.plugins = baseConfig.plugins.concat(vendors);
 }
 
 module.exports = baseConfig;
