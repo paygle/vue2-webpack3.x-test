@@ -10,6 +10,7 @@ module.exports = {
     'VueRouter': true,
     'ELEMENT': true,
     'echarts': true,
+    'Promise': true,
     'XLSX': true,
     'pako': true
   },

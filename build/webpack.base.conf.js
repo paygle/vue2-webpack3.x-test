@@ -100,6 +100,7 @@ if  (process.env.NODE_ENV !== 'testing') {
     'vue-router': 'VueRouter',
     'element-ui': 'ELEMENT',
     'echarts': 'echarts',
+    'promise': 'Promise',
     'xlsx': 'XLSX',
     'pako': 'pako'
   };
@@ -111,6 +112,7 @@ if  (process.env.NODE_ENV !== 'testing') {
     'VueRouter': 'vue-router',
     'ELEMENT': 'element-ui',
     'echarts': 'echarts',
+    'Promise': 'promise',
     'XLSX': 'xlsx',
     'pako': 'pako'
   }));
