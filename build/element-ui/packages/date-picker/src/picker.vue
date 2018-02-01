@@ -3,7 +3,7 @@
     class="el-date-editor"
     :class="'el-date-editor--' + type"
     :readonly="!editable || readonly"
-    :disabled="disabled"
+    :disabled="pickerDisabled"
     :size="pickerSize"
     :id="id"
     :name="name"
@@ -32,7 +32,7 @@
     :class="[
       'el-date-editor--' + type,
       pickerSize ? `el-range-editor--${ pickerSize }` : '',
-      disabled ? 'is-disabled' : '',
+      pickerDisabled ? 'is-disabled' : '',
       pickerVisible ? 'is-active' : ''
     ]"
     @click="handleRangeClick"
@@ -46,7 +46,7 @@
     <input
       :placeholder="startPlaceholder"
       :value="displayValue && displayValue[0]"
-      :disabled="disabled"
+      :disabled="pickerDisabled"
       :id="id && id[0]"
       :readonly="!editable || readonly"
       :name="name && name[0]"
@@ -58,7 +58,7 @@
     <input
       :placeholder="endPlaceholder"
       :value="displayValue && displayValue[1]"
-      :disabled="disabled"
+      :disabled="pickerDisabled"
       :id="id && id[1]"
       :readonly="!editable || readonly"
       :name="name && name[1]"
@@ -122,9 +122,11 @@ const HAVE_TRIGGER_TYPES = [
   'datetimerange'
 ];
 const DATE_FORMATTER = function(value, format) {
+  if (format === 'timestamp') return value.getTime();
   return formatDate(value, format);
 };
 const DATE_PARSER = function(text, format) {
+  if (format === 'timestamp') return new Date(Number(text));
   return parseDate(text, format);
 };
 const RANGE_FORMATTER = function(value, format) {
@@ -133,7 +135,7 @@ const RANGE_FORMATTER = function(value, format) {
     const end = value[1];
 
     if (start && end) {
-      return [formatDate(start, format), formatDate(end, format)];
+      return [DATE_FORMATTER(start, format), DATE_FORMATTER(end, format)];
     }
   }
   return '';
@@ -146,7 +148,7 @@ const RANGE_PARSER = function(array, format, separator) {
     const range1 = array[0];
     const range2 = array[1];
 
-    return [parseDate(range1, format), parseDate(range2, format)];
+    return [DATE_PARSER(range1, format), DATE_PARSER(range2, format)];
   }
   return [];
 };
@@ -296,6 +298,9 @@ export default {
   mixins: [Emitter, NewPopper],
 
   inject: {
+    elForm: {
+      default: ''
+    },
     elFormItem: {
       default: ''
     }
@@ -362,7 +367,7 @@ export default {
 
   watch: {
     pickerVisible(val) {
-      if (this.readonly || this.disabled) return;
+      if (this.readonly || this.pickerDisabled) return;
       if (val) {
         this.showPicker();
         this.valueOnOpen = this.value;
@@ -479,6 +484,10 @@ export default {
 
     pickerSize() {
       return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
+    },
+
+    pickerDisabled() {
+      return this.disabled || (this.elForm || {}).disabled;
     }
   },
 
@@ -535,7 +544,7 @@ export default {
     },
 
     handleMouseEnter() {
-      if (this.readonly || this.disabled) return;
+      if (this.readonly || this.pickerDisabled) return;
       if (!this.valueIsEmpty && this.clearable) {
         this.showClose = true;
       }
@@ -602,7 +611,7 @@ export default {
     },
 
     handleClickIcon(event) {
-      if (this.readonly || this.disabled) return;
+      if (this.readonly || this.pickerDisabled) return;
       if (this.showClose) {
         event.stopPropagation();
         this.emitInput(null);

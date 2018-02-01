@@ -23,7 +23,7 @@ $或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
 # 安装依赖
 npm install
 
-# 运行开发环境 localhost:8080
+# 运行开发环境 localhost:3824
 npm run dev
 
 # 构建发布文件

@@ -1,9 +1,17 @@
-var express = require('express');
-var opn = require('opn');
-var path = require('path');
-var host = 'http://' + require('../config/gethost').ip;
-var port = 6788;
-var app = express();
+const express = require('express');
+const proxy = require('http-proxy-middleware');
+const opn = require('opn');
+const path = require('path');
+const config = require('../config')
+const host = 'http://' + require('../config/gethost').ip;
+const port = 6788;
+const app = express();
+
+// set product proxy
+for(let key in config.dev.proxyTable) {
+  app.use(key, proxy(config.dev.proxyTable[key]));
+}
+
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.listen(port, function() {

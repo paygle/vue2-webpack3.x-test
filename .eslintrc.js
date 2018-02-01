@@ -40,6 +40,7 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     "no-multi-spaces": 0,
+    "no-unused-vars": ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
