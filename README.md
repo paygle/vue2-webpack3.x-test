@@ -2,7 +2,7 @@
 
 > karma test vue2 in webpack3.x
 
-# 注意： 只要 package.json 有更新，就需要执行 npm install 安装一下（如果安装出错请删除node_modules目录重新安装）
+### 注意： 只要 package.json 有更新，就需要执行 npm install 安装一下（如果安装出错请删除node_modules目录重新安装）
 
 ## 不需要引入可直接使用的（第三库）全局变量
 $或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
