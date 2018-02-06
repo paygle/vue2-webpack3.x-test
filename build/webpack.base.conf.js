@@ -26,8 +26,13 @@ var baseConfig = {
     alias: {
       'src': resolve('src'),
       'vue$': 'vue/dist/vue.esm.js',
+      '@assets': resolve('src/assets'),
       '@compo': resolve('src/components'),
-      '@pages': resolve('src/pages')
+      '@pages': resolve('src/pages'),
+      '@transitions': resolve('src/transitions'),
+      '@directives': resolve('src/directives'),
+      '@mixins': resolve('src/mixins'),
+      '@utils': resolve('src/utils')
     }
   },
   module: {
