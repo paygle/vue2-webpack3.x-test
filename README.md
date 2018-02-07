@@ -2,6 +2,17 @@
 
 > karma test vue2 in webpack3.x
 
+## import 导入路径别名
+
+* src 根目录src
+* @assets 指向根目录 -> src/assets
+* @compo 指向根目录 -> src/components
+* @pages 指向根目录 -> src/pages
+* @transitions 指向根目录 -> src/transitions
+* @directives 指向根目录 -> src/directives
+* @mixins 指向根目录 -> src/mixins
+* @utils 指向根目录 -> src/utils'
+
 ### 注意： 只要 package.json 有更新，就需要执行 npm install 安装一下（如果安装出错请删除node_modules目录重新安装）
 
 ## 不需要引入可直接使用的（第三库）全局变量

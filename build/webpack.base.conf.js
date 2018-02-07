@@ -53,19 +53,27 @@ var baseConfig = {
         options: vueLoaderConfig
       },
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        options: { appendTsSuffixTo: [/TS\.vue$/] }
-      },
-      {
-        test: /\.tsx$/,
-        loaders: 'babel-loader!ts-loader',
-        options: { appendTsxSuffixTo: [/TSX\.vue$/] }
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [
+          resolve('src'),
+          resolve('test'),
+          resolve('node_modules/axios'),
+          resolve('node_modules/file-saver'),
+          resolve('node_modules/element-ui'),
+          resolve('node_modules/async-validator'),
+          resolve('node_modules/throttle-debounce'),
+          resolve('node_modules/webpack-dev-server/client'),
+        ],
+        options: {
+          presets: ['env'],
+          plugins: ['transform-runtime']
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
