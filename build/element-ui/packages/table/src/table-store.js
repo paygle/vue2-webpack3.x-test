@@ -399,6 +399,7 @@ TableStore.prototype.toggleRowExpansion = function(row, expanded) {
   const changed = toggleRowExpansion(this.states, row, expanded);
   if (changed) {
     this.table.$emit('expand-change', row, this.states.expandRows);
+    this.scheduleLayout();
   }
 };
 
@@ -502,23 +503,14 @@ TableStore.prototype.updateAllSelected = function() {
   let selectedCount = 0;
   for (let i = 0, j = data.length; i < j; i++) {
     const item = data[i];
-    if (selectable) {
-      const isRowSelectable = selectable.call(null, item, i);
-      if (isRowSelectable) {
-        if (!isSelected(item)) {
-          isAllSelected = false;
-          break;
-        } else {
-          selectedCount++;
-        }
-      }
-    } else {
-      if (!isSelected(item)) {
+    const isRowSelectable = selectable && selectable.call(null, item, i);
+    if (!isSelected(item)) {
+      if (!selectable || isRowSelectable) {
         isAllSelected = false;
         break;
-      } else {
-        selectedCount++;
       }
+    } else {
+      selectedCount++;
     }
   }
 

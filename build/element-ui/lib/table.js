@@ -261,10 +261,10 @@ exports.default = _table2.default;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_993e7102_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_table_vue__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1162d0ba_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_table_vue__ = __webpack_require__(255);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -281,7 +281,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_table_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_993e7102_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_table_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1162d0ba_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_table_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -353,7 +353,7 @@ var _merge = __webpack_require__(9);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _util = __webpack_require__(72);
+var _util = __webpack_require__(73);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -506,23 +506,27 @@ TableStore.prototype.mutations = {
       }
       this.updateAllSelected();
     } else {
-      var rowKey = states.rowKey;
-      if (rowKey) {
-        var selection = states.selection;
-        var selectedMap = getKeysMap(selection, rowKey);
+      (function () {
+        var rowKey = states.rowKey;
+        if (rowKey) {
+          (function () {
+            var selection = states.selection;
+            var selectedMap = getKeysMap(selection, rowKey);
 
-        states.data.forEach(function (row) {
-          var rowId = (0, _util.getRowIdentity)(row, rowKey);
-          var rowInfo = selectedMap[rowId];
-          if (rowInfo) {
-            selection[rowInfo.index] = row;
-          }
-        });
+            states.data.forEach(function (row) {
+              var rowId = (0, _util.getRowIdentity)(row, rowKey);
+              var rowInfo = selectedMap[rowId];
+              if (rowInfo) {
+                selection[rowInfo.index] = row;
+              }
+            });
 
-        this.updateAllSelected();
-      } else {
-        console.warn('WARN: rowKey is required when reserve-selection is enabled.');
-      }
+            _this.updateAllSelected();
+          })();
+        } else {
+          console.warn('WARN: rowKey is required when reserve-selection is enabled.');
+        }
+      })();
     }
 
     var defaultExpandAll = states.defaultExpandAll;
@@ -774,6 +778,7 @@ TableStore.prototype.toggleRowExpansion = function (row, expanded) {
   var changed = toggleRowExpansion(this.states, row, expanded);
   if (changed) {
     this.table.$emit('expand-change', row, this.states.expandRows);
+    this.scheduleLayout();
   }
 };
 
@@ -889,23 +894,14 @@ TableStore.prototype.updateAllSelected = function () {
   var selectedCount = 0;
   for (var i = 0, j = data.length; i < j; i++) {
     var item = data[i];
-    if (selectable) {
-      var isRowSelectable = selectable.call(null, item, i);
-      if (isRowSelectable) {
-        if (!isSelected(item)) {
-          isAllSelected = false;
-          break;
-        } else {
-          selectedCount++;
-        }
-      }
-    } else {
-      if (!isSelected(item)) {
+    var isRowSelectable = selectable && selectable.call(null, item, i);
+    if (!isSelected(item)) {
+      if (!selectable || isRowSelectable) {
         isAllSelected = false;
         break;
-      } else {
-        selectedCount++;
       }
+    } else {
+      selectedCount++;
     }
   }
 
@@ -973,7 +969,7 @@ exports.default = TableStore;
 
 exports.__esModule = true;
 
-var _scrollbarWidth = __webpack_require__(38);
+var _scrollbarWidth = __webpack_require__(39);
 
 var _scrollbarWidth2 = _interopRequireDefault(_scrollbarWidth);
 
@@ -1040,13 +1036,14 @@ var TableLayout = function () {
 
     var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'height';
 
+    if (_vue2.default.prototype.$isServer) return;
     var el = this.table.$el;
     if (typeof value === 'string' && /^\d+$/.test(value)) {
       value = Number(value);
     }
     this.height = value;
 
-    if (!el && value) return _vue2.default.nextTick(function () {
+    if (!el && (value || value === 0)) return _vue2.default.nextTick(function () {
       return _this.setHeight(value, prop);
     });
 
@@ -1079,7 +1076,7 @@ var TableLayout = function () {
 
     if (this.showHeader && !headerWrapper) return;
     var headerHeight = this.headerHeight = !this.showHeader ? 0 : headerWrapper.offsetHeight;
-    if (this.showHeader && headerWrapper.offsetWidth > 0 && headerHeight < 2) {
+    if (this.showHeader && headerWrapper.offsetWidth > 0 && (this.table.columns || []).length > 0 && headerHeight < 2) {
       return _vue2.default.nextTick(function () {
         return _this2.updateElsHeight();
       });
@@ -1143,20 +1140,22 @@ var TableLayout = function () {
         if (flexColumns.length === 1) {
           flexColumns[0].realWidth = (flexColumns[0].minWidth || 80) + totalFlexWidth;
         } else {
-          var allColumnsWidth = flexColumns.reduce(function (prev, column) {
-            return prev + (column.minWidth || 80);
-          }, 0);
-          var flexWidthPerPixel = totalFlexWidth / allColumnsWidth;
-          var noneFirstWidth = 0;
+          (function () {
+            var allColumnsWidth = flexColumns.reduce(function (prev, column) {
+              return prev + (column.minWidth || 80);
+            }, 0);
+            var flexWidthPerPixel = totalFlexWidth / allColumnsWidth;
+            var noneFirstWidth = 0;
 
-          flexColumns.forEach(function (column, index) {
-            if (index === 0) return;
-            var flexWidth = Math.floor((column.minWidth || 80) * flexWidthPerPixel);
-            noneFirstWidth += flexWidth;
-            column.realWidth = (column.minWidth || 80) + flexWidth;
-          });
+            flexColumns.forEach(function (column, index) {
+              if (index === 0) return;
+              var flexWidth = Math.floor((column.minWidth || 80) * flexWidthPerPixel);
+              noneFirstWidth += flexWidth;
+              column.realWidth = (column.minWidth || 80) + flexWidth;
+            });
 
-          flexColumns[0].realWidth = (flexColumns[0].minWidth || 80) + totalFlexWidth - noneFirstWidth;
+            flexColumns[0].realWidth = (flexColumns[0].minWidth || 80) + totalFlexWidth - noneFirstWidth;
+          })();
         }
       } else {
         // HAVE HORIZONTAL SCROLL BAR
@@ -1252,7 +1251,7 @@ exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _util = __webpack_require__(72);
+var _util = __webpack_require__(73);
 
 var _dom = __webpack_require__(2);
 
@@ -1268,7 +1267,7 @@ var _debounce = __webpack_require__(14);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
-var _layoutObserver = __webpack_require__(39);
+var _layoutObserver = __webpack_require__(40);
 
 var _layoutObserver2 = _interopRequireDefault(_layoutObserver);
 
@@ -1683,7 +1682,8 @@ exports.default = {
       }
       table.$emit('row-' + name, row, event, column);
     },
-    handleExpandClick: function handleExpandClick(row) {
+    handleExpandClick: function handleExpandClick(row, e) {
+      e.stopPropagation();
       this.store.toggleRowExpansion(row);
     }
   }
@@ -1717,7 +1717,7 @@ var _filterPanel = __webpack_require__(251);
 
 var _filterPanel2 = _interopRequireDefault(_filterPanel);
 
-var _layoutObserver = __webpack_require__(39);
+var _layoutObserver = __webpack_require__(40);
 
 var _layoutObserver2 = _interopRequireDefault(_layoutObserver);
 
@@ -1973,23 +1973,25 @@ exports.default = {
     var _this2 = this;
 
     if (this.defaultSort.prop) {
-      var states = this.store.states;
-      states.sortProp = this.defaultSort.prop;
-      states.sortOrder = this.defaultSort.order || 'ascending';
-      this.$nextTick(function (_) {
-        for (var i = 0, length = _this2.columns.length; i < length; i++) {
-          var column = _this2.columns[i];
-          if (column.property === states.sortProp) {
-            column.order = states.sortOrder;
-            states.sortingColumn = column;
-            break;
+      (function () {
+        var states = _this2.store.states;
+        states.sortProp = _this2.defaultSort.prop;
+        states.sortOrder = _this2.defaultSort.order || 'ascending';
+        _this2.$nextTick(function (_) {
+          for (var i = 0, length = _this2.columns.length; i < length; i++) {
+            var column = _this2.columns[i];
+            if (column.property === states.sortProp) {
+              column.order = states.sortOrder;
+              states.sortingColumn = column;
+              break;
+            }
           }
-        }
 
-        if (states.sortingColumn) {
-          _this2.store.commit('changeSortCondition');
-        }
-      });
+          if (states.sortingColumn) {
+            _this2.store.commit('changeSortCondition');
+          }
+        });
+      })();
     }
   },
   beforeDestroy: function beforeDestroy() {
@@ -2128,76 +2130,78 @@ exports.default = {
       if (column.children && column.children.length > 0) return;
       /* istanbul ignore if */
       if (this.draggingColumn && this.border) {
-        this.dragging = true;
+        (function () {
+          _this3.dragging = true;
 
-        this.$parent.resizeProxyVisible = true;
+          _this3.$parent.resizeProxyVisible = true;
 
-        var table = this.$parent;
-        var tableEl = table.$el;
-        var tableLeft = tableEl.getBoundingClientRect().left;
-        var columnEl = this.$el.querySelector('th.' + column.id);
-        var columnRect = columnEl.getBoundingClientRect();
-        var minLeft = columnRect.left - tableLeft + 30;
+          var table = _this3.$parent;
+          var tableEl = table.$el;
+          var tableLeft = tableEl.getBoundingClientRect().left;
+          var columnEl = _this3.$el.querySelector('th.' + column.id);
+          var columnRect = columnEl.getBoundingClientRect();
+          var minLeft = columnRect.left - tableLeft + 30;
 
-        (0, _dom.addClass)(columnEl, 'noclick');
+          (0, _dom.addClass)(columnEl, 'noclick');
 
-        this.dragState = {
-          startMouseLeft: event.clientX,
-          startLeft: columnRect.right - tableLeft,
-          startColumnLeft: columnRect.left - tableLeft,
-          tableLeft: tableLeft
-        };
+          _this3.dragState = {
+            startMouseLeft: event.clientX,
+            startLeft: columnRect.right - tableLeft,
+            startColumnLeft: columnRect.left - tableLeft,
+            tableLeft: tableLeft
+          };
 
-        var resizeProxy = table.$refs.resizeProxy;
-        resizeProxy.style.left = this.dragState.startLeft + 'px';
+          var resizeProxy = table.$refs.resizeProxy;
+          resizeProxy.style.left = _this3.dragState.startLeft + 'px';
 
-        document.onselectstart = function () {
-          return false;
-        };
-        document.ondragstart = function () {
-          return false;
-        };
+          document.onselectstart = function () {
+            return false;
+          };
+          document.ondragstart = function () {
+            return false;
+          };
 
-        var handleMouseMove = function handleMouseMove(event) {
-          var deltaLeft = event.clientX - _this3.dragState.startMouseLeft;
-          var proxyLeft = _this3.dragState.startLeft + deltaLeft;
+          var handleMouseMove = function handleMouseMove(event) {
+            var deltaLeft = event.clientX - _this3.dragState.startMouseLeft;
+            var proxyLeft = _this3.dragState.startLeft + deltaLeft;
 
-          resizeProxy.style.left = Math.max(minLeft, proxyLeft) + 'px';
-        };
+            resizeProxy.style.left = Math.max(minLeft, proxyLeft) + 'px';
+          };
 
-        var handleMouseUp = function handleMouseUp() {
-          if (_this3.dragging) {
-            var _dragState = _this3.dragState,
-                startColumnLeft = _dragState.startColumnLeft,
-                startLeft = _dragState.startLeft;
+          var handleMouseUp = function handleMouseUp() {
+            if (_this3.dragging) {
+              var _dragState = _this3.dragState,
+                  startColumnLeft = _dragState.startColumnLeft,
+                  startLeft = _dragState.startLeft;
 
-            var finalLeft = parseInt(resizeProxy.style.left, 10);
-            var columnWidth = finalLeft - startColumnLeft;
-            column.width = column.realWidth = columnWidth;
-            table.$emit('header-dragend', column.width, startLeft - startColumnLeft, column, event);
+              var finalLeft = parseInt(resizeProxy.style.left, 10);
+              var columnWidth = finalLeft - startColumnLeft;
+              column.width = column.realWidth = columnWidth;
+              table.$emit('header-dragend', column.width, startLeft - startColumnLeft, column, event);
 
-            _this3.store.scheduleLayout();
+              _this3.store.scheduleLayout();
 
-            document.body.style.cursor = '';
-            _this3.dragging = false;
-            _this3.draggingColumn = null;
-            _this3.dragState = {};
+              document.body.style.cursor = '';
+              _this3.dragging = false;
+              _this3.draggingColumn = null;
+              _this3.dragState = {};
 
-            table.resizeProxyVisible = false;
-          }
+              table.resizeProxyVisible = false;
+            }
 
-          document.removeEventListener('mousemove', handleMouseMove);
-          document.removeEventListener('mouseup', handleMouseUp);
-          document.onselectstart = null;
-          document.ondragstart = null;
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.onselectstart = null;
+            document.ondragstart = null;
 
-          setTimeout(function () {
-            (0, _dom.removeClass)(columnEl, 'noclick');
-          }, 0);
-        };
+            setTimeout(function () {
+              (0, _dom.removeClass)(columnEl, 'noclick');
+            }, 0);
+          };
 
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
+          document.addEventListener('mousemove', handleMouseMove);
+          document.addEventListener('mouseup', handleMouseUp);
+        })();
       }
     },
     handleMouseMove: function handleMouseMove(event, column) {
@@ -2297,7 +2301,7 @@ exports.default = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_filter_panel_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1a897132_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_filter_panel_vue__ = __webpack_require__(253);
@@ -2391,7 +2395,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 exports.__esModule = true;
 
-var _layoutObserver = __webpack_require__(39);
+var _layoutObserver = __webpack_require__(40);
 
 var _layoutObserver2 = _interopRequireDefault(_layoutObserver);
 
@@ -2632,14 +2636,21 @@ module.exports = require("element-ui/lib/utils/util");
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/scrollbar-width");
 
 /***/ }),
 
-/***/ 39:
+/***/ 4:
+/***/ (function(module, exports) {
+
+module.exports = require("vue");
+
+/***/ }),
+
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2716,14 +2727,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = require("vue");
-
-/***/ }),
-
-/***/ 40:
+/***/ 41:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/checkbox-group");
@@ -2744,7 +2748,7 @@ module.exports = require("element-ui/lib/utils/vue-popper");
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3201,7 +3205,7 @@ exports.default = {
       }
 
       var height = el.offsetHeight;
-      if (this.height && oldHeight !== height) {
+      if ((this.height || this.shouldUpdateHeight) && oldHeight !== height) {
         shouldUpdateLayout = true;
       }
 
@@ -3297,10 +3301,20 @@ exports.default = {
     },
     fixedHeight: function fixedHeight() {
       if (this.maxHeight) {
+        if (this.showSummary) {
+          return {
+            bottom: 0
+          };
+        }
         return {
           bottom: this.layout.scrollX && this.data.length ? this.layout.gutterWidth + 'px' : ''
         };
       } else {
+        if (this.showSummary) {
+          return {
+            height: this.layout.tableHeight ? this.layout.tableHeight + 'px' : ''
+          };
+        }
         return {
           height: this.layout.viewportHeight ? this.layout.viewportHeight + 'px' : ''
         };
@@ -3410,7 +3424,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3536,7 +3550,7 @@ var getRowIdentity = exports.getRowIdentity = function getRowIdentity(row, rowKe
 
 /***/ }),
 
-/***/ 73:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3566,7 +3580,7 @@ var _checkbox = __webpack_require__(16);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
-var _checkboxGroup = __webpack_require__(40);
+var _checkboxGroup = __webpack_require__(41);
 
 var _checkboxGroup2 = _interopRequireDefault(_checkboxGroup);
 

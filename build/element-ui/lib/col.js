@@ -159,10 +159,12 @@ exports.default = {
       if (typeof _this[size] === 'number') {
         classList.push('el-col-' + size + '-' + _this[size]);
       } else if (_typeof(_this[size]) === 'object') {
-        var props = _this[size];
-        Object.keys(props).forEach(function (prop) {
-          classList.push(prop !== 'span' ? 'el-col-' + size + '-' + prop + '-' + props[prop] : 'el-col-' + size + '-' + props[prop]);
-        });
+        (function () {
+          var props = _this[size];
+          Object.keys(props).forEach(function (prop) {
+            classList.push(prop !== 'span' ? 'el-col-' + size + '-' + prop + '-' + props[prop] : 'el-col-' + size + '-' + props[prop]);
+          });
+        })();
       }
     });
 

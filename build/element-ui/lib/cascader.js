@@ -707,7 +707,7 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _babelHelperVueJsxMergeProps = __webpack_require__(43);
+var _babelHelperVueJsxMergeProps = __webpack_require__(44);
 
 var _babelHelperVueJsxMergeProps2 = _interopRequireDefault(_babelHelperVueJsxMergeProps);
 
@@ -967,30 +967,32 @@ exports.default = {
             }
           };
           if (item.children) {
-            var triggerEvent = {
-              click: 'click',
-              hover: 'mouseenter'
-            }[expandTrigger];
-            var triggerHandler = function triggerHandler() {
-              _this3.activeItem(item, menuIndex);
-              _this3.$nextTick(function () {
-                // adjust self and next level
-                _this3.scrollMenu(_this3.$refs.menus[menuIndex]);
-                _this3.scrollMenu(_this3.$refs.menus[menuIndex + 1]);
-              });
-            };
-            events.on[triggerEvent] = triggerHandler;
-            events.on['mousedown'] = function () {
-              _this3.clicking = true;
-            };
-            events.on['focus'] = function () {
-              // focus 选中
-              if (_this3.clicking) {
-                _this3.clicking = false;
-                return;
-              }
-              triggerHandler();
-            };
+            (function () {
+              var triggerEvent = {
+                click: 'click',
+                hover: 'mouseenter'
+              }[expandTrigger];
+              var triggerHandler = function triggerHandler() {
+                _this3.activeItem(item, menuIndex);
+                _this3.$nextTick(function () {
+                  // adjust self and next level
+                  _this3.scrollMenu(_this3.$refs.menus[menuIndex]);
+                  _this3.scrollMenu(_this3.$refs.menus[menuIndex + 1]);
+                });
+              };
+              events.on[triggerEvent] = triggerHandler;
+              events.on['mousedown'] = function () {
+                _this3.clicking = true;
+              };
+              events.on['focus'] = function () {
+                // focus 选中
+                if (_this3.clicking) {
+                  _this3.clicking = false;
+                  return;
+                }
+                triggerHandler();
+              };
+            })();
           } else {
             events.on.click = function () {
               _this3.select(item, menuIndex);
@@ -1165,13 +1167,6 @@ module.exports = __webpack_require__(430);
 
 /***/ }),
 
-/***/ 43:
-/***/ (function(module, exports) {
-
-module.exports = require("babel-helper-vue-jsx-merge-props");
-
-/***/ }),
-
 /***/ 430:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1289,6 +1284,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 44:
+/***/ (function(module, exports) {
+
+module.exports = require("babel-helper-vue-jsx-merge-props");
 
 /***/ }),
 

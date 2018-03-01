@@ -343,39 +343,41 @@ var showNextMsg = function showNextMsg() {
 
   if (!instance.visible || instance.closeTimer) {
     if (msgQueue.length > 0) {
-      currentMsg = msgQueue.shift();
+      (function () {
+        currentMsg = msgQueue.shift();
 
-      var options = currentMsg.options;
-      for (var prop in options) {
-        if (options.hasOwnProperty(prop)) {
-          instance[prop] = options[prop];
+        var options = currentMsg.options;
+        for (var prop in options) {
+          if (options.hasOwnProperty(prop)) {
+            instance[prop] = options[prop];
+          }
         }
-      }
-      if (options.callback === undefined) {
-        instance.callback = defaultCallback;
-      }
-
-      var oldCb = instance.callback;
-      instance.callback = function (action, instance) {
-        oldCb(action, instance);
-        showNextMsg();
-      };
-      if ((0, _vdom.isVNode)(instance.message)) {
-        instance.$slots.default = [instance.message];
-        instance.message = null;
-      } else {
-        delete instance.$slots.default;
-      }
-      ['modal', 'showClose', 'closeOnClickModal', 'closeOnPressEscape', 'closeOnHashChange'].forEach(function (prop) {
-        if (instance[prop] === undefined) {
-          instance[prop] = true;
+        if (options.callback === undefined) {
+          instance.callback = defaultCallback;
         }
-      });
-      document.body.appendChild(instance.$el);
 
-      _vue2.default.nextTick(function () {
-        instance.visible = true;
-      });
+        var oldCb = instance.callback;
+        instance.callback = function (action, instance) {
+          oldCb(action, instance);
+          showNextMsg();
+        };
+        if ((0, _vdom.isVNode)(instance.message)) {
+          instance.$slots.default = [instance.message];
+          instance.message = null;
+        } else {
+          delete instance.$slots.default;
+        }
+        ['modal', 'showClose', 'closeOnClickModal', 'closeOnPressEscape', 'closeOnHashChange'].forEach(function (prop) {
+          if (instance[prop] === undefined) {
+            instance[prop] = true;
+          }
+        });
+        document.body.appendChild(instance.$el);
+
+        _vue2.default.nextTick(function () {
+          instance.visible = true;
+        });
+      })();
     }
   }
 };
@@ -483,10 +485,10 @@ exports.MessageBox = MessageBox;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a358ac94_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c58925c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(294);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -503,7 +505,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a358ac94_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c58925c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -526,7 +528,7 @@ module.exports = require("element-ui/lib/utils/aria-dialog");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"msgbox-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"el-message-box__wrapper",attrs:{"tabindex":"-1","role":"dialog","aria-modal":"true","aria-label":_vm.title || 'dialog'},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }_vm.handleWrapperClick($event)}}},[_c('div',{staticClass:"el-message-box",class:[_vm.customClass, _vm.center && 'el-message-box--center']},[(_vm.title !== undefined)?_c('div',{staticClass:"el-message-box__header"},[_c('div',{staticClass:"el-message-box__title"},[(_vm.typeClass && _vm.center)?_c('div',{staticClass:"el-message-box__status",class:[ _vm.typeClass ]}):_vm._e(),_c('span',[_vm._v(_vm._s(_vm.title))])]),(_vm.showClose)?_c('button',{staticClass:"el-message-box__headerbtn",attrs:{"type":"button","aria-label":"Close"},on:{"click":function($event){_vm.handleAction('cancel')},"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('cancel')}}},[_c('i',{staticClass:"el-message-box__close el-icon-close"})]):_vm._e()]):_vm._e(),(_vm.message !== '')?_c('div',{staticClass:"el-message-box__content"},[(_vm.typeClass && !_vm.center)?_c('div',{staticClass:"el-message-box__status",class:[ _vm.typeClass ]}):_vm._e(),_c('div',{staticClass:"el-message-box__message"},[_vm._t("default",[(!_vm.dangerouslyUseHTMLString)?_c('p',[_vm._v(_vm._s(_vm.message))]):_c('p',{domProps:{"innerHTML":_vm._s(_vm.message)}})])],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showInput),expression:"showInput"}],staticClass:"el-message-box__input"},[_c('el-input',{ref:"input",attrs:{"type":_vm.inputType,"placeholder":_vm.inputPlaceholder},nativeOn:{"compositionstart":function($event){_vm.handleComposition($event)},"compositionupdate":function($event){_vm.handleComposition($event)},"compositionend":function($event){_vm.handleComposition($event)},"keyup":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleKeyup($event)}},model:{value:(_vm.inputValue),callback:function ($$v) {_vm.inputValue=$$v},expression:"inputValue"}}),_c('div',{staticClass:"el-message-box__errormsg",style:({ visibility: !!_vm.editorErrorMessage ? 'visible' : 'hidden' })},[_vm._v(_vm._s(_vm.editorErrorMessage))])],1)]):_vm._e(),_c('div',{staticClass:"el-message-box__btns"},[_c('el-button',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCancelButton),expression:"showCancelButton"}],class:[ _vm.cancelButtonClasses ],attrs:{"loading":_vm.cancelButtonLoading,"round":_vm.roundButton,"size":"small"},on:{"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('cancel')}},nativeOn:{"click":function($event){_vm.handleAction('cancel')}}},[_vm._v("\n          "+_vm._s(_vm.cancelButtonText || _vm.t('el.messagebox.cancel'))+"\n        ")]),_c('el-button',{directives:[{name:"show",rawName:"v-show",value:(_vm.showConfirmButton),expression:"showConfirmButton"}],ref:"confirm",class:[ _vm.confirmButtonClasses ],attrs:{"loading":_vm.confirmButtonLoading,"round":_vm.roundButton,"size":"small"},on:{"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('confirm')}},nativeOn:{"click":function($event){_vm.handleAction('confirm')}}},[_vm._v("\n          "+_vm._s(_vm.confirmButtonText || _vm.t('el.messagebox.confirm'))+"\n        ")])],1)])])])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"msgbox-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"el-message-box__wrapper",attrs:{"tabindex":"-1","role":"dialog","aria-modal":"true","aria-label":_vm.title || 'dialog'},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }_vm.handleWrapperClick($event)}}},[_c('div',{staticClass:"el-message-box",class:[_vm.customClass, _vm.center && 'el-message-box--center']},[(_vm.title !== undefined)?_c('div',{staticClass:"el-message-box__header"},[_c('div',{staticClass:"el-message-box__title"},[(_vm.typeClass && _vm.center)?_c('div',{staticClass:"el-message-box__status",class:[ _vm.typeClass ]}):_vm._e(),_c('span',[_vm._v(_vm._s(_vm.title))])]),(_vm.showClose)?_c('button',{staticClass:"el-message-box__headerbtn",attrs:{"type":"button","aria-label":"Close"},on:{"click":function($event){_vm.handleAction('cancel')},"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('cancel')}}},[_c('i',{staticClass:"el-message-box__close el-icon-close"})]):_vm._e()]):_vm._e(),(_vm.message !== '')?_c('div',{staticClass:"el-message-box__content"},[(_vm.typeClass && !_vm.center)?_c('div',{staticClass:"el-message-box__status",class:[ _vm.typeClass ]}):_vm._e(),_c('div',{staticClass:"el-message-box__message"},[_vm._t("default",[(!_vm.dangerouslyUseHTMLString)?_c('p',[_vm._v(_vm._s(_vm.message))]):_c('p',{domProps:{"innerHTML":_vm._s(_vm.message)}})])],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showInput),expression:"showInput"}],staticClass:"el-message-box__input"},[_c('el-input',{ref:"input",attrs:{"type":_vm.inputType,"placeholder":_vm.inputPlaceholder},nativeOn:{"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('confirm')}},model:{value:(_vm.inputValue),callback:function ($$v) {_vm.inputValue=$$v},expression:"inputValue"}}),_c('div',{staticClass:"el-message-box__errormsg",style:({ visibility: !!_vm.editorErrorMessage ? 'visible' : 'hidden' })},[_vm._v(_vm._s(_vm.editorErrorMessage))])],1)]):_vm._e(),_c('div',{staticClass:"el-message-box__btns"},[_c('el-button',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCancelButton),expression:"showCancelButton"}],class:[ _vm.cancelButtonClasses ],attrs:{"loading":_vm.cancelButtonLoading,"round":_vm.roundButton,"size":"small"},on:{"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('cancel')}},nativeOn:{"click":function($event){_vm.handleAction('cancel')}}},[_vm._v("\n          "+_vm._s(_vm.cancelButtonText || _vm.t('el.messagebox.cancel'))+"\n        ")]),_c('el-button',{directives:[{name:"show",rawName:"v-show",value:(_vm.showConfirmButton),expression:"showConfirmButton"}],ref:"confirm",class:[ _vm.confirmButtonClasses ],attrs:{"loading":_vm.confirmButtonLoading,"round":_vm.roundButton,"size":"small"},on:{"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }_vm.handleAction('confirm')}},nativeOn:{"click":function($event){_vm.handleAction('confirm')}}},[_vm._v("\n          "+_vm._s(_vm.confirmButtonText || _vm.t('el.messagebox.confirm'))+"\n        ")])],1)])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -554,7 +556,7 @@ module.exports = require("element-ui/lib/input");
 
 /***/ }),
 
-/***/ 83:
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -589,9 +591,6 @@ var _ariaDialog2 = _interopRequireDefault(_ariaDialog);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var messageBox = void 0; //
-//
-//
-//
 //
 //
 //
@@ -725,32 +724,18 @@ exports.default = {
   },
 
   methods: {
-    handleComposition: function handleComposition(event) {
-      var _this = this;
-
-      if (event.type === 'compositionend') {
-        setTimeout(function () {
-          _this.isOnComposition = false;
-        }, 100);
-      } else {
-        this.isOnComposition = true;
-      }
-    },
-    handleKeyup: function handleKeyup() {
-      !this.isOnComposition && this.handleAction('confirm');
-    },
     getSafeClose: function getSafeClose() {
-      var _this2 = this;
+      var _this = this;
 
       var currentId = this.uid;
       return function () {
-        _this2.$nextTick(function () {
-          if (currentId === _this2.uid) _this2.doClose();
+        _this.$nextTick(function () {
+          if (currentId === _this.uid) _this.doClose();
         });
       };
     },
     doClose: function doClose() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (!this.visible) return;
       this.visible = false;
@@ -760,12 +745,12 @@ exports.default = {
       messageBox.closeDialog(); // 解绑
       if (this.lockScroll) {
         setTimeout(function () {
-          if (_this3.modal && _this3.bodyOverflow !== 'hidden') {
-            document.body.style.overflow = _this3.bodyOverflow;
-            document.body.style.paddingRight = _this3.bodyPaddingRight;
+          if (_this2.modal && _this2.bodyOverflow !== 'hidden') {
+            document.body.style.overflow = _this2.bodyOverflow;
+            document.body.style.paddingRight = _this2.bodyPaddingRight;
           }
-          _this3.bodyOverflow = null;
-          _this3.bodyPaddingRight = null;
+          _this2.bodyOverflow = null;
+          _this2.bodyPaddingRight = null;
         }, 200);
       }
       this.opened = false;
@@ -774,7 +759,7 @@ exports.default = {
         this.doAfterClose();
       }
       setTimeout(function () {
-        if (_this3.action) _this3.callback(_this3.action, _this3);
+        if (_this2.action) _this2.callback(_this2.action, _this2);
       });
     },
     handleWrapperClick: function handleWrapperClick() {
@@ -835,24 +820,24 @@ exports.default = {
     inputValue: {
       immediate: true,
       handler: function handler(val) {
-        var _this4 = this;
+        var _this3 = this;
 
         this.$nextTick(function (_) {
-          if (_this4.$type === 'prompt' && val !== null) {
-            _this4.validate();
+          if (_this3.$type === 'prompt' && val !== null) {
+            _this3.validate();
           }
         });
       }
     },
 
     visible: function visible(val) {
-      var _this5 = this;
+      var _this4 = this;
 
       if (val) {
         this.uid++;
         if (this.$type === 'alert' || this.$type === 'confirm') {
           this.$nextTick(function () {
-            _this5.$refs.confirm.$el.focus();
+            _this4.$refs.confirm.$el.focus();
           });
         }
         this.focusAfterClosed = document.activeElement;
@@ -863,8 +848,8 @@ exports.default = {
       if (this.$type !== 'prompt') return;
       if (val) {
         setTimeout(function () {
-          if (_this5.$refs.input && _this5.$refs.input.$el) {
-            _this5.getInputElement().focus();
+          if (_this4.$refs.input && _this4.$refs.input.$el) {
+            _this4.getInputElement().focus();
           }
         }, 500);
       } else {

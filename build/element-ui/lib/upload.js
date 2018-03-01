@@ -331,7 +331,7 @@ exports.default = {
 
         this.uploadFiles = fileList.map(function (item) {
           item.uid = item.uid || Date.now() + _this.tempIndex++;
-          item.status = 'success';
+          item.status = item.status || 'success';
           return item;
         });
       }
@@ -653,7 +653,7 @@ module.exports = require("element-ui/lib/progress");
 
 exports.__esModule = true;
 
-var _babelHelperVueJsxMergeProps = __webpack_require__(43);
+var _babelHelperVueJsxMergeProps = __webpack_require__(44);
 
 var _babelHelperVueJsxMergeProps2 = _interopRequireDefault(_babelHelperVueJsxMergeProps);
 
@@ -1162,10 +1162,7 @@ exports.default = {
         ), h(
           'input',
           {
-            attrs: { type: 'hidden', name: 'documentDomain' },
-            domProps: {
-              'value': this.$isServer ? '' : document.domain
-            }
+            attrs: { type: 'hidden', name: 'documentDomain', value: this.$isServer ? '' : document.domain }
           },
           []
         ), h(
@@ -1493,7 +1490,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 43:
+/***/ 44:
 /***/ (function(module, exports) {
 
 module.exports = require("babel-helper-vue-jsx-merge-props");

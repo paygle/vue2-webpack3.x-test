@@ -247,8 +247,8 @@ var forced = {
         'div',
         { 'class': 'el-table__expand-icon ' + (expanded ? 'el-table__expand-icon--expanded' : ''),
           on: {
-            'click': function click() {
-              return proxy.handleExpandClick(row);
+            'click': function click(e) {
+              return proxy.handleExpandClick(row, e);
             }
           }
         },
@@ -404,8 +404,6 @@ exports.default = {
 
   created: function created() {
     var _this = this;
-
-    var h = this.$createElement;
 
     this.customRender = this.$options.render;
     this.$options.render = function (h) {

@@ -56,7 +56,7 @@
     "cross-spawn": "^5.1.0",
     "css-loader": "^0.28.9",
     "echarts": "^3.8.5",
-    "element-ui": "^2.1.0",
+    "element-ui": "^2.2.0",
     "eslint": "^4.17.0",
     "eslint-config-elemefe": "^0.3.0",
     "eslint-config-standard": "^10.2.1",
