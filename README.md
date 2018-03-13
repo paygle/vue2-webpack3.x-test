@@ -11,7 +11,7 @@
 * @transitions 指向根目录 -> src/transitions
 * @directives 指向根目录 -> src/directives
 * @mixins 指向根目录 -> src/mixins
-* @utils 指向根目录 -> src/utils'
+* @utils 指向根目录 -> src/utils
 
 ### 注意： 只要 package.json 有更新，就需要执行 npm install 安装一下（如果安装出错请删除node_modules目录重新安装）
 
@@ -62,7 +62,4 @@ npm run e2e:report
 
 # 运行所有测试
 npm test
-
-# API 文档
-npm run docs
 ```
