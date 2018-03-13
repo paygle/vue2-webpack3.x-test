@@ -60,7 +60,7 @@
     align-items: center;
     width: 24px;
     height: 24px;
-    font-size: 14px;
+    font-size: 12px; /* ext-> modify */
     box-sizing: border-box;
     background: $--color-white;
     transition: .15s ease-out;
@@ -85,7 +85,7 @@
     color: inherit;
 
     &[class*=el-icon]:not(.is-status) {
-      font-size: 25px;
+      font-size: 20px; /* ext-> modify */
       font-weight: normal;
     }
 
@@ -118,7 +118,7 @@
   }
 
   @include e(title) {
-    font-size: 16px;
+    font-size: 14px; /* ext-> modify */
     line-height: 38px;
 
     @include when(process) {
@@ -270,8 +270,8 @@
     }
 
     @include e(title) {
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 14px; /* ext-> modify */
+      line-height: 18px; /* ext-> modify */
     }
 
     @include pseudo('not(:last-of-type)') {

@@ -18,8 +18,12 @@
     @mouseenter.native="handleMouseEnter"
     @mouseleave.native="showClose = false"
     :validateEvent="false"
-    :prefix-icon="triggerClass"
     ref="reference">
+    <i slot="prefix"
+      class="el-input__icon"
+      :class="triggerClass"
+      @click="handleFocus">
+    </i>
     <i slot="suffix"
       class="el-input__icon"
       @click="handleClickIcon"
@@ -348,7 +352,8 @@ export default {
       default: '-'
     },
     pickerOptions: {},
-    unlinkPanels: Boolean
+    unlinkPanels: Boolean,
+    disabledTips: Boolean // ext-> 禁用表单弹窗提示
   },
 
   components: { ElInput },
@@ -498,6 +503,7 @@ export default {
       gpuAcceleration: false
     };
     this.placement = PLACEMENT_MAP[this.align] || PLACEMENT_MAP.left;
+    this.setMessageTips(); // ext-> 信息超出边界弹出提示
   },
 
   methods: {
@@ -613,6 +619,7 @@ export default {
     handleClickIcon(event) {
       if (this.readonly || this.pickerDisabled) return;
       if (this.showClose) {
+        this.valueOnOpen = this.value;
         event.stopPropagation();
         this.emitInput(null);
         this.emitChange(null);
@@ -800,8 +807,9 @@ export default {
     emitChange(val) {
       // determine user real change only
       if (val !== this.valueOnOpen) {
+        this.setMessageTips(); // ext-> 信息超出边界弹出提示
         this.$emit('change', val);
-        this.dispatch('ElFormItem', 'el.form.change', val);
+        this.$nextTick(_=>this.dispatch('ElFormItem', 'el.form.change', val));
         this.valueOnOpen = val;
       }
     },
@@ -821,6 +829,13 @@ export default {
         return value && this.picker.isValidValue(value);
       } else {
         return true;
+      }
+    },
+
+    // ext-> 信息超出边界弹出提示
+    setMessageTips() {
+      if (!this.disabledTips && typeof this.displayValue === 'string') {
+        this.dispatch('ElFormItem', 'el.form.messagetips', [this.displayValue]);
       }
     }
   }

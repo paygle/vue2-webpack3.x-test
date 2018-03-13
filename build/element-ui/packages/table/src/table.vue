@@ -257,7 +257,10 @@
         default: true
       },
 
-      stripe: Boolean,
+      stripe: { // 扩展修改-> 默认条纹
+        type: Boolean,
+        default: true
+      },
 
       border: Boolean,
 

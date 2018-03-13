@@ -62,4 +62,7 @@ npm run e2e:report
 
 # 运行所有测试
 npm test
+
+# API 文档
+npm run docs
 ```

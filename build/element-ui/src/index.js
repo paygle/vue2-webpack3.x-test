@@ -69,6 +69,9 @@ import Header from '../packages/header/index.js';
 import Aside from '../packages/aside/index.js';
 import Main from '../packages/main/index.js';
 import Footer from '../packages/footer/index.js';
+import FormTable from '../packages/form-table/index.js';
+import FormTableColumn from '../packages/form-table-column/index.js';
+import Address from '../packages/address/index.js';
 import locale from 'element-ui/src/locale';
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
 
@@ -138,6 +141,9 @@ const components = [
   Aside,
   Main,
   Footer,
+  FormTable,
+  FormTableColumn,
+  Address,
   CollapseTransition
 ];
 
@@ -171,7 +177,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 };
 
 module.exports = {
-  version: '2.2.0',
+  version: '2.2.1',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -244,7 +250,10 @@ module.exports = {
   Header,
   Aside,
   Main,
-  Footer
+  Footer,
+  FormTable,
+  FormTableColumn,
+  Address
 };
 
 module.exports.default = module.exports;

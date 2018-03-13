@@ -5,7 +5,7 @@
   display: inline-block;
   width: 100%;
   vertical-align: bottom;
-  font-size: $--font-size-base;
+  font-size: $--font-size-small; /* ext-> modify */
 
   @include e(inner) {
     display: block;
@@ -52,7 +52,7 @@
 
 @include b(input) {
   position: relative;
-  font-size: $--font-size-base;
+  font-size: $--font-size-small; /* ext-> modify */
   display: inline-block;
   width: 100%;
   @include scroll-bar;
@@ -82,7 +82,7 @@
     height: $--input-height;
     line-height: 1;
     outline: none;
-    padding: 0 15px;
+    padding: 3px 10px; /* ext-> modify */
     transition: $--border-transition-base;
     width: 100%;
 
@@ -130,6 +130,7 @@
     width: 25px;
     text-align: center;
     transition: all .3s;
+    font-size: 14px;  /* ext-> add */
     line-height: $--input-height;
 
     &:after {

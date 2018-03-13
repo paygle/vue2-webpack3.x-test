@@ -12,7 +12,7 @@
   width: 100%;
   max-width: 100%;
   background-color: $--color-white;
-  font-size: 14px;
+  font-size: 12px; /* ext-> modify */
   color: $--table-text-color;
 
   // 数据为空
@@ -107,7 +107,7 @@
   }
 
   th, td {
-    padding: 12px 0;
+    padding: 3px 0; /* ext-> modify */
     min-width: 0;
     box-sizing: border-box;
     text-overflow: ellipsis;
@@ -168,7 +168,7 @@
     }
   }
 
-  th.is-leaf, td {
+  th.is-leaf { /* ext-> modify */
     border-bottom: $--table-border;
   }
 
@@ -253,7 +253,7 @@
     @include share-rule(border-pseudo) {
       content: '';
       position: absolute;
-      background-color: $--border-color-lighter;
+      background-color: #f5f5f5; /* ext-> modify */
       z-index: 1;
     }
 

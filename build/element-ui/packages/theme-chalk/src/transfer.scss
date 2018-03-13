@@ -7,7 +7,7 @@
 @import "checkbox-group";
 
 @include b(transfer) {
-  font-size: $--font-size-base;
+  font-size: $--font-size-small; /* ext-> modify */
 
   @include e(buttons) {
     display: inline-block;
@@ -98,7 +98,7 @@
     padding-left: 15px;
     display: block;
 
-    & + .el-transfer-panel__item {
+    .el-transfer-panel__list > & + .el-transfer-panel__item { /* ext-> modify */
       margin-left: 0;
     }
 
@@ -167,7 +167,7 @@
       line-height: 40px;
 
       .el-checkbox__label {
-        font-size: 16px;
+        font-size: 14px; /* ext-> modify */
         color: $--color-text-primary;
         font-weight: normal;
 

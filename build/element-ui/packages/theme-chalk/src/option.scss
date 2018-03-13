@@ -4,7 +4,7 @@
 @include b(select-dropdown) {
   @include e(item) {
     font-size: $--select-font-size;
-    padding: 0 20px;
+    padding: 0 10px;
     position: relative;
     white-space: nowrap;
     overflow: hidden;
@@ -34,7 +34,7 @@
     }
 
     & span {
-      line-height: 34px !important;
+      line-height: 26px !important;
     }
   }
 }

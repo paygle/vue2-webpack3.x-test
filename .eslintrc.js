@@ -16,7 +16,8 @@ module.exports = {
   },
   parser: 'babel-eslint',
   env: {
-    browser: true
+    browser: true,
+    es6: true
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: 'elemefe',
@@ -34,6 +35,7 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
+    "semi": 2,
     "no-undef": 1,
     // allow paren-less arrow functions
     'arrow-parens': 0,

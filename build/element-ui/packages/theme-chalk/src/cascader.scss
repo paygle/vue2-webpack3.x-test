@@ -6,7 +6,7 @@
 @include b(cascader) {
   display: inline-block;
   position: relative;
-  font-size: $--font-size-base;
+  font-size: $--font-size-small; /* ext-> modify */
   line-height: $--input-height;
 
   .el-input,

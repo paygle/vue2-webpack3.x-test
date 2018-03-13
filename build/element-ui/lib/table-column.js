@@ -61,27 +61,34 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 256);
+/******/ 	return __webpack_require__(__webpack_require__.s = 263);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 11:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 256:
+/***/ 19:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/tag");
+
+/***/ }),
+
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(257);
+module.exports = __webpack_require__(264);
 
 
 /***/ }),
 
-/***/ 257:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,7 +96,7 @@ module.exports = __webpack_require__(257);
 
 exports.__esModule = true;
 
-var _tableColumn = __webpack_require__(258);
+var _tableColumn = __webpack_require__(265);
 
 var _tableColumn2 = _interopRequireDefault(_tableColumn);
 
@@ -104,7 +111,7 @@ exports.default = _tableColumn2.default;
 
 /***/ }),
 
-/***/ 258:
+/***/ 265:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,11 +119,11 @@ exports.default = _tableColumn2.default;
 
 exports.__esModule = true;
 
-var _checkbox = __webpack_require__(16);
+var _checkbox = __webpack_require__(11);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
-var _tag = __webpack_require__(26);
+var _tag = __webpack_require__(19);
 
 var _tag2 = _interopRequireDefault(_tag);
 
@@ -593,13 +600,6 @@ exports.default = {
     owner.store.commit('insertColumn', this.columnConfig, columnIndex, this.isSubColumn ? parent.columnConfig : null);
   }
 };
-
-/***/ }),
-
-/***/ 26:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/tag");
 
 /***/ }),
 

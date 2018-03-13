@@ -39,7 +39,9 @@
       validateOnRuleChange: {
         type: Boolean,
         default: true
-      }
+      },
+      scopeName: String, // ext-> 数据无关联验证-域名称
+      disabledTips: Boolean // ext-> 禁用表单溢出和验证弹窗提示
     },
     watch: {
       rules() {
@@ -54,6 +56,8 @@
       };
     },
     created() {
+      if (this.scopeName) this.$options.componentName = this.scopeName; // ext-> 自定义 componentName
+
       this.$on('el.form.addField', (field) => {
         if (field) {
           this.fields.push(field);

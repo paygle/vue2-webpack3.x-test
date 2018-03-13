@@ -16,8 +16,8 @@
 
 .time-select-item {
   padding: 8px 10px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px; /* ext-> modify */
+  line-height: 18px; /* ext-> modify */
 }
 
 .time-select-item.selected:not(.disabled) {

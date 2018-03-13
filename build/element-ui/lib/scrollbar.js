@@ -61,12 +61,12 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 412);
+/******/ 	return __webpack_require__(__webpack_require__.s = 418);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 18:
+/***/ 16:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/resize-event");
@@ -80,6 +80,13 @@ module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
+/***/ 28:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/scrollbar-width");
+
+/***/ }),
+
 /***/ 3:
 /***/ (function(module, exports) {
 
@@ -87,22 +94,15 @@ module.exports = require("element-ui/lib/utils/util");
 
 /***/ }),
 
-/***/ 39:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/scrollbar-width");
-
-/***/ }),
-
-/***/ 412:
+/***/ 418:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(413);
+module.exports = __webpack_require__(419);
 
 
 /***/ }),
 
-/***/ 413:
+/***/ 419:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110,7 +110,7 @@ module.exports = __webpack_require__(413);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(414);
+var _main = __webpack_require__(420);
 
 var _main2 = _interopRequireDefault(_main);
 
@@ -125,7 +125,7 @@ exports.default = _main2.default;
 
 /***/ }),
 
-/***/ 414:
+/***/ 420:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,15 +133,15 @@ exports.default = _main2.default;
 
 exports.__esModule = true;
 
-var _resizeEvent = __webpack_require__(18);
+var _resizeEvent = __webpack_require__(16);
 
-var _scrollbarWidth = __webpack_require__(39);
+var _scrollbarWidth = __webpack_require__(28);
 
 var _scrollbarWidth2 = _interopRequireDefault(_scrollbarWidth);
 
 var _util = __webpack_require__(3);
 
-var _bar = __webpack_require__(415);
+var _bar = __webpack_require__(421);
 
 var _bar2 = _interopRequireDefault(_bar);
 
@@ -287,7 +287,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 415:
+/***/ 421:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -297,7 +297,7 @@ exports.__esModule = true;
 
 var _dom = __webpack_require__(2);
 
-var _util = __webpack_require__(416);
+var _util = __webpack_require__(422);
 
 /* istanbul ignore next */
 exports.default = {
@@ -397,7 +397,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 416:
+/***/ 422:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

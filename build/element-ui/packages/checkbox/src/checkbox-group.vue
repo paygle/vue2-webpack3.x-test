@@ -37,12 +37,24 @@
       value(value) {
         this.dispatch('ElFormItem', 'el.form.change', [value]);
       }
+    },
+    methods: {
+      // ext-> 鼠标over时事件
+      inputMouseover(e) {
+        this.dispatch('ElFormItem', 'el.form.mouseover', [e]);
+      },
+      // ext-> 鼠标out时事件
+      inputMouseout(e) {
+        this.dispatch('ElFormItem', 'el.form.mouseout', [e]);
+      }
     }
   };
 </script>
 
 <template>
-  <div class="el-checkbox-group" role="group" aria-label="checkbox-group">
+  <div class="el-checkbox-group" role="group" aria-label="checkbox-group"
+    @mouseover="inputMouseover"
+    @mouseout="inputMouseout">
     <slot></slot>
   </div>
 </template>

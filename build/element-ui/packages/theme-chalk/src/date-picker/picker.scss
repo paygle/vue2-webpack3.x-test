@@ -35,7 +35,7 @@
     margin-left: -5px;
     color: $--color-text-placeholder;
     float: left;
-    line-height: 32px;
+    line-height: 26px; /* ext-> modify */
   }
 
   .el-range-input {
@@ -48,7 +48,7 @@
     padding: 0;
     width: 39%;
     text-align: center;
-    font-size: $--font-size-base;
+    font-size: $--font-size-small; /* ext-> modify */
     color: $--color-text-regular;
 
     &::placeholder {
@@ -62,8 +62,8 @@
     padding: 0 5px;
     margin: 0;
     text-align: center;
-    line-height: 32px;
-    font-size: 14px;
+    line-height: 26px; /* ext-> modify */
+    font-size: 12px;
     width: 5%;
     color: $--color-text-primary;
   }
@@ -74,13 +74,13 @@
     width: 25px;
     display: inline-block;
     float: right;
-    line-height: 32px;
+    line-height: 26px; /* ext-> modify */
   }
 }
 
 @include b(range-editor) {
   &.el-input__inner {
-    padding: 3px 10px;
+    padding: 0 5px; /* ext-> modify */
   }
 
   @include when(active) {
@@ -107,7 +107,7 @@
 
     .el-range__icon,
     .el-range__close-icon {
-      line-height: 28px;
+      line-height: 26px; /* ext-> modify */
     }
   }
 

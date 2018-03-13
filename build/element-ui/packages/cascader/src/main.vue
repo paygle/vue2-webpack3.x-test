@@ -16,6 +16,8 @@
     ref="reference"
     v-clickoutside="handleClickoutside"
     @keydown="handleKeydown"
+    @mouseover="inputMouseover"
+    @mouseout="inputMouseout"
   >
     <el-input
       ref="input"
@@ -28,6 +30,7 @@
       :validate-event="false"
       :size="size"
       :disabled="cascaderDisabled"
+      disabled-tips
     >
       <template slot="suffix">
         <i
@@ -167,7 +170,8 @@ export default {
     hoverThreshold: {
       type: Number,
       default: 500
-    }
+    },
+    disabledTips: Boolean // ext-> 禁用表单弹窗提示
   },
 
   data() {
@@ -228,6 +232,7 @@ export default {
     },
     currentValue(value) {
       this.dispatch('ElFormItem', 'el.form.change', [value]);
+      this.setMessageTips(); // ext-> 信息超出边界弹出提示
     },
     currentLabels(value) {
       const inputLabel = this.showAllLevels ? value.join('/') : value[value.length - 1] ;
@@ -399,6 +404,26 @@ export default {
     },
     handleBlur(event) {
       this.$emit('blur', event);
+    },
+    // ext-> 信息超出边界弹出提示
+    setMessageTips() {
+      if (!this.disabledTips) {
+        this.$nextTick(()=>{
+          this.dispatch('ElFormItem', 'el.form.messagetips', [this.currentLabels.join(this.separator)]);
+        });
+      }
+    },
+    // ext-> 鼠标over时事件
+    inputMouseover(e) {
+      if (!this.disabledTips) {
+        this.dispatch('ElFormItem', 'el.form.mouseover', [e]);
+      }
+    },
+    // ext-> 鼠标out时事件
+    inputMouseout(e) {
+      if (!this.disabledTips) {
+        this.dispatch('ElFormItem', 'el.form.mouseout', [e]);
+      }
     }
   },
 
@@ -429,6 +454,7 @@ export default {
 
   mounted() {
     this.flatOptions = this.flattenOptions(this.options);
+    this.setMessageTips(); // ext-> 信息超出边界弹出提示
   }
 };
 </script>
