@@ -84,38 +84,3 @@ $--color-info: #909399 !default;
 ```CSS
 $--color-primary: red;
 ```
-
-#### <strong>编译主题</strong>
-保存文件后，到命令行里执行 `et` 编译主题，如果你想启用 `watch` 模式，实时编译主题，增加 `-w` 参数；如果你在初始化时指定了自定义变量文件，则需要增加 `-c` 参数，并带上你的变量文件名
-```shell
-et
-
-> ✔ build theme font
-> ✔ build element theme
-```
-
-#### <strong>引入自定义主题</strong>
-默认情况下编译的主题目录是放在 `./theme` 下，你可以通过 `-o` 参数指定打包目录。像引入默认主题一样，在代码里直接引用 `theme/index.css` 文件即可。
-
-```javascript
-import '../theme/index.css'
-import ElementUI from 'element-ui'
-import Vue from 'vue'
-
-Vue.use(ElementUI)
-```
-
-#### <strong>搭配插件按需引入组件主题</strong>
-如果是搭配 `babel-plugin-component` 一起使用，只需要修改 `.babelrc` 的配置，指定 `styleLibraryName` 路径为自定义主题相对于 `.babelrc` 的路径，注意要加 `~`。
-```json
-{
-  "plugins": [["component", [
-    {
-      "libraryName": "element-ui",
-      "styleLibraryName": "~theme"
-    }
-  ]]]
-}
-```
-
-如果不清楚 `babel-plugin-component` 是什么，请阅读 <a href="./#/zh-CN/component/quickstart">快速上手</a> 一节。更多 `element-theme` 用法请参考[项目仓库](https://github.com/ElementUI/element-theme)。
