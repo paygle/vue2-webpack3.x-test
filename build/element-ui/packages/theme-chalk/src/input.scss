@@ -1,6 +1,23 @@
 @import "mixins/mixins";
 @import "common/var";
 
+@mixin disabledtmpl($cursor) { /* ext-> add */
+  .el-input__inner {
+    background-color: $--input-disabled-fill;
+    border-color: $--input-disabled-border;
+    color: $--input-disabled-color;
+    cursor: $cursor;
+
+    &::placeholder {
+      color: $--input-disabled-placeholder-color;
+    }
+  }
+
+  .el-input__icon {
+    cursor: not-allowed;
+  }
+}
+
 @include b(textarea) {
   display: inline-block;
   width: 100%;
@@ -41,7 +58,7 @@
       background-color: $--input-disabled-fill;
       border-color: $--input-disabled-border;
       color: $--input-disabled-color;
-      cursor: not-allowed;
+      cursor: default; /* ext-> modify */
 
       &::placeholder {
         color: $--input-disabled-placeholder-color;
@@ -80,7 +97,7 @@
     display: inline-block;
     font-size: inherit;
     height: $--input-height;
-    line-height: 1;
+    line-height: $--input-height;
     outline: none;
     padding: 3px 10px; /* ext-> modify */
     transition: $--border-transition-base;
@@ -153,21 +170,12 @@
     }
   }
 
-  @include when(disabled) {
-    .el-input__inner {
-      background-color: $--input-disabled-fill;
-      border-color: $--input-disabled-border;
-      color: $--input-disabled-color;
-      cursor: not-allowed;
+  @include when(disabled) { /* ext-> modify */
+    @include disabledtmpl(not-allowed);
+  }
 
-      &::placeholder {
-        color: $--input-disabled-placeholder-color;
-      }
-    }
-
-    .el-input__icon {
-      cursor: not-allowed;
-    }
+  @include when(disputed) { /* ext-> add */
+    @include disabledtmpl(default);
   }
 
   @include m(suffix) {
@@ -187,6 +195,7 @@
 
     @include e(inner) {
       height: $--input-medium-height;
+      line-height: $--input-medium-height;
     }
 
     .el-input__icon {
@@ -198,6 +207,7 @@
 
     @include e(inner) {
       height: $--input-small-height;
+      line-height: $--input-small-height;
     }
 
     .el-input__icon {
@@ -209,6 +219,7 @@
 
     @include e(inner) {
       height: $--input-mini-height;
+      line-height: $--input-mini-height;
     }
 
     .el-input__icon {

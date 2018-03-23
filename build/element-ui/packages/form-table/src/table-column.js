@@ -187,7 +187,10 @@ export default {
     align: String,
     headerAlign: String,
     showTooltipWhenOverflow: Boolean,
-    showOverflowTooltip: Boolean,
+    showOverflowTooltip: { // ext-> modify
+      type: Boolean,
+      default: true
+    },
     fixed: [Boolean, String],
     formatter: Function,
     selectable: Function,
@@ -201,6 +204,7 @@ export default {
       default: true
     },
     index: [Number, Function],
+    colIndex: [Number, String], // ext-> 列序号，辅助 tabindex时使用
     disabledTips: Boolean // ext-> 禁用表单溢出和验证弹窗提示
   },
 
@@ -288,6 +292,7 @@ export default {
       filteredValue: this.filteredValue || [],
       filterPlacement: this.filterPlacement || '',
       index: this.index,
+      colIndex: this.colIndex, // ext-> 序号，辅助 tabindex时使用
       disabledTips: this.disabledTips // ext-> 禁用表单溢出和验证弹窗提示
     });
 
@@ -297,8 +302,19 @@ export default {
 
     let renderCell = column.renderCell;
     let _self = this;
+    let hiddenExpandIcon = ''; // ext-> add
+
+    // ext-> 添加字段名称
+    if (this.prop && owner.store.states.propertys.indexOf(this.prop) < 0) {
+      owner.store.states.propertys.push(this.prop);
+    }
 
     if (type === 'expand') {
+      // ext-> expand 隐藏展开图标
+      if (owner.store.table.expandIconHidden) {
+        column.realWidth = 1;
+        hiddenExpandIcon = 'hidden-expand-icon';
+      }
       owner.renderExpanded = function(h, data) {
         return _self.$scopedSlots.default
           ? _self.$scopedSlots.default(data)
@@ -306,7 +322,7 @@ export default {
       };
 
       column.renderCell = function(h, data) {
-        return <div class="cell">{ renderCell(h, data, this._renderProxy) }</div>;
+        return <div class={'cell ' + hiddenExpandIcon}>{ renderCell(h, data, this._renderProxy) }</div>;
       };
 
       return;
@@ -322,15 +338,15 @@ export default {
         renderCell = DEFAULT_RENDER_CELL;
       }
 
-      let {$index, row, column, store} = data; // 验证扩展
+      let {$index, row, column, store} = data; // ext-> 验证
       let isTooltip = _self.showOverflowTooltip || _self.showTooltipWhenOverflow;
       let isDisable = getDisabledVal(row, column, store, $index);
       let stopValidate = store.getValidateField(`row${$index + column.property}`);
-      data.ctrls = {}; // 添加 控制字段对象
+      data.ctrls = {}; // ext-> 添加 控制字段对象
       data.tabrow = store.states._tabidxs[store.states.data.indexOf(row)] || {}; // tabrow.字段名 获取 tabindex
 
       if (column.property) {
-        // ctrls、tabrow、自定义禁用和验证字段设置, 在外部 <template/> 中使用
+        // ext-> ctrls、tabrow、自定义禁用和验证字段设置, 在外部 <template/> 中使用
         let disabled = store.states.disabledMap[`disabled${$index + column.property}`];
         let validate = store.getValidateField(`validate${$index + column.property}`);
         if (typeof disabled !== 'undefined') data.ctrls[`disabled${$index + column.property}`] = disabled;
@@ -338,12 +354,12 @@ export default {
       }
       if (isDisable) store.commit('disErrCount', `row${$index + column.property}`);
 
-      // 扩展修改
+      // ext-> modify
       return isDisable || stopValidate || (_self.type === 'default' && isTooltip)
         ? <div
           class={ `cell el-tooltip row${$index}${column.property}` }
           style={ `width: ${(data.column.realWidth || data.column.width) - 1}px` }>
-          { renderCell(h, data) }
+          { renderCell(h, data, _self) }
         </div>
         : <el-table-item
           prop={ data }
@@ -352,7 +368,7 @@ export default {
           property={ `row${$index + column.property}` }
           class={ `row${$index + column.property}` }
           value={row[column.property]}>
-          { renderCell(h, data) }
+          { renderCell(h, data, _self) }
         </el-table-item>;
     };
   },
@@ -441,6 +457,12 @@ export default {
       if (this.columnConfig) {
         this.columnConfig.index = newVal;
       }
+    },
+
+    formatter(newVal) {
+      if (this.columnConfig) {
+        this.columnConfig.formatter = newVal;
+      }
     }
   },
 
@@ -454,7 +476,7 @@ export default {
     } else {
       columnIndex = [].indexOf.call(parent.$el.children, this.$el);
     }
-
+    owner.store.setColIndexOrder(this.colIndex, this.prop); // ext-> add
     owner.store.commit('insertColumn', this.columnConfig, columnIndex, this.isSubColumn ? parent.columnConfig : null);
   }
 };

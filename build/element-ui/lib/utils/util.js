@@ -202,28 +202,22 @@ var getFloatNumber = exports.getFloatNumber = function getFloatNumber(precision,
 
 function mixFields(arr, fo, op) {
   if (arr.length) {
-    var _ret = function () {
-      var marknew = [];
-      var opdata = arr.map(function (item) {
-        var nf = JSON.parse(JSON.stringify(fo));
-        marknew.push({});
-        Object.keys(nf).forEach(function (f) {
-          if (op === 'add') {
-            item[f] = nf[f];
-          } else if (op === 'del') {
-            delete item[f];
-          } else if (op === 'mark' && item.hasOwnProperty(f)) {
-            marknew[marknew.length - 1][f] = item[f];
-          }
-        });
-        return item;
+    var marknew = [];
+    var opdata = arr.map(function (item) {
+      var nf = JSON.parse(JSON.stringify(fo));
+      marknew.push({});
+      Object.keys(nf).forEach(function (f) {
+        if (op === 'add') {
+          item[f] = nf[f];
+        } else if (op === 'del') {
+          delete item[f];
+        } else if (op === 'mark' && item.hasOwnProperty(f)) {
+          marknew[marknew.length - 1][f] = item[f];
+        }
       });
-      return {
-        v: op === 'mark' ? marknew : opdata
-      };
-    }();
-
-    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+      return item;
+    });
+    return op === 'mark' ? marknew : opdata;
   }
   return arr;
 }

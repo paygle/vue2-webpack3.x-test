@@ -4,14 +4,26 @@
     :class="[selectSize ? 'el-select--' + selectSize : '']"
     @click.stop="toggleMenu"
     v-clickoutside="handleClose">
+    <div v-if="translated" class="translated">
+      <el-input
+        ref="reference"
+        v-model="selectedLabel"
+        type="text"
+        :name="name"
+        :id="id"
+        :size="selectSize"
+        readonly>
+      </el-input>
+    </div>
     <div
       class="el-select__tags"
-      v-if="multiple"
+      v-if="!translated && multiple"
+      :tabindex="tabindex"
       ref="tags"
       :style="{ 'max-width': inputWidth - 32 + 'px' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
-          :closable="!selectDisabled"
+          :closable="!selectDisabled && !disputed"
           :size="collapseTagSize"
           :hit="selected[0].hitState"
           type="info"
@@ -32,7 +44,7 @@
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
-          :closable="!selectDisabled"
+          :closable="!selectDisabled && !disputed"
           :size="collapseTagSize"
           :hit="item.hitState"
           type="info"
@@ -45,8 +57,9 @@
       <input
         type="text"
         class="el-select__input"
+        :tabindex="tabindex"
         :class="[selectSize ? `is-${ selectSize }` : '']"
-        :disabled="selectDisabled"
+        :disabled="selectDisabled || disputed"
         :autocomplete="autoComplete"
         @focus="handleFocus"
         @click.stop
@@ -65,16 +78,19 @@
         ref="input">
     </div>
     <el-input
+      v-if="!translated"
       ref="reference"
       v-model="selectedLabel"
       type="text"
       :placeholder="currentPlaceholder"
       :name="name"
       :id="id"
+      :tabindex="tabindex"
       :auto-complete="autoComplete"
       :size="selectSize"
       :disabled="selectDisabled"
       :readonly="!filterable || multiple || !visible"
+      :disputed="disputed"
       :validate-event="false"
       :class="{ 'is-focus': visible }"
       @focus="handleFocus"
@@ -100,7 +116,7 @@
       <el-select-menu
         ref="popper"
         :append-to-body="popperAppendToBody"
-        v-show="visible && emptyText !== false">
+        v-show="!translated && !disputed && visible && emptyText !== false">
         <el-scrollbar
           tag="ul"
           wrap-class="el-select-dropdown__wrap"
@@ -113,7 +129,17 @@
             created
             v-if="showNewOption">
           </el-option>
-          <slot></slot>
+          <!-- ext=> 内部数据选项 -->
+          <template v-if="innerOptions.length">
+            <el-option
+              v-for="item in innerOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+              :disabled="item.disabled">
+            </el-option>
+          </template>
+          <slot v-else></slot>
         </el-scrollbar>
         <p
           class="el-select-dropdown__empty"
@@ -148,7 +174,22 @@
   const sizeMap = {
     'medium': 36,
     'small': 32,
-    'mini': 28
+    'mini': 26 // ext-> modify
+  };
+
+  // ext-> add, init field opts
+  const setInitOptions = (options, fields) => {
+    let initOptions = [];
+    if (options && options.length && fields) {
+      for (let i = 0; i < options.length; i++) {
+        initOptions.push({});
+        initOptions[i]['label'] = options[i][fields.label];
+        initOptions[i]['value'] = options[i][fields.value];
+        initOptions[i]['disabled'] = options[i][fields.disabled] || false;
+      }
+      return initOptions;
+    }
+    return initOptions;
   };
 
   export default {
@@ -181,6 +222,7 @@
       iconClass() {
         let criteria = this.clearable &&
           !this.selectDisabled &&
+          !this.disputed && // ext-> add
           this.inputHovering &&
           !this.multiple &&
           this.value !== undefined &&
@@ -283,6 +325,26 @@
         type: Boolean,
         default: true
       },
+      dropMinwidth: Number, // ext-> 下拉列表最小宽度
+      multiSplit: { // ext-> 多选时翻译分隔符
+        type: String,
+        default: '/'
+      },
+      getFillStyl: Function, // ext-> 获取自定义组件配色
+      optionsData: Array, // ext-> Option初始化数据
+      labelVal: { // options 数据项自定义标签和值属性
+        type: Object,
+        default: () => {
+          return {
+            label: 'label',
+            value: 'value',
+            disabled: 'disabled'
+          };
+        }
+      },
+      translated: Boolean, // ext-> 转化为翻译组件
+      disputed: Boolean, // ext-> 代替禁用
+      tabindex: String, // ext-> Tab 序值
       disabledTips: Boolean // ext-> 禁用表单弹窗提示
     },
 
@@ -305,7 +367,8 @@
         query: '',
         previousQuery: null,
         inputHovering: false,
-        currentPlaceholder: ''
+        currentPlaceholder: '',
+        innerOptions: [] // ext-> 内部数据构建options时使用
       };
     },
 
@@ -321,6 +384,7 @@
       },
 
       value(val) {
+        if (val === null || val === 'null') this.$emit('input', ''); // ext-> 处理值为null时为空
         if (this.multiple) {
           this.resetInputHeight();
           if (val.length > 0 || (this.$refs.input && this.query !== '')) {
@@ -401,6 +465,10 @@
         if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
           this.checkDefaultFirstOption();
         }
+      },
+      // ext-> add watch
+      optionsData() {
+        this.innerOptions = setInitOptions(this.optionsData, this.labelVal);
       }
     },
 
@@ -471,8 +539,9 @@
       emitChange(val) {
         if (!valueEquals(this.value, val)) {
           this.$emit('change', val);
-          this.dispatch('ElFormItem', 'el.form.change', val);
-          this.setMessageTips(); // ext-> 信息超出边界弹出提示
+          this.dispatch('ElFormItem', 'el.form.change', [val]);
+          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
+          this.setMessageTips(); // ext-> 信息超出边界弹出提
         }
       },
 
@@ -514,6 +583,7 @@
           this.selectedLabel = option.currentLabel;
           this.selected = option;
           if (this.filterable) this.query = this.selectedLabel;
+          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
           return;
         }
         let result = [];
@@ -525,6 +595,7 @@
         this.selected = result;
         this.$nextTick(() => {
           this.resetInputHeight();
+          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
         });
       },
 
@@ -596,7 +667,7 @@
           let inputChildNodes = this.$refs.reference.$el.childNodes;
           let input = [].filter.call(inputChildNodes, item => item.tagName === 'INPUT')[0];
           const tags = this.$refs.tags;
-          const sizeInMap = sizeMap[this.selectSize] || 40;
+          const sizeInMap = sizeMap[this.selectSize] || 24; // ext-> modify
           input.style.height = this.selected.length === 0
             ? sizeInMap + 'px'
             : Math.max(
@@ -646,6 +717,7 @@
           this.visible = false;
         }
         this.$nextTick(() => {
+          if (this.visible) return;
           this.scrollToOption(option);
           this.setSoftFocus();
         });
@@ -675,7 +747,7 @@
       },
 
       toggleMenu() {
-        if (!this.selectDisabled) {
+        if (!this.selectDisabled && !this.disputed) {
           this.visible = !this.visible;
           if (this.visible) {
             (this.$refs.input || this.$refs.reference).focus();
@@ -703,7 +775,7 @@
 
       deleteTag(event, tag) {
         let index = this.selected.indexOf(tag);
-        if (index > -1 && !this.selectDisabled) {
+        if (index > -1 && !this.selectDisabled && !this.disputed) {
           const value = this.value.slice();
           value.splice(index, 1);
           this.$emit('input', value);
@@ -729,6 +801,7 @@
       },
 
       resetInputWidth() {
+        if (!this.$refs.reference || !this.$refs.reference.$el) return; // ext-> add
         this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
       },
 
@@ -799,9 +872,13 @@
 
       this.$on('handleOptionClick', this.handleOptionSelect);
       this.$on('setSelected', this.setSelected);
+      this.$on('fieldReset', () => {
+        this.dispatch('ElFormItem', 'el.form.change');
+      });
     },
 
     mounted() {
+      this.innerOptions = setInitOptions(this.optionsData, this.labelVal); // ext-> add init
       if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
         this.currentPlaceholder = '';
       }

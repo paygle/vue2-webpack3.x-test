@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 175);
+/******/ 	return __webpack_require__(__webpack_require__.s = 182);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,15 +183,15 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 175:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(176);
+module.exports = __webpack_require__(183);
 
 
 /***/ }),
 
-/***/ 176:
+/***/ 183:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +199,7 @@ module.exports = __webpack_require__(176);
 
 exports.__esModule = true;
 
-var _menu = __webpack_require__(177);
+var _menu = __webpack_require__(184);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -214,21 +214,20 @@ exports.default = _menu2.default;
 
 /***/ }),
 
-/***/ 177:
+/***/ 184:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6755c363_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__ = __webpack_require__(181);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
 
 /* template */
-
+var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -239,7 +238,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6755c363_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__["a" /* default */],
+  __vue_template__,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -251,7 +250,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 178:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -259,7 +258,7 @@ var Component = normalizeComponent(
 
 exports.__esModule = true;
 
-var _ariaMenuitem = __webpack_require__(179);
+var _ariaMenuitem = __webpack_require__(186);
 
 var _ariaMenuitem2 = _interopRequireDefault(_ariaMenuitem);
 
@@ -282,7 +281,7 @@ exports.default = Menu;
 
 /***/ }),
 
-/***/ 179:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -290,11 +289,11 @@ exports.default = Menu;
 
 exports.__esModule = true;
 
-var _ariaUtils = __webpack_require__(58);
+var _ariaUtils = __webpack_require__(62);
 
 var _ariaUtils2 = _interopRequireDefault(_ariaUtils);
 
-var _ariaSubmenu = __webpack_require__(180);
+var _ariaSubmenu = __webpack_require__(187);
 
 var _ariaSubmenu2 = _interopRequireDefault(_ariaSubmenu);
 
@@ -324,12 +323,12 @@ MenuItem.prototype.addListeners = function () {
     switch (event.keyCode) {
       case keys.down:
         _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseenter');
-        _this.submenu.gotoSubIndex(0);
+        _this.submenu && _this.submenu.gotoSubIndex(0);
         prevDef = true;
         break;
       case keys.up:
         _ariaUtils2.default.triggerEvent(event.currentTarget, 'mouseenter');
-        _this.submenu.gotoSubIndex(_this.submenu.subMenuItems.length - 1);
+        _this.submenu && _this.submenu.gotoSubIndex(_this.submenu.subMenuItems.length - 1);
         prevDef = true;
         break;
       case keys.tab:
@@ -351,7 +350,7 @@ exports.default = MenuItem;
 
 /***/ }),
 
-/***/ 180:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -359,7 +358,7 @@ exports.default = MenuItem;
 
 exports.__esModule = true;
 
-var _ariaUtils = __webpack_require__(58);
+var _ariaUtils = __webpack_require__(62);
 
 var _ariaUtils2 = _interopRequireDefault(_ariaUtils);
 
@@ -427,28 +426,14 @@ exports.default = SubMenu;
 
 /***/ }),
 
-/***/ 181:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-menu-collapse-transition',[_c('ul',{key:+_vm.collapse,staticClass:"el-menu",class:{
-      'el-menu--horizontal': _vm.mode === 'horizontal',
-      'el-menu--collapse': _vm.collapse
-    },style:({ backgroundColor: _vm.backgroundColor || '' }),attrs:{"role":"menubar"}},[_vm._t("default")],2)])}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
-/***/ 57:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -460,36 +445,46 @@ var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _migrating = __webpack_require__(8);
+var _migrating = __webpack_require__(9);
 
 var _migrating2 = _interopRequireDefault(_migrating);
 
-var _ariaMenubar = __webpack_require__(178);
+var _ariaMenubar = __webpack_require__(185);
 
 var _ariaMenubar2 = _interopRequireDefault(_ariaMenubar);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 exports.default = {
   name: 'ElMenu',
+
+  render: function render(h) {
+    var component = h(
+      'ul',
+      {
+        attrs: {
+          role: 'menubar'
+        },
+        key: +this.collapse,
+        style: { backgroundColor: this.backgroundColor || '' },
+        'class': {
+          'el-menu--horizontal': this.mode === 'horizontal',
+          'el-menu--collapse': this.collapse,
+          "el-menu": true
+        }
+      },
+      [this.$slots.default]
+    );
+
+    if (this.collapseTransition) {
+      return h('el-menu-collapse-transition', [component]);
+    } else {
+      return component;
+    }
+  },
+
 
   componentName: 'ElMenu',
 
@@ -570,7 +565,11 @@ exports.default = {
     collapse: Boolean,
     backgroundColor: String,
     textColor: String,
-    activeTextColor: String
+    activeTextColor: String,
+    collapseTransition: {
+      type: Boolean,
+      default: true
+    }
   },
   data: function data() {
     return {
@@ -780,7 +779,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 58:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -912,7 +911,7 @@ exports.default = aria.Utils;
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/mixins/migrating");

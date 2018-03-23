@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 356);
+/******/ 	return __webpack_require__(__webpack_require__.s = 359);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,15 +176,15 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 104:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_loading_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0bec538e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0bec538e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(362);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -213,7 +213,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 105:
+/***/ 108:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -264,36 +264,36 @@ exports.default = {
 
 /***/ }),
 
-/***/ 106:
+/***/ 109:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/after-leave");
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/popup");
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
-/***/ 356:
+/***/ 359:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(357);
+module.exports = __webpack_require__(360);
 
 
 /***/ }),
 
-/***/ 357:
+/***/ 360:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -301,11 +301,11 @@ module.exports = __webpack_require__(357);
 
 exports.__esModule = true;
 
-var _directive = __webpack_require__(358);
+var _directive = __webpack_require__(361);
 
 var _directive2 = _interopRequireDefault(_directive);
 
-var _index = __webpack_require__(360);
+var _index = __webpack_require__(363);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -323,7 +323,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 358:
+/***/ 361:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -335,15 +335,15 @@ var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _loading = __webpack_require__(104);
+var _loading = __webpack_require__(107);
 
 var _loading2 = _interopRequireDefault(_loading);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
-var _popup = __webpack_require__(14);
+var _popup = __webpack_require__(15);
 
-var _afterLeave = __webpack_require__(106);
+var _afterLeave = __webpack_require__(109);
 
 var _afterLeave2 = _interopRequireDefault(_afterLeave);
 
@@ -372,7 +372,7 @@ loadingDirective.install = function (Vue) {
 
             ['top', 'left'].forEach(function (property) {
               var scroll = property === 'top' ? 'scrollTop' : 'scrollLeft';
-              el.maskStyle[property] = el.getBoundingClientRect()[property] + document.body[scroll] + document.documentElement[scroll] + 'px';
+              el.maskStyle[property] = el.getBoundingClientRect()[property] + document.body[scroll] + document.documentElement[scroll] - parseInt((0, _dom.getStyle)(document.body, 'margin-' + property), 10) + 'px';
             });
             ['height', 'width'].forEach(function (property) {
               el.maskStyle[property] = el.getBoundingClientRect()[property] + 'px';
@@ -459,6 +459,7 @@ loadingDirective.install = function (Vue) {
         el.mask && el.mask.parentNode && el.mask.parentNode.removeChild(el.mask);
         toggleLoading(el, { value: false, modifiers: binding.modifiers });
       }
+      el.instance.$off('after-leave'); // ext->�Ƴ�after-leave�����������ڴ�й©
     }
   });
 };
@@ -467,7 +468,7 @@ exports.default = loadingDirective;
 
 /***/ }),
 
-/***/ 359:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -478,7 +479,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 360:
+/***/ 363:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -490,19 +491,19 @@ var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _loading = __webpack_require__(104);
+var _loading = __webpack_require__(107);
 
 var _loading2 = _interopRequireDefault(_loading);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
-var _popup = __webpack_require__(14);
+var _popup = __webpack_require__(15);
 
-var _afterLeave = __webpack_require__(106);
+var _afterLeave = __webpack_require__(109);
 
 var _afterLeave2 = _interopRequireDefault(_afterLeave);
 
-var _merge = __webpack_require__(9);
+var _merge = __webpack_require__(8);
 
 var _merge2 = _interopRequireDefault(_merge);
 
@@ -616,7 +617,7 @@ module.exports = require("vue");
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/merge");

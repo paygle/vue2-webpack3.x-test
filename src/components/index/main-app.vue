@@ -6,6 +6,11 @@
 </template>
 <script>
 export default {
-  name: 'MainApp'
+  name: 'MainApp',
+  data() {
+    return {
+      nav: navigator
+    };
+  }
 };
 </script>

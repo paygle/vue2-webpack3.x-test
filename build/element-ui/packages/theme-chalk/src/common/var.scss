@@ -120,8 +120,8 @@ $--index-popper: 2000 !default;
 
 /* Disable base
 -------------------------- */
-$--disabled-fill-base: $--background-color-base !default;
-$--disabled-color-base: $--color-text-placeholder !default;
+$--disabled-fill-base: $--color-f8f8f8 !default; /* ext-> modify */
+$--disabled-color-base: $--color-gy999 !default; /* ext-> modify */
 $--disabled-border-base: $--border-color-light !default;
 
 /* Icon
@@ -536,7 +536,7 @@ $--tooltip-color: $--color-white !default;
 $--tooltip-font-size: 12px !default;
 $--tooltip-border-color: $--color-text-primary !default;
 $--tooltip-arrow-size: 6px !default;
-$--tooltip-padding: 10px !default;
+$--tooltip-padding: 6px !default; /* ext-> modify */
 
 /* Tag
 -------------------------- */

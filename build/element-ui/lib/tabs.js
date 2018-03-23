@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 318);
+/******/ 	return __webpack_require__(__webpack_require__.s = 321);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,15 +183,15 @@ module.exports = require("element-ui/lib/utils/resize-event");
 
 /***/ }),
 
-/***/ 318:
+/***/ 321:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(319);
+module.exports = __webpack_require__(322);
 
 
 /***/ }),
 
-/***/ 319:
+/***/ 322:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +199,7 @@ module.exports = __webpack_require__(319);
 
 exports.__esModule = true;
 
-var _tabs = __webpack_require__(320);
+var _tabs = __webpack_require__(323);
 
 var _tabs2 = _interopRequireDefault(_tabs);
 
@@ -214,12 +214,12 @@ exports.default = _tabs2.default;
 
 /***/ }),
 
-/***/ 320:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 var normalizeComponent = __webpack_require__(0)
@@ -250,12 +250,12 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 321:
+/***/ 324:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 var normalizeComponent = __webpack_require__(0)
@@ -286,15 +286,15 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 322:
+/***/ 325:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6398d572_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tab_bar_vue__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6398d572_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tab_bar_vue__ = __webpack_require__(326);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -323,7 +323,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 323:
+/***/ 326:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -334,7 +334,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 93:
+/***/ 96:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -342,7 +342,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 exports.__esModule = true;
 
-var _tabNav = __webpack_require__(321);
+var _tabNav = __webpack_require__(324);
 
 var _tabNav2 = _interopRequireDefault(_tabNav);
 
@@ -463,11 +463,7 @@ exports.default = {
           tabindex: '0'
         }
       },
-      [h(
-        'i',
-        { 'class': 'el-icon-plus' },
-        []
-      )]
+      [h('i', { 'class': 'el-icon-plus' })]
     ) : null;
 
     var navData = {
@@ -484,11 +480,7 @@ exports.default = {
     var header = h(
       'div',
       { 'class': ['el-tabs__header', 'is-' + tabPosition] },
-      [newButton, h(
-        'tab-nav',
-        navData,
-        []
-      )]
+      [newButton, h('tab-nav', navData)]
     );
     var panels = h(
       'div',
@@ -514,7 +506,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 94:
+/***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -522,7 +514,7 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _tabBar = __webpack_require__(322);
+var _tabBar = __webpack_require__(325);
 
 var _tabBar2 = _interopRequireDefault(_tabBar);
 
@@ -608,6 +600,7 @@ exports.default = {
       if (!this.scrollable) return;
       var nav = this.$refs.nav;
       var activeTab = this.$el.querySelector('.is-active');
+      if (!activeTab) return;
       var navScroll = this.$refs.navScroll;
       var activeTabBounding = activeTab.getBoundingClientRect();
       var navScrollBounding = navScroll.getBoundingClientRect();
@@ -714,22 +707,14 @@ exports.default = {
           'click': scrollPrev
         }
       },
-      [h(
-        'i',
-        { 'class': 'el-icon-arrow-left' },
-        []
-      )]
+      [h('i', { 'class': 'el-icon-arrow-left' })]
     ), h(
       'span',
       { 'class': ['el-tabs__nav-next', scrollable.next ? '' : 'is-disabled'], on: {
           'click': scrollNext
         }
       },
-      [h(
-        'i',
-        { 'class': 'el-icon-arrow-right' },
-        []
-      )]
+      [h('i', { 'class': 'el-icon-arrow-right' })]
     )] : null;
 
     var tabs = this._l(panes, function (pane, index) {
@@ -740,16 +725,12 @@ exports.default = {
 
       pane.index = '' + index;
 
-      var btnClose = closable ? h(
-        'span',
-        { 'class': 'el-icon-close', on: {
-            'click': function click(ev) {
-              onTabRemove(pane, ev);
-            }
+      var btnClose = closable ? h('span', { 'class': 'el-icon-close', on: {
+          'click': function click(ev) {
+            onTabRemove(pane, ev);
           }
-        },
-        []
-      ) : null;
+        }
+      }) : null;
 
       var tabLabelContent = pane.$slots.label || pane.label;
       var tabindex = pane.active ? 0 : -1;
@@ -800,13 +781,9 @@ exports.default = {
               'keydown': changeTab
             }
           },
-          [!type ? h(
-            'tab-bar',
-            {
-              attrs: { tabs: panes }
-            },
-            []
-          ) : null, tabs]
+          [!type ? h('tab-bar', {
+            attrs: { tabs: panes }
+          }) : null, tabs]
         )]
       )]
     );
@@ -821,7 +798,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 95:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

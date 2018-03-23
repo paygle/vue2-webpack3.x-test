@@ -33,19 +33,19 @@
   font-size: 12px;
   word-wrap: normal;
   white-space: nowrap;
-  padding: 5px 10px;
+  padding: 6px 10px;
 
   &:before{
     content: '';
     position: absolute;
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     background:#fff;
     transform: rotate(45deg);
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
-    bottom: -6px;
+    bottom: -5px;
     left: 48%;
   }
 }

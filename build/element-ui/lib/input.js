@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 193);
+/******/ 	return __webpack_require__(__webpack_require__.s = 199);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,15 +183,22 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 193:
+/***/ 199:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(194);
+module.exports = __webpack_require__(200);
 
 
 /***/ }),
 
-/***/ 194:
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 200:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +206,7 @@ module.exports = __webpack_require__(194);
 
 exports.__esModule = true;
 
-var _input = __webpack_require__(195);
+var _input = __webpack_require__(201);
 
 var _input2 = _interopRequireDefault(_input);
 
@@ -214,15 +221,15 @@ exports.default = _input2.default;
 
 /***/ }),
 
-/***/ 195:
+/***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_972b9456_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_vue__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_490ac5d7_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_vue__ = __webpack_require__(203);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -239,7 +246,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_input_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_972b9456_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_490ac5d7_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_input_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -251,7 +258,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 196:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -334,7 +341,7 @@ function calcTextareaHeight(targetElement) {
 
 /***/ }),
 
-/***/ 197:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -342,6 +349,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   _vm.type === 'textarea' ? 'el-textarea' : 'el-input',
   _vm.inputSize ? 'el-input--' + _vm.inputSize : '',
   {
+    'is-disputed': _vm.disputed,
     'is-disabled': _vm.inputDisabled,
     'el-input-group': _vm.$slots.prepend || _vm.$slots.append,
     'el-input-group--append': _vm.$slots.append,
@@ -349,14 +357,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     'el-input--prefix': _vm.$slots.prefix || _vm.prefixIcon,
     'el-input--suffix': _vm.$slots.suffix || _vm.suffixIcon
   }
-  ],on:{"mouseenter":function($event){_vm.hovering = true},"mouseleave":function($event){_vm.hovering = false}}},[(_vm.type !== 'textarea')?[(_vm.$slots.prepend)?_c('div',{staticClass:"el-input-group__prepend"},[_vm._t("prepend")],2):_vm._e(),(_vm.type !== 'textarea')?_c('input',_vm._b({ref:"input",staticClass:"el-input__inner",attrs:{"tabindex":_vm.tabindex,"disabled":_vm.inputDisabled,"autocomplete":_vm.autoComplete,"aria-label":_vm.label},domProps:{"value":_vm.currentValue},on:{"mouseover":_vm.inputMouseover,"mouseout":_vm.inputMouseout,"input":_vm.handleInput,"focus":_vm.handleFocus,"blur":_vm.handleBlur,"change":_vm.handleChange}},'input',_vm.$props,false)):_vm._e(),(_vm.$slots.prefix || _vm.prefixIcon)?_c('span',{staticClass:"el-input__prefix",style:(_vm.prefixOffset)},[_vm._t("prefix"),(_vm.prefixIcon)?_c('i',{staticClass:"el-input__icon",class:_vm.prefixIcon}):_vm._e()],2):_vm._e(),(_vm.$slots.suffix || _vm.suffixIcon || _vm.showClear || _vm.validateState && _vm.needStatusIcon)?_c('span',{staticClass:"el-input__suffix",style:(_vm.suffixOffset)},[_c('span',{staticClass:"el-input__suffix-inner"},[(!_vm.showClear)?[_vm._t("suffix"),(_vm.suffixIcon)?_c('i',{staticClass:"el-input__icon",class:_vm.suffixIcon}):_vm._e()]:_c('i',{staticClass:"el-input__icon el-icon-circle-close el-input__clear",on:{"click":_vm.clear}})],2),(_vm.validateState)?_c('i',{staticClass:"el-input__icon",class:['el-input__validateIcon', _vm.validateIcon]}):_vm._e()]):_vm._e(),(_vm.$slots.append)?_c('div',{staticClass:"el-input-group__append"},[_vm._t("append")],2):_vm._e()]:_c('textarea',_vm._b({ref:"textarea",staticClass:"el-textarea__inner",style:(_vm.textareaStyle),attrs:{"tabindex":_vm.tabindex,"disabled":_vm.inputDisabled,"aria-label":_vm.label},domProps:{"value":_vm.currentValue},on:{"input":_vm.handleInput,"focus":_vm.handleFocus,"blur":_vm.handleBlur,"change":_vm.handleChange,"mouseover":_vm.inputMouseover,"mouseout":_vm.inputMouseout}},'textarea',_vm.$props,false))],2)}
+  ],on:{"mouseenter":function($event){_vm.hovering = true},"mouseleave":function($event){_vm.hovering = false}}},[(_vm.type !== 'textarea')?[(_vm.$slots.prepend)?_c('div',{staticClass:"el-input-group__prepend"},[_vm._t("prepend")],2):_vm._e(),(_vm.type !== 'textarea')?_c('input',_vm._b({ref:"input",staticClass:"el-input__inner",style:([_vm.displayStyl]),attrs:{"tabindex":_vm.tabindex,"disabled":_vm.inputDisabled,"readonly":_vm.readonly || _vm.disputed,"autocomplete":_vm.autoComplete,"aria-label":_vm.label},domProps:{"value":_vm.currentValue},on:{"mouseover":_vm.inputMouseover,"mouseout":_vm.inputMouseout,"keydown":_vm.fixIeReadonly,"keyup":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.keyEnter($event)},"input":_vm.handleInput,"focus":_vm.handleFocus,"blur":_vm.handleBlur,"change":_vm.handleChange}},'input',_vm.$props,false)):_vm._e(),(_vm.$slots.prefix || _vm.prefixIcon)?_c('span',{staticClass:"el-input__prefix",style:(_vm.prefixOffset)},[_vm._t("prefix"),(_vm.prefixIcon)?_c('i',{staticClass:"el-input__icon",class:_vm.prefixIcon}):_vm._e()],2):_vm._e(),(_vm.$slots.suffix || _vm.suffixIcon || _vm.showClear || _vm.validateState && _vm.needStatusIcon)?_c('span',{staticClass:"el-input__suffix",style:(_vm.suffixOffset)},[_c('span',{staticClass:"el-input__suffix-inner"},[(!_vm.showClear)?[_vm._t("suffix"),(_vm.suffixIcon)?_c('i',{staticClass:"el-input__icon",class:_vm.suffixIcon}):_vm._e()]:_c('i',{staticClass:"el-input__icon el-icon-circle-close el-input__clear",on:{"click":_vm.clear}})],2),(_vm.validateState)?_c('i',{staticClass:"el-input__icon",class:['el-input__validateIcon', _vm.validateIcon]}):_vm._e()]):_vm._e(),(_vm.$slots.append)?_c('div',{staticClass:"el-input-group__append"},[_vm._t("append")],2):_vm._e()]:_c('textarea',_vm._b({ref:"textarea",staticClass:"el-textarea__inner",style:([_vm.textareaStyle, _vm.displayStyl]),attrs:{"tabindex":_vm.tabindex,"readonly":_vm.readonly || _vm.disputed,"disabled":_vm.inputDisabled,"aria-label":_vm.label},domProps:{"value":_vm.currentValue},on:{"input":_vm.handleInput,"focus":_vm.handleFocus,"blur":_vm.handleBlur,"change":_vm.handleChange,"mouseover":_vm.inputMouseover,"mouseout":_vm.inputMouseout}},'textarea',_vm.$props,false))],2)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
-/***/ 62:
+/***/ 66:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -364,118 +372,143 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 exports.__esModule = true;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _migrating = __webpack_require__(8);
+var _migrating = __webpack_require__(9);
 
 var _migrating2 = _interopRequireDefault(_migrating);
 
-var _calcTextareaHeight = __webpack_require__(196);
+var _calcTextareaHeight = __webpack_require__(202);
 
 var _calcTextareaHeight2 = _interopRequireDefault(_calcTextareaHeight);
 
-var _merge = __webpack_require__(9);
+var _merge = __webpack_require__(8);
 
 var _merge2 = _interopRequireDefault(_merge);
 
+var _util = __webpack_require__(2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// ext-> add
+// ext-> add
+var getMaxMinVal = function getMaxMinVal(value, max, min, type) {
+  if (type === 'number' && value !== '' && value !== '-') {
+    if (isNaN(value)) {
+      value = 0;
+    }
+    if (typeof max !== 'undefined' && !isNaN(max) && value > max) {
+      value = max;
+    }
+    if (typeof min !== 'undefined' && !isNaN(min) && value < min) {
+      value = min;
+    }
+  }
+  return value;
+};
 
 exports.default = {
   name: 'ElInput',
@@ -500,7 +533,10 @@ exports.default = {
       prefixOffset: null,
       suffixOffset: null,
       hovering: false,
-      focused: false
+      focused: false,
+      isGetFloat: true, // ext-> 是否允许获取精度数
+      fillStyl: '', // ext-> 填充样式
+      compareStyl: '' // ext-> 比较样式
     };
   },
 
@@ -549,6 +585,20 @@ exports.default = {
       default: false
     },
     tabindex: String,
+    kind: { // ext-> 值类型, 可以取 string 和 number 两种类型
+      type: String,
+      default: 'string'
+    },
+    precision: { // ext-> 数字自定义精度
+      type: [Number, String],
+      default: -1
+    },
+    isAround: { // ext-> 是否四啥五入
+      type: Boolean,
+      default: false
+    },
+    getFillStyl: Function, // ext-> 获取填充样式，优先级低于比较样式，返回Object样式对象
+    disputed: Boolean, // ext-> 代替禁用
     disabledTips: Boolean // ext-> 禁用表单弹窗提示
   },
 
@@ -583,12 +633,23 @@ exports.default = {
     },
     showClear: function showClear() {
       return this.clearable && this.currentValue !== '' && (this.focused || this.hovering);
+    },
+
+    // ext-> 显示样式
+    displayStyl: function displayStyl() {
+      if (_typeof(this.compareStyl) === 'object' && !(0, _util.isOwnEmpty)(this.compareStyl)) {
+        return this.compareStyl;
+      } else if (_typeof(this.fillStyl) === 'object' && !(0, _util.isOwnEmpty)(this.fillStyl)) {
+        return this.fillStyl;
+      }
+      return {};
     }
   },
 
   watch: {
     'value': function value(val, oldValue) {
       this.setCurrentValue(val);
+      this.customfillStyl(val); // ext-> fill style
     }
   },
 
@@ -608,14 +669,16 @@ exports.default = {
       };
     },
     handleBlur: function handleBlur(event) {
+      this.isGetFloat = true; // ext-> 扩展
       this.focused = false;
       this.$emit('blur', event);
       if (this.validateEvent) {
         this.dispatch('ElFormItem', 'el.form.blur', [this.currentValue]);
+        this.dispatch('ElForm', 'compare-change', [this]); // ext-> 比较着色
       }
       this.setMessageTips(); // ext-> 信息超出边界弹出提示
     },
-    inputSelect: function inputSelect() {
+    select: function select() {
       (this.$refs.input || this.$refs.textarea).select();
     },
     resizeTextarea: function resizeTextarea() {
@@ -636,11 +699,14 @@ exports.default = {
       this.textareaCalcStyle = (0, _calcTextareaHeight2.default)(this.$refs.textarea, minRows, maxRows);
     },
     handleFocus: function handleFocus(event) {
+      this.isGetFloat = false; // ext-> 扩展
       this.focused = true;
       this.$emit('focus', event);
     },
     handleInput: function handleInput(event) {
-      var value = event.target.value;
+      var value = event.target.value; // ext-> modify
+      value = this.getTypeVal(value); // ext-> add
+      value = getMaxMinVal(value, this.max, this.min, this.kind); // ext-> add
       this.$emit('input', value);
       this.setCurrentValue(value);
     },
@@ -649,6 +715,18 @@ exports.default = {
     },
     setCurrentValue: function setCurrentValue(value) {
       var _this = this;
+
+      // ext-> 设置精度或字符串
+      if (this.kind === 'number') {
+        if (this.precision > 0 && this.isGetFloat) {
+          value = (0, _util.getFloatNumber)(this.precision, value, this.isAround);
+        } else {
+          value = !isNaN(value) && value !== '' ? Number(value) : value;
+        }
+        value = getMaxMinVal(value, this.max, this.min, this.kind);
+      } else {
+        value = String(value);
+      }
 
       if (value === this.currentValue) return;
       this.$nextTick(function (_) {
@@ -679,6 +757,43 @@ exports.default = {
       this.focus();
     },
 
+    // ext-> 获取类型值
+    getTypeVal: function getTypeVal(value) {
+      if (this.kind === 'number' && value !== '' && value !== '-') {
+        // 数值转化
+        if (this.precision > -1) {
+          value = isNaN(value) ? 0 : (0, _util.getFloatNumber)(this.precision, value, this.isAround);
+        }
+        value = isNaN(value) ? value : Number(value);
+        value = getMaxMinVal(value, this.max, this.min, this.kind);
+      } else {
+        value = String(value);
+      }
+      return value;
+    },
+
+    // ext-> 设置填充样式，优先级低于比较样式
+    customfillStyl: function customfillStyl(value) {
+      if (typeof this.getFillStyl === 'function') {
+        this.fillStyl = this.getFillStyl.call(null, value);
+      }
+    },
+
+    // ext-> 设置比较样式
+    setCompareStyle: function setCompareStyle(styl) {
+      this.compareStyl = styl;
+    },
+
+    // ext-> KeyEnter事件
+    keyEnter: function keyEnter(e) {
+      this.$emit('key-enter', e);
+    },
+
+    // ext-> 修复IE下readonly后退问题
+    fixIeReadonly: function fixIeReadonly(e) {
+      if (this.readonly && e.keyCode === 8) e.preventDefault();
+    },
+
     // ext-> 信息超出边界弹出提示
     setMessageTips: function setMessageTips() {
       var _this2 = this;
@@ -706,15 +821,23 @@ exports.default = {
   },
 
   created: function created() {
-    this.$on('inputSelect', this.inputSelect);
+    this.$on('inputSelect', this.select);
+    this.$on('compare-style', this.setCompareStyle); // ext-> 比较样式
+    this.customfillStyl(this.value); // ext-> fill style
   },
   mounted: function mounted() {
+    var _this3 = this;
+
     this.resizeTextarea();
     if (this.isGroup) {
       this.prefixOffset = this.calcIconOffset('pre');
       this.suffixOffset = this.calcIconOffset('suf');
     }
-    this.setMessageTips(); // ext-> 信息超出边界弹出提示
+    this.$nextTick(function () {
+      // ext-> 扩展
+      _this3.dispatch('ElForm', 'compare-change', [_this3]);
+      _this3.setMessageTips(); // ext-> 信息超出边界弹出提示
+    });
   }
 };
 
@@ -723,14 +846,14 @@ exports.default = {
 /***/ 8:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/mixins/migrating");
+module.exports = require("element-ui/lib/utils/merge");
 
 /***/ }),
 
 /***/ 9:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/merge");
+module.exports = require("element-ui/lib/mixins/migrating");
 
 /***/ })
 

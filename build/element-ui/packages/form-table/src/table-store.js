@@ -74,7 +74,7 @@ const toggleRowExpansion = function(states, row, expanded) {
   return changed;
 };
 
-/* 扩展-> 比值样式计算
+/* ext-> 比值样式计算
 [
  {
    style: {                 // 自定义样式
@@ -114,7 +114,7 @@ const compareChgStyl = function(table, states) {
       }
     });
   }
-  // 扩展-> 设定表格样式
+  // ext-> 设定表格样式
   table.compareStyl.forEach((cp)=>{
     for (let i = 0; i < data.length; i++) {
       if (cp.compare.call(null, data[i], cp.fields, i)) {
@@ -128,7 +128,7 @@ const compareChgStyl = function(table, states) {
       }
     }
   });
-  // 扩展-> 渲染样式
+  // ext-> 渲染样式
   let dom, input, compSty;
   for (let key in states.compareMap) {
     dom = table.$el.querySelector('.' + key);
@@ -149,7 +149,7 @@ const compareChgStyl = function(table, states) {
   }
 };
 
-// 扩展-> 设置Tab index  Key/Val 值
+// ext-> 设置Tab index  Key/Val 值
 const setTabindex = function(direction = 'vertical', startindex = 1, orginData = [], colIndexs = []) {
 
   if (!orginData.length) return [];
@@ -178,7 +178,7 @@ const setTabindex = function(direction = 'vertical', startindex = 1, orginData =
   return tabindexMap;
 };
 
-// 扩展-> 设置最后一行或全部 Boolean 值映射
+// ext-> 设置最后一行或全部 Boolean 值映射
 const initLastRowBoolMap = function(states, mp, initObj, initValidall) {
   let idx = states.data.length - 1;
   if (states.delStatus) return;
@@ -263,21 +263,22 @@ const TableStore = function(table, initialState = {}) {
     filters: {},
     expandRows: [],
     defaultExpandAll: false,
-    _tabidxs: [], // 扩展  Tab index 映射
-    direction: 'vertical', // 扩展
-    colIndexOrder: [], // 扩展
-    errCount: {}, // 扩展-> 错误总数统计 {row0col:true}
-    disabledMap: {}, // 扩展-> 单元格内容禁用控制映射
-    disableField: { // 扩展-> 是否使用禁用字段
-      field: 'disabled', // 扩展-> 禁用字段名称
+    _tabidxs: [], // ext-> Tab index 映射
+    propertys: [], // ext-> 属性映射
+    direction: 'vertical', // ext-> tab
+    colIndexOrder: [], // ext-> tab
+    errCount: {}, // ext-> 错误总数统计 {row0col:true}
+    disabledMap: {}, // ext-> 单元格内容禁用控制映射
+    disableField: { // ext-> 是否使用禁用字段
+      field: 'disabled', // ext-> 禁用字段名称
       trueVal: '1',
       falseVal: '0'
     },
-    validateMap: {}, // 扩展-> 验证控制映射
-    delRowCount: 0, // 扩展-> 删除行数
-    _initialData: [], // 扩展-> 锁定初始化数据
-    modifiedMap: {}, // 扩展-> 数据修改比对映射，数据格式：{ row: {background: 'green' },  col: {background: 'red' } }
-    compareMap: {} // 扩展-> 比较值样式映射
+    validateMap: {}, // ext-> 验证控制映射
+    delRowCount: 0, // ext-> 删除行数
+    _initialData: [], // ext-> 锁定初始化数据
+    modifiedMap: {}, // ext-> 数据修改比对映射，数据格式：{ row: {background: 'green' },  col: {background: 'red' } }
+    compareMap: {} // ext-> 比较值样式映射
   };
 
   for (let prop in initialState) {
@@ -463,8 +464,12 @@ TableStore.prototype.mutations = {
   toggleAllSelection: debounce(10, function(states) {
     const data = states.data || [];
     if (data.length === 0) return;
-    const value = !states.isAllSelected;
     const selection = this.states.selection;
+    // when only some rows are selected (but not all), select or deselect all of them
+    // depending on the value of selectOnIndeterminate
+    const value = states.selectOnIndeterminate
+      ? !states.isAllSelected
+      : !(states.isAllSelected || selection.length);
     let selectionChanged = false;
 
     data.forEach((item, index) => {
@@ -487,19 +492,19 @@ TableStore.prototype.mutations = {
     states.isAllSelected = value;
   }),
 
-  //  扩展-> 验证添加，供外部使用
+  //  ext-> 验证添加，供外部使用
   disValidateSet(states, prop, index, value) {
     // prop 参数可以是 {aa:true, bb:false} 这样的对象 或 字段名称
     setBoolMapData(states.validateMap, prop, index, value);
   },
 
-  //  扩展-> 禁用添加，供外部使用
+  //  ext-> 禁用添加，供外部使用
   disInputSet(states, prop, index, value) {
     // prop 参数可以是 {aa:true, bb:false} 这样的对象 或 字段名称
     setBoolMapData(states.disabledMap, prop, index, value);
   },
 
-  // 扩展-> 删除row验证和禁用状态，供外部使用
+  // ext-> 删除row验证和禁用状态，供外部使用
   delRowStatus(states, index) {
     let propertys = states.propertys;
     let rows = Array.isArray(index) ? index : [index];
@@ -521,14 +526,14 @@ TableStore.prototype.mutations = {
       });
     }
 
-    // 重置序列
+    // ext-> 重置序列
     function delOrder() {
       let idxs = [], rp, disabledMap = {}, validateMap = {};
       let re1 = /^(disabled|row)/g;
       let re2 = /[a-zA-Z]\w*/g;
       let regx = /^(disabled|row)\d+[a-zA-Z]\w*/g;
 
-      // 添加序号
+      // ext-> 添加序号
       function addIdxs(delmap) {
         for (let p in delmap) {
           regx.lastIndex = 0;
@@ -541,7 +546,7 @@ TableStore.prototype.mutations = {
       addIdxs(states.disabledMap);
       addIdxs(states.validateMap);
       idxs.sort();
-      // 序化重置状态
+      // ext-> 序化重置状态
       for (let i = 0; i < idxs.length; i++) {
         propertys.forEach(field => {
           if (typeof states.disabledMap[`disabled${idxs[i]}${field}`] === 'boolean') {
@@ -569,14 +574,14 @@ TableStore.prototype.mutations = {
     delOrder();
   },
 
-  //  扩展-> 更新比较样式
+  //  ext-> 更新比较样式
   updateCompare(states) {
     if (Array.isArray(this.table.compareStyl)) {
       compareChgStyl.call(this, this.table, states);
     }
   },
 
-  //  扩展-> 数据比较映射删除处理
+  //  ext-> 数据比较映射删除处理
   compareDel(states, rowIndex) {
 
     if (!isNaN(rowIndex)) {
@@ -626,7 +631,7 @@ TableStore.prototype.mutations = {
     }
   },
 
-  // 扩展-> 数据修改比较
+  // ext-> 数据修改比较
   modifiedCompare(states) {
     let row, itemStyl, table = this.table;
     // 比较对象是否相等
@@ -717,14 +722,14 @@ TableStore.prototype.mutations = {
     }
   },
 
-  // 扩展-> 锁定初始数据用于判定是否为修改
+  // ext-> 锁定初始数据用于判定是否为修改
   lockData(states) {
     states.modifiedMap = {};
     if (states.data) {
       states._initialData = JSON.parse(JSON.stringify(states.data));
     }
   },
-  // 扩展
+  // ext-> 删除已选择项
   deleteSelection(states) {
     let store = this.table.store;
     let index, data = states.data || [];
@@ -737,7 +742,7 @@ TableStore.prototype.mutations = {
       }
     });
   },
-  // 扩展
+  // ext-> 删除一行数据
   deleteRow(states, row) {
     let store = this.table.store;
     let index = states.data.indexOf(row);
@@ -748,19 +753,19 @@ TableStore.prototype.mutations = {
       store.commit('compareDel', index);
     }
   },
-  // 扩展
+  // ext-> 添加一行数据
   addNewRow(states, row) {
     states.data.push(row);
   },
-  // 扩展
+  // ext-> 设置错误计算记录
   setErrCount(states, field) {
     states.errCount[field] = true;
   },
-  // 扩展
+  // ext-> 删除错误计算记录
   disErrCount(states, field) {
     states.errCount[field] = false;
   },
-  // 扩展
+  // ext-> 清空错误计算记录
   clearErrCount(states) {
     states.errCount = {};
   }
@@ -778,7 +783,7 @@ const doFlattenColumns = (columns) => {
   return result;
 };
 
-// 扩展-> 计算错误统计
+// ext-> 计算错误统计
 TableStore.prototype.getErrCount = function(states) {
   let c = 0;
   for (let i in states.errCount) {
@@ -787,19 +792,19 @@ TableStore.prototype.getErrCount = function(states) {
   return c;
 };
 
-// 扩展-> 设置列Tab index 的值
+// ext-> 设置列Tab index 的值
 TableStore.prototype.setColIndexOrder = function(index, columnName) {
   if (index && columnName) this.states.colIndexOrder[index] = columnName;
 };
 
-// 扩展-> 更新Tab index 的值
+// ext-> 更新Tab index 的值
 TableStore.prototype.updateTabindex = function(startindex, direction) {
   startindex = startindex || 1;
   direction = direction || this.states.direction;
   this.states._tabidxs = setTabindex(direction, startindex, this.states.data, this.states.colIndexOrder);
 };
 
-// 扩展-> 获取验证状态
+// ext-> 获取验证状态
 TableStore.prototype.getValidateField = function(prop) {
   if (typeof this.states.validateMap[prop] !== 'undefined') {
     return Boolean(this.states.validateMap[prop]);
@@ -807,12 +812,12 @@ TableStore.prototype.getValidateField = function(prop) {
   return false;
 };
 
-// 扩展-> 初始化最后字段验证
+// ext-> 初始化最后字段验证
 TableStore.prototype.initLastValidateFields = function(initValidall) {
   initLastRowBoolMap(this.states, 'validateMap', this.table.initValidfields, initValidall);
 };
 
-// 扩展-> 初始化最后一行禁用字段
+// ext-> 初始化最后一行禁用字段
 TableStore.prototype.initLastRowDisFields = function(initValidall) {
   initLastRowBoolMap(this.states, 'disabledMap', this.table.initDisfields, initValidall);
 };
@@ -883,10 +888,55 @@ TableStore.prototype.toggleRowSelection = function(row, selected) {
 };
 
 TableStore.prototype.toggleRowExpansion = function(row, expanded) {
-  const changed = toggleRowExpansion(this.states, row, expanded);
-  if (changed) {
-    this.table.$emit('expand-change', row, this.states.expandRows);
-    this.scheduleLayout();
+
+  function expandRow(sto) { // ext-> modify
+    const changed = toggleRowExpansion(sto.states, row, expanded);
+    if (changed) {
+      sto.table.$emit('expand-change', row, sto.states.expandRows);
+      sto.scheduleLayout();
+    }
+  }
+
+  // ext-> 操作前调用
+  if (typeof this.table.beforeExpand === 'function') {
+    if (this.table.beforeExpand.call(
+      null,
+      row, // 当前操作行
+      this.states.expandRows, // 已展开行集合
+      this.states.expandRows.indexOf(row) > -1 // 是否已经展开
+    )) {
+      expandRow(this);
+    }
+  } else {
+    expandRow(this);
+  }
+};
+
+// ext-> 打开一个，其余全部关闭
+TableStore.prototype.toggleOnlyOneExpand = function(row) {
+
+  function expandOneRow(sto) {
+    if (sto.states.expandRows.indexOf(row) < 0) {
+      sto.states.expandRows = [];
+      sto.states.expandRows.push(row);
+      sto.table.$emit('expand-one-chgd', row);
+    } else {
+      sto.states.expandRows = [];
+      sto.table.$emit('expand-one-chgd', row);
+    }
+  }
+  // ext-> 操作前调用
+  if (typeof this.table.beforeExpand === 'function') {
+    if (this.table.beforeExpand.call(
+      null,
+      row, // 当前操作行
+      this.states.expandRows, // 已展开行集合
+      this.states.expandRows.indexOf(row) > -1 // 是否已经展开
+    )) {
+      expandOneRow(this);
+    }
+  } else {
+    expandOneRow(this);
   }
 };
 

@@ -35,8 +35,9 @@
       class="el-table__body-wrapper"
       ref="bodyWrapper"
       :class="[layout.scrollX ? `is-scrolling-${scrollPosition}` : 'is-scrolling-none']"
-      :style="[bodyHeight]">
+      :style="[bodyHeight, ieMaxHeight]">
       <table-body
+        :expand-only-one="expandOnlyOne"
         :context="context"
         :store="store"
         :stripe="stripe"
@@ -101,7 +102,7 @@
           :border="border"
           :store="store"
           :style="{
-            width: layout.fixedWidth ? layout.fixedWidth + 'px' : ''
+            width: bodyWidth
           }"></table-header>
       </div>
       <div
@@ -112,6 +113,7 @@
         },
         fixedBodyHeight]">
         <table-body
+          :expand-only-one="expandOnlyOne"
           fixed="left"
           :store="store"
           :stripe="stripe"
@@ -119,7 +121,7 @@
           :row-class-name="rowClassName"
           :row-style="rowStyle"
           :style="{
-            width: layout.fixedWidth ? layout.fixedWidth + 'px' : ''
+            width: bodyWidth
           }">
         </table-body>
         <div
@@ -141,7 +143,7 @@
           :summary-method="summaryMethod"
           :store="store"
           :style="{
-            width: layout.fixedWidth ? layout.fixedWidth + 'px' : ''
+            width: bodyWidth
           }"></table-footer>
       </div>
     </div>
@@ -164,7 +166,7 @@
           :border="border"
           :store="store"
           :style="{
-            width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : ''
+            width: bodyWidth
           }"></table-header>
       </div>
       <div
@@ -175,6 +177,7 @@
         },
         fixedBodyHeight]">
         <table-body
+          :expand-only-one="expandOnlyOne"
           fixed="right"
           :store="store"
           :stripe="stripe"
@@ -182,7 +185,7 @@
           :row-style="rowStyle"
           :highlight="highlightCurrentRow"
           :style="{
-            width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : ''
+            width: bodyWidth
           }">
         </table-body>
       </div>
@@ -198,7 +201,7 @@
           :summary-method="summaryMethod"
           :store="store"
           :style="{
-            width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : ''
+            width: bodyWidth
           }"></table-footer>
       </div>
     </div>
@@ -227,6 +230,8 @@
   import TableBody from './table-body';
   import TableHeader from './table-header';
   import TableFooter from './table-footer';
+  import Notification from 'element-ui/packages/notification'; // ext-> add
+  import { on, off } from 'element-ui/src/utils/dom'; // ext-> add
 
   let tableIdSeed = 1;
 
@@ -262,7 +267,7 @@
         default: true
       },
 
-      stripe: { // 扩展修改-> 默认条纹
+      stripe: { // ext-> modify
         type: Boolean,
         default: true
       },
@@ -300,7 +305,7 @@
 
       headerCellStyle: [Object, Function],
 
-      highlightCurrentRow: { // 扩展修改-> 设置默认点击单行时选定显示
+      highlightCurrentRow: { // ext-> modify
         type: Boolean,
         default: true
       },
@@ -315,54 +320,61 @@
 
       defaultSort: Object,
 
-      tooltipEffect: { // 扩展修改-> 设置提示样式
+      tooltipEffect: { // ext-> modify
         type: String,
         default: 'light'
       },
 
       spanMethod: Function,
 
-      rules: Object, // 扩展-> 验证规则
-
-      validateOnRuleChange: { // 扩展验证
+      selectOnIndeterminate: {
         type: Boolean,
         default: true
       },
-      disableField: [String, Object], // 扩展-> 是否使用禁用字段
 
-      initDisfields: Object, // 扩展-> 禁用字段初始化映射 如：{aa:true, bb:false}
+      rules: Object, // ext-> 验证规则
 
-      initDisall: Boolean, // 扩展-> 是否全部初始化禁用
+      validateOnRuleChange: { // ext-> 验证
+        type: Boolean,
+        default: true
+      },
+      disableField: [String, Object], // ext-> 是否使用禁用字段
 
-      initValidfields: Object, // 扩展-> 验证字段初始化映射 如：{aa:true, bb:false}
+      initDisfields: Object, // ext-> 禁用字段初始化映射 如：{aa:true, bb:false}
 
-      initValidall: Boolean, // 扩展-> 是否全部初始化验证
+      initDisall: Boolean, // ext-> 是否全部初始化禁用
 
-      enableInputcolor: Boolean, // 扩展-> 是否启用输入框内颜色样式
+      initValidfields: Object, // ext-> 验证字段初始化映射 如：{aa:true, bb:false}
 
-      startTabindex: { // 扩展-> tabindex开始数值
+      initValidall: Boolean, // ext-> 是否全部初始化验证
+
+      enableInputcolor: Boolean, // ext-> 是否启用输入框内颜色样式
+
+      startTabindex: { // ext-> tabindex开始数值
         type: Number,
         default: 1
       },
 
-      expandOnlyOne: { // 扩展-> 同时仅允许打开一行数据
+      expandOnlyOne: { // ext-> 同时仅允许打开一行数据
         type: Boolean,
         default: false
       },
 
-      expandIconHidden: { // 扩展-> 是否隐藏展开图标
+      beforeExpand: Function, // ext-> 修改后的样式 (row, expandrows, isExpand)
+
+      expandIconHidden: { // ext-> 是否隐藏展开图标
         type: Boolean,
         default: false
       },
 
-      compareStyl: Array, // 扩展-> 比较字段设置样式
+      compareStyl: Array, // ext-> 比较字段设置样式
 
-      modifiedStyl: Function, // 扩展-> 修改后的样式
+      modifiedStyl: Function, // ext-> 修改后的样式
 
-      validTrigger: Function // 扩展-> 触发外部验证函数
+      validTrigger: Function // ext-> 触发外部验证函数
     },
 
-    provide() { // 扩展验证 -> 主要为高阶插件/组件库提供用例
+    provide() { // ext-> 主要为高阶插件/组件库提供用例
       return {
         elForm: this
       };
@@ -492,10 +504,60 @@
       },
 
       doLayout() {
+        this.layout.updateColumnsWidth();
         if (this.shouldUpdateHeight) {
           this.layout.updateElsHeight();
         }
-        this.layout.updateColumnsWidth();
+      },
+
+      // ext-> 设置行样式
+      setRowStyle(rowIndexs, styl) {
+
+        const rows = this.$el.querySelectorAll('tbody > tr.el-table__row');
+        if (rows.length < 1 || typeof styl === 'undefined') return;
+
+        function setRowIndexStyl(index, stylObj) {
+          let row = rows[index];
+          if (row && typeof stylObj === 'object') {
+            for (let p in stylObj) {
+              if (stylObj.hasOwnProperty(p)) row.style[p] = stylObj[p];
+            }
+          }
+        }
+
+        if (Array.isArray(rowIndexs)) { // 格式: [1,2,4,6,8]
+          for (let k = 0; k < rowIndexs.length; k++) setRowIndexStyl.call(this, rowIndexs[k], styl);
+        } else if (!isNaN(rowIndexs)) { // 格式: 5
+          setRowIndexStyl.call(this, rowIndexs, styl);
+        } else if (typeof rowIndexs === 'string') {
+          if (rowIndexs === 'all') { // 格式:  all
+            for (let k = 0; k < rows.length; k++) setRowIndexStyl.call(this, k, styl);
+          } else if (/^\d+\-\d+$/g.test(rowIndexs)) { // 格式: 0-12
+            let span = rowIndexs.split('-');
+            for (let k = parseInt(span[0], 10); k <= parseInt(span[1], 10); k++) {
+              setRowIndexStyl.call(this, k, styl);
+            }
+          }
+        }
+      },
+
+      // ext-> 数据修改比较
+      modifiedCompare() {
+        clearTimeout(this.timeHanlder); // 一定要使用定时器，否则严重损耗性能
+        this.timeHanlder = setTimeout(() => {
+          this.store.states.compareMap = {};
+          this.store.commit('updateCompare');
+          this.store.commit('modifiedCompare');
+        }, 500);
+      },
+      // ext-> 比较清除
+      compareClear() {
+        this.store.commit('compareDel');
+      },
+
+      // ext-> 锁定初始数据用于判定是否为修改
+      lockData() {
+        this.store.commit('lockData');
       },
 
       // 验证扩展重置方法
@@ -516,13 +578,14 @@
         });
       },
       // 验证扩展验证方法
-      validate(callback) {
+      validate(callback, show = false) {
         if (!this.tableData) {
           console && console.warn('[Element Warn][Form-table]data is required for validate to work!');
           return;
         }
 
         let promise;
+
         // if no callback, return promise
         if (typeof callback !== 'function' && window.Promise) {
           promise = new window.Promise((resolve, reject) => {
@@ -534,6 +597,8 @@
 
         let valid = true;
         let count = 0;
+        let errorsBox = []; // ext-> add
+
         // 如果需要验证的fields为空，调用验证时立刻返回callback
         if (this.fields.length === 0 && callback) {
           callback(true);
@@ -542,9 +607,20 @@
           field.validate('', errors => {
             if (errors) {
               valid = false;
+              let e = errors[0], f = e['field']; // ext-> add
+              errorsBox.push({msg: e['message'], f: f, v: field.value}); // ext-> add
             }
             if (typeof callback === 'function' && ++count === this.fields.length) {
-              callback(valid);
+              // ext-> 执行完所以的fields校验后，执行回调
+              let err = '', errObj;
+              for (let j = 0; j < errorsBox.length; j++) {
+                errObj = errorsBox[j];
+                err += `<p>值为“${errObj.v}”的输入错误：${errObj.msg}；</p>`;
+              }
+              if (show && (err.length > 0)) {
+                Notification.error({ title: '验证错误', message: err });
+              }
+              callback(valid, err); // ext-> modify
             }
           });
         });
@@ -561,9 +637,24 @@
         field.validate('', cb);
       },
 
-      // 扩展-> 错误统计
+      // ext-> 错误统计
       errChange() {
         this.$nextTick(function() { this.errNum = this.store.getErrCount(this.store.states); });
+      },
+      // ext-> 组合键处理
+      keyRelease(e) {
+        if (e.keyCode === 17) this.ctrlKey = false;
+      },
+      // ext-> 跳转到输入框
+      jumpToFocus(e) {
+        if (e.keyCode === 17) this.ctrlKey = true;
+        if (this.ctrlKey && [37, 39].indexOf(e.keyCode) > -1) { // left-right
+          this.store.updateTabindex(this.startTabindex, 'h');
+          this.store.states.direction = 'h';
+        } else if (this.ctrlKey && [38, 40].indexOf(e.keyCode) > -1) { // up-down
+          this.store.updateTabindex(this.startTabindex);
+          this.store.states.direction = 'vertical';
+        }
       }
     },
 
@@ -571,9 +662,9 @@
       this.tableId = 'el-table_' + tableIdSeed++;
       this.debouncedUpdateLayout = debounce(50, () => this.doLayout());
 
-      // 扩展验证
+      // ext-> 验证
       this.$on('el.form.addField', (field) => { if (field) { this.fields.push(field); } });
-      // 扩展验证
+      // ext-> 验证
       this.$on('el.form.removeField', (field) => {
         if (field.prop) { this.fields.splice(this.fields.indexOf(field), 1); }
       });
@@ -590,6 +681,7 @@
 
       shouldUpdateHeight() {
         return this.height ||
+          this.maxHeight ||
           this.fixedColumns.length > 0 ||
           this.rightFixedColumns.length > 0;
       },
@@ -676,6 +768,16 @@
             height: this.layout.viewportHeight ? this.layout.viewportHeight + 'px' : ''
           };
         }
+      },
+
+      ieMaxHeight() { // ext-> 修复IE9表格引起的页面抖动
+        let len = Array.isArray(this.data) ? this.data.length : 0;
+        if (typeof this.height === 'undefined' && len > 0 &&
+          navigator.appName === 'Microsoft Internet Explorer' &&
+          navigator.appVersion .split(';')[1].replace(/\s/g, '') === 'MSIE9.0') {
+          return {maxHeight: (30 * len + 80) + 'px', overflow: 'hidden'};
+        }
+        return {};
       }
     },
 
@@ -719,13 +821,13 @@
         }
       },
 
-      rules() { // 扩展-> 规则监控
+      rules() { // ext-> 规则监控
         if (this.validateOnRuleChange) {
           this.validate(() => {});
         }
       },
 
-      errNum(n) { // 扩展-> 错误监控
+      errNum(n) { // ext-> 错误监控
         if (this.errNum > 0) {
           this.errTotal = '验证消息：以下表单中共有 ' + this.errNum + ' 处内容错误，待完善。';
         } else {
@@ -733,13 +835,20 @@
         }
       },
 
-      'store.states.data'(n) { // 扩展-> 删除行后的数据验证
+      'store.states.data'(n) { // ext-> 删除行后的数据验证
         this.store.states.errCount = {};
         this.$nextTick(function() {
           this.validate(()=>{});
           this.$emit('err-change');
           this.store.states.delStatus = false;
         });
+      }
+    },
+
+    beforeDestroy() {
+      if (this.$refs.bodyWrapper) {
+        off(this.$refs.bodyWrapper, 'keydown', this.keyRelease);
+        off(this.$refs.bodyWrapper, 'keyup', this.jumpToFocus);
       }
     },
 
@@ -769,15 +878,33 @@
       });
 
       this.$ready = true;
+      this.$on('err-change', this.errChange); // ext-> error
 
-      this.$on('err-change', this.errChange); // 扩展
+      // ext-> 初始化禁用字段参数
+      if (typeof this.disableField === 'string') {
+        this.store.states.disableField['field'] = this.disableField;
 
+      } else if (this.disableField !== null && typeof this.disableField === 'object') {
+
+        for (let i in this.store.states.disableField) {
+          if (this.store.states.disableField.hasOwnProperty(i) && typeof this.disableField[i] !== 'undefined') {
+            this.store.states.disableField[i] = this.disableField[i];
+          }
+        }
+      }
+      // ext-> 初始化比对样式
+      this.$nextTick(_ => {
+        this.store.commit('updateCompare');
+        on(this.$refs.bodyWrapper, 'keydown', this.jumpToFocus);
+        on(this.$refs.bodyWrapper, 'keyup', this.keyRelease);
+      });
     },
 
     data() {
       const store = new TableStore(this, {
         rowKey: this.rowKey,
-        defaultExpandAll: this.defaultExpandAll
+        defaultExpandAll: this.defaultExpandAll,
+        selectOnIndeterminate: this.selectOnIndeterminate
       });
       const layout = new TableLayout({
         store,
@@ -798,11 +925,11 @@
         // 是否拥有多级表头
         isGroup: false,
         scrollPosition: 'left',
-        fields: [], // 扩展 -> 验证字段
-        errNum: 0, // 扩展 -> 错误数
-        errTotal: '', // 扩展 -> 错误统计
-        ctrlKey: false, // 扩展
-        timeHanlder: null // 扩展
+        fields: [], // ext-> 验证字段
+        errNum: 0, // ext-> 错误数
+        errTotal: '', // ext-> 错误统计
+        ctrlKey: false, // ext-> 组合键
+        timeHanlder: null // ext-> time
       };
     }
   };

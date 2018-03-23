@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 146);
+/******/ 	return __webpack_require__(__webpack_require__.s = 153);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,15 +176,15 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 146:
+/***/ 153:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(147);
+module.exports = __webpack_require__(154);
 
 
 /***/ }),
 
-/***/ 147:
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -192,7 +192,7 @@ module.exports = __webpack_require__(147);
 
 exports.__esModule = true;
 
-var _pagination = __webpack_require__(148);
+var _pagination = __webpack_require__(155);
 
 var _pagination2 = _interopRequireDefault(_pagination);
 
@@ -207,7 +207,7 @@ exports.default = _pagination2.default;
 
 /***/ }),
 
-/***/ 148:
+/***/ 155:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,15 +215,15 @@ exports.default = _pagination2.default;
 
 exports.__esModule = true;
 
-var _pager = __webpack_require__(149);
+var _pager = __webpack_require__(156);
 
 var _pager2 = _interopRequireDefault(_pager);
 
-var _select = __webpack_require__(151);
+var _select = __webpack_require__(158);
 
 var _select2 = _interopRequireDefault(_select);
 
-var _option = __webpack_require__(152);
+var _option = __webpack_require__(159);
 
 var _option2 = _interopRequireDefault(_option);
 
@@ -235,7 +235,7 @@ var _locale = __webpack_require__(5);
 
 var _locale2 = _interopRequireDefault(_locale);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -276,80 +276,52 @@ exports.default = {
 
     nextText: String,
 
-    background: Boolean
+    background: Boolean,
+
+    disabled: Boolean,
+
+    params: null // ext-> 追加参数
   },
 
   data: function data() {
     return {
       internalCurrentPage: 1,
-      internalPageSize: 0
+      internalPageSize: 0,
+      lastEmittedPage: -1,
+      userChangePageSize: false
     };
   },
   render: function render(h) {
-    var template = h(
-      'div',
-      { 'class': ['el-pagination', {
-          'is-background': this.background,
-          'el-pagination--small': this.small
-        }] },
-      []
-    );
+    var template = h('div', { 'class': ['el-pagination', {
+        'is-background': this.background,
+        'el-pagination--small': this.small
+      }] });
     var layout = this.layout || '';
     if (!layout) return;
     var TEMPLATE_MAP = {
-      prev: h(
-        'prev',
-        null,
-        []
-      ),
-      jumper: h(
-        'jumper',
-        null,
-        []
-      ),
-      pager: h(
-        'pager',
-        {
-          attrs: { currentPage: this.internalCurrentPage, pageCount: this.internalPageCount },
-          on: {
-            'change': this.handleCurrentChange
-          }
-        },
-        []
-      ),
-      next: h(
-        'next',
-        null,
-        []
-      ),
-      sizes: h(
-        'sizes',
-        {
-          attrs: { pageSizes: this.pageSizes }
-        },
-        []
-      ),
-      slot: h(
-        'my-slot',
-        null,
-        []
-      ),
-      total: h(
-        'total',
-        null,
-        []
-      )
+      prev: h('prev'),
+      jumper: h('jumper'),
+      pager: h('pager', {
+        attrs: { currentPage: this.internalCurrentPage, pageCount: this.internalPageCount, disabled: this.disabled },
+        on: {
+          'change': this.handleCurrentChange
+        }
+      }),
+      next: h('next'),
+      sizes: h('sizes', {
+        attrs: { pageSizes: this.pageSizes }
+      }),
+      slot: h('my-slot'),
+      total: h('total')
     };
     var components = layout.split(',').map(function (item) {
       return item.trim();
     });
-    var rightWrapper = h(
-      'div',
-      { 'class': 'el-pagination__rightwrapper' },
-      []
-    );
+    var rightWrapper = h('div', { 'class': 'el-pagination__rightwrapper' });
     var haveRightWrapper = false;
 
+    template.children = template.children || [];
+    rightWrapper.children = rightWrapper.children || [];
     components.forEach(function (compo) {
       if (compo === '->') {
         haveRightWrapper = true;
@@ -385,20 +357,12 @@ exports.default = {
             attrs: {
               type: 'button'
             },
-            'class': ['btn-prev', { disabled: this.$parent.internalCurrentPage <= 1 }],
+            'class': ['btn-prev', { disabled: this.$parent.disabled || this.$parent.internalCurrentPage <= 1 }],
             on: {
               'click': this.$parent.prev
             }
           },
-          [this.$parent.prevText ? h(
-            'span',
-            null,
-            [this.$parent.prevText]
-          ) : h(
-            'i',
-            { 'class': 'el-icon el-icon-arrow-left' },
-            []
-          )]
+          [this.$parent.prevText ? h('span', [this.$parent.prevText]) : h('i', { 'class': 'el-icon el-icon-arrow-left' })]
         );
       }
     },
@@ -411,20 +375,12 @@ exports.default = {
             attrs: {
               type: 'button'
             },
-            'class': ['btn-next', { disabled: this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0 }],
+            'class': ['btn-next', { disabled: this.$parent.disabled || this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0 }],
             on: {
               'click': this.$parent.next
             }
           },
-          [this.$parent.nextText ? h(
-            'span',
-            null,
-            [this.$parent.nextText]
-          ) : h(
-            'i',
-            { 'class': 'el-icon el-icon-arrow-right' },
-            []
-          )]
+          [this.$parent.nextText ? h('span', [this.$parent.nextText]) : h('i', { 'class': 'el-icon el-icon-arrow-right' })]
         );
       }
     },
@@ -459,22 +415,19 @@ exports.default = {
             {
               attrs: {
                 value: this.$parent.internalPageSize,
-                popperClass: this.$parent.popperClass || ''
-              },
+                popperClass: this.$parent.popperClass || '',
+
+                disabled: this.$parent.disabled },
               on: {
                 'input': this.handleChange
               }
             },
             [this.pageSizes.map(function (item) {
-              return h(
-                'el-option',
-                {
-                  attrs: {
-                    value: item,
-                    label: item + _this.t('el.pagination.pagesize') }
-                },
-                []
-              );
+              return h('el-option', {
+                attrs: {
+                  value: item,
+                  label: item + _this.t('el.pagination.pagesize') }
+              });
             })]
           )]
         );
@@ -490,7 +443,8 @@ exports.default = {
         handleChange: function handleChange(val) {
           if (val !== this.$parent.internalPageSize) {
             this.$parent.internalPageSize = val = parseInt(val, 10);
-            this.$parent.$emit('size-change', val);
+            this.$parent.userChangePageSize = true;
+            this.$parent.$emit('size-change', val, this.params); // ext->modify
           }
         }
       }
@@ -507,6 +461,16 @@ exports.default = {
 
 
       components: { ElInput: _input2.default },
+
+      watch: {
+        '$parent.internalPageSize': function $parentInternalPageSize() {
+          var _this2 = this;
+
+          this.$nextTick(function () {
+            _this2.$refs.input.$el.querySelector('input').value = _this2.$parent.internalCurrentPage;
+          });
+        }
+      },
 
       methods: {
         handleFocus: function handleFocus(event) {
@@ -528,6 +492,7 @@ exports.default = {
         },
         handleChange: function handleChange(value) {
           this.$parent.internalCurrentPage = this.$parent.getValidCurrentPage(value);
+          this.$parent.emitChange();
           this.oldValue = null;
           this.resetValueIfNeed(value);
         },
@@ -552,31 +517,28 @@ exports.default = {
         return h(
           'span',
           { 'class': 'el-pagination__jump' },
-          [this.t('el.pagination.goto'), h(
-            'el-input',
-            {
-              'class': 'el-pagination__editor is-in-pagination',
-              attrs: { min: 1,
-                max: this.$parent.internalPageCount,
-                value: this.$parent.internalCurrentPage,
+          [this.t('el.pagination.goto'), h('el-input', {
+            'class': 'el-pagination__editor is-in-pagination',
+            attrs: { min: 1,
+              max: this.$parent.internalPageCount,
+              value: this.$parent.internalCurrentPage,
 
-                type: 'number'
-              },
-              domProps: {
-                'value': this.$parent.internalCurrentPage
-              },
-              ref: 'input',
-              nativeOn: {
-                'keyup': this.handleKeyup
-              },
-              on: {
-                'change': this.handleChange,
-                'focus': this.handleFocus,
-                'blur': this.handleBlur
-              }
+              type: 'number',
+
+              disabled: this.$parent.disabled
             },
-            []
-          ), this.t('el.pagination.pageClassifier')]
+            domProps: {
+              'value': this.$parent.internalCurrentPage
+            },
+            ref: 'input', nativeOn: {
+              'keyup': this.handleKeyup
+            },
+            on: {
+              'change': this.handleChange,
+              'focus': this.handleFocus,
+              'blur': this.handleBlur
+            }
+          }), this.t('el.pagination.pageClassifier')]
         );
       }
     },
@@ -599,14 +561,19 @@ exports.default = {
   methods: {
     handleCurrentChange: function handleCurrentChange(val) {
       this.internalCurrentPage = this.getValidCurrentPage(val);
+      this.emitChange();
     },
     prev: function prev() {
+      if (this.disabled) return;
       var newVal = this.internalCurrentPage - 1;
       this.internalCurrentPage = this.getValidCurrentPage(newVal);
+      this.emitChange();
     },
     next: function next() {
+      if (this.disabled) return;
       var newVal = this.internalCurrentPage + 1;
       this.internalCurrentPage = this.getValidCurrentPage(newVal);
+      this.emitChange();
     },
     getValidCurrentPage: function getValidCurrentPage(value) {
       value = parseInt(value, 10);
@@ -631,6 +598,16 @@ exports.default = {
       }
 
       return resetValue === undefined ? value : resetValue;
+    },
+    emitChange: function emitChange() {
+      var _this3 = this;
+
+      this.$nextTick(function () {
+        if (_this3.internalCurrentPage !== _this3.lastEmittedPage) {
+          _this3.$emit('current-change', _this3.internalCurrentPage, _this3.params); // ext->modify
+          _this3.lastEmittedPage = _this3.internalCurrentPage;
+        }
+      });
     }
   },
 
@@ -661,7 +638,7 @@ exports.default = {
     },
 
     internalCurrentPage: function internalCurrentPage(newVal, oldVal) {
-      var _this2 = this;
+      var _this4 = this;
 
       newVal = parseInt(newVal, 10);
 
@@ -674,15 +651,13 @@ exports.default = {
 
       if (newVal !== undefined) {
         this.$nextTick(function () {
-          _this2.internalCurrentPage = newVal;
+          _this4.internalCurrentPage = newVal;
           if (oldVal !== newVal) {
-            _this2.$emit('update:currentPage', newVal);
-            _this2.$emit('current-change', _this2.internalCurrentPage);
+            _this4.$emit('update:currentPage', newVal);
           }
         });
       } else {
         this.$emit('update:currentPage', newVal);
-        this.$emit('current-change', this.internalCurrentPage);
       }
     },
     internalPageCount: function internalPageCount(newVal) {
@@ -692,22 +667,24 @@ exports.default = {
         this.internalCurrentPage = 1;
       } else if (oldPage > newVal) {
         this.internalCurrentPage = newVal === 0 ? 1 : newVal;
+        this.userChangePageSize && this.emitChange();
       }
+      this.userChangePageSize = false;
     }
   }
 };
 
 /***/ }),
 
-/***/ 149:
+/***/ 156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8f69d154_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1b2c76b8_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__ = __webpack_require__(157);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -724,7 +701,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8f69d154_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1b2c76b8_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -736,32 +713,32 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 150:
+/***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"el-pager",on:{"click":_vm.onPagerClick}},[(_vm.pageCount > 0)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === 1 }},[_vm._v("1")]):_vm._e(),(_vm.showPrevMore)?_c('li',{staticClass:"el-icon more btn-quickprev",class:[_vm.quickprevIconClass],on:{"mouseenter":function($event){_vm.quickprevIconClass = 'el-icon-d-arrow-left'},"mouseleave":function($event){_vm.quickprevIconClass = 'el-icon-more'}}}):_vm._e(),_vm._l((_vm.pagers),function(pager){return _c('li',{key:pager,staticClass:"number",class:{ active: _vm.currentPage === pager }},[_vm._v(_vm._s(pager))])}),(_vm.showNextMore)?_c('li',{staticClass:"el-icon more btn-quicknext",class:[_vm.quicknextIconClass],on:{"mouseenter":function($event){_vm.quicknextIconClass = 'el-icon-d-arrow-right'},"mouseleave":function($event){_vm.quicknextIconClass = 'el-icon-more'}}}):_vm._e(),(_vm.pageCount > 1)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === _vm.pageCount }},[_vm._v(_vm._s(_vm.pageCount))]):_vm._e()],2)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"el-pager",on:{"click":_vm.onPagerClick}},[(_vm.pageCount > 0)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === 1, disabled: _vm.disabled }},[_vm._v("1")]):_vm._e(),(_vm.showPrevMore)?_c('li',{staticClass:"el-icon more btn-quickprev",class:[_vm.quickprevIconClass, { disabled: _vm.disabled }],on:{"mouseenter":function($event){_vm.onMouseenter('left')},"mouseleave":function($event){_vm.quickprevIconClass = 'el-icon-more'}}}):_vm._e(),_vm._l((_vm.pagers),function(pager){return _c('li',{key:pager,staticClass:"number",class:{ active: _vm.currentPage === pager, disabled: _vm.disabled }},[_vm._v(_vm._s(pager))])}),(_vm.showNextMore)?_c('li',{staticClass:"el-icon more btn-quicknext",class:[_vm.quicknextIconClass, { disabled: _vm.disabled }],on:{"mouseenter":function($event){_vm.onMouseenter('right')},"mouseleave":function($event){_vm.quicknextIconClass = 'el-icon-more'}}}):_vm._e(),(_vm.pageCount > 1)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === _vm.pageCount, disabled: _vm.disabled }},[_vm._v(_vm._s(_vm.pageCount))]):_vm._e()],2)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
-/***/ 151:
+/***/ 158:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/select");
 
 /***/ }),
 
-/***/ 152:
+/***/ 159:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/option");
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/util");
@@ -775,7 +752,7 @@ module.exports = require("element-ui/lib/mixins/locale");
 
 /***/ }),
 
-/***/ 50:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -821,7 +798,9 @@ exports.default = {
   props: {
     currentPage: Number,
 
-    pageCount: Number
+    pageCount: Number,
+
+    disabled: Boolean
   },
 
   watch: {
@@ -836,7 +815,7 @@ exports.default = {
   methods: {
     onPagerClick: function onPagerClick(event) {
       var target = event.target;
-      if (target.tagName === 'UL') {
+      if (target.tagName === 'UL' || this.disabled) {
         return;
       }
 
@@ -865,6 +844,14 @@ exports.default = {
 
       if (newPage !== currentPage) {
         this.$emit('change', newPage);
+      }
+    },
+    onMouseenter: function onMouseenter(direction) {
+      if (this.disabled) return;
+      if (direction === 'left') {
+        this.quickprevIconClass = 'el-icon-d-arrow-left';
+      } else {
+        this.quicknextIconClass = 'el-icon-d-arrow-right';
       }
     }
   },

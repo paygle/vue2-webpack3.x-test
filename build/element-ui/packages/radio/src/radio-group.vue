@@ -60,6 +60,10 @@
       if (![].some.call(radios, radio => radio.checked) && firstLabel) {
         firstLabel.tabIndex = 0;
       }
+      // ext-> compare
+      this.$nextTick(() => {
+        this.dispatch('ElForm', 'compare-change', this);
+      });
     },
     methods: {
       handleKeydown(e) { // 左右上下按键 可以在radio组内切换不同选项
@@ -105,7 +109,9 @@
     },
     watch: {
       value(value) {
+        this.$emit('change', value); // ext-> change
         this.dispatch('ElFormItem', 'el.form.change', [this.value]);
+        this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
       }
     }
   };

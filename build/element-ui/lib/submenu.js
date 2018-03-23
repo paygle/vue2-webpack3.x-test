@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 182);
+/******/ 	return __webpack_require__(__webpack_require__.s = 188);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,15 +183,15 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 182:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(183);
+module.exports = __webpack_require__(189);
 
 
 /***/ }),
 
-/***/ 183:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +199,7 @@ module.exports = __webpack_require__(183);
 
 exports.__esModule = true;
 
-var _submenu = __webpack_require__(184);
+var _submenu = __webpack_require__(190);
 
 var _submenu2 = _interopRequireDefault(_submenu);
 
@@ -214,12 +214,12 @@ exports.default = _submenu2.default;
 
 /***/ }),
 
-/***/ 184:
+/***/ 190:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 var normalizeComponent = __webpack_require__(0)
@@ -250,14 +250,14 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 24:
+/***/ 25:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/transitions/collapse-transition");
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -308,7 +308,14 @@ exports.default = {
 
 /***/ }),
 
-/***/ 59:
+/***/ 6:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/vue-popper");
+
+/***/ }),
+
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -316,11 +323,11 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _collapseTransition = __webpack_require__(24);
+var _collapseTransition = __webpack_require__(25);
 
 var _collapseTransition2 = _interopRequireDefault(_collapseTransition);
 
-var _menuMixin = __webpack_require__(38);
+var _menuMixin = __webpack_require__(39);
 
 var _menuMixin2 = _interopRequireDefault(_menuMixin);
 
@@ -399,7 +406,7 @@ exports.default = {
   computed: {
     // popper option
     appendToBody: function appendToBody() {
-      return this.rootMenu === this.$parent;
+      return this.isFirstLevel;
     },
     menuTransitionName: function menuTransitionName() {
       return this.rootMenu.collapse ? 'el-zoom-in-left' : 'el-zoom-in-top';
@@ -454,6 +461,19 @@ exports.default = {
         borderBottomColor: this.active ? this.rootMenu.activeTextColor ? this.activeTextColor : '' : 'transparent',
         color: this.active ? this.activeTextColor : this.textColor
       };
+    },
+    isFirstLevel: function isFirstLevel() {
+      var isFirstLevel = true;
+      var parent = this.$parent;
+      while (parent && parent !== this.rootMenu) {
+        if (['ElSubmenu', 'ElMenuItemGroup'].indexOf(parent.$options.componentName) > -1) {
+          isFirstLevel = false;
+          break;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return isFirstLevel;
     }
   },
   methods: {
@@ -523,7 +543,7 @@ exports.default = {
       title && (title.style.backgroundColor = this.rootMenu.backgroundColor || '');
     },
     updatePlacement: function updatePlacement() {
-      this.currentPlacement = this.mode === 'horizontal' && this.rootMenu === this.$parent ? 'bottom-start' : 'right-start';
+      this.currentPlacement = this.mode === 'horizontal' && this.isFirstLevel ? 'bottom-start' : 'right-start';
     },
     initPopper: function initPopper() {
       this.referenceElm = this.$el;
@@ -556,7 +576,7 @@ exports.default = {
         disabled = this.disabled,
         popperClass = this.popperClass,
         $slots = this.$slots,
-        $parent = this.$parent;
+        isFirstLevel = this.isFirstLevel;
 
 
     var popupMenu = h(
@@ -593,27 +613,23 @@ exports.default = {
       )]
     );
 
-    var inlineMenu = h(
-      'el-collapse-transition',
-      null,
-      [h(
-        'ul',
-        {
-          attrs: {
-            role: 'menu'
-          },
-          'class': 'el-menu el-menu--inline',
-          directives: [{
-            name: 'show',
-            value: opened
-          }],
+    var inlineMenu = h('el-collapse-transition', [h(
+      'ul',
+      {
+        attrs: {
+          role: 'menu'
+        },
+        'class': 'el-menu el-menu--inline',
+        directives: [{
+          name: 'show',
+          value: opened
+        }],
 
-          style: { backgroundColor: rootMenu.backgroundColor || '' } },
-        [$slots.default]
-      )]
-    );
+        style: { backgroundColor: rootMenu.backgroundColor || '' } },
+      [$slots.default]
+    )]);
 
-    var submenuTitleIcon = rootMenu.mode === 'horizontal' && $parent === rootMenu || rootMenu.mode === 'vertical' && !rootMenu.collapse ? 'el-icon-arrow-down' : 'el-icon-arrow-right';
+    var submenuTitleIcon = rootMenu.mode === 'horizontal' && isFirstLevel || rootMenu.mode === 'vertical' && !rootMenu.collapse ? 'el-icon-arrow-down' : 'el-icon-arrow-right';
 
     return h(
       'li',
@@ -647,22 +663,11 @@ exports.default = {
 
           style: [paddingStyle, titleStyle, { backgroundColor: backgroundColor }]
         },
-        [$slots.title, h(
-          'i',
-          { 'class': ['el-submenu__icon-arrow', submenuTitleIcon] },
-          []
-        )]
+        [$slots.title, h('i', { 'class': ['el-submenu__icon-arrow', submenuTitleIcon] })]
       ), this.isMenuPopup ? popupMenu : inlineMenu]
     );
   }
 };
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/vue-popper");
 
 /***/ })
 

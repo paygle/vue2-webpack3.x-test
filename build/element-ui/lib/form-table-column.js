@@ -61,41 +61,41 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 494);
+/******/ 	return __webpack_require__(__webpack_require__.s = 509);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 12:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 19:
+/***/ 18:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/tag");
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/util");
 
 /***/ }),
 
-/***/ 494:
+/***/ 509:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(495);
+module.exports = __webpack_require__(510);
 
 
 /***/ }),
 
-/***/ 495:
+/***/ 510:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103,7 +103,7 @@ module.exports = __webpack_require__(495);
 
 exports.__esModule = true;
 
-var _tableColumn = __webpack_require__(496);
+var _tableColumn = __webpack_require__(511);
 
 var _tableColumn2 = _interopRequireDefault(_tableColumn);
 
@@ -118,7 +118,7 @@ exports.default = _tableColumn2.default;
 
 /***/ }),
 
-/***/ 496:
+/***/ 511:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,19 +126,19 @@ exports.default = _tableColumn2.default;
 
 exports.__esModule = true;
 
-var _checkbox = __webpack_require__(11);
+var _checkbox = __webpack_require__(12);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
-var _tag = __webpack_require__(19);
+var _tag = __webpack_require__(18);
 
 var _tag2 = _interopRequireDefault(_tag);
 
-var _merge = __webpack_require__(9);
+var _merge = __webpack_require__(8);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -194,20 +194,16 @@ var forced = {
     renderHeader: function renderHeader(h, _ref) {
       var store = _ref.store;
 
-      return h(
-        'el-checkbox',
-        {
-          attrs: {
-            disabled: store.states.data && store.states.data.length === 0,
-            indeterminate: store.states.selection.length > 0 && !this.isAllSelected,
+      return h('el-checkbox', {
+        attrs: {
+          disabled: store.states.data && store.states.data.length === 0,
+          indeterminate: store.states.selection.length > 0 && !this.isAllSelected,
 
-            value: this.isAllSelected },
-          nativeOn: {
-            'click': this.toggleAllSelection
-          }
-        },
-        []
-      );
+          value: this.isAllSelected },
+        nativeOn: {
+          'click': this.toggleAllSelection
+        }
+      });
     },
     renderCell: function renderCell(h, _ref2) {
       var row = _ref2.row,
@@ -215,26 +211,22 @@ var forced = {
           store = _ref2.store,
           $index = _ref2.$index;
 
-      return h(
-        'el-checkbox',
-        {
-          nativeOn: {
-            'click': function click(event) {
-              return event.stopPropagation();
-            }
-          },
-          attrs: {
-            value: store.isSelected(row),
-            disabled: column.selectable ? !column.selectable.call(null, row, $index) : false
-          },
-          on: {
-            'input': function input() {
-              store.commit('rowSelectedChanged', row);
-            }
+      return h('el-checkbox', {
+        nativeOn: {
+          'click': function click(event) {
+            return event.stopPropagation();
           }
         },
-        []
-      );
+        attrs: {
+          value: store.isSelected(row),
+          disabled: column.selectable ? !column.selectable.call(null, row, $index) : false
+        },
+        on: {
+          'input': function input() {
+            store.commit('rowSelectedChanged', row);
+          }
+        }
+      });
     },
     sortable: false,
     resizable: false
@@ -258,11 +250,7 @@ var forced = {
         i = index($index);
       }
 
-      return h(
-        'div',
-        null,
-        [i]
-      );
+      return h('div', [i]);
     },
     sortable: false
   },
@@ -286,11 +274,7 @@ var forced = {
             }
           }
         },
-        [h(
-          'i',
-          { 'class': 'el-icon el-icon-arrow-right' },
-          []
-        )]
+        [h('i', { 'class': 'el-icon el-icon-arrow-right' })]
       );
     },
     sortable: false,
@@ -385,7 +369,10 @@ exports.default = {
     align: String,
     headerAlign: String,
     showTooltipWhenOverflow: Boolean,
-    showOverflowTooltip: Boolean,
+    showOverflowTooltip: { // ext-> modify
+      type: Boolean,
+      default: true
+    },
     fixed: [Boolean, String],
     formatter: Function,
     selectable: Function,
@@ -399,6 +386,7 @@ exports.default = {
       default: true
     },
     index: [Number, Function],
+    colIndex: [Number, String], // ext-> 列序号，辅助 tabindex时使用
     disabledTips: Boolean // ext-> 禁用表单溢出和验证弹窗提示
   },
 
@@ -439,6 +427,8 @@ exports.default = {
 
   created: function created() {
     var _this = this;
+
+    var h = this.$createElement;
 
     this.customRender = this.$options.render;
     this.$options.render = function (h) {
@@ -490,6 +480,7 @@ exports.default = {
       filteredValue: this.filteredValue || [],
       filterPlacement: this.filterPlacement || '',
       index: this.index,
+      colIndex: this.colIndex, // ext-> 序号，辅助 tabindex时使用
       disabledTips: this.disabledTips // ext-> 禁用表单溢出和验证弹窗提示
     });
 
@@ -499,8 +490,19 @@ exports.default = {
 
     var renderCell = column.renderCell;
     var _self = this;
+    var hiddenExpandIcon = ''; // ext-> add
+
+    // ext-> 添加字段名称
+    if (this.prop && owner.store.states.propertys.indexOf(this.prop) < 0) {
+      owner.store.states.propertys.push(this.prop);
+    }
 
     if (type === 'expand') {
+      // ext-> expand 隐藏展开图标
+      if (owner.store.table.expandIconHidden) {
+        column.realWidth = 1;
+        hiddenExpandIcon = 'hidden-expand-icon';
+      }
       owner.renderExpanded = function (h, data) {
         return _self.$scopedSlots.default ? _self.$scopedSlots.default(data) : _self.$slots.default;
       };
@@ -508,7 +510,7 @@ exports.default = {
       column.renderCell = function (h, data) {
         return h(
           'div',
-          { 'class': 'cell' },
+          { 'class': 'cell ' + hiddenExpandIcon },
           [renderCell(h, data, this._renderProxy)]
         );
       };
@@ -531,16 +533,16 @@ exports.default = {
       var $index = data.$index,
           row = data.row,
           column = data.column,
-          store = data.store; // 验证扩展
+          store = data.store; // ext-> 验证
 
       var isTooltip = _self.showOverflowTooltip || _self.showTooltipWhenOverflow;
       var isDisable = getDisabledVal(row, column, store, $index);
       var stopValidate = store.getValidateField('row' + ($index + column.property));
-      data.ctrls = {}; // 添加 控制字段对象
+      data.ctrls = {}; // ext-> 添加 控制字段对象
       data.tabrow = store.states._tabidxs[store.states.data.indexOf(row)] || {}; // tabrow.字段名 获取 tabindex
 
       if (column.property) {
-        // ctrls、tabrow、自定义禁用和验证字段设置, 在外部 <template/> 中使用
+        // ext-> ctrls、tabrow、自定义禁用和验证字段设置, 在外部 <template/> 中使用
         var disabled = store.states.disabledMap['disabled' + ($index + column.property)];
         var validate = store.getValidateField('validate' + ($index + column.property));
         if (typeof disabled !== 'undefined') data.ctrls['disabled' + ($index + column.property)] = disabled;
@@ -548,13 +550,13 @@ exports.default = {
       }
       if (isDisable) store.commit('disErrCount', 'row' + ($index + column.property));
 
-      // 扩展修改
+      // ext-> modify
       return isDisable || stopValidate || _self.type === 'default' && isTooltip ? h(
         'div',
         {
           'class': 'cell el-tooltip row' + $index + column.property,
           style: 'width: ' + ((data.column.realWidth || data.column.width) - 1) + 'px' },
-        [renderCell(h, data)]
+        [renderCell(h, data, _self)]
       ) : h(
         'el-table-item',
         {
@@ -566,7 +568,7 @@ exports.default = {
 
             value: row[column.property] },
           'class': 'row' + ($index + column.property) },
-        [renderCell(h, data)]
+        [renderCell(h, data, _self)]
       );
     };
   },
@@ -644,6 +646,11 @@ exports.default = {
       if (this.columnConfig) {
         this.columnConfig.index = newVal;
       }
+    },
+    formatter: function formatter(newVal) {
+      if (this.columnConfig) {
+        this.columnConfig.formatter = newVal;
+      }
     }
   },
 
@@ -657,14 +664,14 @@ exports.default = {
     } else {
       columnIndex = [].indexOf.call(parent.$el.children, this.$el);
     }
-
+    owner.store.setColIndexOrder(this.colIndex, this.prop); // ext-> add
     owner.store.commit('insertColumn', this.columnConfig, columnIndex, this.isSubColumn ? parent.columnConfig : null);
   }
 };
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/merge");

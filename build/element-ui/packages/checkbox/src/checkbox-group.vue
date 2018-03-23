@@ -35,7 +35,9 @@
 
     watch: {
       value(value) {
+        this.$emit('change', value); // ext-> change
         this.dispatch('ElFormItem', 'el.form.change', [value]);
+        this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
       }
     },
     methods: {
@@ -47,6 +49,11 @@
       inputMouseout(e) {
         this.dispatch('ElFormItem', 'el.form.mouseout', [e]);
       }
+    },
+    mounted() { // ext-> compare
+      this.$nextTick(() => {
+        this.dispatch('ElForm', 'compare-change', [this]);
+      });
     }
   };
 </script>

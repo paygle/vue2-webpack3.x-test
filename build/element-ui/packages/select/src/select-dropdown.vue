@@ -58,7 +58,15 @@
 
     watch: {
       '$parent.inputWidth'() {
-        this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
+        // this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
+        // ext-> modify to dropMinwidth
+        let dropMinWd = this.$parent.dropMinwidth;
+        let parentMinWd = this.$parent.$el.getBoundingClientRect().width;
+        if (dropMinWd && dropMinWd > parentMinWd) {
+          this.minWidth = dropMinWd + 'px';
+        } else {
+          this.minWidth = parentMinWd + 'px';
+        }
       }
     },
 

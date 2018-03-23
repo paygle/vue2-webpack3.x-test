@@ -88,7 +88,7 @@
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: 14px;
+    font-size: 12px; /* ext-> modify */
     color: $--color-text-regular;
     line-height: 40px;
     padding: 0 12px 0 0;
@@ -97,8 +97,12 @@
   @include e(content) {
     line-height: 40px;
     position: relative;
-    font-size: 14px;
+    font-size: 12px; /* ext-> modify */
     @include utils-clearfix;
+
+    .el-input-group {
+      vertical-align: middle;
+    }
   }
   @include e(error) {
     color: $--color-danger;

@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 332);
+/******/ 	return __webpack_require__(__webpack_require__.s = 335);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,36 +183,7 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/checkbox");
-
-/***/ }),
-
-/***/ 15:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/locale");
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/transitions/collapse-transition");
-
-/***/ }),
-
-/***/ 332:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(333);
-
-
-/***/ }),
-
-/***/ 333:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -220,7 +191,755 @@ module.exports = __webpack_require__(333);
 
 exports.__esModule = true;
 
-var _tree = __webpack_require__(334);
+var _treeStore = __webpack_require__(338);
+
+var _treeStore2 = _interopRequireDefault(_treeStore);
+
+var _util = __webpack_require__(38);
+
+var _treeNode = __webpack_require__(340);
+
+var _treeNode2 = _interopRequireDefault(_treeNode);
+
+var _locale = __webpack_require__(13);
+
+var _emitter = __webpack_require__(1);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'ElTree',
+
+  mixins: [_emitter2.default],
+
+  components: {
+    ElTreeNode: _treeNode2.default
+  },
+
+  data: function data() {
+    return {
+      store: null,
+      root: null,
+      currentNode: null,
+      treeItems: null,
+      checkboxItems: []
+    };
+  },
+
+
+  props: {
+    data: {
+      type: Array
+    },
+    emptyText: {
+      type: String,
+      default: function _default() {
+        return (0, _locale.t)('el.tree.emptyText');
+      }
+    },
+    renderAfterExpand: {
+      type: Boolean,
+      default: true
+    },
+    nodeKey: String,
+    checkStrictly: Boolean,
+    defaultExpandAll: Boolean,
+    expandOnClickNode: {
+      type: Boolean,
+      default: true
+    },
+    checkDescendants: {
+      type: Boolean,
+      default: false
+    },
+    autoExpandParent: {
+      type: Boolean,
+      default: true
+    },
+    defaultCheckedKeys: Array,
+    defaultExpandedKeys: Array,
+    renderContent: Function,
+    showCheckbox: {
+      type: Boolean,
+      default: false
+    },
+    draggable: {
+      type: Boolean,
+      default: false
+    },
+    allowDrag: Function,
+    allowDrop: Function,
+    props: {
+      default: function _default() {
+        return {
+          children: 'children',
+          label: 'label',
+          icon: 'icon',
+          disabled: 'disabled'
+        };
+      }
+    },
+    lazy: {
+      type: Boolean,
+      default: false
+    },
+    highlightCurrent: Boolean,
+    load: Function,
+    filterNodeMethod: Function,
+    accordion: Boolean,
+    indent: {
+      type: Number,
+      default: 18
+    }
+  },
+
+  computed: {
+    children: {
+      set: function set(value) {
+        this.data = value;
+      },
+      get: function get() {
+        return this.data;
+      }
+    },
+    treeItemArray: function treeItemArray() {
+      return Array.prototype.slice.call(this.treeItems);
+    },
+    dragIndicatorOffset: function dragIndicatorOffset() {
+      if (!this.dropAt) return;
+
+      var dom = this.store.dragTargetDom;
+      if (this.store.dragSourceNode.level !== this.store.dragTargetNode.level) {
+        return dom.offsetTop + dom.querySelector('.el-tree-node__content').scrollHeight + 'px';
+      } else {
+        return dom.offsetTop + dom.scrollHeight + 'px';
+      }
+    },
+    dropAt: function dropAt() {
+      var target = this.store.dragTargetNode;
+      var from = this.store.dragSourceNode;
+      if (!target || !from) {
+        return null;
+      }
+      if (typeof this.allowDrop === 'function' && !this.allowDrop(from, target)) {
+        return null;
+      }
+
+      if (target.level === from.level - 1) {
+        return {
+          parent: target,
+          index: 0
+        };
+      }
+      if (target.level === from.level) {
+        return {
+          parent: target.parent,
+          index: target.parent.childNodes.indexOf(target) + 1
+        };
+      }
+      return null;
+    }
+  },
+
+  watch: {
+    defaultCheckedKeys: function defaultCheckedKeys(newVal) {
+      this.store.defaultCheckedKeys = newVal;
+      this.store.setDefaultCheckedKey(newVal);
+    },
+    defaultExpandedKeys: function defaultExpandedKeys(newVal) {
+      this.store.defaultExpandedKeys = newVal;
+      this.store.setDefaultExpandedKeys(newVal);
+    },
+    data: function data(newVal) {
+      this.store.setData(newVal);
+    },
+    checkboxItems: function checkboxItems(val) {
+      Array.prototype.forEach.call(val, function (checkbox) {
+        checkbox.setAttribute('tabindex', -1);
+      });
+    }
+  },
+
+  methods: {
+    filter: function filter(value) {
+      if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
+      this.store.filter(value);
+    },
+    getNodeKey: function getNodeKey(node) {
+      return (0, _util.getNodeKey)(this.nodeKey, node.data);
+    },
+    getNodePath: function getNodePath(data) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getNodePath');
+      var node = this.store.getNode(data);
+      if (!node) return [];
+      var path = [node.data];
+      var parent = node.parent;
+      while (parent && parent !== this.root) {
+        path.push(parent.data);
+        parent = parent.parent;
+      }
+      return path.reverse();
+    },
+    getCheckedNodes: function getCheckedNodes(leafOnly) {
+      return this.store.getCheckedNodes(leafOnly);
+    },
+    getCheckedKeys: function getCheckedKeys(leafOnly) {
+      return this.store.getCheckedKeys(leafOnly);
+    },
+    getCurrentNode: function getCurrentNode() {
+      var currentNode = this.store.getCurrentNode();
+      return currentNode ? currentNode.data : null;
+    },
+    getCurrentKey: function getCurrentKey() {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getCurrentKey');
+      var currentNode = this.getCurrentNode();
+      return currentNode ? currentNode[this.nodeKey] : null;
+    },
+    setCheckedNodes: function setCheckedNodes(nodes, leafOnly) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedNodes');
+      this.store.setCheckedNodes(nodes, leafOnly);
+    },
+    setCheckedKeys: function setCheckedKeys(keys, leafOnly) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedKeys');
+      this.store.setCheckedKeys(keys, leafOnly);
+    },
+    setChecked: function setChecked(data, checked, deep) {
+      this.store.setChecked(data, checked, deep);
+    },
+    getHalfCheckedNodes: function getHalfCheckedNodes() {
+      return this.store.getHalfCheckedNodes();
+    },
+    getHalfCheckedKeys: function getHalfCheckedKeys() {
+      return this.store.getHalfCheckedKeys();
+    },
+    setCurrentNode: function setCurrentNode(node) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentNode');
+      this.store.setUserCurrentNode(node);
+    },
+    setCurrentKey: function setCurrentKey(key) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentKey');
+      this.store.setCurrentNodeKey(key);
+    },
+    getNode: function getNode(data) {
+      return this.store.getNode(data);
+    },
+    remove: function remove(data) {
+      this.store.remove(data);
+    },
+    append: function append(data, parentNode) {
+      this.store.append(data, parentNode);
+    },
+    insertBefore: function insertBefore(data, refNode) {
+      this.store.insertBefore(data, refNode);
+    },
+    insertAfter: function insertAfter(data, refNode) {
+      this.store.insertAfter(data, refNode);
+    },
+    handleNodeExpand: function handleNodeExpand(nodeData, node, instance) {
+      this.broadcast('ElTreeNode', 'tree-node-expand', node);
+      this.$emit('node-expand', nodeData, node, instance);
+    },
+    updateKeyChildren: function updateKeyChildren(key, data) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
+      this.store.updateChildren(key, data);
+    },
+    initTabindex: function initTabindex() {
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+      var checkedItem = this.$el.querySelectorAll('.is-checked[role=treeitem]');
+      if (checkedItem.length) {
+        checkedItem[0].setAttribute('tabindex', 0);
+        return;
+      }
+      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0);
+    },
+    handelKeydown: function handelKeydown(ev) {
+      var currentItem = ev.target;
+      if (currentItem.className.indexOf('el-tree-node') === -1) return;
+      ev.preventDefault();
+      var keyCode = ev.keyCode;
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      var currentIndex = this.treeItemArray.indexOf(currentItem);
+      var nextIndex = void 0;
+      if ([38, 40].indexOf(keyCode) > -1) {
+        // up、down
+        if (keyCode === 38) {
+          // up
+          nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0;
+        } else {
+          nextIndex = currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
+        }
+        this.treeItemArray[nextIndex].focus(); // 选中
+      }
+      var hasInput = currentItem.querySelector('[type="checkbox"]');
+      if ([37, 39].indexOf(keyCode) > -1) {
+        // left、right 展开
+        currentItem.click(); // 选中
+      }
+      if ([13, 32].indexOf(keyCode) > -1) {
+        // space enter选中checkbox
+        if (hasInput) {
+          hasInput.click();
+        }
+      }
+    }
+  },
+
+  created: function created() {
+    this.isTree = true;
+
+    this.store = new _treeStore2.default({
+      key: this.nodeKey,
+      data: this.data,
+      lazy: this.lazy,
+      props: this.props,
+      load: this.load,
+      currentNodeKey: this.currentNodeKey,
+      checkStrictly: this.checkStrictly,
+      checkDescendants: this.checkDescendants,
+      defaultCheckedKeys: this.defaultCheckedKeys,
+      defaultExpandedKeys: this.defaultExpandedKeys,
+      autoExpandParent: this.autoExpandParent,
+      defaultExpandAll: this.defaultExpandAll,
+      filterNodeMethod: this.filterNodeMethod
+    });
+
+    this.root = this.store.root;
+  },
+  mounted: function mounted() {
+    this.initTabindex();
+    this.$el.addEventListener('keydown', this.handelKeydown);
+  },
+  updated: function updated() {
+    this.treeItems = this.$el.querySelectorAll('[role=treeitem]');
+    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 102:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _collapseTransition = __webpack_require__(25);
+
+var _collapseTransition2 = _interopRequireDefault(_collapseTransition);
+
+var _checkbox = __webpack_require__(12);
+
+var _checkbox2 = _interopRequireDefault(_checkbox);
+
+var _emitter = __webpack_require__(1);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+var _util = __webpack_require__(38);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'ElTreeNode',
+
+  componentName: 'ElTreeNode',
+
+  mixins: [_emitter2.default],
+
+  props: {
+    node: {
+      default: function _default() {
+        return {};
+      }
+    },
+    props: {},
+    renderContent: Function,
+    renderAfterExpand: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  components: {
+    ElCollapseTransition: _collapseTransition2.default,
+    ElCheckbox: _checkbox2.default,
+    NodeContent: {
+      props: {
+        node: {
+          required: true
+        }
+      },
+      render: function render(h) {
+        var parent = this.$parent;
+        var tree = parent.tree;
+        var node = this.node;
+        var data = node.data,
+            store = node.store;
+
+        return parent.renderContent ? parent.renderContent.call(parent._renderProxy, h, { _self: tree.$vnode.context, node: node, data: data, store: store }) : tree.$scopedSlots.default ? tree.$scopedSlots.default({ node: node, data: data }) : h(
+          'span',
+          { 'class': 'el-tree-node__label' },
+          [this.node.label]
+        );
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      tree: null,
+      expanded: false,
+      childNodeRendered: false,
+      showCheckbox: false,
+      oldChecked: null,
+      oldIndeterminate: null
+    };
+  },
+
+
+  watch: {
+    'node.indeterminate': function nodeIndeterminate(val) {
+      this.handleSelectChange(this.node.checked, val);
+    },
+    'node.checked': function nodeChecked(val) {
+      this.handleSelectChange(val, this.node.indeterminate);
+    },
+    'node.expanded': function nodeExpanded(val) {
+      var _this = this;
+
+      this.$nextTick(function () {
+        return _this.expanded = val;
+      });
+      if (val) {
+        this.childNodeRendered = true;
+      }
+    }
+  },
+
+  methods: {
+    getNodeKey: function getNodeKey(node) {
+      return (0, _util.getNodeKey)(this.tree.nodeKey, node.data);
+    },
+    handleSelectChange: function handleSelectChange(checked, indeterminate) {
+      if (this.oldChecked !== checked && this.oldIndeterminate !== indeterminate) {
+        this.tree.$emit('check-change', this.node.data, checked, indeterminate);
+      }
+      this.oldChecked = checked;
+      this.indeterminate = indeterminate;
+    },
+    handleClick: function handleClick() {
+      var store = this.tree.store;
+      store.setCurrentNode(this.node);
+      this.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode);
+      this.tree.currentNode = this;
+      if (this.tree.expandOnClickNode) {
+        this.handleExpandIconClick();
+      }
+      this.tree.$emit('node-click', this.node.data, this.node, this);
+    },
+    handleContextMenu: function handleContextMenu(event) {
+      if (this.tree._events['node-contextmenu'] && this.tree._events['node-contextmenu'].length > 0) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      this.tree.$emit('node-contextmenu', event, this.node.data, this.node, this);
+    },
+    handleExpandIconClick: function handleExpandIconClick() {
+      if (this.node.isLeaf) return;
+      if (this.expanded) {
+        this.tree.$emit('node-collapse', this.node.data, this.node, this);
+        this.node.collapse();
+      } else {
+        this.node.expand();
+        this.$emit('node-expand', this.node.data, this.node, this);
+      }
+    },
+    handleCheckChange: function handleCheckChange(value, ev) {
+      var _this2 = this;
+
+      this.node.setChecked(ev.target.checked, !this.tree.checkStrictly);
+      this.$nextTick(function () {
+        var store = _this2.tree.store;
+        _this2.tree.$emit('check', _this2.node.data, {
+          checkedNodes: store.getCheckedNodes(),
+          checkedKeys: store.getCheckedKeys(),
+          halfCheckedNodes: store.getHalfCheckedNodes(),
+          halfCheckedKeys: store.getHalfCheckedKeys()
+        });
+      });
+    },
+    handleChildNodeExpand: function handleChildNodeExpand(nodeData, node, instance) {
+      this.broadcast('ElTreeNode', 'tree-node-expand', node);
+      this.tree.$emit('node-expand', nodeData, node, instance);
+    },
+    handleDragStart: function handleDragStart(ev) {
+      if (typeof this.tree.allowDrag === 'function' && !this.tree.allowDrag(this.node)) {
+        ev.preventDefault();
+        return false;
+      }
+      ev.dataTransfer.effectAllowed = 'move';
+      ev.dataTransfer.setData('text/plain', this.node.label);
+      this.node.store.dragSourceNode = this.node;
+      this.node.store.dragFromDom = this.$refs.node;
+      this.node.store.allowDrop = true;
+      this.tree.$emit('node-drag-start', this.node, ev);
+    },
+    handleDragEnter: function handleDragEnter(ev) {
+      ev.preventDefault();
+      var store = this.node.store;
+      var from = store.dragSourceNode;
+      var node = this.node;
+      var dom = this.$refs.node;
+
+      if (!from) return;
+
+      while (node.level > from.level && node.level > 1) {
+        node = node.parent;
+        dom = this.$parent.$refs.node;
+      }
+      store.dragTargetNode = node;
+      store.dragTargetDom = dom;
+
+      if (!this.tree.dropAt) {
+        ev.dataTransfer.dropEffect = 'none';
+        store.allowDrop = false;
+      } else {
+        ev.dataTransfer.dropEffect = 'move';
+        store.allowDrop = true;
+      }
+
+      this.tree.$emit('node-drag-enter', this.node, ev);
+    },
+    handleDragLeave: function handleDragLeave(ev) {
+      ev.preventDefault();
+      if (!this.node.store.dragSourceNode) return;
+      this.tree.$emit('node-drag-leave', this.node, ev);
+    },
+    handleDragOver: function handleDragOver(ev) {
+      ev.dataTransfer.dropEffect = this.node.store.allowDrop ? 'move' : 'none';
+      ev.preventDefault();
+    },
+    handleDrop: function handleDrop(ev) {
+      ev.preventDefault();
+    },
+    handleDragEnd: function handleDragEnd(ev) {
+      var from = this.node.store.dragSourceNode;
+      var target = this.node.store.dragTargetNode;
+      var position = this.tree.dropAt;
+
+      if (!from) return;
+
+      if (typeof this.tree.allowDrop === 'function' && !this.tree.allowDrop(from, target)) {
+        position = null;
+      }
+      ev.preventDefault();
+      ev.dataTransfer.dropEffect = 'move';
+
+      if (target && from && from !== target && position) {
+        var index = from.parent.childNodes.indexOf(from);
+        from.parent.childNodes.splice(index, 1);
+        if (from.parent.childNodes.length === 0) {
+          from.parent.isLeaf = true;
+        }
+        position.parent.childNodes.splice(position.index, 0, from);
+        from.parent = position.parent;
+        from.parent.isLeaf = false;
+      }
+      this.tree.$emit('node-drag-end', from, target, position, ev);
+      this.node.store.dragTargetNode = null;
+      this.node.store.dragSourceNode = null;
+      this.node.store.dragTargetDom = null;
+
+      return false;
+    }
+  },
+
+  created: function created() {
+    var _this3 = this;
+
+    var parent = this.$parent;
+
+    if (parent.isTree) {
+      this.tree = parent;
+    } else {
+      this.tree = parent.tree;
+    }
+
+    var tree = this.tree;
+    if (!tree) {
+      console.warn('Can not find node\'s tree.');
+    }
+
+    var props = tree.props || {};
+    var childrenKey = props['children'] || 'children';
+
+    this.$watch('node.data.' + childrenKey, function () {
+      _this3.node.updateChildren();
+    });
+
+    this.showCheckbox = tree.showCheckbox;
+
+    if (this.node.expanded) {
+      this.expanded = true;
+      this.childNodeRendered = true;
+    }
+
+    if (this.tree.accordion) {
+      this.$on('tree-node-expand', function (node) {
+        if (_this3.node !== node) {
+          _this3.node.collapse();
+        }
+      });
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 12:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/checkbox");
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/locale");
+
+/***/ }),
+
+/***/ 25:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/transitions/collapse-transition");
+
+/***/ }),
+
+/***/ 335:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(336);
+
+
+/***/ }),
+
+/***/ 336:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _tree = __webpack_require__(337);
 
 var _tree2 = _interopRequireDefault(_tree);
 
@@ -235,15 +954,15 @@ exports.default = _tree2.default;
 
 /***/ }),
 
-/***/ 334:
+/***/ 337:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_66319e45_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1b093e1a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__ = __webpack_require__(342);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -260,7 +979,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_66319e45_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1b093e1a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -272,7 +991,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 335:
+/***/ 338:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -282,11 +1001,11 @@ exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _node = __webpack_require__(336);
+var _node = __webpack_require__(339);
 
 var _node2 = _interopRequireDefault(_node);
 
-var _util = __webpack_require__(37);
+var _util = __webpack_require__(38);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -300,6 +1019,11 @@ var TreeStore = function () {
 
     this.currentNode = null;
     this.currentNodeKey = null;
+
+    this.dragSourceNode = null;
+    this.dragTargetNode = null;
+    this.dragTargetDom = null;
+    this.allowDrop = true;
 
     for (var option in options) {
       if (options.hasOwnProperty(option)) {
@@ -660,7 +1384,7 @@ exports.default = TreeStore;
 
 /***/ }),
 
-/***/ 336:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -669,15 +1393,13 @@ exports.default = TreeStore;
 exports.__esModule = true;
 exports.getChildState = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _merge = __webpack_require__(9);
+var _merge = __webpack_require__(8);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _util = __webpack_require__(37);
+var _util = __webpack_require__(38);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -989,54 +1711,48 @@ var Node = function () {
     if (this.store.checkStrictly) return;
 
     if (!(this.shouldLoadData() && !this.store.checkDescendants)) {
-      var _ret = function () {
-        var _getChildState2 = getChildState(_this3.childNodes),
-            all = _getChildState2.all,
-            allWithoutDisable = _getChildState2.allWithoutDisable;
+      var _getChildState2 = getChildState(this.childNodes),
+          all = _getChildState2.all,
+          allWithoutDisable = _getChildState2.allWithoutDisable;
 
-        if (!_this3.isLeaf && !all && allWithoutDisable) {
-          _this3.checked = false;
-          value = false;
-        }
+      if (!this.isLeaf && !all && allWithoutDisable) {
+        this.checked = false;
+        value = false;
+      }
 
-        var handleDescendants = function handleDescendants() {
-          if (deep) {
-            var childNodes = _this3.childNodes;
-            for (var i = 0, j = childNodes.length; i < j; i++) {
-              var child = childNodes[i];
-              passValue = passValue || value !== false;
-              var isCheck = child.disabled ? child.checked : passValue;
-              child.setChecked(isCheck, deep, true, passValue);
-            }
-
-            var _getChildState3 = getChildState(childNodes),
-                half = _getChildState3.half,
-                _all = _getChildState3.all;
-
-            if (!_all) {
-              _this3.checked = _all;
-              _this3.indeterminate = half;
-            }
+      var handleDescendants = function handleDescendants() {
+        if (deep) {
+          var childNodes = _this3.childNodes;
+          for (var i = 0, j = childNodes.length; i < j; i++) {
+            var child = childNodes[i];
+            passValue = passValue || value !== false;
+            var isCheck = child.disabled ? child.checked : passValue;
+            child.setChecked(isCheck, deep, true, passValue);
           }
-        };
 
-        if (_this3.shouldLoadData()) {
-          // Only work on lazy load data.
-          _this3.loadData(function () {
-            handleDescendants();
-            reInitChecked(_this3);
-          }, {
-            checked: value !== false
-          });
-          return {
-            v: void 0
-          };
-        } else {
-          handleDescendants();
+          var _getChildState3 = getChildState(childNodes),
+              half = _getChildState3.half,
+              _all = _getChildState3.all;
+
+          if (!_all) {
+            _this3.checked = _all;
+            _this3.indeterminate = half;
+          }
         }
-      }();
+      };
 
-      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+      if (this.shouldLoadData()) {
+        // Only work on lazy load data.
+        this.loadData(function () {
+          handleDescendants();
+          reInitChecked(_this3);
+        }, {
+          checked: value !== false
+        });
+        return;
+      } else {
+        handleDescendants();
+      }
     }
 
     var parent = this.parent;
@@ -1159,15 +1875,15 @@ exports.default = Node;
 
 /***/ }),
 
-/***/ 337:
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_162e7ff4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ae55b06e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__ = __webpack_require__(341);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -1184,7 +1900,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tree_node_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_162e7ff4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ae55b06e_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tree_node_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -1196,37 +1912,41 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 338:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {
 var this$1 = this;
-var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.node.visible),expression:"node.visible"}],staticClass:"el-tree-node",class:{
+var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.node.visible),expression:"node.visible"}],ref:"node",staticClass:"el-tree-node",class:{
     'is-expanded': _vm.expanded,
     'is-current': _vm.tree.store.currentNode === _vm.node,
     'is-hidden': !_vm.node.visible,
     'is-focusable': !_vm.node.disabled,
     'is-checked': !_vm.node.disabled && _vm.node.checked
-  },attrs:{"role":"treeitem","tabindex":"-1","aria-expanded":_vm.expanded,"aria-disabled":_vm.node.disabled,"aria-checked":_vm.node.checked},on:{"click":function($event){$event.stopPropagation();_vm.handleClick($event)},"contextmenu":function ($event) { return this$1.handleContextMenu($event); }}},[_c('div',{staticClass:"el-tree-node__content",style:({ 'padding-left': (_vm.node.level - 1) * _vm.tree.indent + 'px' })},[_c('span',{staticClass:"el-tree-node__expand-icon el-icon-caret-right",class:{ 'is-leaf': _vm.node.isLeaf, expanded: !_vm.node.isLeaf && _vm.expanded },on:{"click":function($event){$event.stopPropagation();_vm.handleExpandIconClick($event)}}}),(_vm.showCheckbox)?_c('el-checkbox',{attrs:{"indeterminate":_vm.node.indeterminate,"disabled":!!_vm.node.disabled},on:{"change":_vm.handleCheckChange},nativeOn:{"click":function($event){$event.stopPropagation();}},model:{value:(_vm.node.checked),callback:function ($$v) {_vm.$set(_vm.node, "checked", $$v)},expression:"node.checked"}}):_vm._e(),(_vm.node.loading)?_c('span',{staticClass:"el-tree-node__loading-icon el-icon-loading"}):_vm._e(),_c('node-content',{attrs:{"node":_vm.node}})],1),_c('el-collapse-transition',[(!_vm.renderAfterExpand || _vm.childNodeRendered)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.expanded),expression:"expanded"}],staticClass:"el-tree-node__children",attrs:{"role":"group","aria-expanded":_vm.expanded}},_vm._l((_vm.node.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"render-content":_vm.renderContent,"render-after-expand":_vm.renderAfterExpand,"node":child},on:{"node-expand":_vm.handleChildNodeExpand}})})):_vm._e()])],1)}
+  },attrs:{"role":"treeitem","tabindex":"-1","aria-expanded":_vm.expanded,"aria-disabled":_vm.node.disabled,"aria-checked":_vm.node.checked,"draggable":_vm.tree.draggable},on:{"click":function($event){$event.stopPropagation();return _vm.handleClick($event)},"contextmenu":function ($event) { return this$1.handleContextMenu($event); },"dragstart":function($event){$event.stopPropagation();return _vm.handleDragStart($event)},"dragenter":function($event){$event.stopPropagation();return _vm.handleDragEnter($event)},"dragleave":function($event){$event.stopPropagation();return _vm.handleDragLeave($event)},"dragover":function($event){$event.stopPropagation();return _vm.handleDragOver($event)},"dragend":function($event){$event.stopPropagation();return _vm.handleDragEnd($event)},"drop":function($event){$event.stopPropagation();return _vm.handleDrop($event)}}},[_c('div',{staticClass:"el-tree-node__content",style:({ 'padding-left': (_vm.node.level - 1) * _vm.tree.indent + 'px' })},[_c('span',{staticClass:"el-tree-node__expand-icon el-icon-caret-right",class:{ 'is-leaf': _vm.node.isLeaf, expanded: !_vm.node.isLeaf && _vm.expanded },on:{"click":function($event){$event.stopPropagation();return _vm.handleExpandIconClick($event)}}}),(_vm.showCheckbox)?_c('el-checkbox',{attrs:{"indeterminate":_vm.node.indeterminate,"disabled":!!_vm.node.disabled},on:{"change":_vm.handleCheckChange},nativeOn:{"click":function($event){$event.stopPropagation();}},model:{value:(_vm.node.checked),callback:function ($$v) {_vm.$set(_vm.node, "checked", $$v)},expression:"node.checked"}}):_vm._e(),(_vm.node.loading)?_c('span',{staticClass:"el-tree-node__loading-icon el-icon-loading"}):_vm._e(),_c('node-content',{attrs:{"node":_vm.node}})],1),_c('el-collapse-transition',[(!_vm.renderAfterExpand || _vm.childNodeRendered)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.expanded),expression:"expanded"}],staticClass:"el-tree-node__children",attrs:{"role":"group","aria-expanded":_vm.expanded}},_vm._l((_vm.node.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"render-content":_vm.renderContent,"render-after-expand":_vm.renderAfterExpand,"node":child},on:{"node-expand":_vm.handleChildNodeExpand}})})):_vm._e()])],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
-/***/ 339:
+/***/ 342:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-tree",class:{ 'el-tree--highlight-current': _vm.highlightCurrent },attrs:{"role":"tree"}},[_vm._l((_vm.root.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"node":child,"props":_vm.props,"render-after-expand":_vm.renderAfterExpand,"render-content":_vm.renderContent},on:{"node-expand":_vm.handleNodeExpand}})}),(!_vm.root.childNodes || _vm.root.childNodes.length === 0)?_c('div',{staticClass:"el-tree__empty-block"},[_c('span',{staticClass:"el-tree__empty-text"},[_vm._v(_vm._s(_vm.emptyText))])]):_vm._e()],2)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-tree",class:{
+    'el-tree--highlight-current': _vm.highlightCurrent,
+    dragging: !!_vm.store.dragSourceNode,
+    'drop-not-allow': !_vm.store.allowDrop
+  },attrs:{"role":"tree"}},[_vm._l((_vm.root.childNodes),function(child){return _c('el-tree-node',{key:_vm.getNodeKey(child),attrs:{"node":child,"props":_vm.props,"render-after-expand":_vm.renderAfterExpand,"render-content":_vm.renderContent},on:{"node-expand":_vm.handleNodeExpand}})}),(!_vm.root.childNodes || _vm.root.childNodes.length === 0)?_c('div',{staticClass:"el-tree__empty-block"},[_c('span',{staticClass:"el-tree__empty-text"},[_vm._v(_vm._s(_vm.emptyText))])]):_vm._e(),(!!_vm.dropAt)?_c('div',{ref:"drag-indicator",staticClass:"el-tree__drag-indicator",style:({top: _vm.dragIndicatorOffset})}):_vm._e()],2)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
-/***/ 37:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1252,587 +1972,10 @@ var getNodeKey = exports.getNodeKey = function getNodeKey(key, data) {
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/merge");
-
-/***/ }),
-
-/***/ 98:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _treeStore = __webpack_require__(335);
-
-var _treeStore2 = _interopRequireDefault(_treeStore);
-
-var _util = __webpack_require__(37);
-
-var _treeNode = __webpack_require__(337);
-
-var _treeNode2 = _interopRequireDefault(_treeNode);
-
-var _locale = __webpack_require__(15);
-
-var _emitter = __webpack_require__(1);
-
-var _emitter2 = _interopRequireDefault(_emitter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  name: 'ElTree',
-
-  mixins: [_emitter2.default],
-
-  components: {
-    ElTreeNode: _treeNode2.default
-  },
-
-  data: function data() {
-    return {
-      store: null,
-      root: null,
-      currentNode: null,
-      treeItems: null,
-      checkboxItems: []
-    };
-  },
-
-
-  props: {
-    data: {
-      type: Array
-    },
-    emptyText: {
-      type: String,
-      default: function _default() {
-        return (0, _locale.t)('el.tree.emptyText');
-      }
-    },
-    renderAfterExpand: {
-      type: Boolean,
-      default: true
-    },
-    nodeKey: String,
-    checkStrictly: Boolean,
-    defaultExpandAll: Boolean,
-    expandOnClickNode: {
-      type: Boolean,
-      default: true
-    },
-    checkDescendants: {
-      type: Boolean,
-      default: false
-    },
-    autoExpandParent: {
-      type: Boolean,
-      default: true
-    },
-    defaultCheckedKeys: Array,
-    defaultExpandedKeys: Array,
-    renderContent: Function,
-    showCheckbox: {
-      type: Boolean,
-      default: false
-    },
-    props: {
-      default: function _default() {
-        return {
-          children: 'children',
-          label: 'label',
-          icon: 'icon',
-          disabled: 'disabled'
-        };
-      }
-    },
-    lazy: {
-      type: Boolean,
-      default: false
-    },
-    highlightCurrent: Boolean,
-    load: Function,
-    filterNodeMethod: Function,
-    accordion: Boolean,
-    indent: {
-      type: Number,
-      default: 18
-    }
-  },
-
-  computed: {
-    children: {
-      set: function set(value) {
-        this.data = value;
-      },
-      get: function get() {
-        return this.data;
-      }
-    },
-    treeItemArray: function treeItemArray() {
-      return Array.prototype.slice.call(this.treeItems);
-    }
-  },
-
-  watch: {
-    defaultCheckedKeys: function defaultCheckedKeys(newVal) {
-      this.store.defaultCheckedKeys = newVal;
-      this.store.setDefaultCheckedKey(newVal);
-    },
-    defaultExpandedKeys: function defaultExpandedKeys(newVal) {
-      this.store.defaultExpandedKeys = newVal;
-      this.store.setDefaultExpandedKeys(newVal);
-    },
-    data: function data(newVal) {
-      this.store.setData(newVal);
-    },
-    checkboxItems: function checkboxItems(val) {
-      Array.prototype.forEach.call(val, function (checkbox) {
-        checkbox.setAttribute('tabindex', -1);
-      });
-    }
-  },
-
-  methods: {
-    filter: function filter(value) {
-      if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
-      this.store.filter(value);
-    },
-    getNodeKey: function getNodeKey(node) {
-      return (0, _util.getNodeKey)(this.nodeKey, node.data);
-    },
-    getNodePath: function getNodePath(data) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getNodePath');
-      var node = this.store.getNode(data);
-      if (!node) return [];
-      var path = [node.data];
-      var parent = node.parent;
-      while (parent && parent !== this.root) {
-        path.push(parent.data);
-        parent = parent.parent;
-      }
-      return path.reverse();
-    },
-    getCheckedNodes: function getCheckedNodes(leafOnly) {
-      return this.store.getCheckedNodes(leafOnly);
-    },
-    getCheckedKeys: function getCheckedKeys(leafOnly) {
-      return this.store.getCheckedKeys(leafOnly);
-    },
-    getCurrentNode: function getCurrentNode() {
-      var currentNode = this.store.getCurrentNode();
-      return currentNode ? currentNode.data : null;
-    },
-    getCurrentKey: function getCurrentKey() {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getCurrentKey');
-      var currentNode = this.getCurrentNode();
-      return currentNode ? currentNode[this.nodeKey] : null;
-    },
-    setCheckedNodes: function setCheckedNodes(nodes, leafOnly) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedNodes');
-      this.store.setCheckedNodes(nodes, leafOnly);
-    },
-    setCheckedKeys: function setCheckedKeys(keys, leafOnly) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedKeys');
-      this.store.setCheckedKeys(keys, leafOnly);
-    },
-    setChecked: function setChecked(data, checked, deep) {
-      this.store.setChecked(data, checked, deep);
-    },
-    getHalfCheckedNodes: function getHalfCheckedNodes() {
-      return this.store.getHalfCheckedNodes();
-    },
-    getHalfCheckedKeys: function getHalfCheckedKeys() {
-      return this.store.getHalfCheckedKeys();
-    },
-    setCurrentNode: function setCurrentNode(node) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentNode');
-      this.store.setUserCurrentNode(node);
-    },
-    setCurrentKey: function setCurrentKey(key) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentKey');
-      this.store.setCurrentNodeKey(key);
-    },
-    getNode: function getNode(data) {
-      return this.store.getNode(data);
-    },
-    remove: function remove(data) {
-      this.store.remove(data);
-    },
-    append: function append(data, parentNode) {
-      this.store.append(data, parentNode);
-    },
-    insertBefore: function insertBefore(data, refNode) {
-      this.store.insertBefore(data, refNode);
-    },
-    insertAfter: function insertAfter(data, refNode) {
-      this.store.insertAfter(data, refNode);
-    },
-    handleNodeExpand: function handleNodeExpand(nodeData, node, instance) {
-      this.broadcast('ElTreeNode', 'tree-node-expand', node);
-      this.$emit('node-expand', nodeData, node, instance);
-    },
-    updateKeyChildren: function updateKeyChildren(key, data) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
-      this.store.updateChildren(key, data);
-    },
-    initTabindex: function initTabindex() {
-      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
-      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
-      var checkedItem = this.$el.querySelectorAll('.is-checked[role=treeitem]');
-      if (checkedItem.length) {
-        checkedItem[0].setAttribute('tabindex', 0);
-        return;
-      }
-      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0);
-    },
-    handelKeydown: function handelKeydown(ev) {
-      var currentItem = ev.target;
-      if (currentItem.className.indexOf('el-tree-node') === -1) return;
-      ev.preventDefault();
-      var keyCode = ev.keyCode;
-      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
-      var currentIndex = this.treeItemArray.indexOf(currentItem);
-      var nextIndex = void 0;
-      if ([38, 40].indexOf(keyCode) > -1) {
-        // up、down
-        if (keyCode === 38) {
-          // up
-          nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0;
-        } else {
-          nextIndex = currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
-        }
-        this.treeItemArray[nextIndex].focus(); // 选中
-      }
-      var hasInput = currentItem.querySelector('[type="checkbox"]');
-      if ([37, 39].indexOf(keyCode) > -1) {
-        // left、right 展开
-        currentItem.click(); // 选中
-      }
-      if ([13, 32].indexOf(keyCode) > -1) {
-        // space enter选中checkbox
-        if (hasInput) {
-          hasInput.click();
-        }
-      }
-    }
-  },
-
-  created: function created() {
-    this.isTree = true;
-
-    this.store = new _treeStore2.default({
-      key: this.nodeKey,
-      data: this.data,
-      lazy: this.lazy,
-      props: this.props,
-      load: this.load,
-      currentNodeKey: this.currentNodeKey,
-      checkStrictly: this.checkStrictly,
-      checkDescendants: this.checkDescendants,
-      defaultCheckedKeys: this.defaultCheckedKeys,
-      defaultExpandedKeys: this.defaultExpandedKeys,
-      autoExpandParent: this.autoExpandParent,
-      defaultExpandAll: this.defaultExpandAll,
-      filterNodeMethod: this.filterNodeMethod
-    });
-
-    this.root = this.store.root;
-  },
-  mounted: function mounted() {
-    this.initTabindex();
-    this.$el.addEventListener('keydown', this.handelKeydown);
-  },
-  updated: function updated() {
-    this.treeItems = this.$el.querySelectorAll('[role=treeitem]');
-    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _collapseTransition = __webpack_require__(24);
-
-var _collapseTransition2 = _interopRequireDefault(_collapseTransition);
-
-var _checkbox = __webpack_require__(11);
-
-var _checkbox2 = _interopRequireDefault(_checkbox);
-
-var _emitter = __webpack_require__(1);
-
-var _emitter2 = _interopRequireDefault(_emitter);
-
-var _util = __webpack_require__(37);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-  name: 'ElTreeNode',
-
-  componentName: 'ElTreeNode',
-
-  mixins: [_emitter2.default],
-
-  props: {
-    node: {
-      default: function _default() {
-        return {};
-      }
-    },
-    props: {},
-    renderContent: Function,
-    renderAfterExpand: {
-      type: Boolean,
-      default: true
-    }
-  },
-
-  components: {
-    ElCollapseTransition: _collapseTransition2.default,
-    ElCheckbox: _checkbox2.default,
-    NodeContent: {
-      props: {
-        node: {
-          required: true
-        }
-      },
-      render: function render(h) {
-        var parent = this.$parent;
-        var tree = parent.tree;
-        var node = this.node;
-        var data = node.data,
-            store = node.store;
-
-        return parent.renderContent ? parent.renderContent.call(parent._renderProxy, h, { _self: tree.$vnode.context, node: node, data: data, store: store }) : tree.$scopedSlots.default ? tree.$scopedSlots.default({ node: node, data: data }) : h(
-          'span',
-          { 'class': 'el-tree-node__label' },
-          [this.node.label]
-        );
-      }
-    }
-  },
-
-  data: function data() {
-    return {
-      tree: null,
-      expanded: false,
-      childNodeRendered: false,
-      showCheckbox: false,
-      oldChecked: null,
-      oldIndeterminate: null
-    };
-  },
-
-
-  watch: {
-    'node.indeterminate': function nodeIndeterminate(val) {
-      this.handleSelectChange(this.node.checked, val);
-    },
-    'node.checked': function nodeChecked(val) {
-      this.handleSelectChange(val, this.node.indeterminate);
-    },
-    'node.expanded': function nodeExpanded(val) {
-      var _this = this;
-
-      this.$nextTick(function () {
-        return _this.expanded = val;
-      });
-      if (val) {
-        this.childNodeRendered = true;
-      }
-    }
-  },
-
-  methods: {
-    getNodeKey: function getNodeKey(node) {
-      return (0, _util.getNodeKey)(this.tree.nodeKey, node.data);
-    },
-    handleSelectChange: function handleSelectChange(checked, indeterminate) {
-      if (this.oldChecked !== checked && this.oldIndeterminate !== indeterminate) {
-        this.tree.$emit('check-change', this.node.data, checked, indeterminate);
-      }
-      this.oldChecked = checked;
-      this.indeterminate = indeterminate;
-    },
-    handleClick: function handleClick() {
-      var store = this.tree.store;
-      store.setCurrentNode(this.node);
-      this.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode);
-      this.tree.currentNode = this;
-      if (this.tree.expandOnClickNode) {
-        this.handleExpandIconClick();
-      }
-      this.tree.$emit('node-click', this.node.data, this.node, this);
-    },
-    handleContextMenu: function handleContextMenu(event) {
-      this.tree.$emit('node-contextmenu', event, this.node.data, this.node, this);
-    },
-    handleExpandIconClick: function handleExpandIconClick() {
-      if (this.node.isLeaf) return;
-      if (this.expanded) {
-        this.tree.$emit('node-collapse', this.node.data, this.node, this);
-        this.node.collapse();
-      } else {
-        this.node.expand();
-        this.$emit('node-expand', this.node.data, this.node, this);
-      }
-    },
-    handleCheckChange: function handleCheckChange(value, ev) {
-      var _this2 = this;
-
-      this.node.setChecked(ev.target.checked, !this.tree.checkStrictly);
-      this.$nextTick(function () {
-        var store = _this2.tree.store;
-        _this2.tree.$emit('check', _this2.node.data, {
-          checkedNodes: store.getCheckedNodes(),
-          checkedKeys: store.getCheckedKeys(),
-          halfCheckedNodes: store.getHalfCheckedNodes(),
-          halfCheckedKeys: store.getHalfCheckedKeys()
-        });
-      });
-    },
-    handleChildNodeExpand: function handleChildNodeExpand(nodeData, node, instance) {
-      this.broadcast('ElTreeNode', 'tree-node-expand', node);
-      this.tree.$emit('node-expand', nodeData, node, instance);
-    }
-  },
-
-  created: function created() {
-    var _this3 = this;
-
-    var parent = this.$parent;
-
-    if (parent.isTree) {
-      this.tree = parent;
-    } else {
-      this.tree = parent.tree;
-    }
-
-    var tree = this.tree;
-    if (!tree) {
-      console.warn('Can not find node\'s tree.');
-    }
-
-    var props = tree.props || {};
-    var childrenKey = props['children'] || 'children';
-
-    this.$watch('node.data.' + childrenKey, function () {
-      _this3.node.updateChildren();
-    });
-
-    this.showCheckbox = tree.showCheckbox;
-
-    if (this.node.expanded) {
-      this.expanded = true;
-      this.childNodeRendered = true;
-    }
-
-    if (this.tree.accordion) {
-      this.$on('tree-node-expand', function (node) {
-        if (_this3.node !== node) {
-          _this3.node.collapse();
-        }
-      });
-    }
-  }
-};
 
 /***/ })
 

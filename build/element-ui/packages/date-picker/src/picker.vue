@@ -503,6 +503,7 @@ export default {
       gpuAcceleration: false
     };
     this.placement = PLACEMENT_MAP[this.align] || PLACEMENT_MAP.left;
+    this.$on('fieldReset', this.handleFieldReset);
     this.setMessageTips(); // ext-> 信息超出边界弹出提示
   },
 
@@ -636,6 +637,10 @@ export default {
       this.pickerVisible = false;
     },
 
+    handleFieldReset(initialValue) {
+      this.userInput = initialValue;
+    },
+
     handleFocus() {
       const type = this.type;
 
@@ -743,9 +748,9 @@ export default {
       this.picker.selectionMode = this.selectionMode;
       this.picker.unlinkPanels = this.unlinkPanels;
       this.picker.arrowControl = this.arrowControl || this.timeArrowControl || false;
-      if (this.format) {
-        this.picker.format = this.format;
-      }
+      this.$watch('format', (format) => {
+        this.picker.format = format;
+      });
 
       const updateOptions = () => {
         const options = this.pickerOptions;
@@ -765,6 +770,11 @@ export default {
               option !== 'selectableRange') {
             this.picker[option] = options[option];
           }
+        }
+
+        // main format must prevail over undocumented pickerOptions.format
+        if (this.format) {
+          this.picker.format = this.format;
         }
       };
       updateOptions();

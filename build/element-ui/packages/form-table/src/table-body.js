@@ -18,6 +18,7 @@ export default {
   },
 
   props: {
+    expandOnlyOne: Boolean, // ext-> 同时仅允许打开一行数据
     store: {
       required: true
     },
@@ -76,7 +77,8 @@ export default {
                                   column,
                                   $index,
                                   store: this.store,
-                                  _self: this.context || this.table.$vnode.context
+                                  _self: this.context || this.table.$vnode.context,
+                                  expand: this.store.isRowExpanded(row)
                                 },
                                 columnsHidden[cellIndex]
                               )
@@ -101,7 +103,8 @@ export default {
                                   column,
                                   $index,
                                   store: this.store,
-                                  _self: this.context || this.table.$vnode.context
+                                  _self: this.context || this.table.$vnode.context,
+                                  expand: this.store.isRowExpanded(row)
                                 },
                                 columnsHidden[cellIndex]
                               )
@@ -116,7 +119,7 @@ export default {
               this.store.isRowExpanded(row)
                 ? (<tr>
                   <td colspan={ this.columns.length } class="el-table__expanded-cell">
-                    { this.table.renderExpanded ? this.table.renderExpanded(h, { row, $index, store: this.store }) : ''}
+                    { this.table.renderExpanded ? this.table.renderExpanded(h, { row, $index, store: this.store, expand: this.store.isRowExpanded(row) }) : ''}
                   </td>
                 </tr>)
                 : ''
@@ -392,15 +395,19 @@ export default {
       if (cell) {
         column = getColumnByCell(table, cell);
         if (column) {
-          table.$emit(`cell-${name}`, row, column, cell, event);
+          table.$emit(`cell-${name}`, row, column, cell, event, table);
         }
       }
-      table.$emit(`row-${name}`, row, event, column);
+      table.$emit(`row-${name}`, row, event, column, table);
     },
 
     handleExpandClick(row, e) {
       e.stopPropagation();
-      this.store.toggleRowExpansion(row);
+      if (this.expandOnlyOne) { // ext-> 同时仅允许展开一行数据
+        this.store.toggleOnlyOneExpand(row);
+      } else {
+        this.store.toggleRowExpansion(row);
+      }
     }
   }
 };

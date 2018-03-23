@@ -26,7 +26,11 @@ loadingDirective.install = Vue => {
 
             ['top', 'left'].forEach(property => {
               const scroll = property === 'top' ? 'scrollTop' : 'scrollLeft';
-              el.maskStyle[property] = el.getBoundingClientRect()[property] + document.body[scroll] + document.documentElement[scroll] + 'px';
+              el.maskStyle[property] = el.getBoundingClientRect()[property] +
+                document.body[scroll] +
+                document.documentElement[scroll] -
+                parseInt(getStyle(document.body, `margin-${ property }`), 10) +
+                'px';
             });
             ['height', 'width'].forEach(property => {
               el.maskStyle[property] = el.getBoundingClientRect()[property] + 'px';
@@ -117,6 +121,7 @@ loadingDirective.install = Vue => {
         el.mask.parentNode.removeChild(el.mask);
         toggleLoading(el, { value: false, modifiers: binding.modifiers });
       }
+      el.instance.$off('after-leave'); // ext->ÒÆ³ıafter-leave¼àÌı£¬±ÜÃâÄÚ´æĞ¹Â©
     }
   });
 };

@@ -17,9 +17,9 @@ class TableLayout {
     this.fixedWidth = null;
     this.rightFixedWidth = null;
     this.tableHeight = null;
-    this.headerHeight = 44; // Table Header Height
+    this.headerHeight = 30; // Table Header Height
     this.appendHeight = 0; // Append Slot Height
-    this.footerHeight = 44; // Table Footer Height
+    this.footerHeight = 30; // Table Footer Height
     this.viewportHeight = null; // Table Height - Scroll Bar Height
     this.bodyHeight = null; // Table Height - Table Header Height
     this.fixedBodyHeight = null; // Table Height - Table Header Height - Scroll Bar Height
@@ -125,7 +125,7 @@ class TableLayout {
 
     if (flexColumns.length > 0 && fit) {
       flattenColumns.forEach((column) => {
-        bodyMinWidth += column.width || column.minWidth || 80;
+        bodyMinWidth += parseInt(column.width || column.minWidth || 80, 10); // ext-> modify
       });
 
       const scrollYWidth = this.scrollY ? this.gutterWidth : 0;

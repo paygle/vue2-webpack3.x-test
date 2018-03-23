@@ -61,12 +61,12 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 293);
+/******/ 	return __webpack_require__(__webpack_require__.s = 296);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 12:
+/***/ 11:
 /***/ (function(module, exports) {
 
 module.exports = require("throttle-debounce/debounce");
@@ -76,26 +76,26 @@ module.exports = require("throttle-debounce/debounce");
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/dom");
+module.exports = require("element-ui/lib/utils/util");
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/vdom");
 
 /***/ }),
 
-/***/ 293:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(294);
+module.exports = __webpack_require__(297);
 
 
 /***/ }),
 
-/***/ 294:
+/***/ 297:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103,7 +103,7 @@ module.exports = __webpack_require__(294);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(295);
+var _main = __webpack_require__(298);
 
 var _main2 = _interopRequireDefault(_main);
 
@@ -118,7 +118,7 @@ exports.default = _main2.default;
 
 /***/ }),
 
-/***/ 295:
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130,15 +130,15 @@ var _vuePopper = __webpack_require__(6);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
-var _debounce = __webpack_require__(12);
+var _debounce = __webpack_require__(11);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
-var _vdom = __webpack_require__(23);
+var _vdom = __webpack_require__(24);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(2);
 
 var _vue = __webpack_require__(4);
 
@@ -380,7 +380,7 @@ exports.default = {
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/util");
+module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 

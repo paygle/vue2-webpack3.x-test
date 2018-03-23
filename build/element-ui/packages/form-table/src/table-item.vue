@@ -82,7 +82,7 @@
         validator: {},
         IS_SHOW_TIPS: false, // 默认禁用 tooltip功能
         TIP_POP_WIDTH: 0,
-        tipContent: '', // tooltip内容
+        tipContent: '', // tip内容
         tipTimeHander: null,
         tipsDom: null
       };
@@ -221,7 +221,7 @@
             pos = inputEl.getBoundingClientRect();
             gapw = that.TIP_POP_WIDTH > 0 ? (that.TIP_POP_WIDTH - inputWP.w - inputWP.pl) / 2 : 0;
             if (this.validateState === 'error') color = 'red';
-            style = `color:${color}; left:${pos.left - gapw}px; top: ${pos.top - 38}px; z-index: 99; position: fixed`;
+            style = `color:${color}; left:${pos.left - gapw}px; top: ${pos.top - 42}px; z-index: 99; position: fixed`;
 
             if (/[\w\W]{3,}/ig.test(that.tipContent)) {
               that.tipsDom = createDomElement('div', {class: 'form-message-tips', style: style});

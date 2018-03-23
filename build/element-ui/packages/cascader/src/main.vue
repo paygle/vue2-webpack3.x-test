@@ -21,7 +21,8 @@
   >
     <el-input
       ref="input"
-      :readonly="!filterable"
+      :tabindex="tabindex"
+      :readonly="disputed || !filterable"
       :placeholder="currentLabels.length ? undefined : placeholder"
       v-model="inputValue"
       @input="debouncedInputChange"
@@ -171,6 +172,8 @@ export default {
       type: Number,
       default: 500
     },
+    disputed: Boolean, // ext-> 代替禁用
+    tabindex: String, // ext-> Tab 序值
     disabledTips: Boolean // ext-> 禁用表单弹窗提示
   },
 
@@ -391,7 +394,7 @@ export default {
       this.menuVisible = false;
     },
     handleClick() {
-      if (this.cascaderDisabled) return;
+      if (this.cascaderDisabled || this.disputed) return;
       this.$refs.input.focus();
       if (this.filterable) {
         this.menuVisible = true;

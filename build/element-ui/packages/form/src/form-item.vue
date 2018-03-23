@@ -36,6 +36,11 @@
   import { noop, getPropByPath, typeOf } from 'element-ui/src/utils/util';
   import { createDomElement } from 'element-ui/src/utils/dom'; // 扩展
 
+  // ext-> 自定义日期兼容转换
+  const compatDateStr = function(date) {
+    return typeof date === 'string' ? String(date).replace('-', '/') : date;
+  };
+
   export default {
     name: 'ElFormItem',
 
@@ -52,7 +57,7 @@
     inject: ['elForm'],
 
     props: {
-      model: Object, // ext->非数据联验证-数据对象
+      model: Object, // ext-> 非数据联验证-数据对象
       value: null, // ext-> 非数据联验证的非Object类型的值
       scopeName: String, // ext-> 表单所属域名称与 form 的 scopeName 一致
       label: String,
@@ -89,12 +94,6 @@
       }
     },
     computed: {
-      scopeNamed() { // ext-> 表单作用域
-        return this.scopeName || 'ElForm';
-      },
-      showInlineMsg() { // ext-> 弹出提示控制
-        return this.showMessage && this.form.showMessage;
-      },
       labelFor() {
         return this.for || this.prop;
       },
@@ -170,6 +169,12 @@
       },
       sizeClass() {
         return (this.$ELEMENT || {}).size || this.elFormItemSize;
+      },
+      scopeNamed() { // ext-> 表单作用域
+        return this.scopeName || 'ElForm';
+      },
+      showInlineMsg() { // ext-> 弹出提示信息
+        return this.showMessage && this.form.showMessage;
       }
     },
     data() {
@@ -182,14 +187,24 @@
         IS_SHOW_TIPS: false, // ext-> 默认禁用 tooltip功能
         TIP_POP_WIDTH: 0,
         tipContent: '', // ext-> tooltip内容
-        tipTimeHander: null, // 扩展
-        tipsDom: null // 扩展
+        tipTimeHander: null, // ext-> 扩展
+        tipsDom: null, // ext-> 扩展
+        isCompare: false, // ext-> 是否为比较样式
+        customStyl: '',
+        errStyl: {} // ext-> 错误样式设置
       };
     },
     methods: {
       validate(trigger, callback = noop) {
         this.validateDisabled = false;
         const rules = this.getFilteredRule(trigger);
+        // ext-> 验证样式设置
+        this.$nextTick(()=> {
+          this.setCompareStyl(this.prop, this.validateState);
+          // ext-> 触发外部校验
+          if (typeof this.form.validTrigger === 'function') this.form.validTrigger.call(null, this.form.model);
+        });
+
         if ((!rules || rules.length === 0) && this.required === undefined) {
           callback();
           return true;
@@ -208,13 +223,13 @@
         const validator = new AsyncValidator(descriptor);
         const model = {};
 
-        model[this.prop] = this.fieldValue;
+        model[this.prop] = this.getTypeData(this.fieldValue, rules);
 
-        validator.validate(model, { firstFields: true }, (errors, fields) => {
+        validator.validate(model, { firstFields: true }, (errors, invalidFields) => {
           this.validateState = !errors ? 'success' : 'error';
           this.validateMessage = errors ? errors[0].message : '';
 
-          callback(this.validateMessage);
+          callback(this.validateMessage, invalidFields);
           if (errors) this.tipContent = this.validateMessage; // ext-> 设置错误信息
         });
       },
@@ -255,13 +270,19 @@
             prop.o[prop.k] = this.initialValue;
           }
         }
+        /* Select 的值被代码改变时不会触发校验，
+           这里需要强行触发一次，刷新 validateDisabled 的值，
+           确保 Select 下一次值改变时能正确触发校验 */
+        this.broadcast('ElSelect', 'fieldReset');
+        this.broadcast('ElTimeSelect', 'fieldReset', this.initialValue);
       },
       getRules() {
         let formRules = this.form.rules;
         const selfRules = this.rules;
         const requiredRule = this.required !== undefined ? { required: !!this.required } : [];
 
-        formRules = formRules ? getPropByPath(formRules, this.prop || '').o[this.prop || ''] : [];
+        const prop = getPropByPath(formRules, this.prop || '');
+        formRules = formRules ? (prop.o[this.prop || ''] || prop.v) : [];
 
         return [].concat(selfRules || formRules || []).concat(requiredRule);
       },
@@ -269,7 +290,12 @@
         const rules = this.getRules();
 
         return rules.filter(rule => {
-          return !rule.trigger || rule.trigger.indexOf(trigger) !== -1;
+          if (!rule.trigger || trigger === '') return true;
+          if (Array.isArray(rule.trigger)) {
+            return rule.trigger.indexOf(trigger) > -1;
+          } else {
+            return rule.trigger === trigger;
+          }
         }).map(rule => objectAssign({}, rule));
       },
       onFieldBlur() {
@@ -282,6 +308,42 @@
         }
 
         this.validate('change');
+      },
+      // ext-> 比较样式设置
+      setCompareStyl(field, status, styl) {
+        // 验证样式设置
+        if (typeof styl !== 'undefined') this.customStyl = styl;
+        if (status === 'error') {
+          this.broadcast('ElInput', 'compare-style', this.errStyl);
+        } else if (status === 'compare' && this.validateState !== 'error') {
+          this.broadcast('ElInput', 'compare-style', styl);
+        } else if ((this.isCompare && status !== 'compare') || styl === '') {
+          if (this.customStyl === '' && this.validateState !== 'error') {
+            this.broadcast('ElInput', 'compare-style', {});
+          }
+        }
+      },
+      // ext-> 自定义获取日期数据类型
+      getTypeData(value, rules) {
+        let typevalue = '', cdate;
+        if (typeOf(rules) === 'Array') {
+          for (let i = 0; i < rules.length; i++) {
+            if (typeOf(rules[i]) === 'Object' && rules[i]['type'] === 'date' && typeOf(value) === 'String') {
+              cdate = new Date(compatDateStr(value));
+            }
+          }
+        } else if (typeOf(rules) === 'Object' && rules.type === 'date' && typeOf(value) === 'String') {
+          cdate = new Date(compatDateStr(value));
+        }
+
+        if (typeOf(value) === 'Date') {
+          typevalue = value;
+        } else if (typeOf(cdate) === 'Date' && !isNaN(cdate.getTime())) {
+          typevalue = cdate;
+        } else {
+          typevalue = value;
+        }
+        return typevalue;
       },
       // ext-> 鼠标over时事件
       inputMouseover(e) {
@@ -298,7 +360,7 @@
             pos = inputEl.getBoundingClientRect();
             gapw = that.TIP_POP_WIDTH > 0 ? (that.TIP_POP_WIDTH - inputWP.w - inputWP.pl) / 2 : 0;
             if (this.validateState === 'error') color = 'red';
-            style = `color:${color}; left:${pos.left - gapw}px; top: ${pos.top - 38}px; z-index: 99; position: fixed`;
+            style = `color:${color}; left:${pos.left - gapw}px; top: ${pos.top - 42}px; z-index: 99; position: fixed`;
 
             if (/[\w\W]{3,}/ig.test(that.tipContent)) {
               that.tipsDom = createDomElement('div', {class: 'form-message-tips', style: style});
