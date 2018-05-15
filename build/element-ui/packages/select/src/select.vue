@@ -4,26 +4,14 @@
     :class="[selectSize ? 'el-select--' + selectSize : '']"
     @click.stop="toggleMenu"
     v-clickoutside="handleClose">
-    <div v-if="translated" class="translated">
-      <el-input
-        ref="reference"
-        v-model="selectedLabel"
-        type="text"
-        :name="name"
-        :id="id"
-        :size="selectSize"
-        readonly>
-      </el-input>
-    </div>
     <div
       class="el-select__tags"
-      v-if="!translated && multiple"
-      :tabindex="tabindex"
+      v-if="multiple"
       ref="tags"
       :style="{ 'max-width': inputWidth - 32 + 'px' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
-          :closable="!selectDisabled && !disputed"
+          :closable="!selectDisabled"
           :size="collapseTagSize"
           :hit="selected[0].hitState"
           type="info"
@@ -44,7 +32,7 @@
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
-          :closable="!selectDisabled && !disputed"
+          :closable="!selectDisabled"
           :size="collapseTagSize"
           :hit="item.hitState"
           type="info"
@@ -57,11 +45,11 @@
       <input
         type="text"
         class="el-select__input"
-        :tabindex="tabindex"
         :class="[selectSize ? `is-${ selectSize }` : '']"
-        :disabled="selectDisabled || disputed"
+        :disabled="selectDisabled"
         :autocomplete="autoComplete"
         @focus="handleFocus"
+        @blur="softFocus = false"
         @click.stop
         @keyup="managePlaceholder"
         @keydown="resetInputState"
@@ -70,6 +58,9 @@
         @keydown.enter.prevent="selectOption"
         @keydown.esc.stop.prevent="visible = false"
         @keydown.delete="deletePrevTag"
+        @compositionstart="handleComposition"
+        @compositionupdate="handleComposition"
+        @compositionend="handleComposition"
         v-model="query"
         @input="e => handleQueryChange(e.target.value)"
         :debounce="remote ? 300 : 0"
@@ -78,19 +69,16 @@
         ref="input">
     </div>
     <el-input
-      v-if="!translated"
       ref="reference"
       v-model="selectedLabel"
       type="text"
       :placeholder="currentPlaceholder"
       :name="name"
       :id="id"
-      :tabindex="tabindex"
       :auto-complete="autoComplete"
       :size="selectSize"
       :disabled="selectDisabled"
-      :readonly="!filterable || multiple || !visible"
-      :disputed="disputed"
+      :readonly="readonly"
       :validate-event="false"
       :class="{ 'is-focus': visible }"
       @focus="handleFocus"
@@ -104,6 +92,9 @@
       @paste.native="debouncedOnInputChange"
       @mouseenter.native="inputHovering = true"
       @mouseleave.native="inputHovering = false">
+      <template slot="prefix" v-if="$slots.prefix">
+        <slot name="prefix"></slot>
+      </template>
       <i slot="suffix"
        :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"
        @click="handleIconClick"
@@ -116,7 +107,7 @@
       <el-select-menu
         ref="popper"
         :append-to-body="popperAppendToBody"
-        v-show="!translated && !disputed && visible && emptyText !== false">
+        v-show="visible && emptyText !== false">
         <el-scrollbar
           tag="ul"
           wrap-class="el-select-dropdown__wrap"
@@ -129,17 +120,7 @@
             created
             v-if="showNewOption">
           </el-option>
-          <!-- ext=> 内部数据选项 -->
-          <template v-if="innerOptions.length">
-            <el-option
-              v-for="item in innerOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-              :disabled="item.disabled">
-            </el-option>
-          </template>
-          <slot v-else></slot>
+          <slot></slot>
         </el-scrollbar>
         <p
           class="el-select-dropdown__empty"
@@ -170,26 +151,12 @@
   import { getValueByPath } from 'element-ui/src/utils/util';
   import { valueEquals } from 'element-ui/src/utils/util';
   import NavigationMixin from './navigation-mixin';
+  import { isKorean } from 'element-ui/src/utils/shared';
 
   const sizeMap = {
     'medium': 36,
     'small': 32,
-    'mini': 26 // ext-> modify
-  };
-
-  // ext-> add, init field opts
-  const setInitOptions = (options, fields) => {
-    let initOptions = [];
-    if (options && options.length && fields) {
-      for (let i = 0; i < options.length; i++) {
-        initOptions.push({});
-        initOptions[i]['label'] = options[i][fields.label];
-        initOptions[i]['value'] = options[i][fields.value];
-        initOptions[i]['disabled'] = options[i][fields.disabled] || false;
-      }
-      return initOptions;
-    }
-    return initOptions;
+    'mini': 28
   };
 
   export default {
@@ -219,10 +186,16 @@
       _elFormItemSize() {
         return (this.elFormItem || {}).elFormItemSize;
       },
+
+      readonly() {
+        // trade-off for IE input readonly problem: https://github.com/ElemeFE/element/issues/10403
+        const isIE = !this.$isServer && !isNaN(Number(document.documentMode));
+        return !this.filterable || this.multiple || !isIE && !this.visible;
+      },
+
       iconClass() {
         let criteria = this.clearable &&
           !this.selectDisabled &&
-          !this.disputed && // ext-> add
           this.inputHovering &&
           !this.multiple &&
           this.value !== undefined &&
@@ -290,6 +263,7 @@
         type: String,
         default: 'off'
       },
+      automaticDropdown: Boolean,
       size: String,
       disabled: Boolean,
       clearable: Boolean,
@@ -324,28 +298,7 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
-      },
-      dropMinwidth: Number, // ext-> 下拉列表最小宽度
-      multiSplit: { // ext-> 多选时翻译分隔符
-        type: String,
-        default: '/'
-      },
-      getFillStyl: Function, // ext-> 获取自定义组件配色
-      optionsData: Array, // ext-> Option初始化数据
-      labelVal: { // options 数据项自定义标签和值属性
-        type: Object,
-        default: () => {
-          return {
-            label: 'label',
-            value: 'value',
-            disabled: 'disabled'
-          };
-        }
-      },
-      translated: Boolean, // ext-> 转化为翻译组件
-      disputed: Boolean, // ext-> 代替禁用
-      tabindex: String, // ext-> Tab 序值
-      disabledTips: Boolean // ext-> 禁用表单弹窗提示
+      }
     },
 
     data() {
@@ -368,7 +321,9 @@
         previousQuery: null,
         inputHovering: false,
         currentPlaceholder: '',
-        innerOptions: [] // ext-> 内部数据构建options时使用
+        menuVisibleOnFocus: false,
+        isOnComposition: false,
+        isSilentBlur: false
       };
     },
 
@@ -384,7 +339,6 @@
       },
 
       value(val) {
-        if (val === null || val === 'null') this.$emit('input', ''); // ext-> 处理值为null时为空
         if (this.multiple) {
           this.resetInputHeight();
           if (val.length > 0 || (this.$refs.input && this.query !== '')) {
@@ -425,7 +379,7 @@
           if (!this.multiple) {
             if (this.selected) {
               if (this.filterable && this.allowCreate &&
-                this.createdSelected && this.createdOption) {
+                this.createdSelected && this.createdLabel) {
                 this.selectedLabel = this.createdLabel;
               } else {
                 this.selectedLabel = this.selected.currentLabel;
@@ -455,6 +409,9 @@
 
       options() {
         if (this.$isServer) return;
+        this.$nextTick(() => {
+          this.broadcast('ElSelectDropdown', 'updatePopper');
+        });
         if (this.multiple) {
           this.resetInputHeight();
         }
@@ -465,16 +422,22 @@
         if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
           this.checkDefaultFirstOption();
         }
-      },
-      // ext-> add watch
-      optionsData() {
-        this.innerOptions = setInitOptions(this.optionsData, this.labelVal);
       }
     },
 
     methods: {
+      handleComposition(event) {
+        const text = event.target.value;
+        if (event.type === 'compositionend') {
+          this.isOnComposition = false;
+          this.handleQueryChange(text);
+        } else {
+          const lastCharacter = text[text.length - 1] || '';
+          this.isOnComposition = !isKorean(lastCharacter);
+        }
+      },
       handleQueryChange(val) {
-        if (this.previousQuery === val) return;
+        if (this.previousQuery === val || this.isOnComposition) return;
         if (
           this.previousQuery === null &&
           (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')
@@ -539,9 +502,7 @@
       emitChange(val) {
         if (!valueEquals(this.value, val)) {
           this.$emit('change', val);
-          this.dispatch('ElFormItem', 'el.form.change', [val]);
-          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
-          this.setMessageTips(); // ext-> 信息超出边界弹出提
+          this.dispatch('ElFormItem', 'el.form.change', val);
         }
       },
 
@@ -583,7 +544,6 @@
           this.selectedLabel = option.currentLabel;
           this.selected = option;
           if (this.filterable) this.query = this.selectedLabel;
-          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
           return;
         }
         let result = [];
@@ -595,20 +555,35 @@
         this.selected = result;
         this.$nextTick(() => {
           this.resetInputHeight();
-          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
         });
       },
 
       handleFocus(event) {
         if (!this.softFocus) {
+          if (this.automaticDropdown || this.filterable) {
+            this.visible = true;
+            this.menuVisibleOnFocus = true;
+          }
           this.$emit('focus', event);
         } else {
           this.softFocus = false;
         }
       },
 
+      blur() {
+        this.visible = false;
+        this.$refs.reference.blur();
+      },
+
       handleBlur(event) {
-        this.$emit('blur', event);
+        setTimeout(() => {
+          if (this.isSilentBlur) {
+            this.isSilentBlur = false;
+          } else {
+            this.$emit('blur', event);
+          }
+        }, 50);
+        this.softFocus = false;
       },
 
       handleIconClick(event) {
@@ -667,7 +642,7 @@
           let inputChildNodes = this.$refs.reference.$el.childNodes;
           let input = [].filter.call(inputChildNodes, item => item.tagName === 'INPUT')[0];
           const tags = this.$refs.tags;
-          const sizeInMap = sizeMap[this.selectSize] || 24; // ext-> modify
+          const sizeInMap = sizeMap[this.selectSize] || 40;
           input.style.height = this.selected.length === 0
             ? sizeInMap + 'px'
             : Math.max(
@@ -694,7 +669,7 @@
         }, 300);
       },
 
-      handleOptionSelect(option) {
+      handleOptionSelect(option, byClick) {
         if (this.multiple) {
           const value = this.value.slice();
           const optionIndex = this.getValueIndex(value, option.value);
@@ -716,16 +691,20 @@
           this.emitChange(option.value);
           this.visible = false;
         }
+        this.isSilentBlur = byClick;
+        this.setSoftFocus();
+        if (this.visible) return;
         this.$nextTick(() => {
-          if (this.visible) return;
           this.scrollToOption(option);
-          this.setSoftFocus();
         });
       },
 
       setSoftFocus() {
         this.softFocus = true;
-        (this.$refs.input || this.$refs.reference).focus();
+        const input = this.$refs.input || this.$refs.reference;
+        if (input) {
+          input.focus();
+        }
       },
 
       getValueIndex(arr = [], value) {
@@ -747,8 +726,12 @@
       },
 
       toggleMenu() {
-        if (!this.selectDisabled && !this.disputed) {
-          this.visible = !this.visible;
+        if (!this.selectDisabled) {
+          if (this.menuVisibleOnFocus) {
+            this.menuVisibleOnFocus = false;
+          } else {
+            this.visible = !this.visible;
+          }
           if (this.visible) {
             (this.$refs.input || this.$refs.reference).focus();
           }
@@ -775,7 +758,7 @@
 
       deleteTag(event, tag) {
         let index = this.selected.indexOf(tag);
-        if (index > -1 && !this.selectDisabled && !this.disputed) {
+        if (index > -1 && !this.selectDisabled) {
           const value = this.value.slice();
           value.splice(index, 1);
           this.$emit('input', value);
@@ -801,7 +784,6 @@
       },
 
       resetInputWidth() {
-        if (!this.$refs.reference || !this.$refs.reference.$el) return; // ext-> add
         this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
       },
 
@@ -846,14 +828,6 @@
         } else {
           return getValueByPath(item.value, this.valueKey);
         }
-      },
-      // ext-> 信息超出边界弹出提示
-      setMessageTips() {
-        if (!this.disabledTips && !this.multiple) {
-          this.$nextTick(()=>{
-            this.dispatch('ElFormItem', 'el.form.messagetips', [this.selectedLabel]);
-          });
-        }
       }
     },
 
@@ -878,7 +852,6 @@
     },
 
     mounted() {
-      this.innerOptions = setInitOptions(this.optionsData, this.labelVal); // ext-> add init
       if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
         this.currentPlaceholder = '';
       }
@@ -892,7 +865,6 @@
         }
       });
       this.setSelected();
-      this.setMessageTips(); // ext-> 信息超出边界弹出提示
     },
 
     beforeDestroy() {

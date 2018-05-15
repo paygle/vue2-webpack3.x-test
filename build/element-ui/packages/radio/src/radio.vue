@@ -25,6 +25,7 @@
         class="el-radio__original"
         :value="label"
         type="radio"
+        aria-hidden="true"
         v-model="model"
         @focus="focus = true"
         @blur="focus = false"
@@ -96,7 +97,6 @@
             this.dispatch('ElRadioGroup', 'input', [val]);
           } else {
             this.$emit('input', val);
-            this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
           }
         }
       },
@@ -126,13 +126,6 @@
           this.isGroup && this.dispatch('ElRadioGroup', 'handleChange', this.model);
         });
       }
-    },
-    mounted() {
-      this.$nextTick(() =>{ // ext-> compare
-        if (!this.isGroup) {
-          this.dispatch('ElForm', 'compare-change', [this]);
-        }
-      });
     }
   };
 </script>

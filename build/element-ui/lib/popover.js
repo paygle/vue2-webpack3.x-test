@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 291);
+/******/ 	return __webpack_require__(__webpack_require__.s = 232);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -179,19 +179,19 @@ module.exports = function normalizeComponent (
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/util");
+module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
-/***/ 291:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(292);
+module.exports = __webpack_require__(233);
 
 
 /***/ }),
 
-/***/ 292:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,11 +199,11 @@ module.exports = __webpack_require__(292);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(293);
+var _main = __webpack_require__(234);
 
 var _main2 = _interopRequireDefault(_main);
 
-var _directive = __webpack_require__(295);
+var _directive = __webpack_require__(237);
 
 var _directive2 = _interopRequireDefault(_directive);
 
@@ -226,23 +226,21 @@ exports.default = _main2.default;
 
 /***/ }),
 
-/***/ 293:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6a5b5086_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0683517c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(236);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -251,7 +249,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_main_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6a5b5086_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0683517c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -263,65 +261,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 294:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('transition',{attrs:{"name":_vm.transition},on:{"after-enter":_vm.handleAfterEnter,"after-leave":_vm.handleAfterLeave}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.disabled && _vm.showPopper),expression:"!disabled && showPopper"}],ref:"popper",staticClass:"el-popover el-popper",class:[_vm.popperClass, _vm.content && 'el-popover--plain'],style:({ width: _vm.width + 'px' }),attrs:{"role":"tooltip","id":_vm.tooltipId,"aria-hidden":(_vm.disabled || !_vm.showPopper) ? 'true' : 'false'}},[(_vm.title)?_c('div',{staticClass:"el-popover__title",domProps:{"textContent":_vm._s(_vm.title)}}):_vm._e(),_vm._t("default",[_vm._v(_vm._s(_vm.content))])],2)]),_vm._t("reference")],2)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 295:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var getReference = function getReference(el, binding, vnode) {
-  var _ref = binding.expression ? binding.value : binding.arg;
-  var popper = vnode.context.$refs[_ref];
-  if (popper) {
-    popper.$refs.reference = el;
-  }
-};
-
-exports.default = {
-  bind: function bind(el, binding, vnode) {
-    getReference(el, binding, vnode);
-  },
-  inserted: function inserted(el, binding, vnode) {
-    getReference(el, binding, vnode);
-  }
-};
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/dom");
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = require("vue");
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/vue-popper");
-
-/***/ }),
-
-/***/ 90:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -329,13 +269,13 @@ module.exports = require("element-ui/lib/utils/vue-popper");
 
 exports.__esModule = true;
 
-var _vuePopper = __webpack_require__(6);
+var _vuePopper = __webpack_require__(7);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(2);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -555,6 +495,64 @@ exports.default = {
     (0, _dom.off)(document, 'click', this.handleDocumentClick);
   }
 };
+
+/***/ }),
+
+/***/ 236:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('transition',{attrs:{"name":_vm.transition},on:{"after-enter":_vm.handleAfterEnter,"after-leave":_vm.handleAfterLeave}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.disabled && _vm.showPopper),expression:"!disabled && showPopper"}],ref:"popper",staticClass:"el-popover el-popper",class:[_vm.popperClass, _vm.content && 'el-popover--plain'],style:({ width: _vm.width + 'px' }),attrs:{"role":"tooltip","id":_vm.tooltipId,"aria-hidden":(_vm.disabled || !_vm.showPopper) ? 'true' : 'false'}},[(_vm.title)?_c('div',{staticClass:"el-popover__title",domProps:{"textContent":_vm._s(_vm.title)}}):_vm._e(),_vm._t("default",[_vm._v(_vm._s(_vm.content))])],2)]),_vm._t("reference")],2)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 237:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+var getReference = function getReference(el, binding, vnode) {
+  var _ref = binding.expression ? binding.value : binding.arg;
+  var popper = vnode.context.$refs[_ref];
+  if (popper) {
+    popper.$refs.reference = el;
+  }
+};
+
+exports.default = {
+  bind: function bind(el, binding, vnode) {
+    getReference(el, binding, vnode);
+  },
+  inserted: function inserted(el, binding, vnode) {
+    getReference(el, binding, vnode);
+  }
+};
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+module.exports = require("vue");
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/vue-popper");
 
 /***/ })
 

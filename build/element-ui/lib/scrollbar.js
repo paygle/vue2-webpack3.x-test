@@ -61,12 +61,12 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 421);
+/******/ 	return __webpack_require__(__webpack_require__.s = 396);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 18:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/resize-event");
@@ -76,33 +76,33 @@ module.exports = require("element-ui/lib/utils/resize-event");
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/util");
-
-/***/ }),
-
-/***/ 29:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/scrollbar-width");
+module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/dom");
+module.exports = require("element-ui/lib/utils/util");
 
 /***/ }),
 
-/***/ 421:
+/***/ 38:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/scrollbar-width");
+
+/***/ }),
+
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(422);
+module.exports = __webpack_require__(397);
 
 
 /***/ }),
 
-/***/ 422:
+/***/ 397:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110,7 +110,7 @@ module.exports = __webpack_require__(422);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(423);
+var _main = __webpack_require__(398);
 
 var _main2 = _interopRequireDefault(_main);
 
@@ -125,7 +125,7 @@ exports.default = _main2.default;
 
 /***/ }),
 
-/***/ 423:
+/***/ 398:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,15 +133,15 @@ exports.default = _main2.default;
 
 exports.__esModule = true;
 
-var _resizeEvent = __webpack_require__(16);
+var _resizeEvent = __webpack_require__(18);
 
-var _scrollbarWidth = __webpack_require__(29);
+var _scrollbarWidth = __webpack_require__(38);
 
 var _scrollbarWidth2 = _interopRequireDefault(_scrollbarWidth);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
-var _bar = __webpack_require__(424);
+var _bar = __webpack_require__(399);
 
 var _bar2 = _interopRequireDefault(_bar);
 
@@ -221,16 +221,24 @@ exports.default = {
     var nodes = void 0;
 
     if (!this.native) {
-      nodes = [wrap, h(_bar2.default, {
-        attrs: {
-          move: this.moveX,
-          size: this.sizeWidth }
-      }), h(_bar2.default, {
-        attrs: {
-          vertical: true,
-          move: this.moveY,
-          size: this.sizeHeight }
-      })];
+      nodes = [wrap, h(
+        _bar2.default,
+        {
+          attrs: {
+            move: this.moveX,
+            size: this.sizeWidth }
+        },
+        []
+      ), h(
+        _bar2.default,
+        {
+          attrs: {
+            vertical: true,
+            move: this.moveY,
+            size: this.sizeHeight }
+        },
+        []
+      )];
     } else {
       nodes = [h(
         'div',
@@ -279,7 +287,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 424:
+/***/ 399:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -287,9 +295,9 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(2);
 
-var _util = __webpack_require__(425);
+var _util = __webpack_require__(400);
 
 /* istanbul ignore next */
 exports.default = {
@@ -324,14 +332,18 @@ exports.default = {
           'mousedown': this.clickTrackHandler
         }
       },
-      [h('div', {
-        ref: 'thumb',
-        'class': 'el-scrollbar__thumb',
-        on: {
-          'mousedown': this.clickThumbHandler
-        },
+      [h(
+        'div',
+        {
+          ref: 'thumb',
+          'class': 'el-scrollbar__thumb',
+          on: {
+            'mousedown': this.clickThumbHandler
+          },
 
-        style: (0, _util.renderThumbStyle)({ size: size, move: move, bar: bar }) })]
+          style: (0, _util.renderThumbStyle)({ size: size, move: move, bar: bar }) },
+        []
+      )]
     );
   },
 
@@ -385,7 +397,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 425:
+/***/ 400:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

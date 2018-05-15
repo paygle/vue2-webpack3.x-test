@@ -61,12 +61,12 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 296);
+/******/ 	return __webpack_require__(__webpack_require__.s = 238);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 14:
 /***/ (function(module, exports) {
 
 module.exports = require("throttle-debounce/debounce");
@@ -76,26 +76,26 @@ module.exports = require("throttle-debounce/debounce");
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/util");
+module.exports = require("element-ui/lib/utils/dom");
 
 /***/ }),
 
-/***/ 24:
+/***/ 20:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/vdom");
 
 /***/ }),
 
-/***/ 296:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(297);
+module.exports = __webpack_require__(239);
 
 
 /***/ }),
 
-/***/ 297:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103,7 +103,7 @@ module.exports = __webpack_require__(297);
 
 exports.__esModule = true;
 
-var _main = __webpack_require__(298);
+var _main = __webpack_require__(240);
 
 var _main2 = _interopRequireDefault(_main);
 
@@ -118,7 +118,7 @@ exports.default = _main2.default;
 
 /***/ }),
 
-/***/ 298:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,19 +126,19 @@ exports.default = _main2.default;
 
 exports.__esModule = true;
 
-var _vuePopper = __webpack_require__(6);
+var _vuePopper = __webpack_require__(7);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
-var _debounce = __webpack_require__(11);
+var _debounce = __webpack_require__(14);
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(2);
 
-var _vdom = __webpack_require__(24);
+var _vdom = __webpack_require__(20);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
 var _vue = __webpack_require__(4);
 
@@ -356,6 +356,10 @@ exports.default = {
         clearTimeout(this.timeoutPending);
       }
       this.showPopper = false;
+
+      if (this.disabled) {
+        this.doDestroy();
+      }
     },
     setExpectedState: function setExpectedState(expectedState) {
       if (expectedState === false) {
@@ -380,7 +384,7 @@ exports.default = {
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/dom");
+module.exports = require("element-ui/lib/utils/util");
 
 /***/ }),
 
@@ -391,7 +395,7 @@ module.exports = require("vue");
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/vue-popper");

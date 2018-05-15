@@ -1,28 +1,12 @@
 /* 请根据 var.scss 文件中的变量设定颜色值，不得在本文件中定义颜色并使用 */
 @import "./var";
 
-body, html {
-  font-family: Microsoft YaHei,SimSun,sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: $background-color--gray;
-}
-ul,li,img {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  list-style: none;
-}
-div {
-  box-sizing: border-box;
-}
-.main-width {
-  margin: 0 auto;
-  width: 100%;
-  min-width: 960px;
-  max-width: 1180px;
-}
-.bg-white {
-  background-color: $--color-white;
-}
+body,h1,h2,h3,h4,p,dl,dd,ul,ol,form,input,textarea,th,td,select{margin: 0;padding: 0;}
+em{font-style: normal;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: none;vertical-align: top;}
+table{border-collapse: collapse;}
+input,textarea{outline: none;}
+textarea{resize:none;overflow: auto;}
+body{font-size:14px;font-family:'微软雅黑';color: $--color-gy333}

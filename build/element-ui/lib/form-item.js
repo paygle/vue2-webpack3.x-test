@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 317);
+/******/ 	return __webpack_require__(__webpack_require__.s = 263);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,29 +183,15 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/util");
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/dom");
-
-/***/ }),
-
-/***/ 317:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(318);
+module.exports = __webpack_require__(264);
 
 
 /***/ }),
 
-/***/ 318:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -213,7 +199,7 @@ module.exports = __webpack_require__(318);
 
 exports.__esModule = true;
 
-var _formItem = __webpack_require__(319);
+var _formItem = __webpack_require__(265);
 
 var _formItem2 = _interopRequireDefault(_formItem);
 
@@ -228,23 +214,21 @@ exports.default = _formItem2.default;
 
 /***/ }),
 
-/***/ 319:
+/***/ 265:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9193ba4a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_item_vue__ = __webpack_require__(320);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_fb0719cc_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_item_vue__ = __webpack_require__(268);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -253,7 +237,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_item_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9193ba4a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_item_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_fb0719cc_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_item_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -265,44 +249,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 320:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-form-item",class:[{
-    'el-form-item--feedback': _vm.elForm && _vm.elForm.statusIcon,
-    'is-error': _vm.validateState === 'error',
-    'is-validating': _vm.validateState === 'validating',
-    'is-success': _vm.validateState === 'success',
-    'is-required': _vm.isRequired || _vm.required
-  },
-  _vm.sizeClass ? 'el-form-item--' + _vm.sizeClass : ''
-]},[(_vm.label || _vm.$slots.label)?_c('label',{staticClass:"el-form-item__label",style:(_vm.labelStyle),attrs:{"for":_vm.labelFor}},[_vm._t("label",[_vm._v(_vm._s(_vm.label + _vm.form.labelSuffix))])],2):_vm._e(),_c('div',{staticClass:"el-form-item__content",style:(_vm.contentStyle)},[_vm._t("default"),_c('transition',{attrs:{"name":"el-zoom-in-top"}},[(_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage)?_c('div',{staticClass:"el-form-item__error",class:{
-          'el-form-item__error--inline': typeof _vm.inlineMessage === 'boolean'
-            ? _vm.inlineMessage
-            : (_vm.elForm && _vm.elForm.inlineMessage || false)
-        }},[_vm._v("\n        "+_vm._s(_vm.validateMessage)+"\n      ")]):_vm._e()])],2)])}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 50:
-/***/ (function(module, exports) {
-
-module.exports = require("async-validator");
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/merge");
-
-/***/ }),
-
-/***/ 95:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -310,7 +257,7 @@ module.exports = require("element-ui/lib/utils/merge");
 
 exports.__esModule = true;
 
-var _asyncValidator = __webpack_require__(50);
+var _asyncValidator = __webpack_require__(267);
 
 var _asyncValidator2 = _interopRequireDefault(_asyncValidator);
 
@@ -318,22 +265,15 @@ var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _merge = __webpack_require__(8);
+var _merge = __webpack_require__(9);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _util = __webpack_require__(2);
-
-var _dom = __webpack_require__(3);
+var _util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// 扩展
-
-// ext-> 自定义日期兼容转换
-var compatDateStr = function compatDateStr(date) {
-  return typeof date === 'string' ? String(date).replace('-', '/') : date;
-}; //
+//
 //
 //
 //
@@ -382,12 +322,9 @@ exports.default = {
   inject: ['elForm'],
 
   props: {
-    model: Object, // ext-> 非数据联验证-数据对象
-    value: null, // ext-> 非数据联验证的非Object类型的值
-    scopeName: String, // ext-> 表单所属域名称与 form 的 scopeName 一致
     label: String,
     labelWidth: String,
-    prop: String, // 验证规则里面对应的属性
+    prop: String,
     required: {
       type: Boolean,
       default: undefined
@@ -458,7 +395,7 @@ exports.default = {
     fieldValue: {
       cache: false,
       get: function get() {
-        var model = this.model || this.form.model; // ext-> modify
+        var model = this.form.model;
         if (!model || !this.prop) {
           return;
         }
@@ -467,12 +404,8 @@ exports.default = {
         if (path.indexOf(':') !== -1) {
           path = path.replace(/:/, '.');
         }
-        if (typeof this.value !== 'undefined') {
-          return this.value; // ext-> modify
-        } else {
-          // ext-> modify
-          return (0, _util.getPropByPath)(model, path, true).v;
-        }
+
+        return (0, _util.getPropByPath)(model, path, true).v;
       }
     },
     isRequired: function isRequired() {
@@ -498,14 +431,6 @@ exports.default = {
     },
     sizeClass: function sizeClass() {
       return (this.$ELEMENT || {}).size || this.elFormItemSize;
-    },
-    scopeNamed: function scopeNamed() {
-      // ext-> 表单作用域
-      return this.scopeName || 'ElForm';
-    },
-    showInlineMsg: function showInlineMsg() {
-      // ext-> 弹出提示信息
-      return this.showMessage && this.form.showMessage;
     }
   },
   data: function data() {
@@ -514,15 +439,7 @@ exports.default = {
       validateMessage: '',
       validateDisabled: false,
       validator: {},
-      isNested: false,
-      IS_SHOW_TIPS: false, // ext-> 默认禁用 tooltip功能
-      TIP_POP_WIDTH: 0,
-      tipContent: '', // ext-> tooltip内容
-      tipTimeHander: null, // ext-> 扩展
-      tipsDom: null, // ext-> 扩展
-      isCompare: false, // ext-> 是否为比较样式
-      customStyl: '',
-      errStyl: {} // ext-> 错误样式设置
+      isNested: false
     };
   },
 
@@ -534,13 +451,6 @@ exports.default = {
 
       this.validateDisabled = false;
       var rules = this.getFilteredRule(trigger);
-      // ext-> 验证样式设置
-      this.$nextTick(function () {
-        _this.setCompareStyl(_this.prop, _this.validateState);
-        // ext-> 触发外部校验
-        if (typeof _this.form.validTrigger === 'function') _this.form.validTrigger.call(null, _this.form.model);
-      });
-
       if ((!rules || rules.length === 0) && this.required === undefined) {
         callback();
         return true;
@@ -559,14 +469,14 @@ exports.default = {
       var validator = new _asyncValidator2.default(descriptor);
       var model = {};
 
-      model[this.prop] = this.getTypeData(this.fieldValue, rules);
+      model[this.prop] = this.fieldValue;
 
       validator.validate(model, { firstFields: true }, function (errors, invalidFields) {
         _this.validateState = !errors ? 'success' : 'error';
         _this.validateMessage = errors ? errors[0].message : '';
 
         callback(_this.validateMessage, invalidFields);
-        if (errors) _this.tipContent = _this.validateMessage; // ext-> 设置错误信息
+        _this.elForm && _this.elForm.$emit('validate', _this.prop, !errors);
       });
     },
     clearValidate: function clearValidate() {
@@ -578,41 +488,26 @@ exports.default = {
       this.validateState = '';
       this.validateMessage = '';
 
-      var model = this.model || this.form.model; // ext-> modify
+      var model = this.form.model;
       var value = this.fieldValue;
       var path = this.prop;
-      var prop = void 0; // ext-> modify
-
       if (path.indexOf(':') !== -1) {
         path = path.replace(/:/, '.');
       }
 
-      if ((0, _util.typeOf)(model) === 'Object') {
-        // ext-> modify
-        prop = (0, _util.getPropByPath)(model, path, true);
-      }
+      var prop = (0, _util.getPropByPath)(model, path, true);
 
+      this.validateDisabled = true;
       if (Array.isArray(value)) {
-        this.validateDisabled = true;
-        if (typeof this.value !== 'undefined') {
-          // ext-> modify
-          this.$emit('input', [].concat(this.initialValue));
-        } else if (prop) {
-          prop.o[prop.k] = [].concat(this.initialValue);
-        }
+        prop.o[prop.k] = [].concat(this.initialValue);
       } else {
-        this.validateDisabled = true;
-        if (typeof this.value !== 'undefined') {
-          // ext-> modify
-          this.$emit('input', this.initialValue);
-        } else if (prop) {
-          prop.o[prop.k] = this.initialValue;
-        }
+        prop.o[prop.k] = this.initialValue;
       }
       /* Select 的值被代码改变时不会触发校验，
          这里需要强行触发一次，刷新 validateDisabled 的值，
          确保 Select 下一次值改变时能正确触发校验 */
       this.broadcast('ElSelect', 'fieldReset');
+
       this.broadcast('ElTimeSelect', 'fieldReset', this.initialValue);
     },
     getRules: function getRules() {
@@ -649,154 +544,11 @@ exports.default = {
       }
 
       this.validate('change');
-    },
-
-    // ext-> 比较样式设置
-    setCompareStyl: function setCompareStyl(field, status, styl) {
-      // 验证样式设置
-      if (typeof styl !== 'undefined') this.customStyl = styl;
-      if (status === 'error') {
-        this.broadcast('ElInput', 'compare-style', this.errStyl);
-      } else if (status === 'compare' && this.validateState !== 'error') {
-        this.broadcast('ElInput', 'compare-style', styl);
-      } else if (this.isCompare && status !== 'compare' || styl === '') {
-        if (this.customStyl === '' && this.validateState !== 'error') {
-          this.broadcast('ElInput', 'compare-style', {});
-        }
-      }
-    },
-
-    // ext-> 自定义获取日期数据类型
-    getTypeData: function getTypeData(value, rules) {
-      var typevalue = '',
-          cdate = void 0;
-      if ((0, _util.typeOf)(rules) === 'Array') {
-        for (var i = 0; i < rules.length; i++) {
-          if ((0, _util.typeOf)(rules[i]) === 'Object' && rules[i]['type'] === 'date' && (0, _util.typeOf)(value) === 'String') {
-            cdate = new Date(compatDateStr(value));
-          }
-        }
-      } else if ((0, _util.typeOf)(rules) === 'Object' && rules.type === 'date' && (0, _util.typeOf)(value) === 'String') {
-        cdate = new Date(compatDateStr(value));
-      }
-
-      if ((0, _util.typeOf)(value) === 'Date') {
-        typevalue = value;
-      } else if ((0, _util.typeOf)(cdate) === 'Date' && !isNaN(cdate.getTime())) {
-        typevalue = cdate;
-      } else {
-        typevalue = value;
-      }
-      return typevalue;
-    },
-
-    // ext-> 鼠标over时事件
-    inputMouseover: function inputMouseover(e) {
-      var _this2 = this;
-
-      if (this.form.disabledTips) return; // 禁用表单溢出和验证弹窗提示
-      if (this.showInlineMsg && this.validateState === 'error') return;
-
-      var pos = void 0,
-          gapw = void 0,
-          style = void 0,
-          color = '',
-          that = this;
-      var inputEl = this.$el.querySelector('input') || this.$el.querySelector('textarea');
-      var inputWP = this.getPlaceWidth(inputEl);
-      this.TIP_POP_WIDTH = this.getTipContentWidth(inputEl, this.tipContent);
-
-      if (this.IS_SHOW_TIPS || this.validateState === 'error') {
-        this.tipTimeHander = setTimeout(function () {
-          pos = inputEl.getBoundingClientRect();
-          gapw = that.TIP_POP_WIDTH > 0 ? (that.TIP_POP_WIDTH - inputWP.w - inputWP.pl) / 2 : 0;
-          if (_this2.validateState === 'error') color = 'red';
-          style = 'color:' + color + '; left:' + (pos.left - gapw) + 'px; top: ' + (pos.top - 42) + 'px; z-index: 99; position: fixed';
-
-          if (/[\w\W]{3,}/ig.test(that.tipContent)) {
-            that.tipsDom = (0, _dom.createDomElement)('div', { class: 'form-message-tips', style: style });
-            that.tipsDom.innerHTML = that.tipContent;
-            document.body.appendChild(that.tipsDom);
-          }
-        }, 300);
-      }
-    },
-
-    // ext-> 鼠标out时事件
-    inputMouseout: function inputMouseout(e) {
-      if (this.form.disabledTips) return; // 禁用表单溢出和验证弹窗提示
-      if (this.showInlineMsg && this.validateState === 'error') return;
-
-      clearTimeout(this.tipTimeHander);
-      var delDoms = document.querySelectorAll('.form-message-tips');
-      if (delDoms.length && this.tipsDom) {
-        for (var i = 0; i < delDoms.length; i++) {
-          document.body.removeChild(delDoms[i]);
-        }
-        this.tipsDom = null;
-      }
-    },
-
-    // ext-> 设置超出边界提示内容
-    setTipContent: function setTipContent(value) {
-      if (this.validateState !== 'error') {
-        this.tipContent = value ? String(value) : '';
-        this.IS_SHOW_TIPS = this.getTipStatus(this.$el.querySelector('input'));
-      }
-    },
-
-    // ext-> 计算组件除padding的宽度
-    getPlaceWidth: function getPlaceWidth(el) {
-      var elStyl = void 0,
-          paddingLeft = void 0,
-          paddingRight = void 0;
-      if (el) {
-        elStyl = getComputedStyle(el);
-        paddingLeft = parseInt(elStyl.paddingLeft.replace('px', ''), 10);
-        paddingRight = parseInt(elStyl.paddingRight.replace('px', ''), 10);
-        return {
-          w: el.getBoundingClientRect().width - paddingLeft - paddingRight,
-          pl: paddingLeft
-        };
-      } else {
-        return { w: 0, pl: 0 };
-      }
-    },
-
-    // ext-> 计算文本宽度
-    getTipContentWidth: function getTipContentWidth(el, text) {
-      var elStyl = void 0,
-          fontSize = void 0,
-          zhword = void 0,
-          zhWidth = void 0;
-      text = text || '';
-      elStyl = getComputedStyle(el);
-      fontSize = parseInt(elStyl.fontSize.replace('px', ''), 10);
-      zhword = String(text).replace(/[0-9A-Za-z\-\:]/ig, '');
-      zhWidth = zhword.length * fontSize;
-      return (String(text).length - zhword.length) * fontSize * 0.56 + zhWidth;
-    },
-
-    // ext-> 获取tip动态配置
-    getTipStatus: function getTipStatus(el) {
-      var width = void 0,
-          contentWidth = void 0;
-      if (el) {
-        width = this.getPlaceWidth(el).w;
-        contentWidth = this.getTipContentWidth(el, this.tipContent);
-        if (contentWidth > width) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
     }
   },
   mounted: function mounted() {
     if (this.prop) {
-      this.dispatch(this.scopeNamed, 'el.form.addField', [this]); // ext-> modify
+      this.dispatch('ElForm', 'el.form.addField', [this]);
 
       var initialValue = this.fieldValue;
       if (Array.isArray(initialValue)) {
@@ -813,14 +565,55 @@ exports.default = {
         this.$on('el.form.change', this.onFieldChange);
       }
     }
-    this.$on('el.form.mouseover', this.inputMouseover); // ext-> 表单组件 mouseover 事件
-    this.$on('el.form.mouseout', this.inputMouseout); // ext-> 表单组件 mouseout 事件
-    this.$on('el.form.messagetips', this.setTipContent); // ext-> 弹出信息内容填充
   },
   beforeDestroy: function beforeDestroy() {
-    this.dispatch(this.scopeNamed, 'el.form.removeField', [this]); // ext-> modify
+    this.dispatch('ElForm', 'el.form.removeField', [this]);
   }
 };
+
+/***/ }),
+
+/***/ 267:
+/***/ (function(module, exports) {
+
+module.exports = require("async-validator");
+
+/***/ }),
+
+/***/ 268:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-form-item",class:[{
+    'el-form-item--feedback': _vm.elForm && _vm.elForm.statusIcon,
+    'is-error': _vm.validateState === 'error',
+    'is-validating': _vm.validateState === 'validating',
+    'is-success': _vm.validateState === 'success',
+    'is-required': _vm.isRequired || _vm.required
+  },
+  _vm.sizeClass ? 'el-form-item--' + _vm.sizeClass : ''
+]},[(_vm.label || _vm.$slots.label)?_c('label',{staticClass:"el-form-item__label",style:(_vm.labelStyle),attrs:{"for":_vm.labelFor}},[_vm._t("label",[_vm._v(_vm._s(_vm.label + _vm.form.labelSuffix))])],2):_vm._e(),_c('div',{staticClass:"el-form-item__content",style:(_vm.contentStyle)},[_vm._t("default"),_c('transition',{attrs:{"name":"el-zoom-in-top"}},[(_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage)?_c('div',{staticClass:"el-form-item__error",class:{
+          'el-form-item__error--inline': typeof _vm.inlineMessage === 'boolean'
+            ? _vm.inlineMessage
+            : (_vm.elForm && _vm.elForm.inlineMessage || false)
+        }},[_vm._v("\n        "+_vm._s(_vm.validateMessage)+"\n      ")]):_vm._e()])],2)])}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/merge");
 
 /***/ })
 

@@ -39,7 +39,7 @@
     vertical-align: top;
 
     i {
-      font-size: 24px; /* ext-> modify */
+      font-size: 28px;
       color: #8c939d;
     }
 
@@ -71,7 +71,7 @@
   overflow: hidden;
 
   .el-icon-upload {
-    font-size: 60px; /* ext-> modify */
+    font-size: 67px;
     color: $--color-text-placeholder;
     margin: 40px 0 16px;
     line-height: 50px;
@@ -89,7 +89,7 @@
 
   .el-upload__text {
     color: $--color-text-regular;
-    font-size: 12px; /* ext-> modify */
+    font-size: 14px;
     text-align: center;
 
     em {
@@ -115,7 +115,7 @@
 
   @include e(item) {
     transition: all .5s cubic-bezier(.55,0,.1,1);
-    font-size: 12px;
+    font-size: 14px;
     color: $--color-text-regular;
     line-height: 1.8;
     margin-top: 5px;
@@ -335,7 +335,7 @@
       text-align: center;
       color: #fff;
       opacity: 0;
-      font-size: 18px; /* ext-> modify */
+      font-size: 20px;
       background-color: rgba(0, 0, 0, .5);
       transition: opacity .3s;
       &::after {
@@ -438,7 +438,7 @@
       margin-top: 20px;
 
       i {
-        font-size: 60px; /* ext-> modify */
+        font-size: 70px;
         line-height: 1;
         position: absolute;
         left: 9px;
@@ -538,7 +538,7 @@
     .btn {
       display: inline-block;
       color: $--color-white;
-      font-size: 12px; /* ext-> modify */
+      font-size: 14px;
       cursor: pointer;
       vertical-align: middle;
       transition: $--md-fade-transition;
@@ -568,7 +568,7 @@
       i {
         color: $--color-white;
         display: block;
-        font-size: 20px; /* ext-> modify */
+        font-size: 24px;
         line-height: inherit;
         margin: 0 auto 5px;
       }

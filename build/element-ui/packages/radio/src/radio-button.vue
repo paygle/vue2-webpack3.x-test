@@ -65,7 +65,6 @@
         },
         set(value) {
           this._radioGroup.$emit('input', value);
-          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
         }
       },
       _radioGroup() {
@@ -105,7 +104,6 @@
       handleChange() {
         this.$nextTick(() => {
           this.dispatch('ElRadioGroup', 'handleChange', this.value);
-          this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
         });
       }
     }

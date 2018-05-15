@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 313);
+/******/ 	return __webpack_require__(__webpack_require__.s = 258);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,15 +176,15 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 313:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(314);
+module.exports = __webpack_require__(259);
 
 
 /***/ }),
 
-/***/ 314:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -192,7 +192,7 @@ module.exports = __webpack_require__(314);
 
 exports.__esModule = true;
 
-var _form = __webpack_require__(315);
+var _form = __webpack_require__(260);
 
 var _form2 = _interopRequireDefault(_form);
 
@@ -207,23 +207,21 @@ exports.default = _form2.default;
 
 /***/ }),
 
-/***/ 315:
+/***/ 260:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168c4c2c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_vue__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6c495d96_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_vue__ = __webpack_require__(262);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -232,7 +230,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_form_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168c4c2c_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6c495d96_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_form_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -244,28 +242,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 316:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"el-form",class:[
-  _vm.labelPosition ? 'el-form--label-' + _vm.labelPosition : '',
-  { 'el-form--inline': _vm.inline }
-]},[_vm._t("default")],2)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/merge");
-
-/***/ }),
-
-/***/ 94:
+/***/ 261:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -273,7 +250,7 @@ module.exports = require("element-ui/lib/utils/merge");
 
 exports.__esModule = true;
 
-var _merge = __webpack_require__(8);
+var _merge = __webpack_require__(9);
 
 var _merge2 = _interopRequireDefault(_merge);
 
@@ -312,24 +289,12 @@ exports.default = {
     validateOnRuleChange: {
       type: Boolean,
       default: true
-    },
-    scopeName: String, // ext-> 数据无关联验证-域名称
-    disabledTips: Boolean, // ext-> 禁用表单溢出和验证弹窗提示
-    compareStyl: Array, // ext-> 比较字段设置样式
-    validTrigger: Function, // ext-> 触发外部验证函数
-    errStyl: Object // ext-> 错误样式设置
+    }
   },
   watch: {
     rules: function rules() {
-      var _this = this;
-
       if (this.validateOnRuleChange) {
-        this.fields.forEach(function (field) {
-          field.clearValidate();
-        }); // ext-> 状态清除
-        this.$nextTick(function () {
-          return _this.validate(function () {});
-        });
+        this.validate(function () {});
       }
     }
   },
@@ -339,22 +304,17 @@ exports.default = {
     };
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
-    if (this.scopeName) this.$options.componentName = this.scopeName; // ext-> 自定义 componentName
-    this.$on('compare-change', this.compareChgStyl); // ext-> 比较样式
     this.$on('el.form.addField', function (field) {
       if (field) {
-        // 设置初始值
-        field.errStyl = _this2.errStyl;
-        if (_this2.compareStyl) field.isCompare = true;
-        _this2.fields.push(field);
+        _this.fields.push(field);
       }
     });
     /* istanbul ignore next */
     this.$on('el.form.removeField', function (field) {
       if (field.prop) {
-        _this2.fields.splice(_this2.fields.indexOf(field), 1);
+        _this.fields.splice(_this.fields.indexOf(field), 1);
       }
     });
   },
@@ -375,7 +335,7 @@ exports.default = {
       });
     },
     validate: function validate(callback) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (!this.model) {
         console.warn('[Element Warn][Form]model is required for validate to work!');
@@ -403,9 +363,9 @@ exports.default = {
         field.validate('', function (message, field) {
           if (message) {
             valid = false;
-            invalidFields = (0, _merge2.default)({}, invalidFields, field);
           }
-          if (typeof callback === 'function' && ++count === _this3.fields.length) {
+          invalidFields = (0, _merge2.default)({}, invalidFields, field);
+          if (typeof callback === 'function' && ++count === _this2.fields.length) {
             callback(valid, invalidFields);
           }
         });
@@ -424,49 +384,6 @@ exports.default = {
       }
 
       field.validate('', cb);
-    },
-
-    /* ext-> 比值样式计算
-     [
-      {
-        style: { // 自定义样式
-          color: '#fff',
-          background: 'green'
-        },
-        fields: ['name', 'desc'], // 需要比较触发计算的字段
-        stylefields: ['desc'], // 需要设置样式的字段（省略时，同fields)
-        compare:function(data) {
-          return data.name > data.desc; // 返回为真时设置给定样式
-        }
-      }
-     ]
-    */
-    compareChgStyl: function compareChgStyl(el) {
-      if (!Array.isArray(this.compareStyl)) return;
-      var that = this;
-      var fieldname = el.$parent.prop; // 获取字段名称
-
-      function setCustomStyle(cp, styl) {
-        var fields = cp.stylefields || cp.fields;
-        fields.forEach(function (f) {
-          that.fields.forEach(function (field) {
-            if (f === field.prop) field.setCompareStyl(field.prop, 'compare', styl);
-          });
-        });
-      }
-
-      this.compareStyl.forEach(function (cp) {
-        var hasf = cp.fields.filter(function (n) {
-          return n === fieldname;
-        });
-        if (hasf.length > 0) {
-          if (cp.compare.call(null, that.model)) {
-            setCustomStyle(cp, cp.style);
-          } else {
-            setCustomStyle(cp, {});
-          }
-        }
-      });
     }
   }
 }; //
@@ -477,6 +394,27 @@ exports.default = {
 //
 //
 //
+
+/***/ }),
+
+/***/ 262:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"el-form",class:[
+  _vm.labelPosition ? 'el-form--label-' + _vm.labelPosition : '',
+  { 'el-form--inline': _vm.inline }
+]},[_vm._t("default")],2)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/merge");
 
 /***/ })
 

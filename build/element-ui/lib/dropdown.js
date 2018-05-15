@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 170);
+/******/ 	return __webpack_require__(__webpack_require__.s = 76);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -190,15 +190,29 @@ module.exports = require("element-ui/lib/utils/clickoutside");
 
 /***/ }),
 
-/***/ 170:
+/***/ 15:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/button");
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(171);
+module.exports = __webpack_require__(77);
 
 
 /***/ }),
 
-/***/ 171:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -206,7 +220,7 @@ module.exports = __webpack_require__(171);
 
 exports.__esModule = true;
 
-var _dropdown = __webpack_require__(172);
+var _dropdown = __webpack_require__(78);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
@@ -221,22 +235,20 @@ exports.default = _dropdown2.default;
 
 /***/ }),
 
-/***/ 172:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_dropdown_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_dropdown_vue__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_dropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_dropdown_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_dropdown_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_dropdown_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 var __vue_template__ = null
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -257,28 +269,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 173:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/button-group");
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/button");
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/util");
-
-/***/ }),
-
-/***/ 58:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -294,19 +285,19 @@ var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _migrating = __webpack_require__(9);
+var _migrating = __webpack_require__(8);
 
 var _migrating2 = _interopRequireDefault(_migrating);
 
-var _button = __webpack_require__(19);
+var _button = __webpack_require__(15);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _buttonGroup = __webpack_require__(173);
+var _buttonGroup = __webpack_require__(80);
 
 var _buttonGroup2 = _interopRequireDefault(_buttonGroup);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -587,21 +578,29 @@ exports.default = {
       hide();
     };
 
-    var triggerElm = !splitButton ? this.$slots.default : h('el-button-group', [h(
-      'el-button',
-      {
-        attrs: { type: type, size: dropdownSize },
-        nativeOn: {
-          'click': handleMainButtonClick
-        }
-      },
-      [this.$slots.default]
-    ), h(
-      'el-button',
-      { ref: 'trigger', attrs: { type: type, size: dropdownSize },
-        'class': 'el-dropdown__caret-button' },
-      [h('i', { 'class': 'el-dropdown__icon el-icon-arrow-down' })]
-    )]);
+    var triggerElm = !splitButton ? this.$slots.default : h(
+      'el-button-group',
+      null,
+      [h(
+        'el-button',
+        {
+          attrs: { type: type, size: dropdownSize },
+          nativeOn: {
+            'click': handleMainButtonClick
+          }
+        },
+        [this.$slots.default]
+      ), h(
+        'el-button',
+        { ref: 'trigger', attrs: { type: type, size: dropdownSize },
+          'class': 'el-dropdown__caret-button' },
+        [h(
+          'i',
+          { 'class': 'el-dropdown__icon el-icon-arrow-down' },
+          []
+        )]
+      )]
+    );
 
     return h(
       'div',
@@ -617,10 +616,17 @@ exports.default = {
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/mixins/migrating");
+
+/***/ }),
+
+/***/ 80:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/button-group");
 
 /***/ })
 

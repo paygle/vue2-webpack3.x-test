@@ -10,7 +10,6 @@
     <el-input
       ref="input"
       v-bind="$props"
-      :tabindex="tabindex"
       @compositionstart.native="handleComposition"
       @compositionupdate.native="handleComposition"
       @compositionend.native="handleComposition"
@@ -39,8 +38,9 @@
     <el-autocomplete-suggestions
       visible-arrow
       :class="[popperClass ? popperClass : '']"
+      :popper-options="popperOptions"
       ref="suggestions"
-      placement="bottom-start"
+      :placement="placement"
       :id="id">
       <li
         v-for="(item, index) in suggestions"
@@ -88,6 +88,7 @@
         default: 'value'
       },
       popperClass: String,
+      popperOptions: Object,
       placeholder: String,
       disabled: Boolean,
       name: String,
@@ -113,7 +114,10 @@
         type: Number,
         default: 300
       },
-      tabindex: String // ext-> Tab –Ú÷µ
+      placement: {
+        type: String,
+        default: 'bottom-start'
+      }
     },
     data() {
       return {

@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 309);
+/******/ 	return __webpack_require__(__webpack_require__.s = 253);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,15 +176,15 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 309:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(310);
+module.exports = __webpack_require__(254);
 
 
 /***/ }),
 
-/***/ 310:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -192,7 +192,7 @@ module.exports = __webpack_require__(310);
 
 exports.__esModule = true;
 
-var _breadcrumbItem = __webpack_require__(311);
+var _breadcrumbItem = __webpack_require__(255);
 
 var _breadcrumbItem2 = _interopRequireDefault(_breadcrumbItem);
 
@@ -207,23 +207,21 @@ exports.default = _breadcrumbItem2.default;
 
 /***/ }),
 
-/***/ 311:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ecb11ff4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_breadcrumb_item_vue__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b5eb37a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_breadcrumb_item_vue__ = __webpack_require__(257);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -232,7 +230,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_breadcrumb_item_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ecb11ff4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_breadcrumb_item_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b5eb37a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_breadcrumb_item_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -244,24 +242,16 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 312:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"el-breadcrumb__item"},[_c('span',{ref:"link",staticClass:"el-breadcrumb__inner",attrs:{"role":"link"}},[_vm._t("default")],2),(_vm.separatorClass)?_c('i',{staticClass:"el-breadcrumb__separator",class:_vm.separatorClass}):_c('span',{staticClass:"el-breadcrumb__separator",attrs:{"role":"presentation"}},[_vm._v(_vm._s(_vm.separator))])])}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 93:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 exports.__esModule = true;
+//
+//
+//
 //
 //
 //
@@ -293,17 +283,29 @@ exports.default = {
 
     this.separator = this.elBreadcrumb.separator;
     this.separatorClass = this.elBreadcrumb.separatorClass;
-    var self = this;
     if (this.to) {
-      var link = this.$refs.link;
-      link.setAttribute('role', 'link');
-      link.addEventListener('click', function (_) {
+      (function () {
+        var link = _this.$refs.link;
         var to = _this.to;
-        self.replace ? self.$router.replace(to) : self.$router.push(to);
-      });
+        link.setAttribute('role', 'link');
+        link.addEventListener('click', function (_) {
+          _this.replace ? _this.$router.replace(to) : _this.$router.push(to);
+        });
+      })();
     }
   }
 };
+
+/***/ }),
+
+/***/ 257:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"el-breadcrumb__item"},[_c('span',{ref:"link",class:['el-breadcrumb__inner', _vm.to ? 'is-link' : ''],attrs:{"role":"link"}},[_vm._t("default")],2),(_vm.separatorClass)?_c('i',{staticClass:"el-breadcrumb__separator",class:_vm.separatorClass}):_c('span',{staticClass:"el-breadcrumb__separator",attrs:{"role":"presentation"}},[_vm._v(_vm._s(_vm.separator))])])}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ })
 

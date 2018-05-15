@@ -26,8 +26,8 @@
         v-if="trueLabel || falseLabel"
         class="el-checkbox__original"
         type="checkbox"
+        aria-hidden="true"
         :name="name"
-        :tabindex="tabindex"
         :disabled="isDisabled"
         :true-value="trueLabel"
         :false-value="falseLabel"
@@ -39,7 +39,7 @@
         v-else
         class="el-checkbox__original"
         type="checkbox"
-        :tabindex="tabindex"
+        aria-hidden="true"
         :disabled="isDisabled"
         :value="label"
         :name="name"
@@ -105,7 +105,6 @@
           } else {
             this.$emit('input', val);
             this.selfModel = val;
-            this.dispatch('ElForm', 'compare-change', [this]); // ext-> 比较着色
           }
         }
       },
@@ -167,8 +166,7 @@
       id: String, /* 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系*/
       controls: String, /* 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系*/
       border: Boolean,
-      size: String,
-      tabindex: String // ext-> Tab 序值
+      size: String
     },
 
     methods: {

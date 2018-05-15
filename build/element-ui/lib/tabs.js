@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 321);
+/******/ 	return __webpack_require__(__webpack_require__.s = 269);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,22 +176,22 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 16:
+/***/ 18:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/resize-event");
 
 /***/ }),
 
-/***/ 321:
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(322);
+module.exports = __webpack_require__(270);
 
 
 /***/ }),
 
-/***/ 322:
+/***/ 270:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +199,7 @@ module.exports = __webpack_require__(322);
 
 exports.__esModule = true;
 
-var _tabs = __webpack_require__(323);
+var _tabs = __webpack_require__(271);
 
 var _tabs2 = _interopRequireDefault(_tabs);
 
@@ -214,22 +214,20 @@ exports.default = _tabs2.default;
 
 /***/ }),
 
-/***/ 323:
+/***/ 271:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tabs_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 var __vue_template__ = null
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -250,91 +248,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 324:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue___default.a,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 325:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6398d572_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tab_bar_vue__ = __webpack_require__(326);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6398d572_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tab_bar_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 326:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-tabs__active-bar",class:("is-" + (_vm.rootTabs.tabPosition)),style:(_vm.barStyle)})}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 96:
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -342,7 +256,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 exports.__esModule = true;
 
-var _tabNav = __webpack_require__(324);
+var _tabNav = __webpack_require__(273);
 
 var _tabNav2 = _interopRequireDefault(_tabNav);
 
@@ -463,7 +377,11 @@ exports.default = {
           tabindex: '0'
         }
       },
-      [h('i', { 'class': 'el-icon-plus' })]
+      [h(
+        'i',
+        { 'class': 'el-icon-plus' },
+        []
+      )]
     ) : null;
 
     var navData = {
@@ -480,7 +398,11 @@ exports.default = {
     var header = h(
       'div',
       { 'class': ['el-tabs__header', 'is-' + tabPosition] },
-      [newButton, h('tab-nav', navData)]
+      [newButton, h(
+        'tab-nav',
+        navData,
+        []
+      )]
     );
     var panels = h(
       'div',
@@ -506,7 +428,41 @@ exports.default = {
 
 /***/ }),
 
-/***/ 97:
+/***/ 273:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue__);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+var __vue_template__ = null
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_nav_vue___default.a,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 274:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -514,11 +470,11 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _tabBar = __webpack_require__(325);
+var _tabBar = __webpack_require__(275);
 
 var _tabBar2 = _interopRequireDefault(_tabBar);
 
-var _resizeEvent = __webpack_require__(16);
+var _resizeEvent = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -557,7 +513,8 @@ exports.default = {
     return {
       scrollable: false,
       navOffset: 0,
-      isFocus: false
+      isFocus: false,
+      focusable: true
     };
   },
 
@@ -675,10 +632,34 @@ exports.default = {
       this.setFocus();
     },
     setFocus: function setFocus() {
-      this.isFocus = true;
+      if (this.focusable) {
+        this.isFocus = true;
+      }
     },
     removeFocus: function removeFocus() {
       this.isFocus = false;
+    },
+    visibilityChangeHandler: function visibilityChangeHandler() {
+      var _this = this;
+
+      var visibility = document.visibilityState;
+      if (visibility === 'hidden') {
+        this.focusable = false;
+      } else if (visibility === 'visible') {
+        setTimeout(function () {
+          _this.focusable = true;
+        }, 50);
+      }
+    },
+    windowBlurHandler: function windowBlurHandler() {
+      this.focusable = false;
+    },
+    windowFocusHandler: function windowFocusHandler() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        _this2.focusable = true;
+      }, 50);
     }
   },
 
@@ -686,7 +667,7 @@ exports.default = {
     this.update();
   },
   render: function render(h) {
-    var _this = this;
+    var _this3 = this;
 
     var type = this.type,
         panes = this.panes,
@@ -707,14 +688,22 @@ exports.default = {
           'click': scrollPrev
         }
       },
-      [h('i', { 'class': 'el-icon-arrow-left' })]
+      [h(
+        'i',
+        { 'class': 'el-icon-arrow-left' },
+        []
+      )]
     ), h(
       'span',
       { 'class': ['el-tabs__nav-next', scrollable.next ? '' : 'is-disabled'], on: {
           'click': scrollNext
         }
       },
-      [h('i', { 'class': 'el-icon-arrow-right' })]
+      [h(
+        'i',
+        { 'class': 'el-icon-arrow-right' },
+        []
+      )]
     )] : null;
 
     var tabs = this._l(panes, function (pane, index) {
@@ -725,12 +714,16 @@ exports.default = {
 
       pane.index = '' + index;
 
-      var btnClose = closable ? h('span', { 'class': 'el-icon-close', on: {
-          'click': function click(ev) {
-            onTabRemove(pane, ev);
+      var btnClose = closable ? h(
+        'span',
+        { 'class': 'el-icon-close', on: {
+            'click': function click(ev) {
+              onTabRemove(pane, ev);
+            }
           }
-        }
-      }) : null;
+        },
+        []
+      ) : null;
 
       var tabLabelContent = pane.$slots.label || pane.label;
       var tabindex = pane.active ? 0 : -1;
@@ -739,7 +732,7 @@ exports.default = {
         {
           'class': (_ref = {
             'el-tabs__item': true
-          }, _ref['is-' + _this.rootTabs.tabPosition] = true, _ref['is-active'] = pane.active, _ref['is-disabled'] = pane.disabled, _ref['is-closable'] = closable, _ref['is-focus'] = _this.isFocus, _ref),
+          }, _ref['is-' + _this3.rootTabs.tabPosition] = true, _ref['is-active'] = pane.active, _ref['is-disabled'] = pane.disabled, _ref['is-closable'] = closable, _ref['is-focus'] = _this3.isFocus, _ref),
           attrs: { id: 'tab-' + tabName,
             'aria-controls': 'pane-' + tabName,
             role: 'tab',
@@ -781,24 +774,69 @@ exports.default = {
               'keydown': changeTab
             }
           },
-          [!type ? h('tab-bar', {
-            attrs: { tabs: panes }
-          }) : null, tabs]
+          [!type ? h(
+            'tab-bar',
+            {
+              attrs: { tabs: panes }
+            },
+            []
+          ) : null, tabs]
         )]
       )]
     );
   },
   mounted: function mounted() {
     (0, _resizeEvent.addResizeListener)(this.$el, this.update);
+    document.addEventListener('visibilitychange', this.visibilityChangeHandler);
+    window.addEventListener('blur', this.windowBlurHandler);
+    window.addEventListener('focus', this.windowFocusHandler);
   },
   beforeDestroy: function beforeDestroy() {
     if (this.$el && this.update) (0, _resizeEvent.removeResizeListener)(this.$el, this.update);
+    document.removeEventListener('visibilitychange', this.visibilityChangeHandler);
+    window.removeEventListener('blur', this.windowBlurHandler);
+    window.removeEventListener('focus', this.windowFocusHandler);
   }
 };
 
 /***/ }),
 
-/***/ 98:
+/***/ 275:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_cac1499a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tab_bar_vue__ = __webpack_require__(277);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tab_bar_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_cac1499a_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tab_bar_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 276:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -867,6 +905,17 @@ exports.default = {
     }
   }
 };
+
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-tabs__active-bar",class:("is-" + (_vm.rootTabs.tabPosition)),style:(_vm.barStyle)})}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ })
 

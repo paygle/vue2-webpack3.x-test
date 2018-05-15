@@ -12,7 +12,7 @@
   display: inline-block;
   white-space: nowrap;
   outline: none;
-  font-size: $--font-size-small; /* ext-> modify */
+  font-size: $--font-size-base;
   @include utils-user-select(none);
 
   @include when(bordered) {

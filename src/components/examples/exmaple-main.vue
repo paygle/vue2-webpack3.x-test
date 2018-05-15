@@ -17,15 +17,49 @@
         <el-menu-item index="2-3"><a href="example01.html#/form">Hello Form</a></el-menu-item>
         <el-menu-item index="2-4"><a href="example01.html#/table">Hello Table</a></el-menu-item>
         <el-menu-item index="2-4"><a href="example02.html">Hello World</a></el-menu-item>
+        <el-menu-item index="2-5"><a href="index.html">Hello World!!</a></el-menu-item>
       </el-submenu>
     </el-menu>
-    <router-view></router-view>
+    {{$t('p0')}}：
+    <el-select v-model="lang" @change="langChanged">
+      <el-option value="zhCN" label="中文"></el-option>
+      <el-option value="en" label="英文"></el-option>
+      <el-option value="zhTW" label="繁体"></el-option>
+    </el-select>
+    <div class="main -router" v-if="langSwiched">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 <<script>
+import {
+  Menu,
+  MenuItem,
+  Submenu,
+  Select,
+  Option
+} from 'element-ui';
+
+Vue.use(Menu);
+Vue.use(MenuItem);
+Vue.use(Submenu);
+Vue.use(Select);
+Vue.use(Option);
+
 export default {
   name: 'ExmapleMain',
+  data() {
+    return {
+      langSwiched: true,
+      lang: 'zhCN'
+    };
+  },
   methods: {
+    // 语言切换
+    langChanged(lang) {
+      this.langSwiched = false;
+      this.$setLocale(lang, () => { this.langSwiched = true; });
+    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     }

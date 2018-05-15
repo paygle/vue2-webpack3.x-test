@@ -11,43 +11,23 @@ $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 
 /* Colors
 -------------------------- */
-$--color-gy111: #111 !default;
-$--color-gy222: #222 !default;
-$--color-gy333: #333 !default;
-$--color-gy444: #444 !default;
-$--color-gy555: #555 !default;
-$--color-gy666: #666 !default;
-$--color-gy777: #777 !default;
-$--color-gy888: #888 !default;
-$--color-gy999: #999 !default;
-$--color-gyaaa: #aaa !default;
-$--color-gybbb: #bbb !default;
-$--color-gyccc: #ccc !default;
-$--color-gyeee: #eee !default;
-
-$--color-8e8e8e: #8e8e8e !default;
-$--color-cecece: #cecece !default;
-$--color-e0e0e0: #e0e0e0 !default;
-$--color-e3e3e3: #e3e3e3 !default;
-$--color-f8f8f8: #f8f8f8 !default;
-
 $--color-white: #fff !default;
 $--color-black: #000 !default;
 
-$--color-primary: #5d9cec !default;
-$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 6da6ee */
-$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 6da6ee */
-$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 8ebaf2 */
-$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; /* 9ec4f4 */
-$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; /* aecef6 */
-$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /* bed7f7 */
-$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* cee1f9 */
-$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* dfebfb */
-$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* dfebfb */
+$--color-primary: #409EFF !default;
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; /* 8cc5ff */
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; /* a0cfff */
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /* b3d8ff */
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* c6e2ff */
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
 
-$--color-success: #79c942 !default;
-$--color-warning: #fbb321 !default;
-$--color-danger: #ec4e29 !default;
+$--color-success: #67c23a !default;
+$--color-warning: #e6a23c !default;
+$--color-danger: #f56c6c !default;
 $--color-info: #909399 !default;
 
 $--color-success-light: mix($--color-white, $--color-success, 80%) !default;
@@ -102,15 +82,15 @@ $--fill-base: $--color-white !default;
 -------------------------- */
 $--font-path: 'fonts' !default;
 $--font-size-base: 14px !default;
-$--font-size-small: 12px !default; /* ext-> modify */
-$--font-size-large: 16px !default; /* ext-> modify */
+$--font-size-small: 13px !default;
+$--font-size-large: 18px !default;
 $--font-color-disabled-base: #bbb !default;
 $--font-weight-primary: 500 !default;
 $--font-line-height-primary: 24px !default;
 
 /* Size
 -------------------------- */
-$--size-base: 12px !default; /* ext-> modify */
+$--size-base: 14px !default;
 
 /* z-index
 -------------------------- */
@@ -120,8 +100,8 @@ $--index-popper: 2000 !default;
 
 /* Disable base
 -------------------------- */
-$--disabled-fill-base: $--color-f8f8f8 !default; /* ext-> modify */
-$--disabled-color-base: $--color-gy999 !default; /* ext-> modify */
+$--disabled-fill-base: $--background-color-base !default;
+$--disabled-color-base: $--color-text-placeholder !default;
 $--disabled-border-base: $--border-color-light !default;
 
 /* Icon
@@ -131,7 +111,7 @@ $--icon-color-base: $--color-info !default;
 
 /* Checkbox
 -------------------------- */
-$--checkbox-font-size: 12px !default; /* ext-> modify */
+$--checkbox-font-size: 14px !default;
 $--checkbox-font-weight: $--font-weight-primary !default;
 $--checkbox-color: $--color-text-regular !default;
 $--checkbox-input-height: 14px !default;
@@ -181,7 +161,7 @@ $--checkbox-button-checked-border-color: $--color-primary !default;
 
 /* Radio
 -------------------------- */
-$--radio-font-size: 12px !default; /* ext-> modify */
+$--radio-font-size: 14px !default;
 $--radio-font-weight: $--font-weight-primary !default;
 $--radio-color: $--color-text-regular !default;
 $--radio-input-height: 14px !default;
@@ -232,18 +212,18 @@ $--radio-button-disabled-checked-fill: $--border-color-extra-light !default;
 -------------------------- */
 $--select-border-color-hover: $--border-color-hover !default;
 $--select-disabled-border: $--disabled-border-base !default;
-$--select-font-size: $--font-size-small !default; /* ext-> modify */
+$--select-font-size: $--font-size-base !default;
 $--select-close-hover-color: $--color-text-secondary !default;
 
 $--select-input-color: $--color-text-placeholder !default;
 $--select-multiple-input-color: #666 !default;
 $--select-input-focus-background: $--color-primary !default;
-$--select-input-font-size: 12px !default; /* ext-> modify */
+$--select-input-font-size: 14px !default;
 
 $--select-option-color: $--color-text-regular !default;
 $--select-option-disabled-color: $--color-text-placeholder !default;
 $--select-option-disabled-background: $--color-white !default;
-$--select-option-height: 26px !default; /* ext-> modify */
+$--select-option-height: 34px !default;
 $--select-option-hover-background: $--background-color-base !default;
 $--select-option-selected: $--color-primary !default;
 $--select-option-selected-hover: $--background-color-base !default;
@@ -275,14 +255,14 @@ $--alert-warning-color: $--color-warning-lighter !default;
 $--alert-danger-color: $--color-danger-lighter !default;
 
 $--alert-icon-size: 16px !default;
-$--alert-icon-large-size: 24px !default; /* ext-> modify */
+$--alert-icon-large-size: 28px !default;
 
 /* Message Box
 -------------------------- */
 $--msgbox-width: 420px !default;
 $--msgbox-border-radius: 4px !default;
 $--msgbox-font-size: $--font-size-large !default;
-$--msgbox-content-font-size: $--font-size-small !default; /* ext-> modify */
+$--msgbox-content-font-size: $--font-size-base !default;
 $--msgbox-content-color: $--color-text-regular !default;
 $--msgbox-error-font-size: 12px !default;
 $--msgbox-padding-primary: 15px !default;
@@ -333,10 +313,10 @@ $--notification-danger-color: $--color-danger !default;
 
 /* Input
 -------------------------- */
-$--input-font-size: $--font-size-small !default; /* ext-> modify */
+$--input-font-size: $--font-size-base !default;
 $--input-color: $--color-text-regular !default;
 $--input-width: 140px !default;
-$--input-height: 26px !default; /* ext-> modify */
+$--input-height: 40px !default;
 $--input-border: $--border-base !default;
 $--input-border-color: $--border-color-base !default;
 $--input-border-radius: $--border-radius-base !default;
@@ -371,7 +351,7 @@ $--input-mini-height: 28px !default;
 /* Cascader
 -------------------------- */
 $--cascader-menu-fill: $--fill-base !default;
-$--cascader-menu-font-size: $--font-size-small !default; /* ext-> modify */
+$--cascader-menu-font-size: $--font-size-base !default;
 $--cascader-menu-radius: $--border-radius-base !default;
 $--cascader-menu-border: $--border-base !default;
 $--cascader-menu-border-color: $--border-color-base !default;
@@ -477,7 +457,7 @@ $--switch-off-color: $--border-color-base !default;
 $--switch-disabled-color: $--border-color-lighter !default;
 $--switch-disabled-text-color: $--color-text-placeholder !default;
 
-$--switch-font-size: $--font-size-small !default; /* ext-> modify */
+$--switch-font-size: $--font-size-base !default;
 $--switch-core-border-radius: 10px !default;
 $--switch-width: 40px !default;
 $--switch-height: 20px !default;
@@ -489,24 +469,25 @@ $--dialog-background-color: $--color-primary-light-4 !default;
 $--dialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 $--dialog-close-hover-color: $--color-primary !default;
 $--dialog-title-font-size: $--font-size-large !default;
-$--dialog-font-size: 12px !default; /* ext-> modify */
+$--dialog-font-size: 14px !default;
 $--dialog-line-height: $--font-line-height-primary !default;
 $--dialog-padding-primary: 20px !default;
 
 /* Table
 -------------------------- */
-$--table-border:  1px solid $--border-color-lighter !default;
+$--table-border-color: $--border-color-lighter !default;
+$--table-border: 1px solid $--table-border-color !default;
 $--table-text-color: $--color-text-regular !default;
 $--table-header-color: $--color-text-secondary !default;
 $--table-row-hover-background: $--background-color-base !default;
-$--table-current-row-background: #ffe9cf !default; /* ext-> modify */
+$--table-current-row-background: $--color-primary-light-9 !default;
 $--table-header-background: $--color-white !default;
 $--table-footer-background: $--color-text-placeholder !default;
 $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 
 /* Pagination
 -------------------------- */
-$--pagination-font-size: 12px !default; /* ext-> modify */
+$--pagination-font-size: 13px !default;
 $--pagination-fill: $--color-white !default;
 $--pagination-color: $--color-text-primary !default;
 $--pagination-border-radius: 3px !default;
@@ -526,7 +507,7 @@ $--popover-border-color: $--border-color-lighter !default;
 $--popover-arrow-size: 6px !default;
 $--popover-padding: 12px !default;
 $--popover-padding-large: 18px 20px !default;
-$--popover-title-font-size: 14px !default; /* ext-> modify */
+$--popover-title-font-size: 16px !default;
 $--popover-title-color: $--color-text-primary !default;
 
 /* Tooltip
@@ -536,7 +517,7 @@ $--tooltip-color: $--color-white !default;
 $--tooltip-font-size: 12px !default;
 $--tooltip-border-color: $--color-text-primary !default;
 $--tooltip-arrow-size: 6px !default;
-$--tooltip-padding: 6px !default; /* ext-> modify */
+$--tooltip-padding: 10px !default;
 
 /* Tag
 -------------------------- */
@@ -603,10 +584,10 @@ $--slider-disable-color: $--color-text-placeholder !default;
 
 $--slider-margin: 16px 0 !default;
 $--slider-border-radius: 3px !default;
-$--slider-height: 3px !default; /* ext-> modify */
-$--slider-button-size: 10px !default; /* ext-> modify */
-$--slider-button-wrapper-size: 20px !default; /* ext-> modify */
-$--slider-button-wrapper-offset: -9px !default; /* ext-> modify */
+$--slider-height: 6px !default;
+$--slider-button-size: 16px !default;
+$--slider-button-wrapper-size: 36px !default;
+$--slider-button-wrapper-offset: -15px !default;
 
 /* Steps
 --------------------------*/

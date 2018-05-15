@@ -108,29 +108,28 @@
 
     @include when(light) {
       background: $--tooltip-color;
-      border: 1px solid $--color-gybbb; /* ext-> modify */
-      box-shadow: 1px 1px 1px rgba(130, 130, 130, 0.3); /* ext-> add */
+      border: 1px solid $--tooltip-fill;
 
       &[x-placement^="top"] .popper__arrow {
-        border-top-color: $--color-gybbb; /* ext-> modify */
+        border-top-color: $--tooltip-fill;
         &::after {
           border-top-color: $--tooltip-color;
         }
       }
       &[x-placement^="bottom"] .popper__arrow {
-        border-bottom-color: $--color-gybbb; /* ext-> modify */
+        border-bottom-color: $--tooltip-fill;
         &::after {
           border-bottom-color: $--tooltip-color;
         }
       }
       &[x-placement^="left"] .popper__arrow {
-        border-left-color: $--color-gybbb; /* ext-> modify */
+        border-left-color: $--tooltip-fill;
         &::after {
           border-left-color: $--tooltip-color;
         }
       }
       &[x-placement^="right"] .popper__arrow {
-        border-right-color: $--color-gybbb; /* ext-> modify */
+        border-right-color: $--tooltip-fill;
         &::after {
           border-right-color: $--tooltip-color;
         }

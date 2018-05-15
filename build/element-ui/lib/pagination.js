@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 153);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -176,15 +176,29 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 153:
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/mixins/locale");
+
+/***/ }),
+
+/***/ 55:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(154);
+module.exports = __webpack_require__(56);
 
 
 /***/ }),
 
-/***/ 154:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -192,7 +206,7 @@ module.exports = __webpack_require__(154);
 
 exports.__esModule = true;
 
-var _pagination = __webpack_require__(155);
+var _pagination = __webpack_require__(57);
 
 var _pagination2 = _interopRequireDefault(_pagination);
 
@@ -207,7 +221,7 @@ exports.default = _pagination2.default;
 
 /***/ }),
 
-/***/ 155:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,19 +229,19 @@ exports.default = _pagination2.default;
 
 exports.__esModule = true;
 
-var _pager = __webpack_require__(156);
+var _pager = __webpack_require__(58);
 
 var _pager2 = _interopRequireDefault(_pager);
 
-var _select = __webpack_require__(158);
+var _select = __webpack_require__(61);
 
 var _select2 = _interopRequireDefault(_select);
 
-var _option = __webpack_require__(159);
+var _option = __webpack_require__(62);
 
 var _option2 = _interopRequireDefault(_option);
 
-var _input = __webpack_require__(7);
+var _input = __webpack_require__(6);
 
 var _input2 = _interopRequireDefault(_input);
 
@@ -235,7 +249,7 @@ var _locale = __webpack_require__(5);
 
 var _locale2 = _interopRequireDefault(_locale);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -253,6 +267,15 @@ exports.default = {
     total: Number,
 
     pageCount: Number,
+
+    pagerCount: {
+      type: Number,
+      validator: function validator(value) {
+        return (value | 0) === value && value > 4 && value < 22 && value % 2 === 1;
+      },
+
+      default: 7
+    },
 
     currentPage: {
       type: Number,
@@ -278,9 +301,7 @@ exports.default = {
 
     background: Boolean,
 
-    disabled: Boolean,
-
-    params: null // ext-> 追加参数
+    disabled: Boolean
   },
 
   data: function data() {
@@ -292,32 +313,68 @@ exports.default = {
     };
   },
   render: function render(h) {
-    var template = h('div', { 'class': ['el-pagination', {
-        'is-background': this.background,
-        'el-pagination--small': this.small
-      }] });
+    var template = h(
+      'div',
+      { 'class': ['el-pagination', {
+          'is-background': this.background,
+          'el-pagination--small': this.small
+        }] },
+      []
+    );
     var layout = this.layout || '';
     if (!layout) return;
     var TEMPLATE_MAP = {
-      prev: h('prev'),
-      jumper: h('jumper'),
-      pager: h('pager', {
-        attrs: { currentPage: this.internalCurrentPage, pageCount: this.internalPageCount, disabled: this.disabled },
-        on: {
-          'change': this.handleCurrentChange
-        }
-      }),
-      next: h('next'),
-      sizes: h('sizes', {
-        attrs: { pageSizes: this.pageSizes }
-      }),
-      slot: h('my-slot'),
-      total: h('total')
+      prev: h(
+        'prev',
+        null,
+        []
+      ),
+      jumper: h(
+        'jumper',
+        null,
+        []
+      ),
+      pager: h(
+        'pager',
+        {
+          attrs: { currentPage: this.internalCurrentPage, pageCount: this.internalPageCount, pagerCount: this.pagerCount, disabled: this.disabled },
+          on: {
+            'change': this.handleCurrentChange
+          }
+        },
+        []
+      ),
+      next: h(
+        'next',
+        null,
+        []
+      ),
+      sizes: h(
+        'sizes',
+        {
+          attrs: { pageSizes: this.pageSizes }
+        },
+        []
+      ),
+      slot: h(
+        'my-slot',
+        null,
+        []
+      ),
+      total: h(
+        'total',
+        null,
+        []
+      )
     };
     var components = layout.split(',').map(function (item) {
       return item.trim();
     });
-    var rightWrapper = h('div', { 'class': 'el-pagination__rightwrapper' });
+    var rightWrapper = h(
+      'div',
+      { 'class': 'el-pagination__rightwrapper' },
+      []
+    );
     var haveRightWrapper = false;
 
     template.children = template.children || [];
@@ -355,14 +412,23 @@ exports.default = {
           'button',
           {
             attrs: {
-              type: 'button'
+              type: 'button',
+
+              disabled: this.$parent.disabled || this.$parent.internalCurrentPage <= 1
             },
-            'class': ['btn-prev', { disabled: this.$parent.disabled || this.$parent.internalCurrentPage <= 1 }],
-            on: {
+            'class': 'btn-prev', on: {
               'click': this.$parent.prev
             }
           },
-          [this.$parent.prevText ? h('span', [this.$parent.prevText]) : h('i', { 'class': 'el-icon el-icon-arrow-left' })]
+          [this.$parent.prevText ? h(
+            'span',
+            null,
+            [this.$parent.prevText]
+          ) : h(
+            'i',
+            { 'class': 'el-icon el-icon-arrow-left' },
+            []
+          )]
         );
       }
     },
@@ -373,14 +439,23 @@ exports.default = {
           'button',
           {
             attrs: {
-              type: 'button'
+              type: 'button',
+
+              disabled: this.$parent.disabled || this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0
             },
-            'class': ['btn-next', { disabled: this.$parent.disabled || this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0 }],
-            on: {
+            'class': 'btn-next', on: {
               'click': this.$parent.next
             }
           },
-          [this.$parent.nextText ? h('span', [this.$parent.nextText]) : h('i', { 'class': 'el-icon el-icon-arrow-right' })]
+          [this.$parent.nextText ? h(
+            'span',
+            null,
+            [this.$parent.nextText]
+          ) : h(
+            'i',
+            { 'class': 'el-icon el-icon-arrow-right' },
+            []
+          )]
         );
       }
     },
@@ -423,11 +498,15 @@ exports.default = {
               }
             },
             [this.pageSizes.map(function (item) {
-              return h('el-option', {
-                attrs: {
-                  value: item,
-                  label: item + _this.t('el.pagination.pagesize') }
-              });
+              return h(
+                'el-option',
+                {
+                  attrs: {
+                    value: item,
+                    label: item + _this.t('el.pagination.pagesize') }
+                },
+                []
+              );
             })]
           )]
         );
@@ -444,7 +523,7 @@ exports.default = {
           if (val !== this.$parent.internalPageSize) {
             this.$parent.internalPageSize = val = parseInt(val, 10);
             this.$parent.userChangePageSize = true;
-            this.$parent.$emit('size-change', val, this.params); // ext->modify
+            this.$parent.$emit('size-change', val);
           }
         }
       }
@@ -517,28 +596,32 @@ exports.default = {
         return h(
           'span',
           { 'class': 'el-pagination__jump' },
-          [this.t('el.pagination.goto'), h('el-input', {
-            'class': 'el-pagination__editor is-in-pagination',
-            attrs: { min: 1,
-              max: this.$parent.internalPageCount,
-              value: this.$parent.internalCurrentPage,
+          [this.t('el.pagination.goto'), h(
+            'el-input',
+            {
+              'class': 'el-pagination__editor is-in-pagination',
+              attrs: { min: 1,
+                max: this.$parent.internalPageCount,
+                value: this.$parent.internalCurrentPage,
 
-              type: 'number',
+                type: 'number',
 
-              disabled: this.$parent.disabled
+                disabled: this.$parent.disabled
+              },
+              domProps: {
+                'value': this.$parent.internalCurrentPage
+              },
+              ref: 'input', nativeOn: {
+                'keyup': this.handleKeyup
+              },
+              on: {
+                'change': this.handleChange,
+                'focus': this.handleFocus,
+                'blur': this.handleBlur
+              }
             },
-            domProps: {
-              'value': this.$parent.internalCurrentPage
-            },
-            ref: 'input', nativeOn: {
-              'keyup': this.handleKeyup
-            },
-            on: {
-              'change': this.handleChange,
-              'focus': this.handleFocus,
-              'blur': this.handleBlur
-            }
-          }), this.t('el.pagination.pageClassifier')]
+            []
+          ), this.t('el.pagination.pageClassifier')]
         );
       }
     },
@@ -561,18 +644,21 @@ exports.default = {
   methods: {
     handleCurrentChange: function handleCurrentChange(val) {
       this.internalCurrentPage = this.getValidCurrentPage(val);
+      this.userChangePageSize = true;
       this.emitChange();
     },
     prev: function prev() {
       if (this.disabled) return;
       var newVal = this.internalCurrentPage - 1;
       this.internalCurrentPage = this.getValidCurrentPage(newVal);
+      this.$emit('prev-click', this.internalCurrentPage);
       this.emitChange();
     },
     next: function next() {
       if (this.disabled) return;
       var newVal = this.internalCurrentPage + 1;
       this.internalCurrentPage = this.getValidCurrentPage(newVal);
+      this.$emit('next-click', this.internalCurrentPage);
       this.emitChange();
     },
     getValidCurrentPage: function getValidCurrentPage(value) {
@@ -603,9 +689,10 @@ exports.default = {
       var _this3 = this;
 
       this.$nextTick(function () {
-        if (_this3.internalCurrentPage !== _this3.lastEmittedPage) {
-          _this3.$emit('current-change', _this3.internalCurrentPage, _this3.params); // ext->modify
+        if (_this3.internalCurrentPage !== _this3.lastEmittedPage || _this3.userChangePageSize) {
+          _this3.$emit('current-change', _this3.internalCurrentPage);
           _this3.lastEmittedPage = _this3.internalCurrentPage;
+          _this3.userChangePageSize = false;
         }
       });
     }
@@ -633,33 +720,34 @@ exports.default = {
     pageSize: {
       immediate: true,
       handler: function handler(val) {
-        this.internalPageSize = val;
+        this.internalPageSize = isNaN(val) ? 10 : val;
       }
     },
 
-    internalCurrentPage: function internalCurrentPage(newVal, oldVal) {
-      var _this4 = this;
+    internalCurrentPage: {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        newVal = parseInt(newVal, 10);
 
-      newVal = parseInt(newVal, 10);
+        /* istanbul ignore if */
+        if (isNaN(newVal)) {
+          newVal = oldVal || 1;
+        } else {
+          newVal = this.getValidCurrentPage(newVal);
+        }
 
-      /* istanbul ignore if */
-      if (isNaN(newVal)) {
-        newVal = oldVal || 1;
-      } else {
-        newVal = this.getValidCurrentPage(newVal);
-      }
-
-      if (newVal !== undefined) {
-        this.$nextTick(function () {
-          _this4.internalCurrentPage = newVal;
+        if (newVal !== undefined) {
+          this.internalCurrentPage = newVal;
           if (oldVal !== newVal) {
-            _this4.$emit('update:currentPage', newVal);
+            this.$emit('update:currentPage', newVal);
           }
-        });
-      } else {
-        this.$emit('update:currentPage', newVal);
+        } else {
+          this.$emit('update:currentPage', newVal);
+        }
+        this.lastEmittedPage = -1;
       }
     },
+
     internalPageCount: function internalPageCount(newVal) {
       /* istanbul ignore if */
       var oldPage = this.internalCurrentPage;
@@ -676,23 +764,21 @@ exports.default = {
 
 /***/ }),
 
-/***/ 156:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1b2c76b8_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a7534192_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__ = __webpack_require__(60);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -701,7 +787,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pager_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1b2c76b8_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a7534192_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pager_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -713,46 +799,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 157:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"el-pager",on:{"click":_vm.onPagerClick}},[(_vm.pageCount > 0)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === 1, disabled: _vm.disabled }},[_vm._v("1")]):_vm._e(),(_vm.showPrevMore)?_c('li',{staticClass:"el-icon more btn-quickprev",class:[_vm.quickprevIconClass, { disabled: _vm.disabled }],on:{"mouseenter":function($event){_vm.onMouseenter('left')},"mouseleave":function($event){_vm.quickprevIconClass = 'el-icon-more'}}}):_vm._e(),_vm._l((_vm.pagers),function(pager){return _c('li',{key:pager,staticClass:"number",class:{ active: _vm.currentPage === pager, disabled: _vm.disabled }},[_vm._v(_vm._s(pager))])}),(_vm.showNextMore)?_c('li',{staticClass:"el-icon more btn-quicknext",class:[_vm.quicknextIconClass, { disabled: _vm.disabled }],on:{"mouseenter":function($event){_vm.onMouseenter('right')},"mouseleave":function($event){_vm.quicknextIconClass = 'el-icon-more'}}}):_vm._e(),(_vm.pageCount > 1)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === _vm.pageCount, disabled: _vm.disabled }},[_vm._v(_vm._s(_vm.pageCount))]):_vm._e()],2)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 158:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/select");
-
-/***/ }),
-
-/***/ 159:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/option");
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/util");
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/mixins/locale");
-
-/***/ }),
-
-/***/ 54:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -800,6 +847,8 @@ exports.default = {
 
     pageCount: Number,
 
+    pagerCount: Number,
+
     disabled: Boolean
   },
 
@@ -822,12 +871,13 @@ exports.default = {
       var newPage = Number(event.target.textContent);
       var pageCount = this.pageCount;
       var currentPage = this.currentPage;
+      var pagerCountOffset = this.pagerCount - 2;
 
       if (target.className.indexOf('more') !== -1) {
         if (target.className.indexOf('quickprev') !== -1) {
-          newPage = currentPage - 5;
+          newPage = currentPage - pagerCountOffset;
         } else if (target.className.indexOf('quicknext') !== -1) {
-          newPage = currentPage + 5;
+          newPage = currentPage + pagerCountOffset;
         }
       }
 
@@ -858,7 +908,8 @@ exports.default = {
 
   computed: {
     pagers: function pagers() {
-      var pagerCount = 7;
+      var pagerCount = this.pagerCount;
+      var halfPagerCount = (pagerCount - 1) / 2;
 
       var currentPage = Number(this.currentPage);
       var pageCount = Number(this.pageCount);
@@ -867,11 +918,11 @@ exports.default = {
       var showNextMore = false;
 
       if (pageCount > pagerCount) {
-        if (currentPage > pagerCount - 3) {
+        if (currentPage > pagerCount - halfPagerCount) {
           showPrevMore = true;
         }
 
-        if (currentPage < pageCount - 3) {
+        if (currentPage < pageCount - halfPagerCount) {
           showNextMore = true;
         }
       }
@@ -918,10 +969,35 @@ exports.default = {
 
 /***/ }),
 
-/***/ 7:
+/***/ 6:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/input");
+
+/***/ }),
+
+/***/ 60:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"el-pager",on:{"click":_vm.onPagerClick}},[(_vm.pageCount > 0)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === 1, disabled: _vm.disabled }},[_vm._v("1")]):_vm._e(),(_vm.showPrevMore)?_c('li',{staticClass:"el-icon more btn-quickprev",class:[_vm.quickprevIconClass, { disabled: _vm.disabled }],on:{"mouseenter":function($event){_vm.onMouseenter('left')},"mouseleave":function($event){_vm.quickprevIconClass = 'el-icon-more'}}}):_vm._e(),_vm._l((_vm.pagers),function(pager){return _c('li',{key:pager,staticClass:"number",class:{ active: _vm.currentPage === pager, disabled: _vm.disabled }},[_vm._v(_vm._s(pager))])}),(_vm.showNextMore)?_c('li',{staticClass:"el-icon more btn-quicknext",class:[_vm.quicknextIconClass, { disabled: _vm.disabled }],on:{"mouseenter":function($event){_vm.onMouseenter('right')},"mouseleave":function($event){_vm.quicknextIconClass = 'el-icon-more'}}}):_vm._e(),(_vm.pageCount > 1)?_c('li',{staticClass:"number",class:{ active: _vm.currentPage === _vm.pageCount, disabled: _vm.disabled }},[_vm._v(_vm._s(_vm.pageCount))]):_vm._e()],2)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/select");
+
+/***/ }),
+
+/***/ 62:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/option");
 
 /***/ })
 

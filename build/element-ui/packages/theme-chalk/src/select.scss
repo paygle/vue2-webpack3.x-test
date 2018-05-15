@@ -18,10 +18,6 @@
     }
   }
 
-  .translated .el-input__inner{ /* ext-> add */
-    border: 0;
-  }
-
   .el-input__inner {
     cursor: pointer;
     padding-right: 35px;
@@ -65,12 +61,6 @@
         &:hover {
           border-color: $--select-disabled-border;
         }
-      }
-    }
-
-    &.is-disputed {  /* ext-> add */
-      & .el-input__inner {
-        cursor:  default;
       }
     }
 

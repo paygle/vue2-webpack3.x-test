@@ -3,16 +3,13 @@
 module.exports = {
   root: true,
   globals: {
-    '$': true,
-    'jQuery': true,
     'Vue': true,
     'Vuex': true,
     'VueRouter': true,
-    'ELEMENT': true,
+    // 'ELEMENT': true,
     'echarts': true,
     'Promise': true,
     'XLSX': true,
-    'pako': true
   },
   parser: 'babel-eslint',
   env: {

@@ -33,10 +33,10 @@
   & li {
     padding: 0 20px;
     margin: 0;
-    line-height: 24px; /* ext-> modify */
+    line-height: 34px;
     cursor: pointer;
     color: $--color-text-regular;
-    font-size: $--font-size-small; /* ext-> modify */
+    font-size: $--font-size-base;
     list-style: none;
     white-space: nowrap;
     overflow: hidden;

@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 236);
+/******/ 	return __webpack_require__(__webpack_require__.s = 158);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -190,71 +190,29 @@ module.exports = require("element-ui/lib/utils/clickoutside");
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = require("throttle-debounce/debounce");
-
-/***/ }),
-
-/***/ 13:
+/***/ 12:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/locale");
 
 /***/ }),
 
-/***/ 16:
+/***/ 14:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/resize-event");
+module.exports = require("throttle-debounce/debounce");
 
 /***/ }),
 
-/***/ 17:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/scrollbar");
-
-/***/ }),
-
-/***/ 18:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/tag");
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/util");
-
-/***/ }),
-
-/***/ 20:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/mixins/focus");
-
-/***/ }),
-
-/***/ 23:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/scroll-into-view");
-
-/***/ }),
-
-/***/ 236:
+/***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(237);
+module.exports = __webpack_require__(159);
 
 
 /***/ }),
 
-/***/ 237:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -262,7 +220,7 @@ module.exports = __webpack_require__(237);
 
 exports.__esModule = true;
 
-var _select = __webpack_require__(238);
+var _select = __webpack_require__(160);
 
 var _select2 = _interopRequireDefault(_select);
 
@@ -277,23 +235,21 @@ exports.default = _select2.default;
 
 /***/ }),
 
-/***/ 238:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6d193174_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_vue__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8ac619d4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_vue__ = __webpack_require__(166);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -302,7 +258,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6d193174_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8ac619d4_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -314,19 +270,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 239:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],staticClass:"el-select",class:[_vm.selectSize ? 'el-select--' + _vm.selectSize : ''],on:{"click":function($event){$event.stopPropagation();return _vm.toggleMenu($event)}}},[(_vm.translated)?_c('div',{staticClass:"translated"},[_c('el-input',{ref:"reference",attrs:{"type":"text","name":_vm.name,"id":_vm.id,"size":_vm.selectSize,"readonly":""},model:{value:(_vm.selectedLabel),callback:function ($$v) {_vm.selectedLabel=$$v},expression:"selectedLabel"}})],1):_vm._e(),(!_vm.translated && _vm.multiple)?_c('div',{ref:"tags",staticClass:"el-select__tags",style:({ 'max-width': _vm.inputWidth - 32 + 'px' }),attrs:{"tabindex":_vm.tabindex}},[(_vm.collapseTags && _vm.selected.length)?_c('span',[_c('el-tag',{attrs:{"closable":!_vm.selectDisabled && !_vm.disputed,"size":_vm.collapseTagSize,"hit":_vm.selected[0].hitState,"type":"info","disable-transitions":""},on:{"close":function($event){_vm.deleteTag($event, _vm.selected[0])}}},[_c('span',{staticClass:"el-select__tags-text"},[_vm._v(_vm._s(_vm.selected[0].currentLabel))])]),(_vm.selected.length > 1)?_c('el-tag',{attrs:{"closable":false,"size":_vm.collapseTagSize,"type":"info","disable-transitions":""}},[_c('span',{staticClass:"el-select__tags-text"},[_vm._v("+ "+_vm._s(_vm.selected.length - 1))])]):_vm._e()],1):_vm._e(),(!_vm.collapseTags)?_c('transition-group',{on:{"after-leave":_vm.resetInputHeight}},_vm._l((_vm.selected),function(item){return _c('el-tag',{key:_vm.getValueKey(item),attrs:{"closable":!_vm.selectDisabled && !_vm.disputed,"size":_vm.collapseTagSize,"hit":item.hitState,"type":"info","disable-transitions":""},on:{"close":function($event){_vm.deleteTag($event, item)}}},[_c('span',{staticClass:"el-select__tags-text"},[_vm._v(_vm._s(item.currentLabel))])])})):_vm._e(),(_vm.filterable)?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.query),expression:"query"}],ref:"input",staticClass:"el-select__input",class:[_vm.selectSize ? ("is-" + _vm.selectSize) : ''],style:({ width: _vm.inputLength + 'px', 'max-width': _vm.inputWidth - 42 + 'px' }),attrs:{"type":"text","tabindex":_vm.tabindex,"disabled":_vm.selectDisabled || _vm.disputed,"autocomplete":_vm.autoComplete,"debounce":_vm.remote ? 300 : 0},domProps:{"value":(_vm.query)},on:{"focus":_vm.handleFocus,"click":function($event){$event.stopPropagation();},"keyup":_vm.managePlaceholder,"keydown":[_vm.resetInputState,function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }$event.preventDefault();_vm.navigateOptions('next')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }$event.preventDefault();_vm.navigateOptions('prev')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();return _vm.selectOption($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key,"Escape")){ return null; }$event.stopPropagation();$event.preventDefault();_vm.visible = false},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete"])){ return null; }return _vm.deletePrevTag($event)}],"input":[function($event){if($event.target.composing){ return; }_vm.query=$event.target.value},function (e) { return _vm.handleQueryChange(e.target.value); }]}}):_vm._e()],1):_vm._e(),(!_vm.translated)?_c('el-input',{ref:"reference",class:{ 'is-focus': _vm.visible },attrs:{"type":"text","placeholder":_vm.currentPlaceholder,"name":_vm.name,"id":_vm.id,"tabindex":_vm.tabindex,"auto-complete":_vm.autoComplete,"size":_vm.selectSize,"disabled":_vm.selectDisabled,"readonly":!_vm.filterable || _vm.multiple || !_vm.visible,"disputed":_vm.disputed,"validate-event":false},on:{"focus":_vm.handleFocus,"blur":_vm.handleBlur},nativeOn:{"keyup":function($event){return _vm.debouncedOnInputChange($event)},"keydown":[function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }$event.stopPropagation();$event.preventDefault();_vm.navigateOptions('next')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }$event.stopPropagation();$event.preventDefault();_vm.navigateOptions('prev')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();return _vm.selectOption($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key,"Escape")){ return null; }$event.stopPropagation();$event.preventDefault();_vm.visible = false},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"tab",9,$event.key,"Tab")){ return null; }_vm.visible = false}],"paste":function($event){return _vm.debouncedOnInputChange($event)},"mouseenter":function($event){_vm.inputHovering = true},"mouseleave":function($event){_vm.inputHovering = false}},model:{value:(_vm.selectedLabel),callback:function ($$v) {_vm.selectedLabel=$$v},expression:"selectedLabel"}},[_c('i',{class:['el-select__caret', 'el-input__icon', 'el-icon-' + _vm.iconClass],attrs:{"slot":"suffix"},on:{"click":_vm.handleIconClick},slot:"suffix"})]):_vm._e(),_c('transition',{attrs:{"name":"el-zoom-in-top"},on:{"before-enter":_vm.handleMenuEnter,"after-leave":_vm.doDestroy}},[_c('el-select-menu',{directives:[{name:"show",rawName:"v-show",value:(!_vm.translated && !_vm.disputed && _vm.visible && _vm.emptyText !== false),expression:"!translated && !disputed && visible && emptyText !== false"}],ref:"popper",attrs:{"append-to-body":_vm.popperAppendToBody}},[_c('el-scrollbar',{directives:[{name:"show",rawName:"v-show",value:(_vm.options.length > 0 && !_vm.loading),expression:"options.length > 0 && !loading"}],ref:"scrollbar",class:{ 'is-empty': !_vm.allowCreate && _vm.query && _vm.filteredOptionsCount === 0 },attrs:{"tag":"ul","wrap-class":"el-select-dropdown__wrap","view-class":"el-select-dropdown__list"}},[(_vm.showNewOption)?_c('el-option',{attrs:{"value":_vm.query,"created":""}}):_vm._e(),(_vm.innerOptions.length)?_vm._l((_vm.innerOptions),function(item){return _c('el-option',{key:item.value,attrs:{"label":item.label,"value":item.value,"disabled":item.disabled}})}):_vm._t("default")],2),(_vm.emptyText &&
-          (!_vm.allowCreate || _vm.loading || (_vm.allowCreate && _vm.options.length === 0 )))?_c('p',{staticClass:"el-select-dropdown__empty"},[_vm._v("\n        "+_vm._s(_vm.emptyText)+"\n      ")]):_vm._e()],1)],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 27:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -334,7 +278,948 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 exports.__esModule = true;
 
-var _vuePopper = __webpack_require__(6);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _emitter = __webpack_require__(1);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+var _focus = __webpack_require__(19);
+
+var _focus2 = _interopRequireDefault(_focus);
+
+var _locale = __webpack_require__(5);
+
+var _locale2 = _interopRequireDefault(_locale);
+
+var _input = __webpack_require__(6);
+
+var _input2 = _interopRequireDefault(_input);
+
+var _selectDropdown = __webpack_require__(162);
+
+var _selectDropdown2 = _interopRequireDefault(_selectDropdown);
+
+var _option = __webpack_require__(35);
+
+var _option2 = _interopRequireDefault(_option);
+
+var _tag = __webpack_require__(25);
+
+var _tag2 = _interopRequireDefault(_tag);
+
+var _scrollbar = __webpack_require__(17);
+
+var _scrollbar2 = _interopRequireDefault(_scrollbar);
+
+var _debounce = __webpack_require__(14);
+
+var _debounce2 = _interopRequireDefault(_debounce);
+
+var _clickoutside = __webpack_require__(10);
+
+var _clickoutside2 = _interopRequireDefault(_clickoutside);
+
+var _dom = __webpack_require__(2);
+
+var _resizeEvent = __webpack_require__(18);
+
+var _locale3 = __webpack_require__(12);
+
+var _scrollIntoView = __webpack_require__(26);
+
+var _scrollIntoView2 = _interopRequireDefault(_scrollIntoView);
+
+var _util = __webpack_require__(3);
+
+var _navigationMixin = __webpack_require__(165);
+
+var _navigationMixin2 = _interopRequireDefault(_navigationMixin);
+
+var _shared = __webpack_require__(23);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var sizeMap = {
+  'medium': 36,
+  'small': 32,
+  'mini': 28
+};
+
+exports.default = {
+  mixins: [_emitter2.default, _locale2.default, (0, _focus2.default)('reference'), _navigationMixin2.default],
+
+  name: 'ElSelect',
+
+  componentName: 'ElSelect',
+
+  inject: {
+    elForm: {
+      default: ''
+    },
+
+    elFormItem: {
+      default: ''
+    }
+  },
+
+  provide: function provide() {
+    return {
+      'select': this
+    };
+  },
+
+
+  computed: {
+    _elFormItemSize: function _elFormItemSize() {
+      return (this.elFormItem || {}).elFormItemSize;
+    },
+    readonly: function readonly() {
+      // trade-off for IE input readonly problem: https://github.com/ElemeFE/element/issues/10403
+      var isIE = !this.$isServer && !isNaN(Number(document.documentMode));
+      return !this.filterable || this.multiple || !isIE && !this.visible;
+    },
+    iconClass: function iconClass() {
+      var criteria = this.clearable && !this.selectDisabled && this.inputHovering && !this.multiple && this.value !== undefined && this.value !== '';
+      return criteria ? 'circle-close is-show-close' : this.remote && this.filterable ? '' : 'arrow-up';
+    },
+    debounce: function debounce() {
+      return this.remote ? 300 : 0;
+    },
+    emptyText: function emptyText() {
+      if (this.loading) {
+        return this.loadingText || this.t('el.select.loading');
+      } else {
+        if (this.remote && this.query === '' && this.options.length === 0) return false;
+        if (this.filterable && this.query && this.options.length > 0 && this.filteredOptionsCount === 0) {
+          return this.noMatchText || this.t('el.select.noMatch');
+        }
+        if (this.options.length === 0) {
+          return this.noDataText || this.t('el.select.noData');
+        }
+      }
+      return null;
+    },
+    showNewOption: function showNewOption() {
+      var _this = this;
+
+      var hasExistingOption = this.options.filter(function (option) {
+        return !option.created;
+      }).some(function (option) {
+        return option.currentLabel === _this.query;
+      });
+      return this.filterable && this.allowCreate && this.query !== '' && !hasExistingOption;
+    },
+    selectSize: function selectSize() {
+      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
+    },
+    selectDisabled: function selectDisabled() {
+      return this.disabled || (this.elForm || {}).disabled;
+    },
+    collapseTagSize: function collapseTagSize() {
+      return ['small', 'mini'].indexOf(this.selectSize) > -1 ? 'mini' : 'small';
+    }
+  },
+
+  components: {
+    ElInput: _input2.default,
+    ElSelectMenu: _selectDropdown2.default,
+    ElOption: _option2.default,
+    ElTag: _tag2.default,
+    ElScrollbar: _scrollbar2.default
+  },
+
+  directives: { Clickoutside: _clickoutside2.default },
+
+  props: {
+    name: String,
+    id: String,
+    value: {
+      required: true
+    },
+    autoComplete: {
+      type: String,
+      default: 'off'
+    },
+    automaticDropdown: Boolean,
+    size: String,
+    disabled: Boolean,
+    clearable: Boolean,
+    filterable: Boolean,
+    allowCreate: Boolean,
+    loading: Boolean,
+    popperClass: String,
+    remote: Boolean,
+    loadingText: String,
+    noMatchText: String,
+    noDataText: String,
+    remoteMethod: Function,
+    filterMethod: Function,
+    multiple: Boolean,
+    multipleLimit: {
+      type: Number,
+      default: 0
+    },
+    placeholder: {
+      type: String,
+      default: function _default() {
+        return (0, _locale3.t)('el.select.placeholder');
+      }
+    },
+    defaultFirstOption: Boolean,
+    reserveKeyword: Boolean,
+    valueKey: {
+      type: String,
+      default: 'value'
+    },
+    collapseTags: Boolean,
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  data: function data() {
+    return {
+      options: [],
+      cachedOptions: [],
+      createdLabel: null,
+      createdSelected: false,
+      selected: this.multiple ? [] : {},
+      inputLength: 20,
+      inputWidth: 0,
+      cachedPlaceHolder: '',
+      optionsCount: 0,
+      filteredOptionsCount: 0,
+      visible: false,
+      softFocus: false,
+      selectedLabel: '',
+      hoverIndex: -1,
+      query: '',
+      previousQuery: null,
+      inputHovering: false,
+      currentPlaceholder: '',
+      menuVisibleOnFocus: false,
+      isOnComposition: false,
+      isSilentBlur: false
+    };
+  },
+
+
+  watch: {
+    selectDisabled: function selectDisabled() {
+      var _this2 = this;
+
+      this.$nextTick(function () {
+        _this2.resetInputHeight();
+      });
+    },
+    placeholder: function placeholder(val) {
+      this.cachedPlaceHolder = this.currentPlaceholder = val;
+    },
+    value: function value(val) {
+      if (this.multiple) {
+        this.resetInputHeight();
+        if (val.length > 0 || this.$refs.input && this.query !== '') {
+          this.currentPlaceholder = '';
+        } else {
+          this.currentPlaceholder = this.cachedPlaceHolder;
+        }
+        if (this.filterable && !this.reserveKeyword) {
+          this.query = '';
+          this.handleQueryChange(this.query);
+        }
+      }
+      this.setSelected();
+      if (this.filterable && !this.multiple) {
+        this.inputLength = 20;
+      }
+    },
+    visible: function visible(val) {
+      var _this3 = this;
+
+      if (!val) {
+        this.handleIconHide();
+        this.broadcast('ElSelectDropdown', 'destroyPopper');
+        if (this.$refs.input) {
+          this.$refs.input.blur();
+        }
+        this.query = '';
+        this.previousQuery = null;
+        this.selectedLabel = '';
+        this.inputLength = 20;
+        this.resetHoverIndex();
+        this.$nextTick(function () {
+          if (_this3.$refs.input && _this3.$refs.input.value === '' && _this3.selected.length === 0) {
+            _this3.currentPlaceholder = _this3.cachedPlaceHolder;
+          }
+        });
+        if (!this.multiple) {
+          if (this.selected) {
+            if (this.filterable && this.allowCreate && this.createdSelected && this.createdLabel) {
+              this.selectedLabel = this.createdLabel;
+            } else {
+              this.selectedLabel = this.selected.currentLabel;
+            }
+            if (this.filterable) this.query = this.selectedLabel;
+          }
+        }
+      } else {
+        this.handleIconShow();
+        this.broadcast('ElSelectDropdown', 'updatePopper');
+        if (this.filterable) {
+          this.query = this.remote ? '' : this.selectedLabel;
+          this.handleQueryChange(this.query);
+          if (this.multiple) {
+            this.$refs.input.focus();
+          } else {
+            if (!this.remote) {
+              this.broadcast('ElOption', 'queryChange', '');
+              this.broadcast('ElOptionGroup', 'queryChange');
+            }
+            this.broadcast('ElInput', 'inputSelect');
+          }
+        }
+      }
+      this.$emit('visible-change', val);
+    },
+    options: function options() {
+      var _this4 = this;
+
+      if (this.$isServer) return;
+      this.$nextTick(function () {
+        _this4.broadcast('ElSelectDropdown', 'updatePopper');
+      });
+      if (this.multiple) {
+        this.resetInputHeight();
+      }
+      var inputs = this.$el.querySelectorAll('input');
+      if ([].indexOf.call(inputs, document.activeElement) === -1) {
+        this.setSelected();
+      }
+      if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
+        this.checkDefaultFirstOption();
+      }
+    }
+  },
+
+  methods: {
+    handleComposition: function handleComposition(event) {
+      var text = event.target.value;
+      if (event.type === 'compositionend') {
+        this.isOnComposition = false;
+        this.handleQueryChange(text);
+      } else {
+        var lastCharacter = text[text.length - 1] || '';
+        this.isOnComposition = !(0, _shared.isKorean)(lastCharacter);
+      }
+    },
+    handleQueryChange: function handleQueryChange(val) {
+      var _this5 = this;
+
+      if (this.previousQuery === val || this.isOnComposition) return;
+      if (this.previousQuery === null && (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')) {
+        this.previousQuery = val;
+        return;
+      }
+      this.previousQuery = val;
+      this.$nextTick(function () {
+        if (_this5.visible) _this5.broadcast('ElSelectDropdown', 'updatePopper');
+      });
+      this.hoverIndex = -1;
+      if (this.multiple && this.filterable) {
+        var length = this.$refs.input.value.length * 15 + 20;
+        this.inputLength = this.collapseTags ? Math.min(50, length) : length;
+        this.managePlaceholder();
+        this.resetInputHeight();
+      }
+      if (this.remote && typeof this.remoteMethod === 'function') {
+        this.hoverIndex = -1;
+        this.remoteMethod(val);
+      } else if (typeof this.filterMethod === 'function') {
+        this.filterMethod(val);
+        this.broadcast('ElOptionGroup', 'queryChange');
+      } else {
+        this.filteredOptionsCount = this.optionsCount;
+        this.broadcast('ElOption', 'queryChange', val);
+        this.broadcast('ElOptionGroup', 'queryChange');
+      }
+      if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
+        this.checkDefaultFirstOption();
+      }
+    },
+    handleIconHide: function handleIconHide() {
+      var icon = this.$el.querySelector('.el-input__icon');
+      if (icon) {
+        (0, _dom.removeClass)(icon, 'is-reverse');
+      }
+    },
+    handleIconShow: function handleIconShow() {
+      var icon = this.$el.querySelector('.el-input__icon');
+      if (icon && !(0, _dom.hasClass)(icon, 'el-icon-circle-close')) {
+        (0, _dom.addClass)(icon, 'is-reverse');
+      }
+    },
+    scrollToOption: function scrollToOption(option) {
+      var target = Array.isArray(option) && option[0] ? option[0].$el : option.$el;
+      if (this.$refs.popper && target) {
+        var menu = this.$refs.popper.$el.querySelector('.el-select-dropdown__wrap');
+        (0, _scrollIntoView2.default)(menu, target);
+      }
+      this.$refs.scrollbar && this.$refs.scrollbar.handleScroll();
+    },
+    handleMenuEnter: function handleMenuEnter() {
+      var _this6 = this;
+
+      this.$nextTick(function () {
+        return _this6.scrollToOption(_this6.selected);
+      });
+    },
+    emitChange: function emitChange(val) {
+      if (!(0, _util.valueEquals)(this.value, val)) {
+        this.$emit('change', val);
+        this.dispatch('ElFormItem', 'el.form.change', val);
+      }
+    },
+    getOption: function getOption(value) {
+      var option = void 0;
+      var isObject = Object.prototype.toString.call(value).toLowerCase() === '[object object]';
+      for (var i = this.cachedOptions.length - 1; i >= 0; i--) {
+        var cachedOption = this.cachedOptions[i];
+        var isEqual = isObject ? (0, _util.getValueByPath)(cachedOption.value, this.valueKey) === (0, _util.getValueByPath)(value, this.valueKey) : cachedOption.value === value;
+        if (isEqual) {
+          option = cachedOption;
+          break;
+        }
+      }
+      if (option) return option;
+      var label = !isObject ? value : '';
+      var newOption = {
+        value: value,
+        currentLabel: label
+      };
+      if (this.multiple) {
+        newOption.hitState = false;
+      }
+      return newOption;
+    },
+    setSelected: function setSelected() {
+      var _this7 = this;
+
+      if (!this.multiple) {
+        var option = this.getOption(this.value);
+        if (option.created) {
+          this.createdLabel = option.currentLabel;
+          this.createdSelected = true;
+        } else {
+          this.createdSelected = false;
+        }
+        this.selectedLabel = option.currentLabel;
+        this.selected = option;
+        if (this.filterable) this.query = this.selectedLabel;
+        return;
+      }
+      var result = [];
+      if (Array.isArray(this.value)) {
+        this.value.forEach(function (value) {
+          result.push(_this7.getOption(value));
+        });
+      }
+      this.selected = result;
+      this.$nextTick(function () {
+        _this7.resetInputHeight();
+      });
+    },
+    handleFocus: function handleFocus(event) {
+      if (!this.softFocus) {
+        if (this.automaticDropdown || this.filterable) {
+          this.visible = true;
+          this.menuVisibleOnFocus = true;
+        }
+        this.$emit('focus', event);
+      } else {
+        this.softFocus = false;
+      }
+    },
+    blur: function blur() {
+      this.visible = false;
+      this.$refs.reference.blur();
+    },
+    handleBlur: function handleBlur(event) {
+      var _this8 = this;
+
+      setTimeout(function () {
+        if (_this8.isSilentBlur) {
+          _this8.isSilentBlur = false;
+        } else {
+          _this8.$emit('blur', event);
+        }
+      }, 50);
+      this.softFocus = false;
+    },
+    handleIconClick: function handleIconClick(event) {
+      if (this.iconClass.indexOf('circle-close') > -1) {
+        this.deleteSelected(event);
+      }
+    },
+    doDestroy: function doDestroy() {
+      this.$refs.popper && this.$refs.popper.doDestroy();
+    },
+    handleClose: function handleClose() {
+      this.visible = false;
+    },
+    toggleLastOptionHitState: function toggleLastOptionHitState(hit) {
+      if (!Array.isArray(this.selected)) return;
+      var option = this.selected[this.selected.length - 1];
+      if (!option) return;
+
+      if (hit === true || hit === false) {
+        option.hitState = hit;
+        return hit;
+      }
+
+      option.hitState = !option.hitState;
+      return option.hitState;
+    },
+    deletePrevTag: function deletePrevTag(e) {
+      if (e.target.value.length <= 0 && !this.toggleLastOptionHitState()) {
+        var value = this.value.slice();
+        value.pop();
+        this.$emit('input', value);
+        this.emitChange(value);
+      }
+    },
+    managePlaceholder: function managePlaceholder() {
+      if (this.currentPlaceholder !== '') {
+        this.currentPlaceholder = this.$refs.input.value ? '' : this.cachedPlaceHolder;
+      }
+    },
+    resetInputState: function resetInputState(e) {
+      if (e.keyCode !== 8) this.toggleLastOptionHitState(false);
+      this.inputLength = this.$refs.input.value.length * 15 + 20;
+      this.resetInputHeight();
+    },
+    resetInputHeight: function resetInputHeight() {
+      var _this9 = this;
+
+      if (this.collapseTags && !this.filterable) return;
+      this.$nextTick(function () {
+        if (!_this9.$refs.reference) return;
+        var inputChildNodes = _this9.$refs.reference.$el.childNodes;
+        var input = [].filter.call(inputChildNodes, function (item) {
+          return item.tagName === 'INPUT';
+        })[0];
+        var tags = _this9.$refs.tags;
+        var sizeInMap = sizeMap[_this9.selectSize] || 40;
+        input.style.height = _this9.selected.length === 0 ? sizeInMap + 'px' : Math.max(tags ? tags.clientHeight + (tags.clientHeight > sizeInMap ? 6 : 0) : 0, sizeInMap) + 'px';
+        if (_this9.visible && _this9.emptyText !== false) {
+          _this9.broadcast('ElSelectDropdown', 'updatePopper');
+        }
+      });
+    },
+    resetHoverIndex: function resetHoverIndex() {
+      var _this10 = this;
+
+      setTimeout(function () {
+        if (!_this10.multiple) {
+          _this10.hoverIndex = _this10.options.indexOf(_this10.selected);
+        } else {
+          if (_this10.selected.length > 0) {
+            _this10.hoverIndex = Math.min.apply(null, _this10.selected.map(function (item) {
+              return _this10.options.indexOf(item);
+            }));
+          } else {
+            _this10.hoverIndex = -1;
+          }
+        }
+      }, 300);
+    },
+    handleOptionSelect: function handleOptionSelect(option, byClick) {
+      var _this11 = this;
+
+      if (this.multiple) {
+        var value = this.value.slice();
+        var optionIndex = this.getValueIndex(value, option.value);
+        if (optionIndex > -1) {
+          value.splice(optionIndex, 1);
+        } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
+          value.push(option.value);
+        }
+        this.$emit('input', value);
+        this.emitChange(value);
+        if (option.created) {
+          this.query = '';
+          this.handleQueryChange('');
+          this.inputLength = 20;
+        }
+        if (this.filterable) this.$refs.input.focus();
+      } else {
+        this.$emit('input', option.value);
+        this.emitChange(option.value);
+        this.visible = false;
+      }
+      this.isSilentBlur = byClick;
+      this.setSoftFocus();
+      if (this.visible) return;
+      this.$nextTick(function () {
+        _this11.scrollToOption(option);
+      });
+    },
+    setSoftFocus: function setSoftFocus() {
+      this.softFocus = true;
+      var input = this.$refs.input || this.$refs.reference;
+      if (input) {
+        input.focus();
+      }
+    },
+    getValueIndex: function getValueIndex() {
+      var _this12 = this;
+
+      var arr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var value = arguments[1];
+
+      var isObject = Object.prototype.toString.call(value).toLowerCase() === '[object object]';
+      if (!isObject) {
+        return arr.indexOf(value);
+      } else {
+        var _ret = function () {
+          var valueKey = _this12.valueKey;
+          var index = -1;
+          arr.some(function (item, i) {
+            if ((0, _util.getValueByPath)(item, valueKey) === (0, _util.getValueByPath)(value, valueKey)) {
+              index = i;
+              return true;
+            }
+            return false;
+          });
+          return {
+            v: index
+          };
+        }();
+
+        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+      }
+    },
+    toggleMenu: function toggleMenu() {
+      if (!this.selectDisabled) {
+        if (this.menuVisibleOnFocus) {
+          this.menuVisibleOnFocus = false;
+        } else {
+          this.visible = !this.visible;
+        }
+        if (this.visible) {
+          (this.$refs.input || this.$refs.reference).focus();
+        }
+      }
+    },
+    selectOption: function selectOption() {
+      if (!this.visible) {
+        this.toggleMenu();
+      } else {
+        if (this.options[this.hoverIndex]) {
+          this.handleOptionSelect(this.options[this.hoverIndex]);
+        }
+      }
+    },
+    deleteSelected: function deleteSelected(event) {
+      event.stopPropagation();
+      this.$emit('input', '');
+      this.emitChange('');
+      this.visible = false;
+      this.$emit('clear');
+    },
+    deleteTag: function deleteTag(event, tag) {
+      var index = this.selected.indexOf(tag);
+      if (index > -1 && !this.selectDisabled) {
+        var value = this.value.slice();
+        value.splice(index, 1);
+        this.$emit('input', value);
+        this.emitChange(value);
+        this.$emit('remove-tag', tag.value);
+      }
+      event.stopPropagation();
+    },
+    onInputChange: function onInputChange() {
+      if (this.filterable && this.query !== this.selectedLabel) {
+        this.query = this.selectedLabel;
+        this.handleQueryChange(this.query);
+      }
+    },
+    onOptionDestroy: function onOptionDestroy(index) {
+      if (index > -1) {
+        this.optionsCount--;
+        this.filteredOptionsCount--;
+        this.options.splice(index, 1);
+      }
+    },
+    resetInputWidth: function resetInputWidth() {
+      this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
+    },
+    handleResize: function handleResize() {
+      this.resetInputWidth();
+      if (this.multiple) this.resetInputHeight();
+    },
+    checkDefaultFirstOption: function checkDefaultFirstOption() {
+      this.hoverIndex = -1;
+      // highlight the created option
+      var hasCreated = false;
+      for (var i = this.options.length - 1; i >= 0; i--) {
+        if (this.options[i].created) {
+          hasCreated = true;
+          this.hoverIndex = i;
+          break;
+        }
+      }
+      if (hasCreated) return;
+      for (var _i = 0; _i !== this.options.length; ++_i) {
+        var option = this.options[_i];
+        if (this.query) {
+          // highlight first options that passes the filter
+          if (!option.disabled && !option.groupDisabled && option.visible) {
+            this.hoverIndex = _i;
+            break;
+          }
+        } else {
+          // highlight currently selected option
+          if (option.itemSelected) {
+            this.hoverIndex = _i;
+            break;
+          }
+        }
+      }
+    },
+    getValueKey: function getValueKey(item) {
+      if (Object.prototype.toString.call(item.value).toLowerCase() !== '[object object]') {
+        return item.value;
+      } else {
+        return (0, _util.getValueByPath)(item.value, this.valueKey);
+      }
+    }
+  },
+
+  created: function created() {
+    var _this13 = this;
+
+    this.cachedPlaceHolder = this.currentPlaceholder = this.placeholder;
+    if (this.multiple && !Array.isArray(this.value)) {
+      this.$emit('input', []);
+    }
+    if (!this.multiple && Array.isArray(this.value)) {
+      this.$emit('input', '');
+    }
+
+    this.debouncedOnInputChange = (0, _debounce2.default)(this.debounce, function () {
+      _this13.onInputChange();
+    });
+
+    this.$on('handleOptionClick', this.handleOptionSelect);
+    this.$on('setSelected', this.setSelected);
+    this.$on('fieldReset', function () {
+      _this13.dispatch('ElFormItem', 'el.form.change');
+    });
+  },
+  mounted: function mounted() {
+    var _this14 = this;
+
+    if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
+      this.currentPlaceholder = '';
+    }
+    (0, _resizeEvent.addResizeListener)(this.$el, this.handleResize);
+    if (this.remote && this.multiple) {
+      this.resetInputHeight();
+    }
+    this.$nextTick(function () {
+      if (_this14.$refs.reference && _this14.$refs.reference.$el) {
+        _this14.inputWidth = _this14.$refs.reference.$el.getBoundingClientRect().width;
+      }
+    });
+    this.setSelected();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.$el && this.handleResize) (0, _resizeEvent.removeResizeListener)(this.$el, this.handleResize);
+  }
+};
+
+/***/ }),
+
+/***/ 162:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a099cfd0_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_dropdown_vue__ = __webpack_require__(164);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a099cfd0_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_dropdown_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 163:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _vuePopper = __webpack_require__(7);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
@@ -389,15 +1274,7 @@ exports.default = {
 
   watch: {
     '$parent.inputWidth': function $parentInputWidth() {
-      // this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
-      // ext-> modify to dropMinwidth
-      var dropMinWd = this.$parent.dropMinwidth;
-      var parentMinWd = this.$parent.$el.getBoundingClientRect().width;
-      if (dropMinWd && dropMinWd > parentMinWd) {
-        this.minWidth = dropMinWd + 'px';
-      } else {
-        this.minWidth = parentMinWd + 'px';
-      }
+      this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
     }
   },
 
@@ -423,7 +1300,194 @@ exports.default = {
 
 /***/ }),
 
-/***/ 28:
+/***/ 164:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-select-dropdown el-popper",class:[{ 'is-multiple': _vm.$parent.multiple }, _vm.popperClass],style:({ minWidth: _vm.minWidth })},[_vm._t("default")],2)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 165:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = {
+  data: function data() {
+    return {
+      hoverOption: -1
+    };
+  },
+
+
+  computed: {
+    optionsAllDisabled: function optionsAllDisabled() {
+      return this.options.filter(function (option) {
+        return option.visible;
+      }).every(function (option) {
+        return option.disabled;
+      });
+    }
+  },
+
+  watch: {
+    hoverIndex: function hoverIndex(val) {
+      var _this = this;
+
+      if (typeof val === 'number' && val > -1) {
+        this.hoverOption = this.options[val] || {};
+      }
+      this.options.forEach(function (option) {
+        option.hover = _this.hoverOption === option;
+      });
+    }
+  },
+
+  methods: {
+    navigateOptions: function navigateOptions(direction) {
+      var _this2 = this;
+
+      if (!this.visible) {
+        this.visible = true;
+        return;
+      }
+      if (this.options.length === 0 || this.filteredOptionsCount === 0) return;
+      if (!this.optionsAllDisabled) {
+        if (direction === 'next') {
+          this.hoverIndex++;
+          if (this.hoverIndex === this.options.length) {
+            this.hoverIndex = 0;
+          }
+        } else if (direction === 'prev') {
+          this.hoverIndex--;
+          if (this.hoverIndex < 0) {
+            this.hoverIndex = this.options.length - 1;
+          }
+        }
+        var option = this.options[this.hoverIndex];
+        if (option.disabled === true || option.groupDisabled === true || !option.visible) {
+          this.navigateOptions(direction);
+        }
+        this.$nextTick(function () {
+          return _this2.scrollToOption(_this2.hoverOption);
+        });
+      }
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 166:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],staticClass:"el-select",class:[_vm.selectSize ? 'el-select--' + _vm.selectSize : ''],on:{"click":function($event){$event.stopPropagation();_vm.toggleMenu($event)}}},[(_vm.multiple)?_c('div',{ref:"tags",staticClass:"el-select__tags",style:({ 'max-width': _vm.inputWidth - 32 + 'px' })},[(_vm.collapseTags && _vm.selected.length)?_c('span',[_c('el-tag',{attrs:{"closable":!_vm.selectDisabled,"size":_vm.collapseTagSize,"hit":_vm.selected[0].hitState,"type":"info","disable-transitions":""},on:{"close":function($event){_vm.deleteTag($event, _vm.selected[0])}}},[_c('span',{staticClass:"el-select__tags-text"},[_vm._v(_vm._s(_vm.selected[0].currentLabel))])]),(_vm.selected.length > 1)?_c('el-tag',{attrs:{"closable":false,"size":_vm.collapseTagSize,"type":"info","disable-transitions":""}},[_c('span',{staticClass:"el-select__tags-text"},[_vm._v("+ "+_vm._s(_vm.selected.length - 1))])]):_vm._e()],1):_vm._e(),(!_vm.collapseTags)?_c('transition-group',{on:{"after-leave":_vm.resetInputHeight}},_vm._l((_vm.selected),function(item){return _c('el-tag',{key:_vm.getValueKey(item),attrs:{"closable":!_vm.selectDisabled,"size":_vm.collapseTagSize,"hit":item.hitState,"type":"info","disable-transitions":""},on:{"close":function($event){_vm.deleteTag($event, item)}}},[_c('span',{staticClass:"el-select__tags-text"},[_vm._v(_vm._s(item.currentLabel))])])})):_vm._e(),(_vm.filterable)?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.query),expression:"query"}],ref:"input",staticClass:"el-select__input",class:[_vm.selectSize ? ("is-" + _vm.selectSize) : ''],style:({ width: _vm.inputLength + 'px', 'max-width': _vm.inputWidth - 42 + 'px' }),attrs:{"type":"text","disabled":_vm.selectDisabled,"autocomplete":_vm.autoComplete,"debounce":_vm.remote ? 300 : 0},domProps:{"value":(_vm.query)},on:{"focus":_vm.handleFocus,"blur":function($event){_vm.softFocus = false},"click":function($event){$event.stopPropagation();},"keyup":_vm.managePlaceholder,"keydown":[_vm.resetInputState,function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"down",40,$event.key)){ return null; }$event.preventDefault();_vm.navigateOptions('next')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"up",38,$event.key)){ return null; }$event.preventDefault();_vm.navigateOptions('prev')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }$event.preventDefault();_vm.selectOption($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key)){ return null; }$event.stopPropagation();$event.preventDefault();_vm.visible = false},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"delete",[8,46],$event.key)){ return null; }_vm.deletePrevTag($event)}],"compositionstart":_vm.handleComposition,"compositionupdate":_vm.handleComposition,"compositionend":_vm.handleComposition,"input":[function($event){if($event.target.composing){ return; }_vm.query=$event.target.value},function (e) { return _vm.handleQueryChange(e.target.value); }]}}):_vm._e()],1):_vm._e(),_c('el-input',{ref:"reference",class:{ 'is-focus': _vm.visible },attrs:{"type":"text","placeholder":_vm.currentPlaceholder,"name":_vm.name,"id":_vm.id,"auto-complete":_vm.autoComplete,"size":_vm.selectSize,"disabled":_vm.selectDisabled,"readonly":_vm.readonly,"validate-event":false},on:{"focus":_vm.handleFocus,"blur":_vm.handleBlur},nativeOn:{"keyup":function($event){_vm.debouncedOnInputChange($event)},"keydown":[function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"down",40,$event.key)){ return null; }$event.stopPropagation();$event.preventDefault();_vm.navigateOptions('next')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"up",38,$event.key)){ return null; }$event.stopPropagation();$event.preventDefault();_vm.navigateOptions('prev')},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key)){ return null; }$event.preventDefault();_vm.selectOption($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key)){ return null; }$event.stopPropagation();$event.preventDefault();_vm.visible = false},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"tab",9,$event.key)){ return null; }_vm.visible = false}],"paste":function($event){_vm.debouncedOnInputChange($event)},"mouseenter":function($event){_vm.inputHovering = true},"mouseleave":function($event){_vm.inputHovering = false}},model:{value:(_vm.selectedLabel),callback:function ($$v) {_vm.selectedLabel=$$v},expression:"selectedLabel"}},[(_vm.$slots.prefix)?_c('template',{attrs:{"slot":"prefix"},slot:"prefix"},[_vm._t("prefix")],2):_vm._e(),_c('i',{class:['el-select__caret', 'el-input__icon', 'el-icon-' + _vm.iconClass],attrs:{"slot":"suffix"},on:{"click":_vm.handleIconClick},slot:"suffix"})],2),_c('transition',{attrs:{"name":"el-zoom-in-top"},on:{"before-enter":_vm.handleMenuEnter,"after-leave":_vm.doDestroy}},[_c('el-select-menu',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible && _vm.emptyText !== false),expression:"visible && emptyText !== false"}],ref:"popper",attrs:{"append-to-body":_vm.popperAppendToBody}},[_c('el-scrollbar',{directives:[{name:"show",rawName:"v-show",value:(_vm.options.length > 0 && !_vm.loading),expression:"options.length > 0 && !loading"}],ref:"scrollbar",class:{ 'is-empty': !_vm.allowCreate && _vm.query && _vm.filteredOptionsCount === 0 },attrs:{"tag":"ul","wrap-class":"el-select-dropdown__wrap","view-class":"el-select-dropdown__list"}},[(_vm.showNewOption)?_c('el-option',{attrs:{"value":_vm.query,"created":""}}):_vm._e(),_vm._t("default")],2),(_vm.emptyText &&
+          (!_vm.allowCreate || _vm.loading || (_vm.allowCreate && _vm.options.length === 0 )))?_c('p',{staticClass:"el-select-dropdown__empty"},[_vm._v("\n        "+_vm._s(_vm.emptyText)+"\n      ")]):_vm._e()],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/scrollbar");
+
+/***/ }),
+
+/***/ 18:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/resize-event");
+
+/***/ }),
+
+/***/ 19:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/mixins/focus");
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/dom");
+
+/***/ }),
+
+/***/ 23:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/shared");
+
+/***/ }),
+
+/***/ 25:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/tag");
+
+/***/ }),
+
+/***/ 26:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/scroll-into-view");
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 35:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6f2fe20f_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_option_vue__ = __webpack_require__(37);
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6f2fe20f_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_option_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -431,31 +1495,31 @@ exports.default = {
 
 exports.__esModule = true;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   mixins: [_emitter2.default],
@@ -534,16 +1598,24 @@ exports.default = {
       }
     },
     contains: function contains() {
+      var _this = this;
+
       var arr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       var target = arguments[1];
 
       if (!this.isObject) {
         return arr.indexOf(target) > -1;
       } else {
-        var valueKey = this.select.valueKey;
-        return arr.some(function (item) {
-          return (0, _util.getValueByPath)(item, valueKey) === (0, _util.getValueByPath)(target, valueKey);
-        });
+        var _ret = function () {
+          var valueKey = _this.select.valueKey;
+          return {
+            v: arr.some(function (item) {
+              return (0, _util.getValueByPath)(item, valueKey) === (0, _util.getValueByPath)(target, valueKey);
+            })
+          };
+        }();
+
+        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
       }
     },
     handleGroupDisabled: function handleGroupDisabled(val) {
@@ -556,7 +1628,7 @@ exports.default = {
     },
     selectOptionClick: function selectOptionClick() {
       if (this.disabled !== true && this.groupDisabled !== true) {
-        this.dispatch('ElSelect', 'handleOptionClick', this);
+        this.dispatch('ElSelect', 'handleOptionClick', [this, true]);
       }
     },
     queryChange: function queryChange(query) {
@@ -585,99 +1657,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/dom");
-
-/***/ }),
-
-/***/ 40:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3f39d246_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_dropdown_vue__ = __webpack_require__(41);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_select_dropdown_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3f39d246_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_select_dropdown_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 41:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-select-dropdown el-popper",class:[{ 'is-multiple': _vm.$parent.multiple }, _vm.popperClass],style:({ minWidth: _vm.minWidth })},[_vm._t("default")],2)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 42:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6444aace_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_option_vue__ = __webpack_require__(43);
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_option_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6444aace_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_option_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 43:
+/***/ 37:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -685,81 +1665,10 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     'selected': _vm.itemSelected,
     'is-disabled': _vm.disabled || _vm.groupDisabled || _vm.limitReached,
     'hover': _vm.hover
-  },on:{"mouseenter":_vm.hoverItem,"click":function($event){$event.stopPropagation();return _vm.selectOptionClick($event)}}},[_vm._t("default",[_c('span',[_vm._v(_vm._s(_vm.currentLabel))])])],2)}
+  },on:{"mouseenter":_vm.hoverItem,"click":function($event){$event.stopPropagation();_vm.selectOptionClick($event)}}},[_vm._t("default",[_c('span',[_vm._v(_vm._s(_vm.currentLabel))])])],2)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 44:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = {
-  data: function data() {
-    return {
-      hoverOption: -1
-    };
-  },
-
-
-  computed: {
-    optionsAllDisabled: function optionsAllDisabled() {
-      return this.options.length === this.options.filter(function (item) {
-        return item.disabled === true;
-      }).length;
-    }
-  },
-
-  watch: {
-    hoverIndex: function hoverIndex(val) {
-      var _this = this;
-
-      if (typeof val === 'number' && val > -1) {
-        this.hoverOption = this.options[val] || {};
-      }
-      this.options.forEach(function (option) {
-        option.hover = _this.hoverOption === option;
-      });
-    }
-  },
-
-  methods: {
-    navigateOptions: function navigateOptions(direction) {
-      var _this2 = this;
-
-      if (!this.visible) {
-        this.visible = true;
-        return;
-      }
-      if (this.options.length === 0 || this.filteredOptionsCount === 0) return;
-      if (!this.optionsAllDisabled) {
-        if (direction === 'next') {
-          this.hoverIndex++;
-          if (this.hoverIndex === this.options.length) {
-            this.hoverIndex = 0;
-          }
-        } else if (direction === 'prev') {
-          this.hoverIndex--;
-          if (this.hoverIndex < 0) {
-            this.hoverIndex = this.options.length - 1;
-          }
-        }
-        var option = this.options[this.hoverIndex];
-        if (option.disabled === true || option.groupDisabled === true || !option.visible) {
-          this.navigateOptions(direction);
-        }
-      }
-      this.$nextTick(function () {
-        return _this2.scrollToOption(_this2.hoverOption);
-      });
-    }
-  }
-};
 
 /***/ }),
 
@@ -773,942 +1682,14 @@ module.exports = require("element-ui/lib/mixins/locale");
 /***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/utils/vue-popper");
+module.exports = require("element-ui/lib/input");
 
 /***/ }),
 
 /***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = require("element-ui/lib/input");
-
-/***/ }),
-
-/***/ 75:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _emitter = __webpack_require__(1);
-
-var _emitter2 = _interopRequireDefault(_emitter);
-
-var _focus = __webpack_require__(20);
-
-var _focus2 = _interopRequireDefault(_focus);
-
-var _locale = __webpack_require__(5);
-
-var _locale2 = _interopRequireDefault(_locale);
-
-var _input = __webpack_require__(7);
-
-var _input2 = _interopRequireDefault(_input);
-
-var _selectDropdown = __webpack_require__(40);
-
-var _selectDropdown2 = _interopRequireDefault(_selectDropdown);
-
-var _option = __webpack_require__(42);
-
-var _option2 = _interopRequireDefault(_option);
-
-var _tag = __webpack_require__(18);
-
-var _tag2 = _interopRequireDefault(_tag);
-
-var _scrollbar = __webpack_require__(17);
-
-var _scrollbar2 = _interopRequireDefault(_scrollbar);
-
-var _debounce = __webpack_require__(11);
-
-var _debounce2 = _interopRequireDefault(_debounce);
-
-var _clickoutside = __webpack_require__(10);
-
-var _clickoutside2 = _interopRequireDefault(_clickoutside);
-
-var _dom = __webpack_require__(3);
-
-var _resizeEvent = __webpack_require__(16);
-
-var _locale3 = __webpack_require__(13);
-
-var _scrollIntoView = __webpack_require__(23);
-
-var _scrollIntoView2 = _interopRequireDefault(_scrollIntoView);
-
-var _util = __webpack_require__(2);
-
-var _navigationMixin = __webpack_require__(44);
-
-var _navigationMixin2 = _interopRequireDefault(_navigationMixin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var sizeMap = {
-  'medium': 36,
-  'small': 32,
-  'mini': 26 // ext-> modify
-};
-
-// ext-> add, init field opts
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var setInitOptions = function setInitOptions(options, fields) {
-  var initOptions = [];
-  if (options && options.length && fields) {
-    for (var i = 0; i < options.length; i++) {
-      initOptions.push({});
-      initOptions[i]['label'] = options[i][fields.label];
-      initOptions[i]['value'] = options[i][fields.value];
-      initOptions[i]['disabled'] = options[i][fields.disabled] || false;
-    }
-    return initOptions;
-  }
-  return initOptions;
-};
-
-exports.default = {
-  mixins: [_emitter2.default, _locale2.default, (0, _focus2.default)('reference'), _navigationMixin2.default],
-
-  name: 'ElSelect',
-
-  componentName: 'ElSelect',
-
-  inject: {
-    elForm: {
-      default: ''
-    },
-
-    elFormItem: {
-      default: ''
-    }
-  },
-
-  provide: function provide() {
-    return {
-      'select': this
-    };
-  },
-
-
-  computed: {
-    _elFormItemSize: function _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemSize;
-    },
-    iconClass: function iconClass() {
-      var criteria = this.clearable && !this.selectDisabled && !this.disputed && // ext-> add
-      this.inputHovering && !this.multiple && this.value !== undefined && this.value !== '';
-      return criteria ? 'circle-close is-show-close' : this.remote && this.filterable ? '' : 'arrow-up';
-    },
-    debounce: function debounce() {
-      return this.remote ? 300 : 0;
-    },
-    emptyText: function emptyText() {
-      if (this.loading) {
-        return this.loadingText || this.t('el.select.loading');
-      } else {
-        if (this.remote && this.query === '' && this.options.length === 0) return false;
-        if (this.filterable && this.query && this.options.length > 0 && this.filteredOptionsCount === 0) {
-          return this.noMatchText || this.t('el.select.noMatch');
-        }
-        if (this.options.length === 0) {
-          return this.noDataText || this.t('el.select.noData');
-        }
-      }
-      return null;
-    },
-    showNewOption: function showNewOption() {
-      var _this = this;
-
-      var hasExistingOption = this.options.filter(function (option) {
-        return !option.created;
-      }).some(function (option) {
-        return option.currentLabel === _this.query;
-      });
-      return this.filterable && this.allowCreate && this.query !== '' && !hasExistingOption;
-    },
-    selectSize: function selectSize() {
-      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
-    },
-    selectDisabled: function selectDisabled() {
-      return this.disabled || (this.elForm || {}).disabled;
-    },
-    collapseTagSize: function collapseTagSize() {
-      return ['small', 'mini'].indexOf(this.selectSize) > -1 ? 'mini' : 'small';
-    }
-  },
-
-  components: {
-    ElInput: _input2.default,
-    ElSelectMenu: _selectDropdown2.default,
-    ElOption: _option2.default,
-    ElTag: _tag2.default,
-    ElScrollbar: _scrollbar2.default
-  },
-
-  directives: { Clickoutside: _clickoutside2.default },
-
-  props: {
-    name: String,
-    id: String,
-    value: {
-      required: true
-    },
-    autoComplete: {
-      type: String,
-      default: 'off'
-    },
-    size: String,
-    disabled: Boolean,
-    clearable: Boolean,
-    filterable: Boolean,
-    allowCreate: Boolean,
-    loading: Boolean,
-    popperClass: String,
-    remote: Boolean,
-    loadingText: String,
-    noMatchText: String,
-    noDataText: String,
-    remoteMethod: Function,
-    filterMethod: Function,
-    multiple: Boolean,
-    multipleLimit: {
-      type: Number,
-      default: 0
-    },
-    placeholder: {
-      type: String,
-      default: function _default() {
-        return (0, _locale3.t)('el.select.placeholder');
-      }
-    },
-    defaultFirstOption: Boolean,
-    reserveKeyword: Boolean,
-    valueKey: {
-      type: String,
-      default: 'value'
-    },
-    collapseTags: Boolean,
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
-    },
-    dropMinwidth: Number, // ext-> 下拉列表最小宽度
-    multiSplit: { // ext-> 多选时翻译分隔符
-      type: String,
-      default: '/'
-    },
-    getFillStyl: Function, // ext-> 获取自定义组件配色
-    optionsData: Array, // ext-> Option初始化数据
-    labelVal: { // options 数据项自定义标签和值属性
-      type: Object,
-      default: function _default() {
-        return {
-          label: 'label',
-          value: 'value',
-          disabled: 'disabled'
-        };
-      }
-    },
-    translated: Boolean, // ext-> 转化为翻译组件
-    disputed: Boolean, // ext-> 代替禁用
-    tabindex: String, // ext-> Tab 序值
-    disabledTips: Boolean // ext-> 禁用表单弹窗提示
-  },
-
-  data: function data() {
-    return {
-      options: [],
-      cachedOptions: [],
-      createdLabel: null,
-      createdSelected: false,
-      selected: this.multiple ? [] : {},
-      inputLength: 20,
-      inputWidth: 0,
-      cachedPlaceHolder: '',
-      optionsCount: 0,
-      filteredOptionsCount: 0,
-      visible: false,
-      softFocus: false,
-      selectedLabel: '',
-      hoverIndex: -1,
-      query: '',
-      previousQuery: null,
-      inputHovering: false,
-      currentPlaceholder: '',
-      innerOptions: [] // ext-> 内部数据构建options时使用
-    };
-  },
-
-
-  watch: {
-    selectDisabled: function selectDisabled() {
-      var _this2 = this;
-
-      this.$nextTick(function () {
-        _this2.resetInputHeight();
-      });
-    },
-    placeholder: function placeholder(val) {
-      this.cachedPlaceHolder = this.currentPlaceholder = val;
-    },
-    value: function value(val) {
-      if (val === null || val === 'null') this.$emit('input', ''); // ext-> 处理值为null时为空
-      if (this.multiple) {
-        this.resetInputHeight();
-        if (val.length > 0 || this.$refs.input && this.query !== '') {
-          this.currentPlaceholder = '';
-        } else {
-          this.currentPlaceholder = this.cachedPlaceHolder;
-        }
-        if (this.filterable && !this.reserveKeyword) {
-          this.query = '';
-          this.handleQueryChange(this.query);
-        }
-      }
-      this.setSelected();
-      if (this.filterable && !this.multiple) {
-        this.inputLength = 20;
-      }
-    },
-    visible: function visible(val) {
-      var _this3 = this;
-
-      if (!val) {
-        this.handleIconHide();
-        this.broadcast('ElSelectDropdown', 'destroyPopper');
-        if (this.$refs.input) {
-          this.$refs.input.blur();
-        }
-        this.query = '';
-        this.previousQuery = null;
-        this.selectedLabel = '';
-        this.inputLength = 20;
-        this.resetHoverIndex();
-        this.$nextTick(function () {
-          if (_this3.$refs.input && _this3.$refs.input.value === '' && _this3.selected.length === 0) {
-            _this3.currentPlaceholder = _this3.cachedPlaceHolder;
-          }
-        });
-        if (!this.multiple) {
-          if (this.selected) {
-            if (this.filterable && this.allowCreate && this.createdSelected && this.createdOption) {
-              this.selectedLabel = this.createdLabel;
-            } else {
-              this.selectedLabel = this.selected.currentLabel;
-            }
-            if (this.filterable) this.query = this.selectedLabel;
-          }
-        }
-      } else {
-        this.handleIconShow();
-        this.broadcast('ElSelectDropdown', 'updatePopper');
-        if (this.filterable) {
-          this.query = this.remote ? '' : this.selectedLabel;
-          this.handleQueryChange(this.query);
-          if (this.multiple) {
-            this.$refs.input.focus();
-          } else {
-            if (!this.remote) {
-              this.broadcast('ElOption', 'queryChange', '');
-              this.broadcast('ElOptionGroup', 'queryChange');
-            }
-            this.broadcast('ElInput', 'inputSelect');
-          }
-        }
-      }
-      this.$emit('visible-change', val);
-    },
-    options: function options() {
-      if (this.$isServer) return;
-      if (this.multiple) {
-        this.resetInputHeight();
-      }
-      var inputs = this.$el.querySelectorAll('input');
-      if ([].indexOf.call(inputs, document.activeElement) === -1) {
-        this.setSelected();
-      }
-      if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
-        this.checkDefaultFirstOption();
-      }
-    },
-
-    // ext-> add watch
-    optionsData: function optionsData() {
-      this.innerOptions = setInitOptions(this.optionsData, this.labelVal);
-    }
-  },
-
-  methods: {
-    handleQueryChange: function handleQueryChange(val) {
-      var _this4 = this;
-
-      if (this.previousQuery === val) return;
-      if (this.previousQuery === null && (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')) {
-        this.previousQuery = val;
-        return;
-      }
-      this.previousQuery = val;
-      this.$nextTick(function () {
-        if (_this4.visible) _this4.broadcast('ElSelectDropdown', 'updatePopper');
-      });
-      this.hoverIndex = -1;
-      if (this.multiple && this.filterable) {
-        var length = this.$refs.input.value.length * 15 + 20;
-        this.inputLength = this.collapseTags ? Math.min(50, length) : length;
-        this.managePlaceholder();
-        this.resetInputHeight();
-      }
-      if (this.remote && typeof this.remoteMethod === 'function') {
-        this.hoverIndex = -1;
-        this.remoteMethod(val);
-      } else if (typeof this.filterMethod === 'function') {
-        this.filterMethod(val);
-        this.broadcast('ElOptionGroup', 'queryChange');
-      } else {
-        this.filteredOptionsCount = this.optionsCount;
-        this.broadcast('ElOption', 'queryChange', val);
-        this.broadcast('ElOptionGroup', 'queryChange');
-      }
-      if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
-        this.checkDefaultFirstOption();
-      }
-    },
-    handleIconHide: function handleIconHide() {
-      var icon = this.$el.querySelector('.el-input__icon');
-      if (icon) {
-        (0, _dom.removeClass)(icon, 'is-reverse');
-      }
-    },
-    handleIconShow: function handleIconShow() {
-      var icon = this.$el.querySelector('.el-input__icon');
-      if (icon && !(0, _dom.hasClass)(icon, 'el-icon-circle-close')) {
-        (0, _dom.addClass)(icon, 'is-reverse');
-      }
-    },
-    scrollToOption: function scrollToOption(option) {
-      var target = Array.isArray(option) && option[0] ? option[0].$el : option.$el;
-      if (this.$refs.popper && target) {
-        var menu = this.$refs.popper.$el.querySelector('.el-select-dropdown__wrap');
-        (0, _scrollIntoView2.default)(menu, target);
-      }
-      this.$refs.scrollbar && this.$refs.scrollbar.handleScroll();
-    },
-    handleMenuEnter: function handleMenuEnter() {
-      var _this5 = this;
-
-      this.$nextTick(function () {
-        return _this5.scrollToOption(_this5.selected);
-      });
-    },
-    emitChange: function emitChange(val) {
-      if (!(0, _util.valueEquals)(this.value, val)) {
-        this.$emit('change', val);
-        this.dispatch('ElFormItem', 'el.form.change', [val]);
-        this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
-        this.setMessageTips(); // ext-> 信息超出边界弹出提
-      }
-    },
-    getOption: function getOption(value) {
-      var option = void 0;
-      var isObject = Object.prototype.toString.call(value).toLowerCase() === '[object object]';
-      for (var i = this.cachedOptions.length - 1; i >= 0; i--) {
-        var cachedOption = this.cachedOptions[i];
-        var isEqual = isObject ? (0, _util.getValueByPath)(cachedOption.value, this.valueKey) === (0, _util.getValueByPath)(value, this.valueKey) : cachedOption.value === value;
-        if (isEqual) {
-          option = cachedOption;
-          break;
-        }
-      }
-      if (option) return option;
-      var label = !isObject ? value : '';
-      var newOption = {
-        value: value,
-        currentLabel: label
-      };
-      if (this.multiple) {
-        newOption.hitState = false;
-      }
-      return newOption;
-    },
-    setSelected: function setSelected() {
-      var _this6 = this;
-
-      if (!this.multiple) {
-        var option = this.getOption(this.value);
-        if (option.created) {
-          this.createdLabel = option.currentLabel;
-          this.createdSelected = true;
-        } else {
-          this.createdSelected = false;
-        }
-        this.selectedLabel = option.currentLabel;
-        this.selected = option;
-        if (this.filterable) this.query = this.selectedLabel;
-        this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
-        return;
-      }
-      var result = [];
-      if (Array.isArray(this.value)) {
-        this.value.forEach(function (value) {
-          result.push(_this6.getOption(value));
-        });
-      }
-      this.selected = result;
-      this.$nextTick(function () {
-        _this6.resetInputHeight();
-        _this6.dispatch('ElForm', 'compare-change', [_this6]); // ext-> compare
-      });
-    },
-    handleFocus: function handleFocus(event) {
-      if (!this.softFocus) {
-        this.$emit('focus', event);
-      } else {
-        this.softFocus = false;
-      }
-    },
-    handleBlur: function handleBlur(event) {
-      this.$emit('blur', event);
-    },
-    handleIconClick: function handleIconClick(event) {
-      if (this.iconClass.indexOf('circle-close') > -1) {
-        this.deleteSelected(event);
-      }
-    },
-    doDestroy: function doDestroy() {
-      this.$refs.popper && this.$refs.popper.doDestroy();
-    },
-    handleClose: function handleClose() {
-      this.visible = false;
-    },
-    toggleLastOptionHitState: function toggleLastOptionHitState(hit) {
-      if (!Array.isArray(this.selected)) return;
-      var option = this.selected[this.selected.length - 1];
-      if (!option) return;
-
-      if (hit === true || hit === false) {
-        option.hitState = hit;
-        return hit;
-      }
-
-      option.hitState = !option.hitState;
-      return option.hitState;
-    },
-    deletePrevTag: function deletePrevTag(e) {
-      if (e.target.value.length <= 0 && !this.toggleLastOptionHitState()) {
-        var value = this.value.slice();
-        value.pop();
-        this.$emit('input', value);
-        this.emitChange(value);
-      }
-    },
-    managePlaceholder: function managePlaceholder() {
-      if (this.currentPlaceholder !== '') {
-        this.currentPlaceholder = this.$refs.input.value ? '' : this.cachedPlaceHolder;
-      }
-    },
-    resetInputState: function resetInputState(e) {
-      if (e.keyCode !== 8) this.toggleLastOptionHitState(false);
-      this.inputLength = this.$refs.input.value.length * 15 + 20;
-      this.resetInputHeight();
-    },
-    resetInputHeight: function resetInputHeight() {
-      var _this7 = this;
-
-      if (this.collapseTags && !this.filterable) return;
-      this.$nextTick(function () {
-        if (!_this7.$refs.reference) return;
-        var inputChildNodes = _this7.$refs.reference.$el.childNodes;
-        var input = [].filter.call(inputChildNodes, function (item) {
-          return item.tagName === 'INPUT';
-        })[0];
-        var tags = _this7.$refs.tags;
-        var sizeInMap = sizeMap[_this7.selectSize] || 24; // ext-> modify
-        input.style.height = _this7.selected.length === 0 ? sizeInMap + 'px' : Math.max(tags ? tags.clientHeight + (tags.clientHeight > sizeInMap ? 6 : 0) : 0, sizeInMap) + 'px';
-        if (_this7.visible && _this7.emptyText !== false) {
-          _this7.broadcast('ElSelectDropdown', 'updatePopper');
-        }
-      });
-    },
-    resetHoverIndex: function resetHoverIndex() {
-      var _this8 = this;
-
-      setTimeout(function () {
-        if (!_this8.multiple) {
-          _this8.hoverIndex = _this8.options.indexOf(_this8.selected);
-        } else {
-          if (_this8.selected.length > 0) {
-            _this8.hoverIndex = Math.min.apply(null, _this8.selected.map(function (item) {
-              return _this8.options.indexOf(item);
-            }));
-          } else {
-            _this8.hoverIndex = -1;
-          }
-        }
-      }, 300);
-    },
-    handleOptionSelect: function handleOptionSelect(option) {
-      var _this9 = this;
-
-      if (this.multiple) {
-        var value = this.value.slice();
-        var optionIndex = this.getValueIndex(value, option.value);
-        if (optionIndex > -1) {
-          value.splice(optionIndex, 1);
-        } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
-          value.push(option.value);
-        }
-        this.$emit('input', value);
-        this.emitChange(value);
-        if (option.created) {
-          this.query = '';
-          this.handleQueryChange('');
-          this.inputLength = 20;
-        }
-        if (this.filterable) this.$refs.input.focus();
-      } else {
-        this.$emit('input', option.value);
-        this.emitChange(option.value);
-        this.visible = false;
-      }
-      this.$nextTick(function () {
-        if (_this9.visible) return;
-        _this9.scrollToOption(option);
-        _this9.setSoftFocus();
-      });
-    },
-    setSoftFocus: function setSoftFocus() {
-      this.softFocus = true;
-      (this.$refs.input || this.$refs.reference).focus();
-    },
-    getValueIndex: function getValueIndex() {
-      var arr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-      var value = arguments[1];
-
-      var isObject = Object.prototype.toString.call(value).toLowerCase() === '[object object]';
-      if (!isObject) {
-        return arr.indexOf(value);
-      } else {
-        var valueKey = this.valueKey;
-        var index = -1;
-        arr.some(function (item, i) {
-          if ((0, _util.getValueByPath)(item, valueKey) === (0, _util.getValueByPath)(value, valueKey)) {
-            index = i;
-            return true;
-          }
-          return false;
-        });
-        return index;
-      }
-    },
-    toggleMenu: function toggleMenu() {
-      if (!this.selectDisabled && !this.disputed) {
-        this.visible = !this.visible;
-        if (this.visible) {
-          (this.$refs.input || this.$refs.reference).focus();
-        }
-      }
-    },
-    selectOption: function selectOption() {
-      if (!this.visible) {
-        this.toggleMenu();
-      } else {
-        if (this.options[this.hoverIndex]) {
-          this.handleOptionSelect(this.options[this.hoverIndex]);
-        }
-      }
-    },
-    deleteSelected: function deleteSelected(event) {
-      event.stopPropagation();
-      this.$emit('input', '');
-      this.emitChange('');
-      this.visible = false;
-      this.$emit('clear');
-    },
-    deleteTag: function deleteTag(event, tag) {
-      var index = this.selected.indexOf(tag);
-      if (index > -1 && !this.selectDisabled && !this.disputed) {
-        var value = this.value.slice();
-        value.splice(index, 1);
-        this.$emit('input', value);
-        this.emitChange(value);
-        this.$emit('remove-tag', tag.value);
-      }
-      event.stopPropagation();
-    },
-    onInputChange: function onInputChange() {
-      if (this.filterable && this.query !== this.selectedLabel) {
-        this.query = this.selectedLabel;
-        this.handleQueryChange(this.query);
-      }
-    },
-    onOptionDestroy: function onOptionDestroy(index) {
-      if (index > -1) {
-        this.optionsCount--;
-        this.filteredOptionsCount--;
-        this.options.splice(index, 1);
-      }
-    },
-    resetInputWidth: function resetInputWidth() {
-      if (!this.$refs.reference || !this.$refs.reference.$el) return; // ext-> add
-      this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
-    },
-    handleResize: function handleResize() {
-      this.resetInputWidth();
-      if (this.multiple) this.resetInputHeight();
-    },
-    checkDefaultFirstOption: function checkDefaultFirstOption() {
-      this.hoverIndex = -1;
-      // highlight the created option
-      var hasCreated = false;
-      for (var i = this.options.length - 1; i >= 0; i--) {
-        if (this.options[i].created) {
-          hasCreated = true;
-          this.hoverIndex = i;
-          break;
-        }
-      }
-      if (hasCreated) return;
-      for (var _i = 0; _i !== this.options.length; ++_i) {
-        var option = this.options[_i];
-        if (this.query) {
-          // highlight first options that passes the filter
-          if (!option.disabled && !option.groupDisabled && option.visible) {
-            this.hoverIndex = _i;
-            break;
-          }
-        } else {
-          // highlight currently selected option
-          if (option.itemSelected) {
-            this.hoverIndex = _i;
-            break;
-          }
-        }
-      }
-    },
-    getValueKey: function getValueKey(item) {
-      if (Object.prototype.toString.call(item.value).toLowerCase() !== '[object object]') {
-        return item.value;
-      } else {
-        return (0, _util.getValueByPath)(item.value, this.valueKey);
-      }
-    },
-
-    // ext-> 信息超出边界弹出提示
-    setMessageTips: function setMessageTips() {
-      var _this10 = this;
-
-      if (!this.disabledTips && !this.multiple) {
-        this.$nextTick(function () {
-          _this10.dispatch('ElFormItem', 'el.form.messagetips', [_this10.selectedLabel]);
-        });
-      }
-    }
-  },
-
-  created: function created() {
-    var _this11 = this;
-
-    this.cachedPlaceHolder = this.currentPlaceholder = this.placeholder;
-    if (this.multiple && !Array.isArray(this.value)) {
-      this.$emit('input', []);
-    }
-    if (!this.multiple && Array.isArray(this.value)) {
-      this.$emit('input', '');
-    }
-
-    this.debouncedOnInputChange = (0, _debounce2.default)(this.debounce, function () {
-      _this11.onInputChange();
-    });
-
-    this.$on('handleOptionClick', this.handleOptionSelect);
-    this.$on('setSelected', this.setSelected);
-    this.$on('fieldReset', function () {
-      _this11.dispatch('ElFormItem', 'el.form.change');
-    });
-  },
-  mounted: function mounted() {
-    var _this12 = this;
-
-    this.innerOptions = setInitOptions(this.optionsData, this.labelVal); // ext-> add init
-    if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
-      this.currentPlaceholder = '';
-    }
-    (0, _resizeEvent.addResizeListener)(this.$el, this.handleResize);
-    if (this.remote && this.multiple) {
-      this.resetInputHeight();
-    }
-    this.$nextTick(function () {
-      if (_this12.$refs.reference && _this12.$refs.reference.$el) {
-        _this12.inputWidth = _this12.$refs.reference.$el.getBoundingClientRect().width;
-      }
-    });
-    this.setSelected();
-    this.setMessageTips(); // ext-> 信息超出边界弹出提示
-  },
-  beforeDestroy: function beforeDestroy() {
-    if (this.$el && this.handleResize) (0, _resizeEvent.removeResizeListener)(this.$el, this.handleResize);
-  }
-};
+module.exports = require("element-ui/lib/utils/vue-popper");
 
 /***/ })
 

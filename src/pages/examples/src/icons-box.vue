@@ -4,6 +4,12 @@
 </style>
 <template>
   <section class="content">
+    {{t('p0')}}：
+    <el-select v-model="sel">
+      <el-option value="hhh">hhhHHHH</el-option>
+      <el-option value="AAA">AAAAAAA</el-option>
+      <el-option value="BBB">BBBBBBBBRR</el-option>
+    </el-select>
     <h3 class="tu-biao-ji-he">参考图标集合</h3>
     <ul class="icon-list">
       <li>
@@ -426,35 +432,26 @@
           <span class="icon-name">el-icon-loading</span>
         </span>
       </li>
-      <li>
-        <span>
-          <i class="el-icon-cloud-api"></i>
-          <span class="icon-name">el-icon-cloud-api</span>
-        </span>
-      </li>
-      <li>
-        <span>
-          <i class="el-icon-cwmck"></i>
-          <span class="icon-name">el-icon-cwmck</span>
-        </span>
-      </li>
-      <li>
-        <span>
-          <i class="el-icon-cir-qtxg"></i>
-          <span class="icon-name">el-icon-cir-qtxg</span>
-        </span>
-      </li>
-      <li>
-        <span>
-          <i class="el-icon-mod-sldm"></i>
-          <span class="icon-name">el-icon-mod-sldm</span>
-        </span>
-      </li>
     </ul>
   </section>
 </template>
 <script>
+import locale from '@mixins/locale';
+import {
+  Select,
+  Option
+} from 'element-ui';
+
+Vue.use(Select);
+Vue.use(Option);
+
 export default {
-  name: 'IconsBox'
+  name: 'IconsBox',
+  mixins: [locale],
+  data() {
+    return {
+      sel: ''
+    };
+  }
 };
 </script>

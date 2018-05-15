@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import '@compo/scss/common.scss';
 import './index.scss';
+import '@mixins/locale';
 import MainApp from '@compo/index/main-app';
 import router from './router';
 import store from './store';
@@ -19,6 +20,6 @@ new Vue({
   template: '<main-app/>',
   components: { MainApp },
   mounted() {
-    console.log('jQ:', $);
+
   }
 });

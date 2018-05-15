@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 212);
+/******/ 	return __webpack_require__(__webpack_require__.s = 128);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,15 +183,15 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 212:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(213);
+module.exports = __webpack_require__(129);
 
 
 /***/ }),
 
-/***/ 213:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +199,7 @@ module.exports = __webpack_require__(213);
 
 exports.__esModule = true;
 
-var _radioGroup = __webpack_require__(214);
+var _radioGroup = __webpack_require__(130);
 
 var _radioGroup2 = _interopRequireDefault(_radioGroup);
 
@@ -214,23 +214,21 @@ exports.default = _radioGroup2.default;
 
 /***/ }),
 
-/***/ 214:
+/***/ 130:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_97faf7c8_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_radio_group_vue__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7cf215ec_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_radio_group_vue__ = __webpack_require__(132);
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -239,7 +237,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_radio_group_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_97faf7c8_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_radio_group_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7cf215ec_hasScoped_false_preserveWhitespace_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_radio_group_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -251,18 +249,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 215:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-radio-group",attrs:{"role":"radiogroup"},on:{"keydown":_vm.handleKeydown,"mouseover":_vm.inputMouseover,"mouseout":_vm.inputMouseout}},[_vm._t("default")],2)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ 69:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -282,8 +269,6 @@ var keyCode = Object.freeze({
   RIGHT: 39,
   DOWN: 40
 }); //
-//
-//
 //
 //
 //
@@ -331,8 +316,6 @@ exports.default = {
     });
   },
   mounted: function mounted() {
-    var _this2 = this;
-
     // 当radioGroup没有默认选项时，第一个可以选中Tab导航
     var radios = this.$el.querySelectorAll('[type=radio]');
     var firstLabel = this.$el.querySelectorAll('[role=radio]')[0];
@@ -341,10 +324,6 @@ exports.default = {
     }) && firstLabel) {
       firstLabel.tabIndex = 0;
     }
-    // ext-> compare
-    this.$nextTick(function () {
-      _this2.dispatch('ElForm', 'compare-change', _this2);
-    });
   },
 
   methods: {
@@ -380,26 +359,25 @@ exports.default = {
         default:
           break;
       }
-    },
-
-    // ext-> 鼠标over时事件
-    inputMouseover: function inputMouseover(e) {
-      this.dispatch('ElFormItem', 'el.form.mouseover', [e]);
-    },
-
-    // ext-> 鼠标out时事件
-    inputMouseout: function inputMouseout(e) {
-      this.dispatch('ElFormItem', 'el.form.mouseout', [e]);
     }
   },
   watch: {
     value: function value(_value) {
-      this.$emit('change', _value); // ext-> change
       this.dispatch('ElFormItem', 'el.form.change', [this.value]);
-      this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
     }
   }
 };
+
+/***/ }),
+
+/***/ 132:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"el-radio-group",attrs:{"role":"radiogroup"},on:{"keydown":_vm.handleKeydown}},[_vm._t("default")],2)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ })
 

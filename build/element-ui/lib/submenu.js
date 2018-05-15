@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 188);
+/******/ 	return __webpack_require__(__webpack_require__.s = 98);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,53 +183,20 @@ module.exports = require("element-ui/lib/mixins/emitter");
 
 /***/ }),
 
-/***/ 188:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(189);
-
-
-/***/ }),
-
-/***/ 189:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _submenu = __webpack_require__(190);
-
-var _submenu2 = _interopRequireDefault(_submenu);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* istanbul ignore next */
-_submenu2.default.install = function (Vue) {
-  Vue.component(_submenu2.default.name, _submenu2.default);
-};
-
-exports.default = _submenu2.default;
-
-/***/ }),
-
-/***/ 190:
+/***/ 100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_submenu_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 var normalizeComponent = __webpack_require__(0)
 /* script */
-
 
 /* template */
 var __vue_template__ = null
 /* template functional */
-var __vue_template_functional__ = false
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -250,72 +217,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 25:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/transitions/collapse-transition");
-
-/***/ }),
-
-/***/ 39:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = {
-  inject: ['rootMenu'],
-  computed: {
-    indexPath: function indexPath() {
-      var path = [this.index];
-      var parent = this.$parent;
-      while (parent.$options.componentName !== 'ElMenu') {
-        if (parent.index) {
-          path.unshift(parent.index);
-        }
-        parent = parent.$parent;
-      }
-      return path;
-    },
-    parentMenu: function parentMenu() {
-      var parent = this.$parent;
-      while (parent && ['ElMenu', 'ElSubmenu'].indexOf(parent.$options.componentName) === -1) {
-        parent = parent.$parent;
-      }
-      return parent;
-    },
-    paddingStyle: function paddingStyle() {
-      if (this.rootMenu.mode !== 'vertical') return {};
-
-      var padding = 20;
-      var parent = this.$parent;
-
-      if (this.rootMenu.collapse) {
-        padding = 20;
-      } else {
-        while (parent && parent.$options.componentName !== 'ElMenu') {
-          if (parent.$options.componentName === 'ElSubmenu') {
-            padding += 20;
-          }
-          parent = parent.$parent;
-        }
-      }
-      return { paddingLeft: padding + 'px' };
-    }
-  }
-};
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/vue-popper");
-
-/***/ }),
-
-/***/ 63:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -323,11 +225,11 @@ module.exports = require("element-ui/lib/utils/vue-popper");
 
 exports.__esModule = true;
 
-var _collapseTransition = __webpack_require__(25);
+var _collapseTransition = __webpack_require__(21);
 
 var _collapseTransition2 = _interopRequireDefault(_collapseTransition);
 
-var _menuMixin = __webpack_require__(39);
+var _menuMixin = __webpack_require__(34);
 
 var _menuMixin2 = _interopRequireDefault(_menuMixin);
 
@@ -335,7 +237,7 @@ var _emitter = __webpack_require__(1);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _vuePopper = __webpack_require__(6);
+var _vuePopper = __webpack_require__(7);
 
 var _vuePopper2 = _interopRequireDefault(_vuePopper);
 
@@ -380,7 +282,11 @@ exports.default = {
       default: 300
     },
     popperClass: String,
-    disabled: Boolean
+    disabled: Boolean,
+    popperAppendToBody: {
+      type: Boolean,
+      default: undefined
+    }
   },
 
   data: function data() {
@@ -388,7 +294,8 @@ exports.default = {
       popperJS: null,
       timeout: null,
       items: {},
-      submenus: {}
+      submenus: {},
+      mouseInChild: false
     };
   },
 
@@ -406,7 +313,7 @@ exports.default = {
   computed: {
     // popper option
     appendToBody: function appendToBody() {
-      return this.isFirstLevel;
+      return this.popperAppendToBody === undefined ? this.isFirstLevel : this.popperAppendToBody;
     },
     menuTransitionName: function menuTransitionName() {
       return this.rootMenu.collapse ? 'el-zoom-in-left' : 'el-zoom-in-top';
@@ -514,6 +421,7 @@ exports.default = {
       if (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal' || !rootMenu.collapse && rootMenu.mode === 'vertical' || disabled) {
         return;
       }
+      this.dispatch('ElSubmenu', 'mouse-enter-child');
       clearTimeout(this.timeout);
       this.timeout = setTimeout(function () {
         _this2.rootMenu.openMenu(_this2.index, _this2.indexPath);
@@ -527,9 +435,10 @@ exports.default = {
       if (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal' || !rootMenu.collapse && rootMenu.mode === 'vertical') {
         return;
       }
+      this.dispatch('ElSubmenu', 'mouse-leave-child');
       clearTimeout(this.timeout);
       this.timeout = setTimeout(function () {
-        _this3.rootMenu.closeMenu(_this3.index);
+        !_this3.mouseInChild && _this3.rootMenu.closeMenu(_this3.index);
       }, this.hideTimeout);
     },
     handleTitleMouseenter: function handleTitleMouseenter() {
@@ -552,9 +461,19 @@ exports.default = {
     }
   },
   created: function created() {
+    var _this4 = this;
+
     this.parentMenu.addSubmenu(this);
     this.rootMenu.addSubmenu(this);
     this.$on('toggle-collapse', this.handleCollapseToggle);
+    this.$on('mouse-enter-child', function () {
+      _this4.mouseInChild = true;
+      clearTimeout(_this4.timeout);
+    });
+    this.$on('mouse-leave-child', function () {
+      _this4.mouseInChild = false;
+      clearTimeout(_this4.timeout);
+    });
   },
   mounted: function mounted() {
     this.initPopper();
@@ -613,21 +532,25 @@ exports.default = {
       )]
     );
 
-    var inlineMenu = h('el-collapse-transition', [h(
-      'ul',
-      {
-        attrs: {
-          role: 'menu'
-        },
-        'class': 'el-menu el-menu--inline',
-        directives: [{
-          name: 'show',
-          value: opened
-        }],
+    var inlineMenu = h(
+      'el-collapse-transition',
+      null,
+      [h(
+        'ul',
+        {
+          attrs: {
+            role: 'menu'
+          },
+          'class': 'el-menu el-menu--inline',
+          directives: [{
+            name: 'show',
+            value: opened
+          }],
 
-        style: { backgroundColor: rootMenu.backgroundColor || '' } },
-      [$slots.default]
-    )]);
+          style: { backgroundColor: rootMenu.backgroundColor || '' } },
+        [$slots.default]
+      )]
+    );
 
     var submenuTitleIcon = rootMenu.mode === 'horizontal' && isFirstLevel || rootMenu.mode === 'vertical' && !rootMenu.collapse ? 'el-icon-arrow-down' : 'el-icon-arrow-right';
 
@@ -663,11 +586,111 @@ exports.default = {
 
           style: [paddingStyle, titleStyle, { backgroundColor: backgroundColor }]
         },
-        [$slots.title, h('i', { 'class': ['el-submenu__icon-arrow', submenuTitleIcon] })]
+        [$slots.title, h(
+          'i',
+          { 'class': ['el-submenu__icon-arrow', submenuTitleIcon] },
+          []
+        )]
       ), this.isMenuPopup ? popupMenu : inlineMenu]
     );
   }
 };
+
+/***/ }),
+
+/***/ 21:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/transitions/collapse-transition");
+
+/***/ }),
+
+/***/ 34:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = {
+  inject: ['rootMenu'],
+  computed: {
+    indexPath: function indexPath() {
+      var path = [this.index];
+      var parent = this.$parent;
+      while (parent.$options.componentName !== 'ElMenu') {
+        if (parent.index) {
+          path.unshift(parent.index);
+        }
+        parent = parent.$parent;
+      }
+      return path;
+    },
+    parentMenu: function parentMenu() {
+      var parent = this.$parent;
+      while (parent && ['ElMenu', 'ElSubmenu'].indexOf(parent.$options.componentName) === -1) {
+        parent = parent.$parent;
+      }
+      return parent;
+    },
+    paddingStyle: function paddingStyle() {
+      if (this.rootMenu.mode !== 'vertical') return {};
+
+      var padding = 20;
+      var parent = this.$parent;
+
+      if (this.rootMenu.collapse) {
+        padding = 20;
+      } else {
+        while (parent && parent.$options.componentName !== 'ElMenu') {
+          if (parent.$options.componentName === 'ElSubmenu') {
+            padding += 20;
+          }
+          parent = parent.$parent;
+        }
+      }
+      return { paddingLeft: padding + 'px' };
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/vue-popper");
+
+/***/ }),
+
+/***/ 98:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(99);
+
+
+/***/ }),
+
+/***/ 99:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _submenu = __webpack_require__(100);
+
+var _submenu2 = _interopRequireDefault(_submenu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* istanbul ignore next */
+_submenu2.default.install = function (Vue) {
+  Vue.component(_submenu2.default.name, _submenu2.default);
+};
+
+exports.default = _submenu2.default;
 
 /***/ })
 

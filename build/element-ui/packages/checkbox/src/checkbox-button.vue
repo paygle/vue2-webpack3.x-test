@@ -16,7 +16,6 @@
       class="el-checkbox-button__original"
       type="checkbox"
       :name="name"
-      :tabindex="tabindex"
       :disabled="isDisabled"
       :true-value="trueLabel"
       :false-value="falseLabel"
@@ -29,7 +28,6 @@
       class="el-checkbox-button__original"
       type="checkbox"
       :name="name"
-      :tabindex="tabindex"
       :disabled="isDisabled"
       :value="label"
       v-model="model"
@@ -77,8 +75,7 @@
       checked: Boolean,
       name: String,
       trueLabel: [String, Number],
-      falseLabel: [String, Number],
-      tabindex: String // Tab 序值
+      falseLabel: [String, Number]
     },
     computed: {
       model: {
@@ -103,10 +100,8 @@
             this.dispatch('ElCheckboxGroup', 'input', [val]);
           } else if (this.value !== undefined) {
             this.$emit('input', val);
-            this.dispatch('ElForm', 'compare-change', [this]); // ext-> 比较着色
           } else {
             this.selfModel = val;
-            this.dispatch('ElForm', 'compare-change', [this]); // ext-> 比较着色
           }
         }
       },

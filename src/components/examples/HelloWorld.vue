@@ -26,10 +26,13 @@
 </template>
 
 <script>
+import { Select, Option } from 'element-ui';
+
+Vue.use(Select);
+Vue.use(Option);
 
 export default {
   name: 'HelloWorld',
-
   data() {
     return {
       sel: '',

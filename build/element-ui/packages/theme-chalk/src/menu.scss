@@ -5,7 +5,7 @@
 @mixin menu-item {
   height: 56px;
   line-height: 56px;
-  font-size: 12px; /* ext-> modify */
+  font-size: 14px;
   color: $--menu-item-color;
   padding: 0 20px;
   list-style: none;
@@ -190,6 +190,7 @@
     }
     &-right-start {
       margin-left: 5px;
+      margin-right: 5px;
     }
   }
 }
@@ -200,7 +201,7 @@
     margin-right: 5px;
     width: 24px;
     text-align: center;
-    font-size: 16px; /* ext-> modify */
+    font-size: 18px;
     vertical-align: middle;
   }
   @include when(active) {
@@ -263,7 +264,7 @@
     margin-right: 5px;
     width: 24px;
     text-align: center;
-    font-size: 16px; /* ext-> modify */
+    font-size: 18px;
   }
 }
 

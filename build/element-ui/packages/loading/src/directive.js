@@ -121,7 +121,6 @@ loadingDirective.install = Vue => {
         el.mask.parentNode.removeChild(el.mask);
         toggleLoading(el, { value: false, modifiers: binding.modifiers });
       }
-      el.instance.$off('after-leave'); // ext->ÒÆ³ıafter-leave¼àÌı£¬±ÜÃâÄÚ´æĞ¹Â©
     }
   });
 };

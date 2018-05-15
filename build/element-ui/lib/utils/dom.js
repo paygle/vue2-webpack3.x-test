@@ -1,7 +1,7 @@
 'use strict';
 
 exports.__esModule = true;
-exports.createDomElement = exports.getStyle = exports.once = exports.off = exports.on = undefined;
+exports.getStyle = exports.once = exports.off = exports.on = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /* istanbul ignore next */
 
@@ -185,25 +185,4 @@ function setStyle(element, styleName, value) {
       element.style[styleName] = value;
     }
   }
-};
-
-/**
- * @param tag 标签名
- * @param attrs 属性对象
- * @param children 子结点对象
- * @authorr liuxp
- */
-var createDomElement = exports.createDomElement = function createDomElement(tag, attrs, children) {
-  var el = document.createElement(tag);
-  if (attrs) {
-    for (var key in attrs) {
-      attrs.hasOwnProperty(key) && el.setAttribute(key, attrs[key]);
-    }
-  }
-  if (children) {
-    for (var i = 0, length = children.length; i < length; i++) {
-      el.appendChild(children[i]);
-    }
-  }
-  return el;
 };

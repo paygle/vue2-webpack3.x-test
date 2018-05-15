@@ -257,10 +257,7 @@
         default: true
       },
 
-      stripe: { // ext-> 默认条纹
-        type: Boolean,
-        default: true
-      },
+      stripe: Boolean,
 
       border: Boolean,
 
@@ -365,6 +362,7 @@
 
       updateScrollY() {
         this.layout.updateScrollY();
+        this.layout.updateColumnsWidth();
       },
 
       handleFixedMousewheel(event, data) {

@@ -35,33 +35,14 @@
 
     watch: {
       value(value) {
-        this.$emit('change', value); // ext-> change
         this.dispatch('ElFormItem', 'el.form.change', [value]);
-        this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
       }
-    },
-    methods: {
-      // ext-> 鼠标over时事件
-      inputMouseover(e) {
-        this.dispatch('ElFormItem', 'el.form.mouseover', [e]);
-      },
-      // ext-> 鼠标out时事件
-      inputMouseout(e) {
-        this.dispatch('ElFormItem', 'el.form.mouseout', [e]);
-      }
-    },
-    mounted() { // ext-> compare
-      this.$nextTick(() => {
-        this.dispatch('ElForm', 'compare-change', [this]);
-      });
     }
   };
 </script>
 
 <template>
-  <div class="el-checkbox-group" role="group" aria-label="checkbox-group"
-    @mouseover="inputMouseover"
-    @mouseout="inputMouseout">
+  <div class="el-checkbox-group" role="group" aria-label="checkbox-group">
     <slot></slot>
   </div>
 </template>

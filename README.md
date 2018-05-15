@@ -1,6 +1,4 @@
-# vue2-webpack3.x-test 使用说明
-
-> karma test vue2 in webpack3.x
+# vue2demo 使用说明
 
 ## import 导入路径别名
 
@@ -15,8 +13,7 @@
 
 ### 注意： 只要 package.json 有更新，就需要执行 npm install 安装一下（如果安装出错请删除node_modules目录重新安装）
 
-## 不需要引入可直接使用的（第三库）全局变量
-$或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
+## 不需要引入可直接使用的（第三库）全局变量： Vue、Vuex、VueRouter
 
 * Vue 2.x 文档参考 https://cn.vuejs.org/
 
@@ -24,7 +21,7 @@ $或jQuery、Vue、Vuex、VueRouter、ELEMENT、echarts、XLSX、pako
 
 * Echarts 图表文档 http://echarts.baidu.com/api.html
 
-* Ztree 树jquery插件文档 http://www.treejs.cn/
+* superagent 数据请求API文档 http://visionmedia.github.io/superagent/
 
 ## 入口文件第三方库配置文件，配置你需要的第三库
 

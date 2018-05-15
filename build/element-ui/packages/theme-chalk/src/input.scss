@@ -1,28 +1,11 @@
 @import "mixins/mixins";
 @import "common/var";
 
-@mixin disabledtmpl($cursor) { /* ext-> add */
-  .el-input__inner {
-    background-color: $--input-disabled-fill;
-    border-color: $--input-disabled-border;
-    color: $--input-disabled-color;
-    cursor: $cursor;
-
-    &::placeholder {
-      color: $--input-disabled-placeholder-color;
-    }
-  }
-
-  .el-input__icon {
-    cursor: not-allowed;
-  }
-}
-
 @include b(textarea) {
   display: inline-block;
   width: 100%;
   vertical-align: bottom;
-  font-size: $--font-size-small; /* ext-> modify */
+  font-size: $--font-size-base;
 
   @include e(inner) {
     display: block;
@@ -58,7 +41,7 @@
       background-color: $--input-disabled-fill;
       border-color: $--input-disabled-border;
       color: $--input-disabled-color;
-      cursor: default; /* ext-> modify */
+      cursor: not-allowed;
 
       &::placeholder {
         color: $--input-disabled-placeholder-color;
@@ -69,7 +52,7 @@
 
 @include b(input) {
   position: relative;
-  font-size: $--font-size-small; /* ext-> modify */
+  font-size: $--font-size-base;
   display: inline-block;
   width: 100%;
   @include scroll-bar;
@@ -99,7 +82,7 @@
     height: $--input-height;
     line-height: $--input-height;
     outline: none;
-    padding: 3px 10px; /* ext-> modify */
+    padding: 0 15px;
     transition: $--border-transition-base;
     width: 100%;
 
@@ -147,7 +130,6 @@
     width: 25px;
     text-align: center;
     transition: all .3s;
-    font-size: 14px;  /* ext-> add */
     line-height: $--input-height;
 
     &:after {
@@ -170,12 +152,21 @@
     }
   }
 
-  @include when(disabled) { /* ext-> modify */
-    @include disabledtmpl(not-allowed);
-  }
+  @include when(disabled) {
+    .el-input__inner {
+      background-color: $--input-disabled-fill;
+      border-color: $--input-disabled-border;
+      color: $--input-disabled-color;
+      cursor: not-allowed;
 
-  @include when(disputed) { /* ext-> add */
-    @include disabledtmpl(default);
+      &::placeholder {
+        color: $--input-disabled-placeholder-color;
+      }
+    }
+
+    .el-input__icon {
+      cursor: not-allowed;
+    }
   }
 
   @include m(suffix) {

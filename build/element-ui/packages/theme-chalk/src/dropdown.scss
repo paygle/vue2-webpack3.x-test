@@ -7,7 +7,7 @@
   display: inline-block;
   position: relative;
   color: $--color-text-regular;
-  font-size: $--font-size-small; /* ext-> modify */
+  font-size: $--font-size-base;
 
   .el-button-group {
     display: block;
@@ -72,10 +72,10 @@
 
   @include e(item) {
     list-style: none;
-    line-height: 26px; /* ext-> modify */
+    line-height: 36px;
     padding: 0 20px;
     margin: 0;
-    font-size: $--font-size-small; /* ext-> modify */
+    font-size: $--font-size-base;
     color: $--color-text-regular;
     cursor: pointer;
     outline: none;

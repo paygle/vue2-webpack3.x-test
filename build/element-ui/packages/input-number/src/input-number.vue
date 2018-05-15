@@ -35,7 +35,6 @@
       :min="min"
       :name="name"
       :label="label"
-      :tabindex="tabindex"
       @keydown.up.native.prevent="increase"
       @keydown.down.native.prevent="decrease"
       @blur="handleBlur"
@@ -97,9 +96,7 @@
         default: ''
       },
       name: String,
-      label: String,
-      tabindex: String, // ext-> Tab value
-      getFillStyl: Function // ext-> 获取自定义组件配色
+      label: String
     },
     data() {
       return {
@@ -176,21 +173,17 @@
         if (this.inputNumberDisabled || this.maxDisabled) return;
         const value = this.value || 0;
         const newVal = this._increase(value, this.step);
-        if (newVal > this.max) return; // ext-> max
         this.setCurrentValue(newVal);
       },
       decrease() {
         if (this.inputNumberDisabled || this.minDisabled) return;
         const value = this.value || 0;
         const newVal = this._decrease(value, this.step);
-        if (newVal < this.min) return; // ext-> min
         this.setCurrentValue(newVal);
       },
       handleBlur(event) {
         this.$emit('blur', event);
         this.$refs.input.setCurrentValue(this.currentValue);
-        this.dispatch('ElFormItem', 'el.form.change'); // ext-> change
-        this.dispatch('ElForm', 'compare-change', this); // ext-> compare
       },
       handleFocus(event) {
         this.$emit('focus', event);
@@ -203,12 +196,9 @@
           this.$refs.input.setCurrentValue(this.currentValue);
           return;
         }
-        this.$emit('change', newVal, oldVal);
         this.$emit('input', newVal);
+        this.$emit('change', newVal, oldVal);
         this.currentValue = newVal;
-        this.$nextTick(()=>{ // ext-> compare
-          this.dispatch('ElForm', 'compare-change', this);
-        });
       },
       handleInputChange(value) {
         const newVal = value === '' ? undefined : Number(value);
@@ -226,7 +216,8 @@
       innerInput.setAttribute('aria-disabled', this.inputNumberDisabled);
     },
     updated() {
-      let innerInput = this.$refs.input.$refs.input;
+      if (!this.$refs || !this.$refs.input) return;
+      const innerInput = this.$refs.input.$refs.input;
       innerInput.setAttribute('aria-valuenow', this.currentValue);
     }
   };

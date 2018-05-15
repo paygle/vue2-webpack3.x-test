@@ -3,8 +3,6 @@
     class="el-radio-group"
     role="radiogroup"
     @keydown="handleKeydown"
-    @mouseover="inputMouseover"
-    @mouseout="inputMouseout"
   >
     <slot></slot>
   </div>
@@ -60,10 +58,6 @@
       if (![].some.call(radios, radio => radio.checked) && firstLabel) {
         firstLabel.tabIndex = 0;
       }
-      // ext-> compare
-      this.$nextTick(() => {
-        this.dispatch('ElForm', 'compare-change', this);
-      });
     },
     methods: {
       handleKeydown(e) { // 左右上下按键 可以在radio组内切换不同选项
@@ -97,21 +91,11 @@
           default:
             break;
         }
-      },
-      // ext-> 鼠标over时事件
-      inputMouseover(e) {
-        this.dispatch('ElFormItem', 'el.form.mouseover', [e]);
-      },
-      // ext-> 鼠标out时事件
-      inputMouseout(e) {
-        this.dispatch('ElFormItem', 'el.form.mouseout', [e]);
       }
     },
     watch: {
       value(value) {
-        this.$emit('change', value); // ext-> change
         this.dispatch('ElFormItem', 'el.form.change', [this.value]);
-        this.dispatch('ElForm', 'compare-change', [this]); // ext-> compare
       }
     }
   };

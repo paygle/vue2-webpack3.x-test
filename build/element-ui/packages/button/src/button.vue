@@ -12,7 +12,8 @@
         'is-disabled': buttonDisabled,
         'is-loading': loading,
         'is-plain': plain,
-        'is-round': round
+        'is-round': round,
+        'is-circle': circle
       }
     ]"
   >
@@ -53,7 +54,7 @@
       plain: Boolean,
       autofocus: Boolean,
       round: Boolean,
-      tabindex: String // ext-> Tab –Ú÷µ
+      circle: Boolean
     },
 
     computed: {

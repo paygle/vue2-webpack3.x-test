@@ -61,41 +61,27 @@ module.exports =
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 266);
+/******/ 	return __webpack_require__(__webpack_require__.s = 200);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 12:
+/***/ 16:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/checkbox");
 
 /***/ }),
 
-/***/ 18:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/tag");
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = require("element-ui/lib/utils/util");
-
-/***/ }),
-
-/***/ 266:
+/***/ 200:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(267);
+module.exports = __webpack_require__(201);
 
 
 /***/ }),
 
-/***/ 267:
+/***/ 201:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103,7 +89,7 @@ module.exports = __webpack_require__(267);
 
 exports.__esModule = true;
 
-var _tableColumn = __webpack_require__(268);
+var _tableColumn = __webpack_require__(202);
 
 var _tableColumn2 = _interopRequireDefault(_tableColumn);
 
@@ -118,7 +104,7 @@ exports.default = _tableColumn2.default;
 
 /***/ }),
 
-/***/ 268:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,19 +112,19 @@ exports.default = _tableColumn2.default;
 
 exports.__esModule = true;
 
-var _checkbox = __webpack_require__(12);
+var _checkbox = __webpack_require__(16);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
-var _tag = __webpack_require__(18);
+var _tag = __webpack_require__(25);
 
 var _tag2 = _interopRequireDefault(_tag);
 
-var _merge = __webpack_require__(8);
+var _merge = __webpack_require__(9);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -174,16 +160,20 @@ var forced = {
     renderHeader: function renderHeader(h, _ref) {
       var store = _ref.store;
 
-      return h('el-checkbox', {
-        attrs: {
-          disabled: store.states.data && store.states.data.length === 0,
-          indeterminate: store.states.selection.length > 0 && !this.isAllSelected,
+      return h(
+        'el-checkbox',
+        {
+          attrs: {
+            disabled: store.states.data && store.states.data.length === 0,
+            indeterminate: store.states.selection.length > 0 && !this.isAllSelected,
 
-          value: this.isAllSelected },
-        nativeOn: {
-          'click': this.toggleAllSelection
-        }
-      });
+            value: this.isAllSelected },
+          nativeOn: {
+            'click': this.toggleAllSelection
+          }
+        },
+        []
+      );
     },
     renderCell: function renderCell(h, _ref2) {
       var row = _ref2.row,
@@ -191,22 +181,26 @@ var forced = {
           store = _ref2.store,
           $index = _ref2.$index;
 
-      return h('el-checkbox', {
-        nativeOn: {
-          'click': function click(event) {
-            return event.stopPropagation();
+      return h(
+        'el-checkbox',
+        {
+          nativeOn: {
+            'click': function click(event) {
+              return event.stopPropagation();
+            }
+          },
+          attrs: {
+            value: store.isSelected(row),
+            disabled: column.selectable ? !column.selectable.call(null, row, $index) : false
+          },
+          on: {
+            'input': function input() {
+              store.commit('rowSelectedChanged', row);
+            }
           }
         },
-        attrs: {
-          value: store.isSelected(row),
-          disabled: column.selectable ? !column.selectable.call(null, row, $index) : false
-        },
-        on: {
-          'input': function input() {
-            store.commit('rowSelectedChanged', row);
-          }
-        }
-      });
+        []
+      );
     },
     sortable: false,
     resizable: false
@@ -230,7 +224,11 @@ var forced = {
         i = index($index);
       }
 
-      return h('div', [i]);
+      return h(
+        'div',
+        null,
+        [i]
+      );
     },
     sortable: false
   },
@@ -254,7 +252,11 @@ var forced = {
             }
           }
         },
-        [h('i', { 'class': 'el-icon el-icon-arrow-right' })]
+        [h(
+          'i',
+          { 'class': 'el-icon el-icon-arrow-right' },
+          []
+        )]
       );
     },
     sortable: false,
@@ -288,12 +290,13 @@ var getDefaultColumn = function getDefaultColumn(type, options) {
 
 var DEFAULT_RENDER_CELL = function DEFAULT_RENDER_CELL(h, _ref7) {
   var row = _ref7.row,
-      column = _ref7.column;
+      column = _ref7.column,
+      $index = _ref7.$index;
 
   var property = column.property;
   var value = property && (0, _util.getPropByPath)(row, property).v;
   if (column && column.formatter) {
-    return column.formatter(row, column, value);
+    return column.formatter(row, column, value, $index);
   }
   return value;
 };
@@ -402,8 +405,6 @@ exports.default = {
 
   created: function created() {
     var _this = this;
-
-    var h = this.$createElement;
 
     this.customRender = this.$options.render;
     this.$options.render = function (h) {
@@ -601,7 +602,21 @@ exports.default = {
 
 /***/ }),
 
-/***/ 8:
+/***/ 25:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/tag");
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("element-ui/lib/utils/util");
+
+/***/ }),
+
+/***/ 9:
 /***/ (function(module, exports) {
 
 module.exports = require("element-ui/lib/utils/merge");

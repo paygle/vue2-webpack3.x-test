@@ -107,29 +107,27 @@ var baseConfig = {
 if  (process.env.NODE_ENV !== 'testing') {
   // 外部引入文件
   baseConfig.externals = {
-    'jquery': 'jQuery',
+    // 'jquery': 'jQuery',
     'vue': 'Vue',
     'vuex': 'Vuex',
     'promise': 'Promise',
-    'vue-router': 'VueRouter',
-    'element-ui': 'ELEMENT',
-    'echarts': 'echarts',
-    'promise': 'Promise',
-    'xlsx': 'XLSX',
-    'pako': 'pako'
+    'vue-router': 'VueRouter'
+    // 'element-ui': 'ELEMENT',
+    // 'echarts': 'echarts',
+    // 'xlsx': 'XLSX',
+    // 'pako': 'pako'
   };
   baseConfig.plugins.push(new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
+    // $: 'jquery',
+    // jQuery: 'jquery',
     'Vue': 'vue',
     'Vuex': 'vuex',
     'Promise': 'promise',
-    'VueRouter': 'vue-router',
-    'ELEMENT': 'element-ui',
-    'echarts': 'echarts',
-    'Promise': 'promise',
-    'XLSX': 'xlsx',
-    'pako': 'pako'
+    'VueRouter': 'vue-router'
+    // 'ELEMENT': 'element-ui',
+    // 'echarts': 'echarts',
+    // 'XLSX': 'xlsx',
+    // 'pako': 'pako'
   }));
   baseConfig.plugins = baseConfig.plugins.concat(vendors);
 }
