@@ -111,6 +111,7 @@ if  (process.env.NODE_ENV !== 'testing') {
     'vue': 'Vue',
     'vuex': 'Vuex',
     'promise': 'Promise',
+    'superagent': 'superagent',
     'vue-router': 'VueRouter'
     // 'element-ui': 'ELEMENT',
     // 'echarts': 'echarts',
@@ -123,6 +124,7 @@ if  (process.env.NODE_ENV !== 'testing') {
     'Vue': 'vue',
     'Vuex': 'vuex',
     'Promise': 'promise',
+    'superagent': 'superagent',
     'VueRouter': 'vue-router'
     // 'ELEMENT': 'element-ui',
     // 'echarts': 'echarts',

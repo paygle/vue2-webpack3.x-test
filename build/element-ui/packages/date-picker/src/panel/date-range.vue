@@ -13,7 +13,8 @@
           <button
             type="button"
             class="el-picker-panel__shortcut"
-            v-for="shortcut in shortcuts"
+            v-for="(shortcut, key) in shortcuts"
+            :key="key"
             @click="handleShortcutClick(shortcut)">{{shortcut.text}}</button>
         </div>
         <div class="el-picker-panel__body">
@@ -190,7 +191,7 @@
     isDate,
     modifyDate,
     modifyTime,
-    modifyWithDefaultTime,
+    modifyWithTimeString,
     prevYear,
     nextYear,
     prevMonth,
@@ -498,8 +499,8 @@
 
       handleRangePick(val, close = true) {
         const defaultTime = this.defaultTime || [];
-        const minDate = modifyWithDefaultTime(val.minDate, defaultTime[0]);
-        const maxDate = modifyWithDefaultTime(val.maxDate, defaultTime[1]);
+        const minDate = modifyWithTimeString(val.minDate, defaultTime[0]);
+        const maxDate = modifyWithTimeString(val.maxDate, defaultTime[1]);
 
         if (this.maxDate === maxDate && this.minDate === minDate) {
           return;
