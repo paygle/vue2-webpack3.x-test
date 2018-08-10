@@ -14,7 +14,7 @@ $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 $--color-white: #fff !default;
 $--color-black: #000 !default;
 
-$--color-primary: #409EFF !default;
+$--color-primary: #618cff !default; // NEW 修改
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
 $--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
 $--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
@@ -25,9 +25,9 @@ $--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /
 $--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
 $--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
 
-$--color-success: #67c23a !default;
-$--color-warning: #e6a23c !default;
-$--color-danger: #f56c6c !default;
+$--color-success: #37da84 !default; // NEW 修改
+$--color-warning: #e6a23c !default; // NEW 修改
+$--color-danger: #f65a41 !default; // NEW 修改
 $--color-info: #909399 !default;
 
 $--color-success-light: mix($--color-white, $--color-success, 80%) !default;
@@ -40,8 +40,8 @@ $--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
 $--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
 $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
 
-$--color-text-primary: #303133 !default;
-$--color-text-regular: #606266 !default;
+$--color-text-primary: #333333 !default; // NEW 修改
+$--color-text-regular: #666666 !default; // NEW 修改
 $--color-text-secondary: #909399 !default;
 $--color-text-placeholder: #c0c4cc !default;
 
@@ -60,7 +60,7 @@ $--border-width-base: 1px !default;
 $--border-style-base: solid !default;
 $--border-color-base: #dcdfe6 !default;
 $--border-color-light: #e4e7ed !default;
-$--border-color-lighter: #ebeef5 !default;
+$--border-color-lighter: #f3f4f9 !default; // NEW 修改
 $--border-color-extra-light: #f2f6fc !default;
 $--border-color-hover: $--color-text-placeholder !default;
 $--border-base: $--border-width-base $--border-style-base $--border-color-base !default;
@@ -479,7 +479,7 @@ $--table-border-color: $--border-color-lighter !default;
 $--table-border: 1px solid $--table-border-color !default;
 $--table-text-color: $--color-text-regular !default;
 $--table-header-color: $--color-text-secondary !default;
-$--table-row-hover-background: $--background-color-base !default;
+$--table-row-hover-background: #f4f7fd !default; // NEW 十字样式处理
 $--table-current-row-background: $--color-primary-light-9 !default;
 $--table-header-background: $--color-white !default;
 $--table-footer-background: $--color-text-placeholder !default;

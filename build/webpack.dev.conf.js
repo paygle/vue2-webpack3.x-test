@@ -4,6 +4,8 @@ const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
+const externals = require('../config/externals')
+const vendors = require('../config/vendors')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
@@ -11,7 +13,7 @@ const getEntrys = require('../config/entrys')
 const isTest = process.env.NODE_ENV === 'testing'
 
 //严重警告： 入口文件名称是全局作用域，千万不要同名否则会被覆盖
-let files = isTest ? getEntrys('test/e2e/pages') : getEntrys('src/pages');
+let files = isTest ? getEntrys('test/e2e/pages') : getEntrys(['packages']);
 if(!baseWebpackConfig.plugins){ baseWebpackConfig.plugins = []; }
 
 Object.keys(files).forEach((item)=>{
@@ -26,6 +28,8 @@ Object.keys(files).forEach((item)=>{
   }));
 });
 
+baseWebpackConfig.externals = externals;
+baseWebpackConfig.plugins = baseWebpackConfig.plugins.concat(vendors);
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })

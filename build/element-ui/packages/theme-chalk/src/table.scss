@@ -4,6 +4,13 @@
 @import "tooltip";
 @import "common/var";
 
+// NEW 十字样式处理
+$--cross-color: #f4f7fd !default; // NEW 修改
+
+.el-table td.cross-on {
+  background-color: $--cross-color;
+}
+
 @include b(table) {
   position: relative;
   overflow: hidden;
@@ -138,24 +145,24 @@
       }
     }
   }
-
+  // NEW 修改
   @include m(medium) {
-    th, td {
-      padding: 10px 0;
-    }
-  }
-
-  @include m(small) {
-    font-size: 12px;
     th, td {
       padding: 8px 0;
     }
   }
-
+  // NEW 修改
+  @include m(small) {
+    font-size: 12px;
+    th, td {
+      padding: 4px 0;
+    }
+  }
+  // NEW 修改
   @include m(mini) {
     font-size: 12px;
     th, td {
-      padding: 6px 0;
+      padding: 2px 0;
     }
   }
 
@@ -486,7 +493,7 @@
     & .el-table__body {
       & tr.el-table__row--striped {
         td {
-          background: #FAFAFA;
+          background: #FAFAFB;  // NEW 修改
         }
 
         &.current-row td {
@@ -542,7 +549,7 @@
 
   @include m(enable-row-hover) {
     .el-table__body tr:hover > td {
-      background-color: $--table-row-hover-background;
+      background-color: $--cross-color; // NEW 修改
     }
   }
 

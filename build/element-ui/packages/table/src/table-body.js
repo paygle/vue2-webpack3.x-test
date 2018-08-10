@@ -61,11 +61,11 @@ export default {
                       return (
                         <td
                           style={ this.getCellStyle($index, cellIndex, row, column) }
-                          class={ this.getCellClass($index, cellIndex, row, column) }
+                          class={ [this.getCellClass($index, cellIndex, row, column), `row${$index}col${cellIndex}`] }
                           rowspan={ rowspan }
                           colspan={ colspan }
-                          on-mouseenter={ ($event) => this.handleCellMouseEnter($event, row) }
-                          on-mouseleave={ this.handleCellMouseLeave }>
+                          on-mouseenter={ ($event) => this.handleCellMouseEnter($event, row, {$index, cellIndex}) }
+                          on-mouseleave={ ($event) => this.handleCellMouseLeave($event, {$index, cellIndex}) }>
                           {
                             column.renderCell.call(
                               this._renderProxy,
@@ -302,7 +302,7 @@ export default {
       return classes.join(' ');
     },
 
-    handleCellMouseEnter(event, row) {
+    handleCellMouseEnter(event, row, indexs) {
       const table = this.table;
       const cell = getCell(event);
 
@@ -310,6 +310,7 @@ export default {
         const column = getColumnByCell(table, cell);
         const hoverState = table.hoverState = {cell, column, row};
         table.$emit('cell-mouse-enter', hoverState.row, hoverState.column, hoverState.cell, event);
+        this.table.$emit('update-cross', indexs, 'in'); // NEW 十字样式处理
       }
 
       // 判断是否text-overflow, 如果是就显示tooltip
@@ -337,7 +338,7 @@ export default {
       }
     },
 
-    handleCellMouseLeave(event) {
+    handleCellMouseLeave(event, indexs) {
       const tooltip = this.$refs.tooltip;
       if (tooltip) {
         tooltip.setExpectedState(false);
@@ -348,6 +349,7 @@ export default {
 
       const oldHoverState = this.table.hoverState || {};
       this.table.$emit('cell-mouse-leave', oldHoverState.row, oldHoverState.column, oldHoverState.cell, event);
+      this.table.$emit('update-cross', indexs, 'out'); // NEW 十字样式处理
     },
 
     handleMouseEnter(index) {

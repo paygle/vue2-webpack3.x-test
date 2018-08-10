@@ -1,0 +1,334 @@
+/* 请根据 var.scss 文件中的变量设定颜色值，不得在本文件中定义颜色并使用 */
+@import "../scss/var";
+
+/** 用户登录BEGIN */
+.login-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+}
+.login-trial {
+  background-color: #fff !important;
+}
+.login-header {
+  line-height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+
+  .header-wrapper {
+    height: 80px;
+    width: 80%;
+    min-width: 980px;
+    margin: 0 auto;
+    vertical-align: top;
+  }
+
+  .logo {
+    display: inline-block;
+    vertical-align: top;
+    background-size: contain;
+    background-position: center;
+    width: 110px;
+    height: 80px;
+  }
+  .m-txt {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .header-right {
+    float: right;
+
+    a, span {
+      color: #666;
+      font-size: 16px;
+      margin: 0 5px;
+    }
+    a:hover, span:hover {
+      color: #333;
+    }
+  }
+}
+
+.login-body {
+  position: relative;
+  height: calc(100% - 118px);
+
+}
+
+.client-form-wrapper, .trial-form-wrapper {
+  position: relative;
+}
+
+.client-form-wrapper {
+  width: 380px;
+  padding-top: 80px;
+  margin: 0 16% auto auto;
+
+  .rcode-pop {
+    position: absolute;
+    z-index: 1;
+    left: -168px;
+    bottom: 40px;
+    width: 128px;
+    height: 128px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 0 18px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .rcode-dwapp {
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  .login-form {
+    position: relative;
+    z-index: 11;
+
+    .rcode-page {
+      width: 100%;
+      height: 200px;
+
+      .txt {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+      }
+      em {
+        color: blue;
+      }
+    }
+
+    .rcode-scan {
+      position: relative;
+      background-size: contain;
+      margin: 0 auto;
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  .others {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+}
+
+.trial-form-wrapper {
+  width: 380px;
+  padding-top: 80px;
+  margin: 0 auto;
+}
+
+.lg-frm-header {
+  position: relative;
+  height: 58px;
+
+  .title {
+    line-height: 58px;
+    font-size: 12px;
+    font-weight: normal;
+    text-indent: 30px;
+  }
+
+  .chg-rcode, .go-login {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+  }
+
+  .chg-rcode {
+    width: 38px;
+  }
+
+  .go-login {
+    width: auto;
+    line-height: 55px;
+    padding-right: 30px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.login-form {
+  background-color: white;
+  box-shadow: 0 0 18px 2px rgba(0, 0, 0, 0.3);
+
+  .forget, .valid-code {
+    cursor: pointer;
+  }
+
+  .submit-btn .el-button {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .el-form, .submit-btn{
+    margin: 0 30px;
+  }
+
+  .el-input__inner {
+    border: 0;
+    padding-left: 38px;
+  }
+
+  .el-input-group__append,
+  .el-input-group__prepend {
+    border: 0;
+  }
+
+  .el-form-item {
+    margin-bottom: 0;
+    padding: 3px 0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .valid-code {
+    display: inline-block;
+    border: 0;
+    width: 100px;
+    height: 30px;
+  }
+
+}
+.login-footer{
+  padding: 10px;
+  background-color: white;
+  text-align: center;
+}
+/** 用户登录END */
+
+/** 工作台主页BEGIN */
+
+.row-cell {
+
+  .content {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    height: 300px;
+    box-sizing: border-box;
+
+    .more {
+      line-height: 40px;
+      padding-left: 10px;
+    }
+
+    .infomations {
+      padding: 0 0 20px 10px;
+
+      .time {
+        float: right;
+      }
+    }
+    li {
+      list-style-type: disc;
+      line-height: 22px;
+    }
+
+    &.syscont {
+      height: auto;
+    }
+  }
+
+  &.pd5{
+    padding: 5px;
+  }
+}
+
+.item-head {
+  position: relative;
+  line-height: 32px;
+
+  .title {
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  .selections {
+    float: right;
+  }
+  .el-select {
+    width: 150px;
+  }
+}
+
+.sys-info {
+  position: relative;
+  min-height: 120px;
+  padding: 20px 0;
+  border-top: 1px solid #666;
+
+  .sys-rcode{
+    position: absolute;
+    background-size: contain;
+    top: 20px;
+    left: 0;
+    width: 120px;
+    height: 120px;
+  }
+
+  .info-txt{
+    margin-left: 150px;
+    line-height: 20px;
+  }
+
+  .txt {
+    em {
+      color: #999;
+      padding-right: 20px;
+    }
+  }
+
+  .el-button {
+    margin-top: 15px;
+  }
+
+}
+
+
+.main-body .main-wrapper .main-view {
+  padding: 10px;
+}
+#student-chart,
+#iowater-chart,
+#peoplerate-chart,
+#avgprice-chart,
+#saverate-chart{
+  height: 238px;
+}
+
+.main-body {
+
+  .main-wrapper {
+
+    .home-view, .row-cell {
+      padding: 0;
+      background-color: transparent;
+
+      &.pd5 {
+        background-color: white;
+        border: 5px solid #eee;
+      }
+    }
+
+    .row-cell .content {
+      border: 0;
+    }
+
+    [class*=col-cell-]{
+      background-color: white;
+      padding: 0;
+      border: 5px solid #eee;
+    }
+  }
+
+}
+
+
+/** 工作台主页END */

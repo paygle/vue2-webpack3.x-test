@@ -486,8 +486,8 @@ exports.default = {
       }
       return path.reverse();
     },
-    getCheckedNodes: function getCheckedNodes(leafOnly) {
-      return this.store.getCheckedNodes(leafOnly);
+    getCheckedNodes: function getCheckedNodes(leafOnly, includeHalfChecked) {
+      return this.store.getCheckedNodes(leafOnly, includeHalfChecked);
     },
     getCheckedKeys: function getCheckedKeys(leafOnly) {
       return this.store.getCheckedKeys(leafOnly);
@@ -946,13 +946,14 @@ var TreeStore = function () {
 
   TreeStore.prototype.getCheckedNodes = function getCheckedNodes() {
     var leafOnly = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var includeHalfChecked = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
     var checkedNodes = [];
     var traverse = function traverse(node) {
       var childNodes = node.root ? node.root.childNodes : node.childNodes;
 
       childNodes.forEach(function (child) {
-        if (child.checked && (!leafOnly || leafOnly && child.isLeaf)) {
+        if ((child.checked || includeHalfChecked && child.indeterminate) && (!leafOnly || leafOnly && child.isLeaf)) {
           checkedNodes.push(child.data);
         }
 
@@ -1465,7 +1466,7 @@ var Node = function () {
         if (data instanceof Array) {
           if (_this.checked) {
             _this.setChecked(true, true);
-          } else {
+          } else if (!_this.store.checkStrictly) {
             reInitChecked(_this);
           }
           done();

@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.logo{background: url('/static/img/logo.png') no-repeat;}
+.sys-rcode{background: url('/static/img/rqcabout.png') no-repeat;}
+.rcode-dwapp{background: url('/static/img/rqcabout.png') no-repeat;}
+.rcode-scan{background: url('/static/img/rqcabout.png') no-repeat;}
+.bg_mobile_foot{background: transparent url('/static/img/bg_mobile_foot.png') no-repeat 0 0;}
+.bg_mobile_head{background: transparent url('/static/img/bg_mobile_head.png') no-repeat 0 0;}
+.icon-service{background: url('/static/img/icon-service.png') no-repeat;}

@@ -28,17 +28,17 @@ function setEntrys(filepaths, curdir) {
 }
 
 function getEntrys(entry) {
-  let pathdata = [], filepaths;
+  let pathdata = [], filepaths = [], paths = [];
   let curdir = path.join(__dirname, '../');
   let entObjs = {}, filename;
 
   if (Array.isArray(entry)) {
     for(let item of entry) {
       item = resolve(item);
-      filepaths = glob.sync(item + '/**/*.html');
-      pathdata = setEntrys(filepaths, curdir);
-      pathdata.concat(filepaths);
+      paths = glob.sync(item + '/**/*.html') || [];
+      filepaths = filepaths.concat(paths);
     }
+    pathdata = setEntrys(filepaths, curdir);
   } else if (typeof entry === 'string') {
     entry = resolve(entry);
     filepaths = glob.sync(entry + '/**/*.html');

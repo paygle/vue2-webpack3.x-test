@@ -9,15 +9,15 @@
     };
     factory(mod, mod.exports);
     global.Vue.langs = global.Vue.langs || {};
-    global.Vue.langs.zhTW = mod.exports;
-    global.Vue.config.lang = 'zhTW';
+    global.Vue.langs.tw = mod.exports;
+    global.Vue.config.lang = 'tw';
   }
 })(this, function (module, exports) {
   'use strict';
 
   exports.__esModule = true;
   exports.default = {
-    langtype: 'zhTW',
+    langtype: 'tw',
     timestamp: 1526379302016,
     el: {
       colorpicker: {
@@ -126,7 +126,7 @@
         hasCheckedFormat: '{checked}/{total} checked' // to be translated
       }
     },
-    p0: "FT选择语言",
+    p0:'選擇語言',
     p1:'新增收貨地址',
     p2:'收貨地址',
     p3:'收貨人',

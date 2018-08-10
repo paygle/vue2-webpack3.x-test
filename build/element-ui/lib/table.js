@@ -312,9 +312,13 @@ var _tableFooter = __webpack_require__(172);
 
 var _tableFooter2 = _interopRequireDefault(_tableFooter);
 
+var _dom = __webpack_require__(2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var tableIdSeed = 1; //
+// NEW 显示表格十字架
+
+// NEW 显示表格十字架
 //
 //
 //
@@ -528,6 +532,24 @@ var tableIdSeed = 1; //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+function classStyle(doms, state) {
+  for (var k = 0; k < doms.length; k++) {
+    if (state === 'in') {
+      (0, _dom.addClass)(doms[k], 'cross-on');
+    } else if (state === 'out') {
+      (0, _dom.removeClass)(doms[k], 'cross-on');
+    }
+  }
+}
+
+var tableIdSeed = 1;
 
 exports.default = {
   name: 'ElTable',
@@ -539,6 +561,8 @@ exports.default = {
   },
 
   props: {
+    crossOn: Boolean, // NEW 显示表格十字架，增强可阅读性
+
     data: {
       type: Array,
       default: function _default() {
@@ -624,6 +648,17 @@ exports.default = {
   },
 
   methods: {
+    updateCrossOn: function updateCrossOn(indexs, state) {
+      // NEW 更新 cross-on样式
+      if (this.crossOn) {
+        // let rows = this.$el.querySelectorAll(`[class*=row${$index}]`);
+        var cellIndex = indexs.cellIndex;
+
+        var cols = this.$el.querySelectorAll('[class*=col' + cellIndex + ']');
+        if (cols.length) classStyle(cols, state);
+        // if (rows.length) classStyle(rows, state);
+      }
+    },
     getMigratingConfig: function getMigratingConfig() {
       return {
         events: {
@@ -743,6 +778,9 @@ exports.default = {
     },
     sort: function sort(prop, order) {
       this.store.commit('sort', { prop: prop, order: order });
+    },
+    toggleAllSelection: function toggleAllSelection() {
+      this.store.commit('toggleAllSelection');
     }
   },
 
@@ -916,6 +954,9 @@ exports.default = {
     });
 
     this.$ready = true;
+
+    // NEW 十字样式处理
+    this.$on('update-cross', this.updateCrossOn);
   },
   data: function data() {
     var store = new _tableStore2.default(this, {
@@ -2090,15 +2131,17 @@ exports.default = {
                   'td',
                   {
                     style: _this.getCellStyle($index, cellIndex, row, column),
-                    'class': _this.getCellClass($index, cellIndex, row, column),
+                    'class': [_this.getCellClass($index, cellIndex, row, column), 'row' + $index + 'col' + cellIndex],
                     attrs: { rowspan: rowspan,
                       colspan: colspan
                     },
                     on: {
                       'mouseenter': function mouseenter($event) {
-                        return _this.handleCellMouseEnter($event, row);
+                        return _this.handleCellMouseEnter($event, row, { $index: $index, cellIndex: cellIndex });
                       },
-                      'mouseleave': _this.handleCellMouseLeave
+                      'mouseleave': function mouseleave($event) {
+                        return _this.handleCellMouseLeave($event, { $index: $index, cellIndex: cellIndex });
+                      }
                     }
                   },
                   [column.renderCell.call(_this._renderProxy, h, {
@@ -2327,7 +2370,7 @@ exports.default = {
 
       return classes.join(' ');
     },
-    handleCellMouseEnter: function handleCellMouseEnter(event, row) {
+    handleCellMouseEnter: function handleCellMouseEnter(event, row, indexs) {
       var table = this.table;
       var cell = (0, _util.getCell)(event);
 
@@ -2335,6 +2378,7 @@ exports.default = {
         var column = (0, _util.getColumnByCell)(table, cell);
         var hoverState = table.hoverState = { cell: cell, column: column, row: row };
         table.$emit('cell-mouse-enter', hoverState.row, hoverState.column, hoverState.cell, event);
+        this.table.$emit('update-cross', indexs, 'in'); // NEW 十字样式处理
       }
 
       // 判断是否text-overflow, 如果是就显示tooltip
@@ -2360,7 +2404,7 @@ exports.default = {
         this.activateTooltip(tooltip);
       }
     },
-    handleCellMouseLeave: function handleCellMouseLeave(event) {
+    handleCellMouseLeave: function handleCellMouseLeave(event, indexs) {
       var tooltip = this.$refs.tooltip;
       if (tooltip) {
         tooltip.setExpectedState(false);
@@ -2371,6 +2415,7 @@ exports.default = {
 
       var oldHoverState = this.table.hoverState || {};
       this.table.$emit('cell-mouse-leave', oldHoverState.row, oldHoverState.column, oldHoverState.cell, event);
+      this.table.$emit('update-cross', indexs, 'out'); // NEW 十字样式处理
     },
     handleMouseEnter: function handleMouseEnter(index) {
       this.store.commit('setHoverRow', index);
@@ -2604,7 +2649,7 @@ exports.default = {
                       },
                       []
                     )]
-                  ) : '', column.filterable ? h(
+                  ) : '', column.filters && column.filters.length || column.filterMethod ? h(
                     'span',
                     { 'class': 'el-table__column-filter-trigger', on: {
                         'click': function click($event) {
@@ -3404,6 +3449,11 @@ exports.default = {
         }
       });
     }
+    // NEW 追加合计区域
+    var getCounter = function getCounter(h) {
+      if (_this.table.$slots) return _this.table.$slots.counter;
+      return '';
+    };
 
     return h(
       'table',
@@ -3457,7 +3507,7 @@ exports.default = {
             { 'class': 'gutter' },
             []
           ) : '']
-        )]
+        ), getCounter(h)]
       )]
     );
   },
@@ -3548,7 +3598,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         width: _vm.bodyWidth
       })},[_c('span',{staticClass:"el-table__empty-text"},[_vm._t("empty",[_vm._v(_vm._s(_vm.emptyText || _vm.t('el.table.emptyText')))])],2)]):_vm._e(),(_vm.$slots.append)?_c('div',{ref:"appendWrapper",staticClass:"el-table__append-wrapper"},[_vm._t("append")],2):_vm._e()],1),(_vm.showSummary)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.data && _vm.data.length > 0),expression:"data && data.length > 0"},{name:"mousewheel",rawName:"v-mousewheel",value:(_vm.handleHeaderFooterMousewheel),expression:"handleHeaderFooterMousewheel"}],ref:"footerWrapper",staticClass:"el-table__footer-wrapper"},[_c('table-footer',{style:({
         width: _vm.layout.bodyWidth ? _vm.layout.bodyWidth + 'px' : ''
-      }),attrs:{"store":_vm.store,"border":_vm.border,"sum-text":_vm.sumText || _vm.t('el.table.sumText'),"summary-method":_vm.summaryMethod,"default-sort":_vm.defaultSort}})],1):_vm._e(),(_vm.fixedColumns.length > 0)?_c('div',{directives:[{name:"mousewheel",rawName:"v-mousewheel",value:(_vm.handleFixedMousewheel),expression:"handleFixedMousewheel"}],ref:"fixedWrapper",staticClass:"el-table__fixed",style:([{
+      }),attrs:{"store":_vm.store,"border":_vm.border,"sum-text":_vm.sumText || _vm.t('el.table.sumText'),"summary-method":_vm.summaryMethod,"default-sort":_vm.defaultSort}},[_vm._t("counter")],2)],1):_vm._e(),(_vm.fixedColumns.length > 0)?_c('div',{directives:[{name:"mousewheel",rawName:"v-mousewheel",value:(_vm.handleFixedMousewheel),expression:"handleFixedMousewheel"}],ref:"fixedWrapper",staticClass:"el-table__fixed",style:([{
       width: _vm.layout.fixedWidth ? _vm.layout.fixedWidth + 'px' : ''
     },
     _vm.fixedHeight])},[(_vm.showHeader)?_c('div',{ref:"fixedHeaderWrapper",staticClass:"el-table__fixed-header-wrapper"},[_c('table-header',{ref:"fixedTableHeader",style:({
@@ -3562,7 +3612,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           height: _vm.layout.appendHeight + 'px'
         })}):_vm._e()],1),(_vm.showSummary)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.data && _vm.data.length > 0),expression:"data && data.length > 0"}],ref:"fixedFooterWrapper",staticClass:"el-table__fixed-footer-wrapper"},[_c('table-footer',{style:({
           width: _vm.bodyWidth
-        }),attrs:{"fixed":"left","border":_vm.border,"sum-text":_vm.sumText || _vm.t('el.table.sumText'),"summary-method":_vm.summaryMethod,"store":_vm.store}})],1):_vm._e()]):_vm._e(),(_vm.rightFixedColumns.length > 0)?_c('div',{directives:[{name:"mousewheel",rawName:"v-mousewheel",value:(_vm.handleFixedMousewheel),expression:"handleFixedMousewheel"}],ref:"rightFixedWrapper",staticClass:"el-table__fixed-right",style:([{
+        }),attrs:{"fixed":"left","border":_vm.border,"sum-text":_vm.sumText || _vm.t('el.table.sumText'),"summary-method":_vm.summaryMethod,"store":_vm.store}},[_vm._t("counter")],2)],1):_vm._e()]):_vm._e(),(_vm.rightFixedColumns.length > 0)?_c('div',{directives:[{name:"mousewheel",rawName:"v-mousewheel",value:(_vm.handleFixedMousewheel),expression:"handleFixedMousewheel"}],ref:"rightFixedWrapper",staticClass:"el-table__fixed-right",style:([{
       width: _vm.layout.rightFixedWidth ? _vm.layout.rightFixedWidth + 'px' : '',
       right: _vm.layout.scrollY ? (_vm.border ? _vm.layout.gutterWidth : (_vm.layout.gutterWidth || 0)) + 'px' : ''
     },
@@ -3575,7 +3625,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           width: _vm.bodyWidth
         }),attrs:{"fixed":"right","store":_vm.store,"stripe":_vm.stripe,"row-class-name":_vm.rowClassName,"row-style":_vm.rowStyle,"highlight":_vm.highlightCurrentRow}})],1),(_vm.showSummary)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.data && _vm.data.length > 0),expression:"data && data.length > 0"}],ref:"rightFixedFooterWrapper",staticClass:"el-table__fixed-footer-wrapper"},[_c('table-footer',{style:({
           width: _vm.bodyWidth
-        }),attrs:{"fixed":"right","border":_vm.border,"sum-text":_vm.sumText || _vm.t('el.table.sumText'),"summary-method":_vm.summaryMethod,"store":_vm.store}})],1):_vm._e()]):_vm._e(),(_vm.rightFixedColumns.length > 0)?_c('div',{ref:"rightFixedPatch",staticClass:"el-table__fixed-right-patch",style:({
+        }),attrs:{"fixed":"right","border":_vm.border,"sum-text":_vm.sumText || _vm.t('el.table.sumText'),"summary-method":_vm.summaryMethod,"store":_vm.store}},[_vm._t("counter")],2)],1):_vm._e()]):_vm._e(),(_vm.rightFixedColumns.length > 0)?_c('div',{ref:"rightFixedPatch",staticClass:"el-table__fixed-right-patch",style:({
       width: _vm.layout.scrollY ? _vm.layout.gutterWidth + 'px' : '0',
       height: _vm.layout.headerHeight + 'px'
     })}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.resizeProxyVisible),expression:"resizeProxyVisible"}],ref:"resizeProxy",staticClass:"el-table__column-resize-proxy"})])}

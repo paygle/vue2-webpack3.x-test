@@ -1,11 +1,17 @@
 # vue2demo 使用说明
 
+安装镜像源 npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
+
+或
+
+复制根目录下的 .npmrc 文件到你的当前用户根目录下，可以加快安装速度
+
 ## import 导入路径别名
 
 * src 根目录src
 * @assets 指向根目录 -> src/assets
+* @packs 指向根目录子项目集合 -> packages
 * @compo 指向根目录 -> src/components
-* @pages 指向根目录 -> src/pages
 * @transitions 指向根目录 -> src/transitions
 * @directives 指向根目录 -> src/directives
 * @mixins 指向根目录 -> src/mixins
@@ -27,6 +33,10 @@
 
   build/config/vendor.js
 
+## 配置你需要编译的项目入口
+
+  build/config/build-entrys.js
+
 ## 构建与安装
 
 ``` bash
@@ -36,11 +46,9 @@ npm install
 # 运行开发环境 localhost:3824
 npm run dev
 
-# 构建发布文件
+# 构建时请请改 src/utils/constants.js 文件中的 preUrl 变量，否则无法运行
+# 构建发布文件，警告，不要在IDE中执行构建，它会构建多个项目会把IDE卡死，请在新打开的CMD窗口中构建
 npm run build
-
-# 将框架文件替换到 element-ui, 一般不需要使用，默认 npm run dev 会执行
-npm run dep
 
 # 运行已经构建目录中打包完成将发布的文件
 npm run product

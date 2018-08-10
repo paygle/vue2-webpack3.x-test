@@ -78,6 +78,7 @@
         :style="{
           width: layout.bodyWidth ? layout.bodyWidth + 'px' : ''
         }">
+        <slot name="counter"></slot>
       </table-footer>
     </div>
     <div
@@ -140,7 +141,9 @@
           :store="store"
           :style="{
             width: bodyWidth
-          }"></table-footer>
+          }">
+          <slot name="counter"></slot>
+        </table-footer>
       </div>
     </div>
     <div
@@ -197,7 +200,9 @@
           :store="store"
           :style="{
             width: bodyWidth
-          }"></table-footer>
+          }">
+          <slot name="counter"></slot>
+        </table-footer>
       </div>
     </div>
     <div
@@ -224,6 +229,18 @@
   import TableBody from './table-body';
   import TableHeader from './table-header';
   import TableFooter from './table-footer';
+  import {addClass, removeClass} from 'element-ui/src/utils/dom'; // NEW 显示表格十字架
+
+  // NEW 显示表格十字架
+  function classStyle(doms, state) {
+    for (let k = 0; k < doms.length; k++) {
+      if (state === 'in') {
+        addClass(doms[k], 'cross-on');
+      } else if (state === 'out') {
+        removeClass(doms[k], 'cross-on');
+      }
+    }
+  }
 
   let tableIdSeed = 1;
 
@@ -237,6 +254,8 @@
     },
 
     props: {
+      crossOn: Boolean, // NEW 显示表格十字架，增强可阅读性
+
       data: {
         type: Array,
         default: function() {
@@ -322,6 +341,16 @@
     },
 
     methods: {
+      updateCrossOn(indexs, state) { // NEW 更新 cross-on样式
+        if (this.crossOn) {
+          // let rows = this.$el.querySelectorAll(`[class*=row${$index}]`);
+          let {cellIndex} = indexs;
+          let cols = this.$el.querySelectorAll(`[class*=col${cellIndex}]`);
+          if (cols.length) classStyle(cols, state);
+          // if (rows.length) classStyle(rows, state);
+        }
+      },
+
       getMigratingConfig() {
         return {
           events: {
@@ -447,6 +476,10 @@
 
       sort(prop, order) {
         this.store.commit('sort', { prop, order });
+      },
+
+      toggleAllSelection() {
+        this.store.commit('toggleAllSelection');
       }
     },
 
@@ -623,6 +656,9 @@
       });
 
       this.$ready = true;
+
+      // NEW 十字样式处理
+      this.$on('update-cross', this.updateCrossOn);
     },
 
     data() {

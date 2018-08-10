@@ -18,6 +18,7 @@
     font-weight: 500;
     transition: border-bottom-color .3s;
     outline: none;
+
     @include e(arrow) {
       margin-right: 8px;
       transition: transform .3s;

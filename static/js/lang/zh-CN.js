@@ -9,15 +9,15 @@
     };
     factory(mod, mod.exports);
     global.Vue.langs = global.Vue.langs || {};
-    global.Vue.langs.zhCN = mod.exports;
-    global.Vue.config.lang = 'zhCN';
+    global.Vue.langs.cn = mod.exports;
+    global.Vue.config.lang = 'cn';
   }
 })(this, function (module, exports) {
   'use strict';
 
   exports.__esModule = true;
   exports.default = {
-    langtype: 'zhCN',
+    langtype: 'cn',
     timestamp: 1526379302016,
     el: {
       colorpicker: {
@@ -126,21 +126,21 @@
         hasCheckedFormat: '已选 {checked}/{total} 项'
       }
     },
-    p0: "语言选择",
-    p1:'新增收貨地址',
-    p2:'收貨地址',
-    p3:'收貨人',
-    p4:'所在區域',
-    p5:'詳細地址',
-    p6:'郵編',
-    p7:'手機號碼',
-    p8:'固定電話',
-    p9:'區號',
-    p10:'電話號碼',
-    p11:'分機號',
-    p12:'郵箱地址',
-    p13:'設置為默認收貨位址',
-    p14:'設置後系統將在下單時自動選中該收貨位址',
+    p0:'语言选择',
+    p1:'新增收货地址',
+    p2:'收货地址',
+    p3:'收货人',
+    p4:'所在区域',
+    p5:'详细地址',
+    p6:'邮编',
+    p7:'手机号码',
+    p8:'固定电话',
+    p9:'区号',
+    p10:'电话号码',
+    p11:'分机号',
+    p12:'邮箱地址',
+    p13:'设置为默认收货位址',
+    p14:'设置后系统将在下单时自动选中该收货位址',
     p15:'保存'
   };
   module.exports = exports['default'];

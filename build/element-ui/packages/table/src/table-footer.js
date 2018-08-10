@@ -40,6 +40,11 @@ export default {
         }
       });
     }
+    // NEW 追加合计区域
+    const getCounter = (h) => {
+      if (this.table.$slots) return (this.table.$slots.counter);
+      return '';
+    };
 
     return (
       <table
@@ -75,6 +80,7 @@ export default {
               this.hasGutter ? <th class="gutter"></th> : ''
             }
           </tr>
+          { getCounter(h) }
         </tbody>
       </table>
     );

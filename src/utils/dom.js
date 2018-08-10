@@ -172,24 +172,3 @@ export function setStyle(element, styleName, value) {
     }
   }
 };
-
-/**
- * @param tag 标签名
- * @param attrs 属性对象
- * @param children 子结点对象
- * @authorr liuxp
- */
-export const createDomElement = (tag, attrs, children) => {
-  var el = document.createElement(tag);
-  if (attrs) {
-    for (var key in attrs) {
-      attrs.hasOwnProperty(key) && el.setAttribute(key, attrs[key]);
-    }
-  }
-  if (children) {
-    for (var i = 0, length = children.length; i < length; i++) {
-      el.appendChild(children[i]);
-    }
-  }
-  return el;
-};
